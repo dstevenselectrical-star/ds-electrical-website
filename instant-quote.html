@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Instant Quote | DS Electrical | Somerset</title>
+<meta name="description" content="Get an instant electrical quote online. Rewires, consumer units, EV chargers, CCTV, lighting in Somerset. Call 07889 334849.">
+<link rel="canonical" href="https://www.dselectricalsw.co.uk/instant-quote.html">
+<meta property="og:title" content="Instant Quote | DS Electrical | Somerset">
+<meta property="og:description" content="Get an instant electrical quote online. Rewires, consumer units, EV chargers, CCTV, lighting in Somerset.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.dselectricalsw.co.uk/instant-quote.html">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="robots" content="index, follow">
+<link rel="manifest" href="/manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "WebApplication",
+ "name": "DS Electrical Instant Quote",
+ "applicationCategory": "BusinessApplication",
+ "operatingSystem": "Web",
+ "provider": {
+  "@type": "LocalBusiness",
+  "name": "DS Electrical Installations (SW) Ltd",
+  "telephone": "+447889334849"
+ }
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":["LocalBusiness","Electrician"],
+ "name":"DS Electrical Installation SW Ltd",
+ "url":"https://www.dselectricalsw.co.uk",
+ "telephone":"+447889334849",
+ "email":"info@dselectricalinstallations.co.uk",
+ "address":{"@type":"PostalAddress","streetAddress":"4 Abbey Meads","addressLocality":"Glastonbury","addressRegion":"Somerset","postalCode":"BA6 8EZ","addressCountry":"GB"},
+ "areaServed":[{"@type":"City","name":"Wells"},{"@type":"City","name":"Shepton Mallet"},{"@type":"City","name":"Bath"},{"@type":"City","name":"Frome"},{"@type":"City","name":"Midsomer Norton"},{"@type":"City","name":"Street"},{"@type":"City","name":"Glastonbury"},{"@type":"City","name":"Wedmore"},{"@type":"City","name":"Radstock"},{"@type":"City","name":"Castle Cary"},{"@type":"City","name":"Bruton"}],
+ "openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"07:00","closes":"18:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Saturday"],"opens":"08:00","closes":"14:00"}],
+ "priceRange":"££",
+ "image":"https://www.dselectricalsw.co.uk/logo-full.png",
+ "sameAs":[]
+}
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+ --dark:#0a0908;--dark2:#131110;--dark3:#1c1915;
+ --light:#f8f5f0;--light2:#eee9e0;--light3:#e2dbd0;
+ --brass:#b8944f;--gold:#d4a44a;
+ --text-dark:#1a1714;--text-muted:#6b6560;
+ --text-light:#f0e8da;--text-light-muted:#8c7d6a;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',sans-serif;background:var(--light);color:var(--text-dark);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none;transition:.2s}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1.5rem,5vw,4rem);background:rgba(10,9,8,.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.04)}
+.nav-logo img{height:70px;width:auto}
+.nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+.nav-links a{font-size:.78rem;font-weight:600;color:rgba(240,232,218,.6);letter-spacing:.08em;text-transform:uppercase}
+.nav-links a:hover{color:#fff}
+.nav-cta{background:var(--gold);color:var(--dark);padding:.5rem 1.3rem;border-radius:6px;font-weight:700;font-size:.78rem}
+.nav-cta:hover{background:var(--brass)}
+.nav-menu{display:none;background:none;border:none;color:#fff;font-size:1.5rem;cursor:pointer}
+
+/* HERO */
+.hero{background:var(--dark);padding:clamp(7rem,10vw,10rem) clamp(1.5rem,5vw,4rem) clamp(4rem,6vw,5rem);text-align:center}
+.hero-tag{font-size:.65rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem}
+.hero h1{font-size:clamp(2.8rem,6vw,5rem);font-weight:900;line-height:.95;color:#fff;letter-spacing:-.03em;margin-bottom:1.5rem}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero p{font-size:1.05rem;color:rgba(240,232,218,.5);max-width:520px;margin:0 auto;line-height:1.7}
+
+/* FORM SECTION */
+.form-section{padding:clamp(4rem,8vw,6rem) clamp(1.5rem,5vw,4rem);background:var(--light)}
+.form-container{max-width:720px;margin:0 auto}
+.section-tag{font-size:.65rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--brass);margin-bottom:1rem}
+
+.step{display:none}
+.step.active{display:block}
+
+.step-indicator{display:flex;justify-content:center;gap:8px;margin-bottom:2.5rem}
+.step-dot{width:48px;height:4px;border-radius:2px;background:var(--light3);transition:all .3s}
+.step-dot.active{background:var(--gold)}
+.step-dot.done{background:var(--brass)}
+
+.step h2{font-size:1.6rem;font-weight:800;color:var(--text-dark);margin-bottom:1.5rem}
+
+.option-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;margin-bottom:2rem}
+.option-card{background:#fff;border:2px solid var(--light3);border-radius:12px;padding:1.5rem;cursor:pointer;transition:all .2s;text-align:center}
+.option-card:hover{border-color:var(--brass);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.06)}
+.option-card.selected{border-color:var(--gold);background:rgba(212,164,74,.04)}
+.option-card h3{font-size:1rem;font-weight:800;color:var(--text-dark);margin-bottom:.3rem}
+.option-card p{font-size:.78rem;color:var(--text-muted);line-height:1.5}
+.option-card .price-hint{font-family:'JetBrains Mono',monospace;font-size:.82rem;color:var(--gold);margin-top:.6rem;font-weight:600}
+
+.extras{margin-bottom:2rem}
+.extra-row{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.2rem;background:#fff;border:1.5px solid var(--light3);border-radius:10px;margin-bottom:.6rem;cursor:pointer;transition:all .2s}
+.extra-row:hover{border-color:var(--brass)}
+.extra-row.selected{border-color:var(--gold);background:rgba(212,164,74,.04)}
+.extra-row .extra-label{flex:1;font-size:.88rem;font-weight:500;color:var(--text-dark)}
+.extra-row .extra-price{font-family:'JetBrains Mono',monospace;font-size:.82rem;color:var(--gold);font-weight:600}
+
+.btn-row{display:flex;gap:1rem;justify-content:center;margin-top:2rem}
+.btn{padding:.8rem 2rem;border-radius:6px;font-weight:700;font-size:.85rem;letter-spacing:.02em;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:.5rem;transition:.25s;font-family:'Outfit',sans-serif}
+.btn-gold{background:var(--gold);color:var(--dark)}
+.btn-gold:hover{background:var(--brass);transform:translateY(-2px);box-shadow:0 8px 30px rgba(212,164,74,.3)}
+.btn-outline{background:transparent;border:1.5px solid var(--light3);color:var(--text-dark)}
+.btn-outline:hover{border-color:var(--brass);color:var(--brass)}
+
+/* RESULT */
+.result-card{background:#fff;border:2px solid var(--gold);border-radius:14px;padding:2.5rem;text-align:center;margin-bottom:2rem}
+.result-card .estimate-label{font-family:'JetBrains Mono',monospace;font-size:.7rem;text-transform:uppercase;letter-spacing:2px;color:var(--text-muted);margin-bottom:.5rem}
+.result-card .estimate-range{font-size:clamp(2.5rem,5vw,3.5rem);font-weight:900;color:var(--gold);letter-spacing:-.02em}
+.result-card .estimate-note{font-size:.82rem;color:var(--text-muted);margin-top:.75rem}
+
+.breakdown{background:#fff;border:1.5px solid var(--light3);border-radius:12px;overflow:hidden;margin-bottom:2rem}
+.breakdown-row{display:flex;justify-content:space-between;padding:.85rem 1.4rem;border-bottom:1px solid var(--light3);font-size:.88rem}
+.breakdown-row:last-child{border-bottom:none}
+.breakdown-row.total{background:rgba(212,164,74,.06);font-weight:800}
+.breakdown-row .bd-label{color:var(--text-muted)}
+.breakdown-row .bd-value{font-family:'JetBrains Mono',monospace;color:var(--text-dark);font-weight:600}
+.breakdown-row.total .bd-value{color:var(--gold);font-size:1rem}
+
+.contact-form{background:#fff;border:1.5px solid var(--light3);border-radius:12px;padding:2rem}
+.contact-form h3{font-size:1.3rem;font-weight:800;color:var(--text-dark);margin-bottom:1.2rem}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:.85rem}
+.form-group.full{grid-column:1 / -1}
+.form-group label{display:block;font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-muted);margin-bottom:.35rem;font-weight:600}
+.form-group input,.form-group textarea{width:100%;padding:.7rem 1rem;background:var(--light);border:1.5px solid var(--light3);border-radius:8px;color:var(--text-dark);font-family:'Outfit',sans-serif;font-size:.92rem}
+.form-group input:focus,.form-group textarea:focus{outline:none;border-color:var(--gold)}
+.form-group textarea{resize:vertical;min-height:80px}
+
+.disclaimer{font-size:.72rem;color:var(--text-muted);text-align:center;margin-top:1.5rem;font-family:'JetBrains Mono',monospace}
+
+/* CTA */
+.page-cta{background:var(--dark);padding:clamp(4rem,8vw,6rem) clamp(1.5rem,5vw,4rem);text-align:center}
+.page-cta h2{font-size:clamp(2rem,4vw,3rem);font-weight:900;color:#fff;margin-bottom:.75rem}
+.page-cta p{color:rgba(240,232,218,.5);margin-bottom:1.5rem}
+.cta-phone{font-family:'JetBrains Mono',monospace;font-size:clamp(1.8rem,4vw,3rem);font-weight:700;color:var(--gold);display:block;margin-bottom:2rem}
+.cta-phone:hover{color:var(--brass)}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-white{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.12);padding:.8rem 2rem;border-radius:6px;font-weight:700;font-size:.85rem;display:inline-flex;align-items:center;gap:.5rem;transition:.25s;font-family:'Outfit',sans-serif}
+.btn-white:hover{background:rgba(255,255,255,.14)}
+
+/* FOOTER */
+.footer{background:var(--dark);padding:3rem clamp(1.5rem,5vw,4rem) 1.5rem;border-top:1px solid rgba(255,255,255,.04)}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+.footer h4{font-size:.68rem;text-transform:uppercase;letter-spacing:.2em;color:var(--gold);margin-bottom:1rem;font-weight:700}
+.footer p,.footer a{font-size:.8rem;color:rgba(240,232,218,.4);line-height:2}
+.footer a:hover{color:var(--gold)}
+.footer-bottom{padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.03);display:flex;justify-content:space-between;font-size:.65rem;color:rgba(255,255,255,.2)}
+
+/* WHATSAPP */
+.wa{position:fixed;bottom:1.5rem;left:1.5rem;width:56px;height:56px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:99;box-shadow:0 4px 24px rgba(37,211,102,.3);transition:.2s}
+.wa:hover{transform:scale(1.1)}
+.wa svg{width:28px;height:28px;fill:#fff}
+
+/* MOBILE */
+@media(max-width:768px){
+ .nav-links{display:none;position:fixed;top:72px;left:0;right:0;background:rgba(10,9,8,.98);backdrop-filter:blur(20px);flex-direction:column;padding:2rem;gap:1.5rem;border-bottom:1px solid rgba(255,255,255,.06)}
+ .nav-links.open{display:flex}
+ .nav-menu{display:block}
+ .option-grid{grid-template-columns:1fr}
+ .form-grid{grid-template-columns:1fr}
+ .result-card .estimate-range{font-size:2.2rem}
+ .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:480px){
+ .footer-grid{grid-template-columns:1fr}
+}
+
+/* Sticky mobile call bar */
+.mcb{display:none;position:fixed;bottom:0;left:0;right:0;z-index:98;background:#0a0908;border-top:1px solid rgba(212,164,74,.3);padding:.6rem .6rem calc(.6rem + env(safe-area-inset-bottom));box-shadow:0 -6px 24px rgba(0,0,0,.4)}
+.mcb-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:.5rem}
+.mcb a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.15rem;padding:.6rem .4rem;border-radius:8px;font-family:'Outfit',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.04em;text-decoration:none;transition:.2s}
+.mcb a svg{width:18px;height:18px}
+.mcb .mcb-call{background:#d4a44a;color:#0a0908}
+.mcb .mcb-call:hover{background:#b8944f}
+.mcb .mcb-wa{background:#25d366;color:#fff}
+.mcb .mcb-mail{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.14)}
+.mcb small{font-size:.62rem;font-weight:500;opacity:.75;letter-spacing:.02em;text-transform:none}
+@media(max-width:768px){.mcb{display:block}body{padding-bottom:72px}.wa{bottom:6rem !important}}
+
+
+/* Breadcrumb */
+.breadcrumb{background:var(--light,#f8f5f0);padding:1rem clamp(1.5rem,5vw,4rem);font-size:.78rem;border-bottom:1px solid var(--light3,#e2dbd0)}
+.breadcrumb-inner{max-width:1200px;margin:0 auto;display:flex;gap:.5rem;align-items:center;color:var(--text-muted,#6b6560);font-weight:500}
+.breadcrumb-inner a{color:var(--text-muted,#6b6560);text-decoration:none;transition:.2s}
+.breadcrumb-inner a:hover{color:var(--brass,#b8944f)}
+.breadcrumb-inner .sep{color:var(--light3,#e2dbd0)}
+.breadcrumb-inner .current{color:var(--text-dark,#1a1714);font-weight:700}
+
+
+/* Desktop quote CTA - hidden on mobile where call bar covers it */
+.dq-btn{position:fixed;right:1.25rem;bottom:1.25rem;z-index:99;display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 1.35rem;background:#d4a44a;color:#0a0908;border-radius:100px;font-family:'Outfit',sans-serif;font-weight:800;font-size:.8rem;letter-spacing:.04em;text-decoration:none;box-shadow:0 8px 32px rgba(212,164,74,.4);transition:.25s}
+.dq-btn:hover{background:#b8944f;transform:translateY(-2px);box-shadow:0 12px 40px rgba(212,164,74,.5)}
+.dq-btn svg{width:16px;height:16px}
+@media(max-width:768px){.dq-btn{display:none}}
+
+</style>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement": [
+  {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.dselectricalsw.co.uk/"},
+  {"@type": "ListItem", "position": 2, "name": "Instant Quote", "item": "https://www.dselectricalsw.co.uk/instant-quote.html"}
+ ]
+}
+</script>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+ <a href="/" class="nav-logo"><img src="logo-full.png" alt="DS Electrical"></a>
+ <ul class="nav-links" id="navLinks">
+  <li><a href="/commercial-electrical.html">Commercial</a></li>
+  <li><a href="/domestic.html">Domestic</a></li>
+  <li><a href="/eicr.html">EICR</a></li>
+  <li><a href="/ev-chargers.html">EV Chargers</a></li>
+  <li><a href="/cctv.html">CCTV</a></li>
+  <li><a href="/office-fit-outs.html">Office Fit-Outs</a></li>
+  <li><a href="/gallery.html">Gallery</a></li>
+  <li><a href="tel:07889334849" class="nav-cta">07889 334849</a></li>
+ </ul>
+ <button class="nav-menu" onclick="document.getElementById('navLinks').classList.toggle('open')">&#9776;</button>
+</nav>
+
+<nav class="breadcrumb" aria-label="Breadcrumb"><div class="breadcrumb-inner"><a href="/">Home</a><span class="sep">/</span><span class="current" aria-current="page">Instant Quote</span></div></nav>
+
+<!-- HERO -->
+<section class="hero">
+ <div class="hero-tag">Free Estimate in 60 Seconds</div>
+ <h1>Get an <em>Instant Quote</em></h1>
+ <p>Select your job type, property, and any extras. No obligation, no spam — just an honest ballpark figure.</p>
+</section>
+
+<!-- FORM -->
+<section class="form-section">
+ <div class="form-container">
+  <div class="step-indicator">
+   <div class="step-dot active" id="dot0"></div>
+   <div class="step-dot" id="dot1"></div>
+   <div class="step-dot" id="dot2"></div>
+   <div class="step-dot" id="dot3"></div>
+  </div>
+
+  <!-- STEP 1: Service Type -->
+  <div class="step active" id="step0">
+   <h2>What do you need?</h2>
+   <div class="option-grid" id="serviceOptions">
+    <div class="option-card" data-service="eicr" data-min="149" data-max="299">
+     <h3>EICR Testing</h3>
+     <p>Electrical safety certificate for landlords, homeowners, or commercial</p>
+     <div class="price-hint">From &pound;149</div>
+    </div>
+    <div class="option-card" data-service="consumer-unit" data-min="450" data-max="1200">
+     <h3>Consumer Unit</h3>
+     <p>Upgrade to modern RCBO board with surge protection</p>
+     <div class="price-hint">From &pound;450</div>
+    </div>
+    <div class="option-card" data-service="ev-charger" data-min="850" data-max="1980">
+     <h3>EV Charger</h3>
+     <p>Home or workplace EV charging point installation</p>
+     <div class="price-hint">From &pound;850</div>
+    </div>
+    <div class="option-card" data-service="rewire" data-min="3500" data-max="8000">
+     <h3>Full Rewire</h3>
+     <p>Complete property rewire to BS 7671 standards</p>
+     <div class="price-hint">From &pound;3,500</div>
+    </div>
+    <div class="option-card" data-service="cctv" data-min="800" data-max="2500">
+     <h3>CCTV System</h3>
+     <p>Hikvision 4K cameras with remote viewing</p>
+     <div class="price-hint">From &pound;800</div>
+    </div>
+    <div class="option-card" data-service="lighting" data-min="200" data-max="800">
+     <h3>Lighting</h3>
+     <p>New lighting circuits, LED upgrades, garden lighting</p>
+     <div class="price-hint">From &pound;200</div>
+    </div>
+    <div class="option-card" data-service="other" data-min="80" data-max="500">
+     <h3>Other</h3>
+     <p>Sockets, switches, fault finding, or anything else</p>
+     <div class="price-hint">From &pound;80</div>
+    </div>
+    <div class="option-card" data-service="commercial" data-min="0" data-max="0">
+     <h3>Commercial</h3>
+     <p>Office fit-outs, fire alarms, emergency lighting, maintenance</p>
+     <div class="price-hint">Call for quote</div>
+    </div>
+   </div>
+  </div>
+
+  <!-- STEP 2: Property Details -->
+  <div class="step" id="step1">
+   <h2>Tell us about the property</h2>
+   <div class="option-grid" id="propertyOptions">
+    <div class="option-card" data-property="flat" data-multiplier="0.8">
+     <h3>Flat / Apartment</h3>
+     <p>1-2 bed flat or maisonette</p>
+    </div>
+    <div class="option-card" data-property="terrace" data-multiplier="0.9">
+     <h3>Terraced House</h3>
+     <p>2-3 bed mid or end terrace</p>
+    </div>
+    <div class="option-card" data-property="semi" data-multiplier="1.0">
+     <h3>Semi-Detached</h3>
+     <p>3 bed semi-detached</p>
+    </div>
+    <div class="option-card" data-property="detached" data-multiplier="1.2">
+     <h3>Detached House</h3>
+     <p>3-4 bed detached</p>
+    </div>
+    <div class="option-card" data-property="large" data-multiplier="1.5">
+     <h3>Large Detached</h3>
+     <p>5+ bed or period property</p>
+    </div>
+    <div class="option-card" data-property="commercial" data-multiplier="1.3">
+     <h3>Commercial</h3>
+     <p>Office, shop, warehouse, or other commercial</p>
+    </div>
+   </div>
+  </div>
+
+  <!-- STEP 3: Extras -->
+  <div class="step" id="step2">
+   <h2>Any extras?</h2>
+   <div class="extras" id="extrasContainer">
+    <div class="extra-row" data-extra="smoke-alarms" data-cost="85">
+     <span class="extra-label">Smoke alarm upgrade (lithium battery, all floors)</span>
+     <span class="extra-price">+&pound;85</span>
+    </div>
+    <div class="extra-row" data-extra="outdoor-socket" data-cost="120">
+     <span class="extra-label">Outdoor weatherproof socket</span>
+     <span class="extra-price">+&pound;120</span>
+    </div>
+    <div class="extra-row" data-extra="usb-sockets" data-cost="45">
+     <span class="extra-label">USB charging sockets (per double socket)</span>
+     <span class="extra-price">+&pound;45</span>
+    </div>
+    <div class="extra-row" data-extra="dimmer" data-cost="65">
+     <span class="extra-label">Dimmer switch installation</span>
+     <span class="extra-price">+&pound;65</span>
+    </div>
+    <div class="extra-row" data-extra="spd" data-cost="95">
+     <span class="extra-label">Surge protection device (SPD)</span>
+     <span class="extra-price">+&pound;95</span>
+    </div>
+    <div class="extra-row" data-extra="certificate" data-cost="0">
+     <span class="extra-label">Electrical Installation Certificate (included free)</span>
+     <span class="extra-price">FREE</span>
+    </div>
+   </div>
+   <div class="btn-row">
+    <button class="btn btn-outline" onclick="prevStep()">Back</button>
+    <button class="btn btn-gold" onclick="nextStep()">Get My Estimate</button>
+   </div>
+  </div>
+
+  <!-- STEP 4: Result -->
+  <div class="step" id="step3">
+   <div class="result-card">
+    <div class="estimate-label">Your Estimated Price</div>
+    <div class="estimate-range" id="estimateRange">--</div>
+    <div class="estimate-note">Includes labour, materials, testing and certification. VAT at 20%.</div>
+   </div>
+
+   <div class="breakdown" id="breakdown"></div>
+
+   <div class="contact-form">
+    <h3>Want an exact quote? Leave your details.</h3>
+    <form name="instant-quote" method="POST" action="https://formsubmit.co/info@dselectricalinstallations.co.uk" accept-charset="UTF-8">
+   <input type="hidden" name="_next" value="https://www.dselectricalsw.co.uk/thanks.html">
+   <input type="hidden" name="_captcha" value="false">
+   <input type="hidden" name="_template" value="table">
+   <input type="hidden" name="_subject" value="New enquiry from DS Electrical website">
+   <input type="hidden" name="service" id="formService">
+     <input type="hidden" name="property" id="formProperty">
+     <input type="hidden" name="extras" id="formExtras">
+     <input type="hidden" name="estimate" id="formEstimate">
+     <div class="form-grid">
+      <div class="form-group">
+       <label>Name</label>
+       <input type="text" name="name" required placeholder="Your name">
+      </div>
+      <div class="form-group">
+       <label>Phone</label>
+       <input type="tel" name="phone" required placeholder="07xxx xxx xxx">
+      </div>
+      <div class="form-group">
+       <label>Email</label>
+       <input type="email" name="email" placeholder="your@email.com">
+      </div>
+      <div class="form-group">
+       <label>Postcode</label>
+       <input type="text" name="postcode" required placeholder="BA5 1XX">
+      </div>
+      <div class="form-group full">
+       <label>Preferred Date</label>
+       <input type="date" name="preferred-date">
+      </div>
+      <div class="form-group full">
+       <label>Anything else we should know?</label>
+       <textarea name="notes" placeholder="e.g. property age, access issues, specific requirements..."></textarea>
+      </div>
+     </div>
+     <div class="btn-row" style="margin-top:1.2rem">
+      <button type="submit" class="btn btn-gold">Send Quote Request</button>
+     </div>
+    </form>
+   </div>
+
+   <div class="disclaimer">
+    Estimates are indicative based on typical installations. Final price confirmed after site visit or detailed discussion. All work certified to BS 7671.
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- CTA -->
+<section class="page-cta">
+ <h2>Prefer to Talk?</h2>
+ <p>Call Dan directly for a free, no-obligation quote.</p>
+ <span class="cta-phone-label" style="color:rgba(240,232,218,.4);font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:.4rem">Office</span>
+ <a href="tel:07889334849" class="cta-phone" style="font-size:clamp(2rem,4.5vw,3.2rem)">07889 334849</a>
+ <span class="cta-phone-label" style="color:rgba(240,232,218,.4);font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:.4rem">Direct</span>
+ <a href="tel:07889334849" style="font-family:'JetBrains Mono',monospace;font-size:clamp(1.2rem,2.5vw,1.8rem);font-weight:700;color:rgba(240,232,218,.5);display:block;margin-bottom:.2rem">Dan Stevens, Director: 07889 334849</a>
+ <a href="tel:07983106928" style="font-family:'JetBrains Mono',monospace;font-size:clamp(1.2rem,2.5vw,1.8rem);color:rgba(240,232,218,.35);display:block;margin-bottom:1.5rem">Dan Street, Director: 07983 106928</a>
+ <div class="cta-btns">
+  <a href="https://wa.me/447889334849" class="btn-white">WhatsApp Us</a>
+  <a href="/price-guide.html" class="btn-white">View Price Guide</a>
+ </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+ <div class="footer-grid">
+  <div>
+   <h4>DS Electrical Installations (SW) Ltd</h4>
+   <p>4 Abbey Meads, Glastonbury, Somerset, BA6 8EZ</p>
+   <p><a href="tel:07889334849">07889 334849 (Dan Stevens)</a></p>
+   <p><a href="tel:07983106928">07983 106928 (Dan Street)</a></p>
+   <p><a href="mailto:info@dselectricalinstallations.co.uk">info@dselectricalinstallations.co.uk</a></p>
+  </div>
+  <div>
+   <h4>Services</h4>
+   <p><a href="/eicr.html">Rewires & EICR</a></p>
+   <p><a href="/ev-chargers.html">EV Chargers</a></p>
+   <p><a href="/cctv.html">CCTV & Security</a></p>
+   <p><a href="/commercial-electrical.html">Commercial</a></p>
+    <p><a href="/commercial-contracts.html">Maintenance Contracts</a></p>
+   <p><a href="/office-fit-outs.html">Office Fit-Outs</a></p>
+    <p><a href="/fibre-optic.html">Fibre Optic</a></p>
+    <p><a href="/fire-alarms.html">Fire Alarms</a></p>
+    <p><a href="/lighting.html">Emergency Lighting</a></p>
+   </div>
+  <div>
+   <h4>Areas</h4>
+   <p>Wells</p><p>Shepton Mallet</p><p>Bath</p><p>Frome</p><p>Midsomer Norton</p><p>Street</p>
+  </div>
+  <div>
+   <h4>Trust</h4>
+   <p>NAPIT Approved</p><p>CHAS Accredited</p><p>TrustMark Endorsed</p><p>Part P Registered</p>
+   <p style="margin-top:.5rem"><a href="/#reviews">5.0 Google Rating</a></p>
+    <p style="margin-top:.3rem"><a href="/contact.html">Contact Us</a></p>
+    <p><a href="/partners.html">Brands We Install</a></p>
+  </div>
+ </div>
+ <div class="footer-bottom">
+  <span>&copy; 2026 DS Electrical Installations (SW) Ltd</span>
+  <span><a href="/privacy.html">Privacy</a> &middot; <a href="/terms.html">Terms</a></span>
+ </div>
+</footer>
+
+<!-- WHATSAPP -->
+<a href="https://wa.me/447889334849" class="wa" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.611.611l4.458-1.495A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.344 0-4.508-.8-6.227-2.141l-.435-.344-3.208 1.076 1.076-3.208-.344-.435A9.956 9.956 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg></a>
+
+<script>
+(function() {
+ var currentStep = 0;
+ var selectedService = null;
+ var selectedProperty = null;
+ var selectedExtras = [];
+ var baseMin = 0;
+ var baseMax = 0;
+ var multiplier = 1;
+
+ var serviceNames = {
+  'eicr': 'EICR Testing', 'consumer-unit': 'Consumer Unit Upgrade', 'ev-charger': 'EV Charger Installation',
+  'rewire': 'Full Property Rewire', 'cctv': 'CCTV System', 'lighting': 'Lighting Installation',
+  'other': 'Other Electrical Work', 'commercial': 'Commercial Works'
+ };
+
+ function fmt(n) { return '\u00A3' + n.toLocaleString(); }
+
+ function showStep() {
+  document.querySelectorAll('.step').forEach(function(s) { s.classList.remove('active'); });
+  document.getElementById('step' + currentStep).classList.add('active');
+  document.querySelectorAll('.step-dot').forEach(function(d, i) {
+   d.classList.remove('active', 'done');
+   if (i === currentStep) d.classList.add('active');
+   if (i < currentStep) d.classList.add('done');
+  });
+ }
+
+ function buildBreakdownRow(labelText, valueText, isTotal) {
+  var row = document.createElement('div');
+  row.className = 'breakdown-row' + (isTotal ? ' total' : '');
+  var lbl = document.createElement('span');
+  lbl.className = 'bd-label';
+  lbl.textContent = labelText;
+  var val = document.createElement('span');
+  val.className = 'bd-value';
+  val.textContent = valueText;
+  row.appendChild(lbl);
+  row.appendChild(val);
+  return row;
+ }
+
+ function calculateEstimate() {
+  var extrasCost = selectedExtras.reduce(function(sum, e) { return sum + e.cost; }, 0);
+  var adjMin = Math.round(baseMin * multiplier + extrasCost);
+  var adjMax = Math.round(baseMax * multiplier + extrasCost);
+  var vatMin = Math.round(adjMin * 1.2);
+  var vatMax = Math.round(adjMax * 1.2);
+
+  var rangeEl = document.getElementById('estimateRange');
+  if (adjMin === adjMax) {
+   rangeEl.textContent = fmt(vatMin) + ' inc VAT';
+  } else {
+   rangeEl.textContent = fmt(vatMin) + ' \u2013 ' + fmt(vatMax);
+  }
+
+  var bd = document.getElementById('breakdown');
+  bd.textContent = '';
+  bd.appendChild(buildBreakdownRow(
+   serviceNames[selectedService] || selectedService,
+   fmt(Math.round(baseMin * multiplier)) + ' \u2013 ' + fmt(Math.round(baseMax * multiplier)),
+   false
+  ));
+  selectedExtras.forEach(function(e) {
+   if (e.cost > 0) {
+    bd.appendChild(buildBreakdownRow(e.label, '+' + fmt(e.cost), false));
+   }
+  });
+  bd.appendChild(buildBreakdownRow('Subtotal (ex VAT)', fmt(adjMin) + ' \u2013 ' + fmt(adjMax), false));
+  bd.appendChild(buildBreakdownRow('VAT @ 20%', fmt(Math.round(adjMin * 0.2)) + ' \u2013 ' + fmt(Math.round(adjMax * 0.2)), false));
+  bd.appendChild(buildBreakdownRow('Estimated Total', fmt(vatMin) + ' \u2013 ' + fmt(vatMax) + ' inc VAT', true));
+
+  document.getElementById('formService').value = selectedService;
+  document.getElementById('formProperty').value = selectedProperty || '';
+  document.getElementById('formExtras').value = selectedExtras.map(function(e) { return e.name; }).join(', ');
+  document.getElementById('formEstimate').value = fmt(vatMin) + ' \u2013 ' + fmt(vatMax) + ' inc VAT';
+ }
+
+ document.querySelectorAll('#serviceOptions .option-card').forEach(function(card) {
+  card.addEventListener('click', function() {
+   document.querySelectorAll('#serviceOptions .option-card').forEach(function(c) { c.classList.remove('selected'); });
+   card.classList.add('selected');
+   selectedService = card.dataset.service;
+   baseMin = parseInt(card.dataset.min);
+   baseMax = parseInt(card.dataset.max);
+   if (selectedService === 'commercial') {
+    currentStep = 3;
+    showStep();
+    document.getElementById('estimateRange').textContent = 'CALL US';
+    var bd = document.getElementById('breakdown');
+    bd.textContent = '';
+    bd.appendChild(buildBreakdownRow('Commercial projects require a site survey for accurate pricing.', '', false));
+    return;
+   }
+   setTimeout(function() { currentStep = 1; showStep(); }, 200);
+  });
+ });
+
+ document.querySelectorAll('#propertyOptions .option-card').forEach(function(card) {
+  card.addEventListener('click', function() {
+   document.querySelectorAll('#propertyOptions .option-card').forEach(function(c) { c.classList.remove('selected'); });
+   card.classList.add('selected');
+   selectedProperty = card.dataset.property;
+   multiplier = parseFloat(card.dataset.multiplier);
+   setTimeout(function() { currentStep = 2; showStep(); }, 200);
+  });
+ });
+
+ document.querySelectorAll('.extra-row').forEach(function(row) {
+  row.addEventListener('click', function() {
+   row.classList.toggle('selected');
+   var extra = row.dataset.extra;
+   var cost = parseInt(row.dataset.cost);
+   var idx = selectedExtras.findIndex(function(e) { return e.name === extra; });
+   if (idx >= 0) {
+    selectedExtras.splice(idx, 1);
+   } else {
+    selectedExtras.push({ name: extra, cost: cost, label: row.querySelector('.extra-label').textContent });
+   }
+  });
+ });
+
+ window.nextStep = function() {
+  if (currentStep < 3) {
+   currentStep++;
+   showStep();
+   if (currentStep === 3) calculateEstimate();
+  }
+ };
+ window.prevStep = function() {
+  if (currentStep > 0) {
+   currentStep--;
+   showStep();
+  }
+ };
+})();
+</script>
+
+<!-- MOBILE CALL BAR -->
+<div class="mcb" aria-label="Quick contact">
+ <div class="mcb-grid">
+  <a href="tel:07889334849" class="mcb-call" aria-label="Call 07889 334849">
+   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.1-.04-.21-.05-.31-.05-.26 0-.51.1-.71.29l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.58l2.2-2.21c.28-.27.36-.66.25-1.01C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/></svg>
+   <span>Call Dan</span><small>07889 334849</small>
+  </a>
+  <a href="https://wa.me/447889334849" class="mcb-wa" aria-label="WhatsApp">
+   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.611.611l4.458-1.495A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+   <span>WhatsApp</span>
+  </a>
+  <a href="mailto:info@dselectricalinstallations.co.uk" class="mcb-mail" aria-label="Email">
+   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+   <span>Email</span>
+  </a>
+ </div>
+</div>
+
+
+<!-- DESKTOP QUOTE CTA -->
+<a href="tel:07889334849" class="dq-btn" aria-label="Call Dan for a quote">
+ <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.1-.04-.21-.05-.31-.05-.26 0-.51.1-.71.29l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.58l2.2-2.21c.28-.27.36-.66.25-1.01C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/></svg>
+ Call Dan &mdash; 07889 334849
+</a>
+
+</body>
+</html>

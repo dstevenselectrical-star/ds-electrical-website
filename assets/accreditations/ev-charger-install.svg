@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 100" width="160" height="100">
+  <rect width="160" height="100" rx="6" fill="#1A472A"/>
+  <rect x="2" y="2" width="156" height="96" rx="5" fill="none" stroke="#22C55E" stroke-width="1.5"/>
+  <!-- EV plug icon -->
+  <circle cx="80" cy="30" r="16" fill="none" stroke="#22C55E" stroke-width="2"/>
+  <path d="M76,22 L82,22 L79,30 L85,30 L75,40 L78,32 L72,32 Z" fill="#22C55E"/>
+  <text x="80" y="64" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="14" fill="#FFFFFF" letter-spacing="1">EV CHARGER</text>
+  <text x="80" y="80" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="600" font-size="10" fill="#22C55E" letter-spacing="2">INSTALLER</text>
+  <text x="80" y="94" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="7" fill="rgba(255,255,255,0.5)" letter-spacing="1">Qualified &amp; Certified</text>
+</svg>

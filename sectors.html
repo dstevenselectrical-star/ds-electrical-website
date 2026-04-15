@@ -1,0 +1,1732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-site-verification" content="VERIFICATION_CODE_HERE">
+<link rel="manifest" href="/manifest.json">
+<title>Sectors We Serve | Commercial & Industrial | Mid Somerset</title>
+<meta name="description" content="Electrical contractors for hospitality, care homes, offices, retail, industrial, agricultural, education. Mid Somerset. NAPIT approved. Call 07889 334849.">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Sectors We Serve | Mid Somerset">
+<meta property="og:description" content="Electrical contractors for hospitality, care homes, offices, retail, industrial, agricultural, education. Mid Somerset. NAPIT approved. Call 07889 334849.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.dselectricalsw.co.uk/sectors.html">
+<link rel="canonical" href="https://www.dselectricalsw.co.uk/sectors.html">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Source+Serif+4:wght@400;500;600;700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":["LocalBusiness","Electrician"],
+  "name":"DS Electrical Installation SW Ltd",
+  "url":"https://www.dselectricalsw.co.uk",
+  "telephone":"+447889334849",
+  "email":"info@dselectricalinstallations.co.uk",
+  "address":{"@type":"PostalAddress","streetAddress":"4 Abbey Meads","addressLocality":"Glastonbury","addressRegion":"Somerset","postalCode":"BA6 8EZ","addressCountry":"GB"},
+  "areaServed":[{"@type":"City","name":"Wells"},{"@type":"City","name":"Shepton Mallet"},{"@type":"City","name":"Bath"},{"@type":"City","name":"Frome"},{"@type":"City","name":"Midsomer Norton"},{"@type":"City","name":"Street"},{"@type":"City","name":"Glastonbury"},{"@type":"City","name":"Wedmore"},{"@type":"City","name":"Radstock"},{"@type":"City","name":"Castle Cary"},{"@type":"City","name":"Bruton"}],
+  "openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"07:00","closes":"18:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Saturday"],"opens":"08:00","closes":"14:00"}],
+  "priceRange":"££",
+  "image":"https://www.dselectricalsw.co.uk/logo-full.png",
+  "sameAs":[]
+}
+</script>
+<style>
+/* ======================================================
+   DS ELECTRICAL — FROSTPUNK THEME
+   SECTORS PAGE
+   ====================================================== */
+
+:root {
+  --void: #0a0c10;
+  --deep: #141820;
+  --layer: rgba(0,18,36,0.75);
+  --panel: rgba(0,25,50,0.6);
+  --elec: #d4a04c;
+  --elec2: #b87333;
+  --elec3: rgba(212,160,76,0.08);
+  --arc: #6eadd4;
+  --arc2: rgba(110,173,212,0.5);
+  --hot: #f0c060;
+  --live: #e8b84c;
+  --text: #e8d5b8;
+  --ghost: rgba(184,216,240,0.3);
+  --line: rgba(212,160,76,0.1);
+  --line2: rgba(212,160,76,0.05);
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  background: var(--void);
+  color: var(--text);
+  font-family: 'IBM Plex Mono', monospace;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* -- NOISE TEXTURE OVERLAY -- */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 9002;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  opacity: 0.4;
+}
+
+/* -- SCANLINES -- */
+body::after {
+  content: '';
+  position: fixed; inset: 0; z-index: 9001;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg, transparent, transparent 3px,
+    rgba(0,0,0,0.08) 3px, rgba(0,0,0,0.08) 4px
+  );
+}
+
+/* -- CURSOR -- */
+#cx-dot {
+  position: fixed; pointer-events: none; z-index:9999;
+  width: 6px; height: 6px;
+  background: var(--elec);
+  border-radius: 50%;
+  transform: translate(-50%,-50%);
+  box-shadow: 0 0 10px var(--elec), 0 0 20px rgba(212,160,76,0.5);
+  mix-blend-mode: screen;
+}
+#cx-cross {
+  position: fixed; pointer-events: none; z-index:9998;
+  transform: translate(-50%,-50%);
+  width: 30px; height: 30px;
+  mix-blend-mode: screen;
+}
+#cx-cross::before, #cx-cross::after {
+  content: ''; position: absolute; background: rgba(212,160,76,0.6);
+}
+#cx-cross::before { width:1px; height:100%; left:50%; }
+#cx-cross::after  { height:1px; width:100%; top:50%; }
+#cx-ring {
+  position: fixed; pointer-events: none; z-index:9997;
+  width: 48px; height: 48px;
+  border: 1px solid rgba(212,160,76,0.35);
+  border-radius: 50%;
+  transform: translate(-50%,-50%);
+  transition: all 0.15s ease;
+  mix-blend-mode: screen;
+}
+
+/* -- CANVAS -- */
+#gl { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+#lightning { position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: 0.5; }
+
+/* -- NAV -- */
+nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 800;
+  height: 60px;
+  display: flex; align-items: center;
+  padding: 0 56px;
+  background: linear-gradient(180deg, rgba(10,12,16,0.97) 0%, rgba(10,12,16,0.85) 100%);
+  border-bottom: 1px solid var(--line2);
+}
+nav::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--elec), var(--arc), var(--elec), transparent);
+  animation: navglow 4s ease-in-out infinite;
+}
+@keyframes navglow { 0%,100%{opacity:0.4;} 50%{opacity:1;} }
+
+.nav-logo {
+  font-family: 'Cinzel', sans-serif;
+  font-size: 24px; letter-spacing: 6px;
+  color: #fff;
+  display: flex; align-items: center; gap: 10px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.nav-logo .ds-glow {
+  color: var(--elec);
+  text-shadow: 0 0 20px var(--elec), 0 0 40px rgba(212,160,76,0.3);
+}
+.nav-logo .pip {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--live);
+  box-shadow: 0 0 8px var(--live);
+  animation: pip 1.8s ease-in-out infinite;
+}
+@keyframes pip { 0%,100%{opacity:1;} 50%{opacity:0.2;} }
+
+nav .links {
+  margin-left: auto;
+  display: flex; gap: 0; align-items: center;
+  list-style: none;
+}
+.nl {
+  color: rgba(212,160,76,0.4);
+  text-decoration: none;
+  font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
+  padding: 8px 18px;
+  transition: color 0.2s;
+  cursor: none; border: 1px solid transparent;
+  position: relative;
+}
+.nl::after {
+  content: ''; position: absolute;
+  bottom: 0; left: 50%; right: 50%;
+  height: 1px; background: var(--elec);
+  transition: left 0.2s, right 0.2s;
+}
+.nl:hover { color: var(--elec); }
+.nl:hover::after { left: 10%; right: 10%; }
+.nl.active {
+  color: var(--elec);
+  border-bottom: 1px solid var(--elec);
+}
+.nl.cta {
+  border: 1px solid rgba(110,173,212,0.5) !important;
+  color: var(--arc) !important;
+  margin-left: 12px;
+  text-shadow: 0 0 10px rgba(110,173,212,0.4);
+}
+.nl.cta:hover {
+  background: rgba(110,173,212,0.1);
+  box-shadow: 0 0 24px rgba(110,173,212,0.2);
+}
+
+/* -- MOBILE NAV -- */
+.mob-toggle {
+  display: none;
+  background: none; border: 1px solid rgba(212,160,76,0.2);
+  width: 40px; height: 40px;
+  cursor: none; position: relative;
+  margin-left: auto;
+}
+.mob-toggle span {
+  display: block; width: 18px; height: 1px;
+  background: var(--elec);
+  position: absolute; left: 50%; transform: translateX(-50%);
+  transition: all 0.3s;
+}
+.mob-toggle span:nth-child(1) { top: 13px; }
+.mob-toggle span:nth-child(2) { top: 19px; }
+.mob-toggle span:nth-child(3) { top: 25px; }
+.mob-toggle.open span:nth-child(1) { top: 19px; transform: translateX(-50%) rotate(45deg); }
+.mob-toggle.open span:nth-child(2) { opacity: 0; }
+.mob-toggle.open span:nth-child(3) { top: 19px; transform: translateX(-50%) rotate(-45deg); }
+
+/* -- HERO -- */
+#hero {
+  position: relative; min-height: 70vh;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+  padding-top: 60px;
+}
+.hexmesh {
+  position: absolute; inset: 0; z-index: 2;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='138'%3E%3Cpath d='M40 2L78 22v40L40 82 2 62V22z' fill='none' stroke='rgba(212,160,76,0.025)' stroke-width='1'/%3E%3Cpath d='M40 80L78 100v40L40 160 2 140v-40z' fill='none' stroke='rgba(212,160,76,0.025)' stroke-width='1'/%3E%3C/svg%3E");
+}
+.data-point {
+  position: absolute; z-index: 3;
+  font-size: 8px; letter-spacing: 2px;
+  color: rgba(212,160,76,0.2);
+  text-transform: uppercase;
+  animation: dpfloat 6s ease-in-out infinite;
+}
+@keyframes dpfloat { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-8px);} }
+
+.hero-content {
+  position: relative; z-index: 10;
+  text-align: center;
+  max-width: 1100px; padding: 0 24px;
+}
+.hero-badges {
+  display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;
+  margin-bottom: 24px;
+  animation: fadeslide 1s ease 0.3s both;
+}
+.hbadge {
+  border: 1px solid rgba(212,160,76,0.2);
+  padding: 6px 16px;
+  font-size: 8px; letter-spacing: 2px; text-transform: uppercase;
+  color: rgba(212,160,76,0.6);
+  background: rgba(212,160,76,0.04);
+  position: relative;
+}
+.hbadge::before {
+  content: ''; position: absolute;
+  top: -1px; left: 20%; right: 20%; height: 1px;
+  background: var(--elec);
+  box-shadow: 0 0 8px var(--elec);
+}
+.hero-top-tag {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 9px; letter-spacing: 4px; text-transform: uppercase;
+  color: rgba(212,160,76,0.5);
+  margin-bottom: 28px;
+  animation: fadeslide 1s ease 0.5s both;
+}
+.hero-top-tag::before, .hero-top-tag::after {
+  content: ''; flex: 1; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212,160,76,0.3));
+  width: 60px;
+}
+.hero-top-tag::after { transform: scaleX(-1); }
+
+h1.main-title {
+  font-family: 'Cinzel', sans-serif;
+  font-size: clamp(48px, 9vw, 120px);
+  line-height: 0.85;
+  letter-spacing: 2px;
+  margin-bottom: 24px;
+}
+.t1 {
+  display: block;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(212,160,76,0.5);
+  animation: fadeslide 1.2s cubic-bezier(0.16,1,0.3,1) 0.6s both;
+}
+.t2 {
+  display: block;
+  background: linear-gradient(135deg, #ffffff 0%, #d4a04c 40%, #ffffff 80%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: fadeslide 1.2s cubic-bezier(0.16,1,0.3,1) 0.8s both;
+  filter: drop-shadow(0 0 40px rgba(212,160,76,0.3));
+}
+.t3 {
+  display: block;
+  color: var(--arc);
+  text-shadow: 0 0 60px rgba(110,173,212,0.6), 0 0 120px rgba(110,173,212,0.2);
+  animation: fadeslide 1.2s cubic-bezier(0.16,1,0.3,1) 1s both;
+}
+@keyframes fadeslide {
+  from { opacity:0; transform:translateY(60px); }
+  to   { opacity:1; transform:none; }
+}
+
+.hero-sub {
+  font-size: clamp(10px,1.2vw,13px);
+  color: rgba(212,160,76,0.35);
+  letter-spacing: 3px; line-height: 2.4;
+  max-width: 640px; margin: 0 auto 32px;
+  animation: fadeslide 1s ease 1.2s both;
+  text-transform: uppercase;
+}
+.hero-btns {
+  display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+  animation: fadeslide 1s ease 1.4s both;
+}
+
+/* -- ELECTRIC BUTTON -- */
+.ebtn {
+  position: relative;
+  padding: 15px 44px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+  text-decoration: none;
+  cursor: none; overflow: hidden;
+  transition: all 0.25s;
+  border: none;
+}
+.ebtn-solid {
+  background: var(--arc);
+  color: #000;
+  box-shadow: 0 0 40px rgba(110,173,212,0.4), inset 0 1px 0 rgba(184,115,51,0.2);
+}
+.ebtn-solid:hover {
+  box-shadow: 0 0 80px rgba(110,173,212,0.7), 0 0 160px rgba(110,173,212,0.2);
+  transform: translateY(-2px);
+}
+.ebtn-outline {
+  background: transparent;
+  color: var(--elec);
+  border: 1px solid rgba(212,160,76,0.3);
+  box-shadow: inset 0 0 20px rgba(212,160,76,0.02);
+}
+.ebtn-outline:hover {
+  border-color: rgba(212,160,76,0.7);
+  background: rgba(212,160,76,0.05);
+  box-shadow: 0 0 30px rgba(212,160,76,0.2), inset 0 0 30px rgba(212,160,76,0.05);
+}
+.ebtn-ghost {
+  background: transparent;
+  color: rgba(110,173,212,0.7);
+  border: 1px solid rgba(110,173,212,0.25);
+}
+.ebtn-ghost:hover {
+  border-color: rgba(110,173,212,0.6);
+  color: var(--arc);
+  box-shadow: 0 0 24px rgba(110,173,212,0.15);
+}
+.ebtn::before {
+  content: ''; position: absolute;
+  top: 0; left: -100%; width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(184,115,51,0.08), transparent);
+  transition: left 0.4s;
+}
+.ebtn:hover::before { left: 100%; }
+
+/* -- SECTIONS -- */
+.s { padding: 120px 56px; position: relative; }
+.s-inner { max-width: 1320px; margin: 0 auto; }
+
+.s-tag {
+  font-size: 8px; letter-spacing: 5px; text-transform: uppercase;
+  color: rgba(212,160,76,0.35);
+  margin-bottom: 14px;
+  display: flex; align-items: center; gap: 12px;
+}
+.s-tag::before { content:'['; }
+.s-tag::after  { content:']'; }
+
+.s-line {
+  width: 100%; height: 1px; margin-bottom: 56px;
+  background: linear-gradient(90deg, rgba(212,160,76,0.4), rgba(212,160,76,0.05) 60%, transparent);
+}
+
+h2 {
+  font-family: 'Cinzel', sans-serif;
+  font-size: clamp(44px, 6vw, 80px);
+  line-height: 0.9; letter-spacing: 2px;
+  margin-bottom: 20px;
+}
+h2 .dim  { color: rgba(184,216,240,0.12); }
+h2 .lit  { color: var(--elec); text-shadow: 0 0 40px rgba(212,160,76,0.25); }
+h2 .fire { color: var(--arc); text-shadow: 0 0 40px rgba(110,173,212,0.25); }
+
+.s-sub {
+  font-size: 11px; color: var(--ghost); letter-spacing: 2px;
+  max-width: 640px; line-height: 2.2; margin-bottom: 0;
+  text-transform: uppercase;
+}
+
+/* -- SECTOR NAV PILLS -- */
+.sector-nav-bar {
+  position: sticky; top: 60px; z-index: 700;
+  background: rgba(10,12,16,0.95);
+  border-top: 1px solid rgba(212,160,76,0.08);
+  border-bottom: 1px solid rgba(212,160,76,0.08);
+  padding: 14px 56px;
+  backdrop-filter: blur(12px);
+}
+.sector-pills {
+  display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+  max-width: 1320px; margin: 0 auto;
+}
+.sector-pill {
+  background: transparent;
+  border: 1px solid rgba(212,160,76,0.1);
+  padding: 7px 16px;
+  font-size: 8px; letter-spacing: 2px; text-transform: uppercase;
+  color: rgba(212,160,76,0.35);
+  text-decoration: none;
+  transition: all 0.2s; cursor: none; position: relative;
+}
+.sector-pill::before {
+  content: ''; position: absolute;
+  top: -1px; left: 0; right: 0; height: 1px;
+  background: var(--elec);
+  transform: scaleX(0); transition: transform 0.2s;
+  box-shadow: 0 0 8px var(--elec);
+}
+.sector-pill:hover {
+  border-color: rgba(212,160,76,0.4);
+  color: var(--elec);
+  background: rgba(212,160,76,0.04);
+}
+.sector-pill:hover::before { transform: scaleX(1); }
+
+/* -- SECTOR SECTIONS -- */
+.sector-block {
+  padding: 100px 56px;
+  position: relative;
+  border-bottom: 1px solid var(--line2);
+}
+.sector-block:nth-child(even) { background: var(--deep); }
+.sector-block:nth-child(odd) { background: var(--void); }
+
+.sector-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 72px;
+  max-width: 1320px;
+  margin: 0 auto;
+  align-items: start;
+}
+.sector-grid.reverse { grid-template-columns: 1.4fr 1fr; }
+.sector-grid.reverse .sector-card-panel { order: 2; }
+.sector-grid.reverse .sector-info { order: 1; }
+
+/* -- SECTOR CARD PANEL (Circuit Card Style) -- */
+.sector-card-panel {
+  background: var(--panel);
+  border: 1px solid var(--line2);
+  padding: 48px 36px;
+  position: relative;
+  overflow: hidden;
+  cursor: none;
+  transition: background 0.3s, border-color 0.3s;
+}
+.sector-card-panel:hover {
+  background: rgba(20,28,40,0.85);
+  border-color: rgba(212,160,76,0.2);
+}
+.sector-card-panel::before {
+  content: ''; position: absolute;
+  inset: 0; opacity: 0;
+  background: linear-gradient(135deg, rgba(212,160,76,0.05) 0%, transparent 50%);
+  transition: opacity 0.3s;
+}
+.sector-card-panel:hover::before { opacity: 1; }
+.sector-card-panel::after {
+  content: ''; position: absolute;
+  bottom: 0; right: 0; width: 16px; height: 16px;
+  border-bottom: 1px solid rgba(212,160,76,0.2);
+  border-right: 1px solid rgba(212,160,76,0.2);
+  opacity: 0; transition: opacity 0.3s;
+}
+.sector-card-panel:hover::after { opacity: 1; }
+
+.sc-id {
+  font-size: 7px; letter-spacing: 4px; text-transform: uppercase;
+  color: rgba(212,160,76,0.3); margin-bottom: 20px;
+}
+.sector-card-panel h3 {
+  font-family: 'Source Serif 4', sans-serif;
+  font-size: 20px; font-weight: 700;
+  color: #fff; margin-bottom: 12px; letter-spacing: 0.3px;
+}
+.sector-card-panel p {
+  font-size: 11px; color: rgba(184,216,240,0.5);
+  line-height: 1.9;
+}
+.sc-pwr {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 2px; background: rgba(212,160,76,0.05);
+  overflow: hidden;
+}
+.sc-pwr-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--elec2), var(--elec));
+  box-shadow: 0 0 8px rgba(212,160,76,0.5);
+  animation: pwrfill 4s ease-in-out infinite;
+}
+@keyframes pwrfill { 0%{width:55%;} 50%{width:95%;} 100%{width:70%;} }
+
+.sc-ghost {
+  position: absolute; bottom: -10px; right: 8px;
+  font-family: 'Cinzel', sans-serif;
+  font-size: 88px; color: rgba(212,160,76,0.025);
+  line-height: 1; pointer-events: none; letter-spacing: 2px;
+}
+
+/* -- SECTOR INFO -- */
+.sector-info .si-tag {
+  font-size: 8px; letter-spacing: 4px; text-transform: uppercase;
+  color: var(--arc); margin-bottom: 10px;
+}
+.sector-info h2 {
+  font-family: 'Cinzel', sans-serif;
+  font-size: clamp(32px, 4vw, 56px);
+  line-height: 0.95; letter-spacing: 2px;
+  color: #fff; margin-bottom: 16px;
+}
+.sector-info .si-desc {
+  font-family: 'Source Serif 4', sans-serif;
+  font-size: 13px; color: rgba(184,216,240,0.55);
+  line-height: 1.9; margin-bottom: 28px;
+}
+
+/* Stats row */
+.stat-row { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 28px; }
+.stat-box {
+  background: var(--panel);
+  border: 1px solid var(--line2);
+  padding: 14px 18px; text-align: center; min-width: 90px;
+  transition: border-color 0.3s;
+}
+.stat-box:hover { border-color: rgba(212,160,76,0.2); }
+.stat-box .num {
+  font-family: 'Cinzel', sans-serif;
+  font-size: 24px; color: var(--elec);
+  text-shadow: 0 0 20px rgba(212,160,76,0.3);
+  line-height: 1;
+}
+.stat-box .lbl {
+  font-size: 7px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--ghost); margin-top: 4px;
+}
+
+/* Services list */
+.services-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  margin-bottom: 28px;
+  list-style: none;
+}
+.services-grid li {
+  background: rgba(0,20,50,0.5);
+  border: 1px solid rgba(212,160,76,0.06);
+  color: rgba(184,216,240,0.55);
+  font-size: 10px; letter-spacing: 1px;
+  padding: 8px 12px;
+  display: flex; gap: 8px; align-items: center;
+  transition: border-color 0.2s;
+}
+.services-grid li:hover { border-color: rgba(212,160,76,0.15); }
+.services-grid li::before {
+  content: '>'; color: var(--elec); font-size: 10px; flex-shrink: 0;
+}
+
+/* CTA buttons */
+.sector-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+
+/* -- COMPLIANCE RIBBON -- */
+.compliance-ribbon {
+  position: relative; overflow: hidden;
+  height: 42px;
+  background: rgba(10,12,16,0.95);
+  border-top: 1px solid rgba(212,160,76,0.08);
+  border-bottom: 1px solid rgba(212,160,76,0.08);
+}
+.compliance-ribbon::before, .compliance-ribbon::after {
+  content: ''; position: absolute; top:0; bottom:0; width:140px; z-index:5;
+}
+.compliance-ribbon::before { left:0; background:linear-gradient(90deg,rgba(10,12,16,0.95),transparent); }
+.compliance-ribbon::after  { right:0; background:linear-gradient(270deg,rgba(10,12,16,0.95),transparent); }
+.ribbon-track {
+  display: flex; height: 100%; align-items: center;
+  animation: ribbon 28s linear infinite;
+  white-space: nowrap;
+}
+@keyframes ribbon { from{transform:translateX(0);} to{transform:translateX(-50%);} }
+.ri {
+  flex-shrink:0; padding: 0 28px;
+  font-size: 8px; letter-spacing: 3px; text-transform: uppercase;
+  color: rgba(212,160,76,0.25);
+  border-right: 1px solid var(--line2);
+  display: flex; align-items: center; gap: 8px;
+}
+
+/* -- CTA BANNER -- */
+.cta-banner {
+  position: relative;
+  padding: 80px 56px;
+  text-align: center;
+  overflow: hidden;
+}
+.cta-banner::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(110,173,212,0.08) 0%, rgba(212,160,76,0.04) 100%);
+}
+.cta-banner .banner-inner {
+  position: relative; z-index: 2;
+  max-width: 800px; margin: 0 auto;
+}
+.cta-banner h3 {
+  font-family: 'Cinzel', sans-serif;
+  font-size: clamp(36px, 5vw, 64px);
+  letter-spacing: 3px; color: #fff;
+  margin-bottom: 12px;
+}
+.cta-banner p {
+  font-size: 11px; color: var(--ghost); line-height: 2;
+  letter-spacing: 1px; margin-bottom: 32px;
+}
+.cta-banner .banner-btns {
+  display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+}
+
+/* -- FOOTER -- */
+footer {
+  background: rgba(0,3,10,0.99);
+  border-top: 1px solid rgba(212,160,76,0.08);
+  padding: 72px 56px 36px;
+  position: relative;
+}
+footer::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--elec), var(--arc), var(--elec), transparent);
+  box-shadow: 0 0 30px rgba(212,160,76,0.15);
+}
+.foot-inner { max-width: 1320px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 72px; margin-bottom: 56px; }
+.foot-logo {
+  font-family: 'Cinzel', sans-serif; font-size: 28px; letter-spacing: 6px;
+  color: #fff; margin-bottom: 16px;
+}
+.foot-logo .ds-glow { color: var(--elec); text-shadow: 0 0 20px rgba(212,160,76,0.5); }
+.foot-desc { font-size: 11px; color: var(--ghost); line-height: 1.9; max-width: 320px; margin-bottom: 20px; }
+.foot-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+.ftag {
+  border: 1px solid rgba(212,160,76,0.12);
+  padding: 4px 12px; font-size: 8px; letter-spacing: 2px; text-transform: uppercase;
+  color: rgba(212,160,76,0.45);
+}
+.foot-col h4 {
+  font-size: 8px; letter-spacing: 4px; text-transform: uppercase;
+  color: rgba(212,160,76,0.25); margin-bottom: 20px;
+  border-bottom: 1px solid var(--line2); padding-bottom: 10px;
+}
+.foot-col ul { list-style: none; }
+.foot-col li { margin-bottom: 10px; }
+.foot-col a { color: var(--ghost); text-decoration: none; font-size: 11px; transition: color 0.2s; cursor: none; }
+.foot-col a:hover { color: var(--elec); }
+.foot-bottom {
+  max-width: 1320px; margin: 0 auto;
+  border-top: 1px solid var(--line2); padding-top: 24px;
+  display: flex; justify-content: space-between;
+  font-size: 9px; color: rgba(212,160,76,0.2); letter-spacing: 2px;
+}
+.foot-bottom a { color: rgba(212,160,76,0.2); text-decoration: none; transition: color 0.2s; cursor: none; }
+.foot-bottom a:hover { color: var(--elec); }
+
+/* -- REVEAL -- */
+.rv { opacity:0; transform:translateY(36px); transition: opacity 0.9s ease, transform 0.9s ease; }
+.rv.in { opacity:1; transform:none; }
+.d1{transition-delay:.1s} .d2{transition-delay:.2s} .d3{transition-delay:.3s} .d4{transition-delay:.4s}
+.d5{transition-delay:.5s} .d6{transition-delay:.6s} .d7{transition-delay:.7s} .d8{transition-delay:.8s}
+
+/* -- RESPONSIVE -- */
+@media(max-width:1100px){
+  .sector-grid, .sector-grid.reverse { grid-template-columns: 1fr; gap: 48px; }
+  .sector-grid.reverse .sector-card-panel { order: 0; }
+  .sector-grid.reverse .sector-info { order: 0; }
+  .foot-inner { grid-template-columns: 1fr; gap: 48px; }
+}
+@media(max-width:768px){
+  .s { padding:72px 20px; }
+  nav { padding:0 20px; }
+  nav .links { display:none; }
+  .mob-toggle { display: block; }
+  nav .links.open {
+    display: flex; flex-direction: column;
+    position: fixed; top: 60px; left: 0; right: 0;
+    background: rgba(10,12,16,0.98);
+    border-bottom: 1px solid var(--line);
+    padding: 16px 20px;
+    gap: 0;
+    z-index: 799;
+  }
+  nav .links.open .nl { padding: 14px 20px; display: block; }
+  .sector-block { padding: 60px 20px; }
+  .sector-nav-bar { padding: 14px 20px; }
+  .services-grid { grid-template-columns: 1fr; }
+  .stat-row { gap: 8px; }
+  .stat-box { min-width: 70px; padding: 10px 12px; }
+  footer { padding:48px 20px 24px; }
+  .foot-inner { grid-template-columns: 1fr; gap:36px; }
+  .cta-banner { padding: 60px 20px; }
+  .foot-bottom { flex-direction: column; gap: 8px; text-align: center; }
+  h1.main-title { font-size: clamp(40px,12vw,72px); }
+  .sector-info h2 { font-size: clamp(28px,6vw,48px); }
+  .sector-btns { flex-direction: column; }
+  .sector-btns .ebtn { text-align: center; display: block; }
+}
+/* ── ACCREDITATIONS SECTION ───────────────────────── */
+.accred-section {
+  padding: 80px 20px;
+  background: linear-gradient(180deg, var(--void), #020e1a, var(--void));
+  border-top: 2px solid rgba(212,160,76,0.1);
+  border-bottom: 2px solid rgba(212,160,76,0.1);
+  position: relative;
+  overflow: hidden;
+}
+.accred-section::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at center, rgba(212,160,76,0.03) 0%, transparent 70%);
+  pointer-events: none;
+}
+.accred-inner {
+  max-width: 1200px; margin: 0 auto; text-align: center;
+}
+.accred-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px; letter-spacing: 6px; text-transform: uppercase;
+  color: rgba(212,160,76,0.5); margin-bottom: 10px;
+}
+.accred-title {
+  font-family: 'Cinzel', sans-serif;
+  font-size: 44px; letter-spacing: 8px; color: #fff;
+  margin-bottom: 10px;
+}
+.accred-sub {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px; letter-spacing: 3px;
+  color: rgba(212,160,76,0.4); margin-bottom: 50px;
+}
+.accred-primary {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 24px;
+  margin-bottom: 48px;
+}
+.accred-logo-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 24px 28px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  min-width: 160px; max-width: 200px; flex: 1;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.3), 0 0 40px rgba(212,160,76,0.06);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.accred-logo-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.4), 0 0 60px rgba(212,160,76,0.1);
+}
+.accred-logo-card img {
+  height: 72px; width: auto; max-width: 150px;
+  object-fit: contain; margin-bottom: 10px;
+}
+.accred-logo-card .ac-name {
+  font-family: 'Source Serif 4', sans-serif;
+  font-size: 11px; font-weight: 700; color: #1a1a1a;
+  letter-spacing: 1px; text-transform: uppercase;
+}
+.accred-logo-card--dark {
+  background: #0d1b2a;
+  border: 1px solid rgba(212,160,76,0.15);
+}
+.accred-logo-card--dark .ac-name {
+  color: #ffffff;
+}
+.accred-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 20px;
+  margin-bottom: 32px;
+}
+.accred-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 10px;
+  padding: 24px 16px 18px;
+  display: flex; flex-direction: column; align-items: center;
+  transition: border-color 0.4s, box-shadow 0.4s, transform 0.3s;
+  position: relative;
+}
+.accred-card:hover {
+  border-color: rgba(212,160,76,0.3);
+  box-shadow: 0 0 30px rgba(212,160,76,0.08);
+  transform: translateY(-2px);
+}
+.accred-card img {
+  height: 80px; width: auto; margin-bottom: 14px;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
+}
+.accred-card .ac-name {
+  font-family: 'Source Serif 4', sans-serif;
+  font-size: 13px; font-weight: 700; color: #ffffff;
+  letter-spacing: 1px; text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.accred-card .ac-detail {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px; color: rgba(212,160,76,0.5);
+  letter-spacing: 1px;
+}
+.accred-status {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px; letter-spacing: 2px;
+  color: #5a9e6f; margin-top: 8px; font-weight: 600;
+}
+.accred-status::before {
+  content: ''; width: 6px; height: 6px; border-radius: 50%;
+  background: #5a9e6f;
+  box-shadow: 0 0 10px #5a9e6f;
+  animation: pulse-dot 2s infinite;
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+.accred-row-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px; letter-spacing: 5px; text-transform: uppercase;
+  color: rgba(212,160,76,0.35); margin-bottom: 18px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(212,160,76,0.08);
+  display: inline-block;
+}
+@media (max-width: 768px) {
+  .accred-primary { gap: 16px; }
+  .accred-logo-card { min-width: 140px; padding: 20px 16px; }
+  .accred-logo-card img { height: 56px; }
+  .accred-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .accred-card { padding: 18px 12px 14px; }
+  .accred-card img { height: 60px; }
+  .accred-title { font-size: 30px; letter-spacing: 4px; }
+}
+@media (max-width: 480px) {
+  .accred-logo-card { min-width: 120px; padding: 16px 12px; }
+  .accred-logo-card img { height: 48px; }
+  .accred-title { font-size: 24px; }
+}
+
+/* Sticky mobile call bar */
+.mcb{display:none;position:fixed;bottom:0;left:0;right:0;z-index:98;background:#0a0908;border-top:1px solid rgba(212,164,74,.3);padding:.6rem .6rem calc(.6rem + env(safe-area-inset-bottom));box-shadow:0 -6px 24px rgba(0,0,0,.4)}
+.mcb-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:.5rem}
+.mcb a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.15rem;padding:.6rem .4rem;border-radius:8px;font-family:'Outfit',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.04em;text-decoration:none;transition:.2s}
+.mcb a svg{width:18px;height:18px}
+.mcb .mcb-call{background:#d4a44a;color:#0a0908}
+.mcb .mcb-call:hover{background:#b8944f}
+.mcb .mcb-wa{background:#25d366;color:#fff}
+.mcb .mcb-mail{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.14)}
+.mcb small{font-size:.62rem;font-weight:500;opacity:.75;letter-spacing:.02em;text-transform:none}
+@media(max-width:768px){.mcb{display:block}body{padding-bottom:72px}.wa{bottom:6rem !important}}
+
+
+/* Breadcrumb */
+.breadcrumb{background:var(--light,#f8f5f0);padding:1rem clamp(1.5rem,5vw,4rem);font-size:.78rem;border-bottom:1px solid var(--light3,#e2dbd0)}
+.breadcrumb-inner{max-width:1200px;margin:0 auto;display:flex;gap:.5rem;align-items:center;color:var(--text-muted,#6b6560);font-weight:500}
+.breadcrumb-inner a{color:var(--text-muted,#6b6560);text-decoration:none;transition:.2s}
+.breadcrumb-inner a:hover{color:var(--brass,#b8944f)}
+.breadcrumb-inner .sep{color:var(--light3,#e2dbd0)}
+.breadcrumb-inner .current{color:var(--text-dark,#1a1714);font-weight:700}
+
+
+/* Related services */
+.related-svc{background:var(--dark,#0a0908);padding:clamp(4rem,7vw,5rem) clamp(1.5rem,5vw,4rem);color:#fff}
+.related-svc-inner{max-width:1200px;margin:0 auto}
+.related-svc .section-tag{color:#d4a44a}
+.related-svc h2{font-size:clamp(1.8rem,3.2vw,2.6rem);font-weight:900;line-height:1.1;color:#fff;margin-bottom:2.5rem;letter-spacing:-.02em}
+.related-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.related-card{display:block;padding:1.5rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:12px;text-decoration:none;transition:.25s}
+.related-card:hover{background:rgba(212,164,74,.08);border-color:rgba(212,164,74,.3);transform:translateY(-3px)}
+.related-card h3{font-size:.95rem;font-weight:800;color:#fff;margin-bottom:.4rem}
+.related-card p{font-size:.78rem;color:rgba(240,232,218,.5);line-height:1.5}
+.related-card .arrow{display:inline-block;margin-top:.8rem;color:#d4a44a;font-size:.8rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
+@media(max-width:900px){.related-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.related-grid{grid-template-columns:1fr}}
+
+
+/* Desktop quote CTA - hidden on mobile where call bar covers it */
+.dq-btn{position:fixed;right:1.25rem;bottom:1.25rem;z-index:99;display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 1.35rem;background:#d4a44a;color:#0a0908;border-radius:100px;font-family:'Outfit',sans-serif;font-weight:800;font-size:.8rem;letter-spacing:.04em;text-decoration:none;box-shadow:0 8px 32px rgba(212,164,74,.4);transition:.25s}
+.dq-btn:hover{background:#b8944f;transform:translateY(-2px);box-shadow:0 12px 40px rgba(212,164,74,.5)}
+.dq-btn svg{width:16px;height:16px}
+@media(max-width:768px){.dq-btn{display:none}}
+
+
+/* Trust strip */
+.tstrip{background:var(--light2,#eee9e0);padding:2.5rem clamp(1.5rem,5vw,4rem);border-top:1px solid var(--light3,#e2dbd0);border-bottom:1px solid var(--light3,#e2dbd0)}
+.tstrip-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:center}
+.tstat-num{font-size:1.9rem;font-weight:900;color:var(--text-dark,#1a1714);font-family:'JetBrains Mono',monospace;line-height:1}
+.tstat-lbl{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.18em;color:var(--text-muted,#6b6560);margin-top:.5rem}
+@media(max-width:700px){.tstrip-inner{grid-template-columns:repeat(2,1fr);gap:1.5rem}}
+
+</style>
+<!-- Google AdSense — replace ca-pub-XXXXXXXXXXXXXXXXX with your publisher ID -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement": [
+  {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.dselectricalsw.co.uk/"},
+  {"@type": "ListItem", "position": 2, "name": "Sectors We Serve", "item": "https://www.dselectricalsw.co.uk/sectors.html"}
+ ]
+}
+</script>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div id="cx-dot"></div>
+<div id="cx-cross"></div>
+<div id="cx-ring"></div>
+
+<!-- WebGL -->
+<canvas id="gl"></canvas>
+<!-- Lightning -->
+<canvas id="lightning"></canvas>
+
+<!-- NAV -->
+<nav>
+  <a class='nav-logo' href='/'>
+    <img src="logo-full.png" alt="DS Electrical Installations SW Ltd" style="height:70px;filter:brightness(1.2);">
+  </a>
+  <button class="mob-toggle" id="mobToggle" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="links" id="navLinks">
+    <li><a class='nl' href='/#services'>Services</a></li>
+    <li><a class='nl' href='/commercial'>Commercial</a></li>
+    <li><a class='nl' href='/eicr'>EICR</a></li>
+    <li><a class='nl' href='/ev-chargers'>EV</a></li>
+    <li><a class='nl' href='/solar'>Solar</a></li>
+    <li><a class='nl active' href='/sectors'>Sectors</a></li>
+    <li><a class='nl' href='/#contact'>Contact</a></li>
+    <li><a href="tel:07889334849" class="nl cta">07889 334849</a></li>
+  </ul>
+</nav>
+
+<nav class="breadcrumb" aria-label="Breadcrumb"><div class="breadcrumb-inner"><a href="/">Home</a><span class="sep">/</span><span class="current" aria-current="page">Sectors We Serve</span></div></nav>
+<!-- TRUST STRIP -->
+<section class="tstrip" aria-label="Trust signals">
+ <div class="tstrip-inner">
+  <div><div class="tstat-num">5.0</div><div class="tstat-lbl">Google Rating &middot; 11 reviews</div></div>
+  <div><div class="tstat-num">15+</div><div class="tstat-lbl">Years experience</div></div>
+  <div><div class="tstat-num">&pound;2M</div><div class="tstat-lbl">Public liability cover</div></div>
+  <div><div class="tstat-num">7</div><div class="tstat-lbl">Accreditations</div></div>
+ </div>
+</section>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hexmesh"></div>
+
+  <div class="data-point" style="top:18%;left:6%;animation-delay:0s">SYS:SECTORS</div>
+  <div class="data-point" style="top:22%;right:7%;text-align:right;animation-delay:1s">NAPIT:APPROVED</div>
+  <div class="data-point" style="top:72%;left:5%;animation-delay:2s">COVERAGE:SW</div>
+  <div class="data-point" style="top:70%;right:6%;text-align:right;animation-delay:0.5s">SECTORS:9</div>
+  <div class="data-point" style="top:40%;left:3%;animation-delay:1.5s">INS:2M</div>
+  <div class="data-point" style="top:50%;right:3%;text-align:right;animation-delay:2.5s">T:07889334849</div>
+
+  <div class="hero-content">
+    <div class="hero-badges">
+      <span class="hbadge">9 Specialist Sectors</span>
+      <span class="hbadge">NAPIT Approved</span>
+      <span class="hbadge">South West Coverage</span>
+    </div>
+
+    <div class="hero-top-tag">
+      SECTOR EXPERTISE — SOUTH WEST
+    </div>
+
+    <h1 class="main-title">
+      <span class="t1">WE KNOW YOUR</span>
+      <span class="t2">INDUSTRY</span>
+      <span class="t3">NOT JUST ELECTRICITY.</span>
+    </h1>
+
+    <p class="hero-sub">
+      FROM LICENSED PREMISES TO LOGISTICS WAREHOUSES — DS ELECTRICAL<br>
+      UNDERSTAND THE COMPLIANCE, CONSTRAINTS AND RISK PROFILES OF EACH SECTOR
+    </p>
+
+    <div class="hero-btns">
+      <a class='ebtn ebtn-solid' href='/#contact'>GET A SECTOR QUOTE</a>
+      <a class='ebtn ebtn-outline' href='/commercial'>VIEW CONTRACTS</a>
+      <a href="tel:07889334849" class="ebtn ebtn-ghost">CALL 07889 334849</a>
+    </div>
+  </div>
+</section>
+
+<!-- SECTOR NAV -->
+<div class="sector-nav-bar">
+  <div class="sector-pills">
+    <a href="#hospitality" class="sector-pill">Hospitality</a>
+    <a href="#care" class="sector-pill">Care Homes</a>
+    <a href="#offices" class="sector-pill">Offices</a>
+    <a href="#retail" class="sector-pill">Retail</a>
+    <a href="#industrial" class="sector-pill">Industrial</a>
+    <a href="#education" class="sector-pill">Education</a>
+    <a href="#property" class="sector-pill">Property Developers</a>
+    <a href="#fm" class="sector-pill">Facilities Management</a>
+    <a href="#landlords" class="sector-pill">Landlords</a>
+    <a href="#agricultural" class="sector-pill">Agricultural</a>
+  </div>
+</div>
+
+<!-- ========== HOSPITALITY ========== -->
+<div id="hospitality" class="sector-block">
+  <div class="sector-grid">
+    <div class="sector-card-panel rv">
+      <div class="sc-ghost">01</div>
+      <div class="sc-id">SECTOR-01 // HOSPITALITY & LEISURE</div>
+      <h3>Hospitality &amp; Leisure</h3>
+      <p>Pubs, bars, restaurants, hotels, holiday parks and leisure facilities.</p>
+      <div class="sc-pwr"><div class="sc-pwr-fill"></div></div>
+    </div>
+    <div class="sector-info rv d1">
+      <div class="si-tag">Hospitality &amp; Leisure</div>
+      <h2>PUBS, RESTAURANTS &amp; HOTELS <span class="dim">COMPLIANT &amp; RUNNING</span></h2>
+      <p class="si-desc">Hospitality venues face some of the strictest electrical compliance requirements of any sector. Emergency lighting, EICRs, fire alarm wiring -- all mandatory, all audited. DS Electrical are experienced working around trading hours, with planned maintenance that minimises disruption and maximises uptime.</p>
+      <div class="stat-row">
+        <div class="stat-box"><div class="num">3YR</div><div class="lbl">EICR Cycle</div></div>
+        <div class="stat-box"><div class="num">MONTHLY</div><div class="lbl">EM Light Tests</div></div>
+        <div class="stat-box"><div class="num">24HR</div><div class="lbl">Reactive Callout</div></div>
+      </div>
+      <ul class="services-grid">
+        <li>EICR Testing (3-year cycle)</li>
+        <li>Emergency Lighting Testing</li>
+        <li>Kitchen Extract Wiring</li>
+        <li>PAT Testing</li>
+        <li>EV Charger Car Parks</li>
+        <li>External Lighting</li>
+        <li>Bar Equipment Wiring</li>
+        <li>Reactive Fault Response</li>
+      </ul>
+      <div class="sector-btns">
+        <a class='ebtn ebtn-solid' href='/#contact'>GET A HOSPITALITY QUOTE</a>
+        <a class='ebtn ebtn-outline' href='/commercial#contracts'>VIEW CONTRACTS</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== CARE HOMES ========== -->
+<div id="care" class="sector-block">
+  <div class="sector-grid reverse">
+    <div class="sector-card-panel rv">
+      <div class="sc-ghost">02</div>
+      <div class="sc-id">SECTOR-02 // CARE & HEALTHCARE</div>
+      <h3>Care Homes &amp; Healthcare</h3>
+      <p>Residential care, nursing homes, day centres and medical facilities.</p>
+      <div class="sc-pwr"><div class="sc-pwr-fill" style="animation-delay:.6s"></div></div>
+    </div>
+    <div class="sector-info rv d1">
+      <div class="si-tag">Care &amp; Healthcare</div>
+      <h2>KEEPING VULNERABLE PEOPLE <span class="fire">SAFE</span></h2>
+      <p class="si-desc">Care homes and healthcare facilities have some of the most demanding electrical safety obligations. We understand the sensitivity of working in lived-in environments, the requirement for minimum disruption to residents, and the rigorous documentation required by CQC inspections and insurers.</p>
+      <div class="stat-row">
+        <div class="stat-box"><div class="num">1YR</div><div class="lbl">EICR Cycle</div></div>
+        <div class="stat-box"><div class="num">FULL</div><div class="lbl">CQC Records</div></div>
+        <div class="stat-box"><div class="num">DBS</div><div class="lbl">Checked Engineers</div></div>
+      </div>
+      <ul class="services-grid">
+        <li>EICR (Annual)</li>
+        <li>Emergency Lighting Full Tests</li>
+        <li>Nurse Call System Wiring</li>
+        <li>PAT Testing (All Equipment)</li>
+        <li>New Circuit Installation</li>
+        <li>Compliance Documentation</li>
+        <li>Reactive Callout</li>
+        <li>CQC Audit Support</li>
+      </ul>
+      <div class="sector-btns">
+        <a class='ebtn ebtn-solid' href='/#contact'>GET A CARE HOME QUOTE</a>
+        <a class='ebtn ebtn-outline' href='/commercial#contracts'>VIEW CONTRACTS</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== OFFICES ========== -->
+<div id="offices" class="sector-block">
+  <div class="sector-grid">
+    <div class="sector-card-panel rv">
+      <div class="sc-ghost">03</div>
+      <div class="sc-id">SECTOR-03 // OFFICES & COMMERCIAL</div>
+      <h3>Offices &amp; Commercial</h3>
+      <p>Offices, co-working spaces, business parks and commercial units.</p>
+      <div class="sc-pwr"><div class="sc-pwr-fill" style="animation-delay:1.2s"></div></div>
+    </div>
+    <div class="sector-info rv d1">
+      <div class="si-tag">Offices &amp; Commercial</div>
+      <h2>ZERO DOWNTIME <span class="lit">FULL COMPLIANCE</span></h2>
+      <p class="si-desc">Office environments need reliable electrical infrastructure and clean compliance records -- for insurers, for tenants, and for property managers. DS Electrical work flexibly around business hours, carrying out testing and upgrades at weekends or evenings to eliminate operational disruption.</p>
+      <div class="stat-row">
+        <div class="stat-box"><div class="num">5YR</div><div class="lbl">EICR Cycle</div></div>
+        <div class="stat-box"><div class="num">NEXT DAY</div><div class="lbl">Fault Response</div></div>
+        <div class="stat-box"><div class="num">OOH</div><div class="lbl">Work Available</div></div>
+      </div>
+      <ul class="services-grid">
+        <li>EICR Testing</li>
+        <li>Additional Sockets &amp; Circuits</li>
+        <li>Lighting Upgrades (LED)</li>
+        <li>PAT Testing</li>
+        <li>EV Chargers (Staff)</li>
+        <li>Emergency Lighting</li>
+        <li>Server Room Power</li>
+        <li>Planned Maintenance</li>
+      </ul>
+      <div class="sector-btns">
+        <a class='ebtn ebtn-solid' href='/#contact'>GET AN OFFICE QUOTE</a>
+        <a class='ebtn ebtn-outline' href='/commercial#contracts'>VIEW CONTRACTS</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== RETAIL ========== -->
+<div id="retail" class="sector-block">
+  <div class="sector-grid reverse">
+    <div class="sector-card-panel rv">
+      <div class="sc-ghost">04</div>
+      <div class="sc-id">SECTOR-04 // RETAIL</div>
+      <h3>Retail</h3>
+      <p>High street shops, supermarkets, garden centres and showrooms.</p>
+      <div class="sc-pwr"><div class="sc-pwr-fill" style="animation-delay:1.8s"></div></div>
+    </div>
+    <div class="sector-info rv d1">
+      <div class="si-tag">Retail</div>
+      <h2>TRADING-HOUR <span class="fire">SENSITIVE</span></h2>
+      <p class="si-desc">Retail electrical work needs to happen fast, quietly and outside trading hours. We fit new lighting, replace distribution boards and carry out PAT testing -- all scheduled to avoid any impact on your footfall. Our NAPIT certification satisfies any insurance or landlord requirement.</p>
+      <div class="stat-row">
+        <div class="stat-box"><div class="num">OOH</div><div class="lbl">Out of Hours</div></div>
+        <div class="stat-box"><div class="num">SAME DAY</div><div class="lbl">PAT Certificate</div></div>
+        <div class="stat-box"><div class="num">LED</div><div class="lbl">Lighting Upgrades</div></div>
+      </div>
+      <ul class="services-grid">
+        <li>LED Lighting Retrofit</li>
+        <li>EICR Testing</li>
+        <li>PAT Testing</li>
+        <li>Display Circuit Wiring</li>
+        <li>Tills &amp; POS Circuits</li>
+        <li>Emergency Lighting</li>
+        <li>Security Lighting</li>
+        <li>Reactive Fault Response</li>
+      </ul>
+      <div class="sector-btns">
+        <a class='ebtn ebtn-solid' href='/#contact'>GET A RETAIL QUOTE</a>
+        <a class='ebtn ebtn-outline' href='/commercial#contracts'>VIEW CONTRACTS</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== INDUSTRIAL ========== -->
+<div id="industrial" class="sector-block">
+  <div class="sector-grid">
+    <div class="sector-card-panel rv">
+      <div class="sc-ghost">05</div>
+      <div class="sc-id">SECTOR-05 // INDUSTRIAL & WAREHOUSING</div>
+      <h3>Industrial &amp; Warehousing</h3>
+      <p>Factories, workshops, distribution centres and agricultural premises.</p>
+      <div class="sc-pwr"><div class="sc-pwr-fill" style="animation-delay:2.4s"></div></div>
+    </div>
+    <div class="sector-info rv d1">
+      <div class="si-tag">Industrial &amp; Warehousing</div>
+      <h2>3-PHASE POWER <span class="lit">CERTIFIED RIGHT</span></h2>
+      <p class="si-desc">Industrial and agricultural premises require specialist expertise -- 3-phase distribution, heavy machine circuits, atex zones and large-scale emergency lighting systems. DS Electrical are experienced in complex industrial environments, with fully documented compliance records and qualified engineers.</p>
+      <div class="stat-row">
+        <div class="stat-box"><div class="num">3PH</div><div class="lbl">3-Phase Power</div></div>
+        <div class="stat-box"><div class="num">3YR</div><div class="lbl">EICR Cycle</div></div>
+        <div class="stat-box"><div class="num">HSE</div><div class="lbl">Compliant</div></div>
+      </div>
+      <ul class="services-grid">
+        <li>3-Phase Distribution</li>
+        <li>Machine Power Circuits</li>
+        <li>EICR Testing</li>
+        <li>Warehouse Lighting (LED)</li>
+        <li>Emergency Lighting</li>
+        <li>EV Charger Infrastructure</li>
+        <li>External Security Lighting</li>
+        <li>HSE Compliance Audit</li>
+      </ul>
+      <div class="sector-btns">
+        <a class='ebtn ebtn-solid' href='/#contact'>GET AN INDUSTRIAL QUOTE</a>
+        <a class='ebtn ebtn-outline' href='/commercial#contracts'>VIEW CONTRACTS</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== EDUCATION ========== -->
+<div id="education" class="sector-block">
+  <div class="sector-grid reverse">
+    <div class="sector-card-panel rv">
+      <div class="sc-ghost">06</div>
+      <div class="sc-id">SECTOR-06 // EDUCATION</div>
+      <h3>Education</h3>
+      <p>Schools, colleges, nurseries and training facilities.</p>
+      <div class="sc-pwr"><div class="sc-pwr-fill" style="animation-delay:3s"></div></div>
+    </div>
+    <div class="sector-info rv d1">
+      <div class="si-tag">Education</div>
+      <h2>HOLIDAY SLOTS <span class="fire">DBS CHECKED</span></h2>
+      <p class="si-desc">Educational establishments need work completed during holidays to avoid disruption to students. Our engineers are DBS-checked, experienced working in safeguarding environments, and produce full compliance documentation ready for Ofsted or local authority inspections.</p>
+      <div class="stat-row">
+        <div class="stat-box"><div class="num">DBS</div><div class="lbl">All Engineers</div></div>
+        <div class="stat-box"><div class="num">HOLIDAY</div><div class="lbl">Scheduling</div></div>
+        <div class="stat-box"><div class="num">OFSTED</div><div class="lbl">Ready Docs</div></div>
+      </div>
+      <ul class="services-grid">
+        <li>EICR Testing</li>
+        <li>Classroom Wiring</li>
+        <li>Emergency Lighting</li>
+        <li>PAT Testing</li>
+        <li>Interactive Display Circuits</li>
+        <li>EV Chargers (Staff Car Park)</li>
+        <li>Security &amp; Access Wiring</li>
+        <li>Compliance Documentation</li>
+      </ul>
+      <div class="sector-btns">
+        <a class='ebtn ebtn-solid' href='/#contact'>GET AN EDUCATION QUOTE</a>
+        <a class='ebtn ebtn-outline' href='/commercial#contracts'>VIEW CONTRACTS</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== PROPERTY DEVELOPERS ========== -->
+<div id="property" class="sector-block">
+  <div class="sector-grid">
+    <div class="sector-card-panel rv">
+      <div class="sc-ghost">07</div>
+      <div class="sc-id">SECTOR-07 // PROPERTY DEVELOPMENT</div>
+      <h3>Property Developers</h3>
+      <p>New builds, conversions, refurbishments and HMO developments.</p>
+      <div class="sc-pwr"><div class="sc-pwr-fill" style="animation-delay:3.6s"></div></div>
+    </div>
+    <div class="sector-info rv d1">
+      <div class="si-tag">Property Development</div>
+      <h2>FIRST FIX TO <span class="lit">COMPLETION CERTIFICATE</span></h2>
+      <p class="si-desc">Developers need an electrical contractor they can rely on -- one who shows up, hits programme, doesn't cut corners, and delivers BS 7671 compliant installations with all Part P notification handled. DS Electrical work with developers on single plots, HMO conversions and commercial fit-outs.</p>
+      <div class="stat-row">
+        <div class="stat-box"><div class="num">1ST FIX</div><div class="lbl">to Cert</div></div>
+        <div class="stat-box"><div class="num">PART P</div><div class="lbl">Notified</div></div>
+        <div class="stat-box"><div class="num">HMO</div><div class="lbl">Specialists</div></div>
+      </div>
+      <ul class="services-grid">
+        <li>First &amp; Second Fix Wiring</li>
+        <li>Consumer Unit Installation</li>
+        <li>EV Charger Pre-Wire</li>
+        <li>HMO Wiring &amp; EICR</li>
+        <li>Solar PV &amp; Battery</li>
+        <li>Part P Notification</li>
+        <li>EIC Certificates</li>
+        <li>Programme Management</li>
+      </ul>
+      <div class="sector-btns">
+        <a class='ebtn ebtn-solid' href='/#contact'>DISCUSS YOUR DEVELOPMENT</a>
+        <a class='ebtn ebtn-outline' href='/solar'>SOLAR &amp; EV PACKAGES</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== FACILITIES MANAGEMENT ========== -->
+<div id="fm" class="sector-block">
+  <div class="sector-grid reverse">
+    <div class="sector-card-panel rv">
+      <div class="sc-ghost">08</div>
+      <div class="sc-id">SECTOR-08 // FACILITIES MANAGEMENT</div>
+      <h3>Facilities Management</h3>
+      <p>FM companies, managing agents and multi-site operators.</p>
+      <div class="sc-pwr"><div class="sc-pwr-fill" style="animation-delay:4.2s"></div></div>
+    </div>
+    <div class="sector-info rv d1">
+      <div class="si-tag">Facilities Management</div>
+      <h2>ONE ELECTRICAL SUB <span class="fire">ALL YOUR SITES</span></h2>
+      <p class="si-desc">DS Electrical work as specialist electrical sub-contractors to FM companies across the South West. We integrate with your CAFM system, produce compliance documentation in your required format, and provide a single point of contact across all managed sites. Approved vendor status available.</p>
+      <div class="stat-row">
+        <div class="stat-box"><div class="num">CAFM</div><div class="lbl">Compatible</div></div>
+        <div class="stat-box"><div class="num">SLA</div><div class="lbl">Reporting</div></div>
+        <div class="stat-box"><div class="num">MULTI</div><div class="lbl">Site</div></div>
+      </div>
+      <ul class="services-grid">
+        <li>PPM Electrical Works</li>
+        <li>EICR Portfolio Testing</li>
+        <li>Emergency Lighting</li>
+        <li>Reactive Maintenance</li>
+        <li>CAFM Job Management</li>
+        <li>Compliance Reporting</li>
+        <li>Priority SLA Response</li>
+        <li>Approved Vendor Status</li>
+      </ul>
+      <div class="sector-btns">
+        <a class='ebtn ebtn-solid' href='/#contact'>FM PARTNERSHIP ENQUIRY</a>
+        <a class='ebtn ebtn-outline' href='/commercial#contracts'>SUB-CONTRACT OPTIONS</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== LANDLORDS ========== -->
+<div id="landlords" class="sector-block">
+  <div class="sector-grid">
+    <div class="sector-card-panel rv">
+      <div class="sc-ghost">09</div>
+      <div class="sc-id">SECTOR-09 // LANDLORDS & HMOS</div>
+      <h3>Landlords &amp; HMOs</h3>
+      <p>Private landlords, HMO operators and letting agent portfolios.</p>
+      <div class="sc-pwr"><div class="sc-pwr-fill" style="animation-delay:4.8s"></div></div>
+    </div>
+    <div class="sector-info rv d1">
+      <div class="si-tag">Landlords &amp; HMOs</div>
+      <h2>EICR DONE <span class="lit">CERTIFICATE ISSUED</span></h2>
+      <p class="si-desc">Rental property compliance is time-consuming and legally critical. DS Electrical manage your entire EICR schedule -- liaising directly with tenants, issuing same-day certificates, and alerting you to any remedial works required before your next tenancy. Bulk pricing for portfolios of 5+ properties.</p>
+      <div class="stat-row">
+        <div class="stat-box"><div class="num">SAME DAY</div><div class="lbl">Certificate</div></div>
+        <div class="stat-box"><div class="num">TENANT</div><div class="lbl">Liaison</div></div>
+        <div class="stat-box"><div class="num">5YR</div><div class="lbl">EICR Cycle</div></div>
+      </div>
+      <ul class="services-grid">
+        <li>EICR Testing (All Property Types)</li>
+        <li>Tenant Liaison Included</li>
+        <li>Remedial Works</li>
+        <li>Consumer Unit Upgrades</li>
+        <li>EV Charger (Rental) Pre-Wire</li>
+        <li>Portfolio Bulk Pricing</li>
+        <li>Letting Agent Partner Scheme</li>
+        <li>Same-Day Certificates</li>
+      </ul>
+      <div class="sector-btns">
+        <a class='ebtn ebtn-solid' href='/eicr'>BOOK LANDLORD EICR</a>
+        <a class='ebtn ebtn-outline' href='/commercial#contracts'>PORTFOLIO CONTRACTS</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== AGRICULTURAL ========== -->
+<div id="agricultural" class="sector-block">
+  <div class="sector-grid">
+    <div class="sector-card-panel rv">
+      <div class="sc-ghost">10</div>
+      <div class="sc-id">SECTOR-10 // AGRICULTURAL</div>
+      <h3>Agricultural &amp; Farms</h3>
+      <p>Working dairy, beef, arable and equestrian properties across Mid Somerset.</p>
+      <div class="sc-pwr"><div class="sc-pwr-fill" style="animation-delay:5.4s"></div></div>
+    </div>
+    <div class="sector-info rv d1">
+      <div class="si-tag">Agricultural &amp; Farms</div>
+      <h2>THREE-PHASE READY <span class="lit">FARM COMPLIANT</span></h2>
+      <p class="si-desc">Somerset is farming country. DS Electrical installs and maintains robust three-phase supplies, milking parlour controls, grain drier circuits, yard and barn lighting, and IP-rated sockets built for the reality of dairy washdowns, slurry, and heavy machinery. All work BS 7671 and HSE-compliant with PAT testing and thermal imaging available on maintenance rounds.</p>
+      <div class="stat-row">
+        <div class="stat-box"><div class="num">3-PHASE</div><div class="lbl">Installations</div></div>
+        <div class="stat-box"><div class="num">IP65+</div><div class="lbl">Rated Kit</div></div>
+        <div class="stat-box"><div class="num">TT &amp; TN</div><div class="lbl">Earthing</div></div>
+      </div>
+      <ul class="services-grid">
+        <li>Three-Phase Supply Installation</li>
+        <li>Milking Parlour Controls</li>
+        <li>Grain Drier &amp; Silo Circuits</li>
+        <li>Barn &amp; Yard LED Lighting</li>
+        <li>Electric Gate &amp; CCTV Systems</li>
+        <li>SWA &amp; Armoured Cable Runs</li>
+        <li>Farmhouse Rewires &amp; EICR</li>
+        <li>Agricultural EV Charging</li>
+      </ul>
+      <div class="sector-btns">
+        <a class='ebtn ebtn-solid' href='/#contact'>GET FARM QUOTE</a>
+        <a class='ebtn ebtn-outline' href='/commercial-electrical.html'>COMMERCIAL SERVICES</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- COMPLIANCE RIBBON -->
+<div class="compliance-ribbon">
+  <div class="ribbon-track" id="rtick"></div>
+</div>
+
+<!-- CTA BANNER -->
+<div class="cta-banner">
+  <div class="banner-inner rv">
+    <h3>NOT SURE WHICH SERVICE YOU NEED?</h3>
+    <p>CALL US OR FILL IN A QUICK FORM -- WE WILL TELL YOU EXACTLY WHAT IS REQUIRED FOR YOUR SECTOR AND GIVE YOU A FIXED-PRICE QUOTE WITH NO OBLIGATION.</p>
+    <div class="banner-btns">
+      <a class='ebtn ebtn-solid' href='/#contact'>GET A QUOTE NOW</a>
+      <a class='ebtn ebtn-outline' href='/commercial'>VIEW CONTRACTS</a>
+      <a href="tel:07889334849" class="ebtn ebtn-ghost">CALL 07889 334849</a>
+    </div>
+  </div>
+</div>
+
+<!-- DS VENTURES CROSS-PROMO -->
+<section style="padding:48px 20px;background:linear-gradient(135deg,rgba(10,12,16,0.95),rgba(0,18,40,0.95));border-top:1px solid rgba(212,160,76,0.08);border-bottom:1px solid rgba(212,160,76,0.08);">
+<div style="max-width:900px;margin:0 auto;text-align:center;">
+  <p style="font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:4px;color:var(--arc);margin-bottom:12px;">FROM DS VENTURES</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;">
+    <a href="https://soulsyncai.org/?utm_source=dselectrical&utm_medium=banner&utm_campaign=cross_promo" target="_blank" rel="noopener" style="text-decoration:none;background:var(--panel);border:1px solid rgba(110,173,212,0.12);padding:28px 24px;display:block;transition:border-color 0.3s;" onmouseover="this.style.borderColor='rgba(110,173,212,0.4)'" onmouseout="this.style.borderColor='rgba(110,173,212,0.12)'">
+      <h3 style="font-family:'Cinzel',sans-serif;font-size:22px;letter-spacing:2px;color:var(--arc);margin:0 0 6px 0;">SOULSYNC AI</h3>
+      <p style="font-size:10px;color:var(--ghost);letter-spacing:0.5px;line-height:1.7;margin:0;">AI companion platform. Chat, roleplay, virtual dates. Free to start. Premium from $9.99/mo.</p>
+    </a>
+  </div>
+</div>
+</section>
+
+<!-- ACCREDITATIONS -->
+<section class="accred-section">
+<div class="accred-inner">
+  <p class="accred-label">// CREDENTIALS VERIFIED</p>
+  <h2 class="accred-title">ACCREDITATIONS & CERTIFICATIONS</h2>
+  <p class="accred-sub">GOVERNMENT ENDORSED · FULLY INSURED · INDEPENDENTLY VERIFIED</p>
+  <div class="accred-primary">
+    <div class="accred-logo-card">
+      <img src="assets/accreditations/napit-logo.svg" alt="NAPIT Electrical" loading="lazy">
+      <span class="ac-name">NAPIT Electrical</span>
+    </div>
+    <div class="accred-logo-card accred-logo-card--dark">
+      <img src="assets/accreditations/trustmark-logo.svg" alt="TrustMark government endorsed" loading="lazy">
+      <span class="ac-name">TrustMark</span>
+    </div>
+    <div class="accred-logo-card">
+      <img src="assets/accreditations/chas-logo.png" alt="CHAS Accredited" loading="lazy">
+      <span class="ac-name">CHAS Accredited</span>
+    </div>
+    <div class="accred-logo-card">
+      <img src="assets/accreditations/city-guilds-logo.png" alt="City and Guilds" loading="lazy">
+      <span class="ac-name">City & Guilds</span>
+    </div>
+  </div>
+  <p class="accred-row-label">Certifications & Standards</p>
+  <div class="accred-grid">
+    <div class="accred-card">
+      <img src="assets/accreditations/bs7671.svg" alt="BS 7671:2018" loading="lazy">
+      <span class="ac-name">BS 7671:2018</span>
+      <span class="ac-detail">18th Edition + Amd 2</span>
+      <span class="accred-status">COMPLIANT</span>
+    </div>
+    <div class="accred-card">
+      <img src="assets/accreditations/part-p.svg" alt="Part P Registered" loading="lazy">
+      <span class="ac-name">Part P</span>
+      <span class="ac-detail">Building Regulations</span>
+      <span class="accred-status">REGISTERED</span>
+    </div>
+    <div class="accred-card">
+      <img src="assets/accreditations/insured-2m.svg" alt="£2M Insured" loading="lazy">
+      <span class="ac-name">£2M Insured</span>
+      <span class="ac-detail">Public Liability Cover</span>
+      <span class="accred-status">COVERED</span>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<!-- RELATED SERVICES -->
+<section class="related-svc" aria-label="Related services">
+ <div class="related-svc-inner">
+  <div class="section-tag" style="font-size:.65rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;margin-bottom:1rem">Related Services</div>
+  <h2>You might also need&hellip;</h2>
+  <div class="related-grid">
+  <a href="/commercial-electrical.html" class="related-card">
+   <h3>Commercial Electrical</h3>
+   <p>All sectors</p>
+   <span class="arrow">Explore &rarr;</span>
+  </a>
+  <a href="/office-fit-outs.html" class="related-card">
+   <h3>Office Fit-Outs</h3>
+   <p>Commercial Cat A/B</p>
+   <span class="arrow">Explore &rarr;</span>
+  </a>
+  <a href="/fire-alarms.html" class="related-card">
+   <h3>Fire Alarms</h3>
+   <p>BS 5839 compliance</p>
+   <span class="arrow">Explore &rarr;</span>
+  </a>
+  <a href="/lighting.html" class="related-card">
+   <h3>Emergency Lighting</h3>
+   <p>BS 5266</p>
+   <span class="arrow">Explore &rarr;</span>
+  </a>
+  </div>
+ </div>
+</section>
+<footer>
+  <div class="foot-inner">
+    <div>
+      <div class="foot-logo"><img src="logo-full.png" alt="DS Electrical Installations SW Ltd" style="height:80px;filter:brightness(1.2);"></div>
+      <p class="foot-desc">NAPIT approved electrical contractor serving hospitality, care homes, offices, retail, industrial and more across the South West. Domestic and commercial.</p>
+      <div class="foot-tags"><span class="ftag">NAPIT</span><span class="ftag">TrustMark</span><span class="ftag">BS7671:2018</span><span class="ftag">City & Guilds</span></div>
+    </div>
+    <div class="foot-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href='/commercial'>Maintenance Contracts</a></li>
+        <li><a href='/eicr'>EICR Testing</a></li>
+        <li><a href='/ev-chargers'>EV Chargers</a></li>
+        <li><a href='/solar'>Solar PV</a></li>
+        <li><a href='/sectors'>Sectors</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="tel:07889334849">07889 334849</a></li>
+        <li><a href="mailto:info@dselectricalinstallations.co.uk">info@dselectrical...</a></li>
+        <li><a href='/#contact'>Book Online</a></li>
+        <li><a href='/blog-eicr-explained'>Electrical Advice Blog</a></li>
+      </ul>
+      <div style="margin-top:20px;"><a href="tel:07889334849" class="ebtn ebtn-ghost" style="display:inline-block;text-decoration:none;padding:10px 20px;font-size:9px;">CALL NOW</a></div>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <p>2026 DS ELECTRICAL INSTALLATION (SW) LTD &middot; REGISTERED IN ENGLAND &amp; WALES</p>
+    <p>NAPIT &middot; BS 7671:2018 &middot; GLASTONBURY, SOMERSET &middot; <a href='/privacy'>PRIVACY</a> &middot; <a href='/terms'>TERMS</a></p>
+    <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(212,160,76,0.06);display:flex;align-items:center;justify-content:center;gap:12px;">
+      <span style="font-size:7px;letter-spacing:3px;color:rgba(212,160,76,0.2);text-transform:uppercase;">A DS Ventures Project</span>
+      <a href="https://soulsyncai.org" target="_blank" rel="noopener" style="font-size:8px;letter-spacing:2px;color:rgba(110,173,212,0.5);text-decoration:none;border:1px solid rgba(110,173,212,0.15);padding:3px 10px;">SoulSync AI</a>
+    </div>
+  </div>
+</footer>
+
+<!-- WhatsApp Float -->
+<a href="https://wa.me/447889334849?text=Hi%20DS%20Electrical%2C%20I%27d%20like%20to%20enquire%20about%20electrical%20services%20for%20my%20sector." target="_blank" style="position:fixed;bottom:24px;right:24px;z-index:9000;width:56px;height:56px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,0.4);transition:transform .2s;cursor:none;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">&#128172;</a>
+
+<!-- SCRIPTS -->
+<script>
+// CURSOR
+var cxDot = document.getElementById('cx-dot');
+var cxCross = document.getElementById('cx-cross');
+var ringEl = document.getElementById('cx-ring');
+
+var mx=0, my=0, rx=0, ry=0;
+document.addEventListener('mousemove', function(e) { mx=e.clientX; my=e.clientY; });
+(function animCX() {
+  cxDot.style.left = mx+'px'; cxDot.style.top = my+'px';
+  cxCross.style.left = mx+'px'; cxCross.style.top = my+'px';
+  rx+=(mx-rx)*0.12; ry+=(my-ry)*0.12;
+  if(ringEl){ ringEl.style.left=rx+'px'; ringEl.style.top=ry+'px'; }
+  requestAnimationFrame(animCX);
+})();
+
+document.querySelectorAll('a,button,.sector-card-panel,.sector-pill,.stat-box').forEach(function(el){
+  el.addEventListener('mouseenter',function(){ if(ringEl){ringEl.style.transform='translate(-50%,-50%) scale(2.2)';ringEl.style.borderColor='rgba(110,173,212,0.6)';} });
+  el.addEventListener('mouseleave',function(){ if(ringEl){ringEl.style.transform='translate(-50%,-50%) scale(1)';ringEl.style.borderColor='rgba(212,160,76,0.35)';} });
+});
+
+// WEBGL PLASMA BACKGROUND
+(function(){
+  var c = document.getElementById('gl');
+  var gl = c.getContext('webgl');
+  if(!gl) return;
+
+  function rsz(){ c.width=innerWidth; c.height=innerHeight; gl.viewport(0,0,c.width,c.height); }
+  rsz(); window.addEventListener('resize',rsz);
+
+  var vs='attribute vec2 p; void main(){ gl_Position=vec4(p,0,1); }';
+  var fs='\
+    precision highp float;\
+    uniform float t;\
+    uniform vec2 res;\
+    uniform vec2 mouse;\
+    float n(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}\
+    float sn(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(n(i),n(i+vec2(1,0)),f.x),mix(n(i+vec2(0,1)),n(i+vec2(1,1)),f.x),f.y);}\
+    void main(){\
+      vec2 uv=gl_FragCoord.xy/res;\
+      vec2 p=uv*2.-1.; p.x*=res.x/res.y;\
+      float tm=t*0.25;\
+      float v1=sin(p.x*3.+tm+sn(p+tm*.1)*4.);\
+      float v2=sin(p.y*2.5-tm*.8+sn(p*1.2-tm*.06)*3.);\
+      float v3=sin((p.x+p.y)*3.+tm*.6);\
+      float v4=sin(length(p)*4.-tm*1.5);\
+      float v=(v1+v2+v3+v4)*.25;\
+      vec2 g=fract(uv*18.);\
+      float gl2=step(.97,max(g.x,g.y))*.035;\
+      float r=v*.03+gl2*.4;\
+      float gr=v*.06+.01+gl2*.2;\
+      float b=v*.14+.06+gl2*.7;\
+      vec2 mp=mouse*.5+.5;\
+      float md=length(uv-mp);\
+      float mg=exp(-md*5.)*.08;\
+      r+=mg*1.8; gr+=mg*.5;\
+      float vig=1.-length(p)*.42;\
+      vig=clamp(vig,0.,1.);\
+      gl_FragColor=vec4(r,gr,b,1.)*vig;\
+    }';
+
+  function mkSh(type,src){var s=gl.createShader(type);gl.shaderSource(s,src);gl.compileShader(s);return s;}
+  var prog=gl.createProgram();
+  gl.attachShader(prog,mkSh(gl.VERTEX_SHADER,vs));
+  gl.attachShader(prog,mkSh(gl.FRAGMENT_SHADER,fs));
+  gl.linkProgram(prog); gl.useProgram(prog);
+
+  var buf=gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER,buf);
+  gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);
+  var pl=gl.getAttribLocation(prog,'p');
+  gl.enableVertexAttribArray(pl);
+  gl.vertexAttribPointer(pl,2,gl.FLOAT,false,0,0);
+
+  var tl=gl.getUniformLocation(prog,'t');
+  var rl=gl.getUniformLocation(prog,'res');
+  var ml=gl.getUniformLocation(prog,'mouse');
+  var msX=0,msY=0;
+  document.addEventListener('mousemove',function(e){msX=(e.clientX/innerWidth)*2-1;msY=-((e.clientY/innerHeight)*2-1);});
+
+  var tt=0;
+  function draw(){
+    tt+=.016;
+    gl.uniform1f(tl,tt);
+    gl.uniform2f(rl,c.width,c.height);
+    gl.uniform2f(ml,msX,msY);
+    gl.drawArrays(gl.TRIANGLE_STRIP,0,4);
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// LIGHTNING ARCS
+(function(){
+  var c=document.getElementById('lightning');
+  var ctx=c.getContext('2d');
+  function rsz(){c.width=innerWidth;c.height=innerHeight;}
+  rsz(); window.addEventListener('resize',rsz);
+
+  function bolt(x1,y1,x2,y2,rough,depth){
+    if(depth<=0){ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);return;}
+    var bx=(x1+x2)/2+(Math.random()-.5)*rough;
+    var by=(y1+y2)/2+(Math.random()-.5)*rough;
+    bolt(x1,y1,bx,by,rough*.6,depth-1);
+    bolt(bx,by,x2,y2,rough*.6,depth-1);
+  }
+
+  function drawLightning(){
+    ctx.clearRect(0,0,c.width,c.height);
+    if(Math.random()<.04){
+      var x=Math.random()*c.width;
+      ctx.beginPath();
+      ctx.strokeStyle='rgba(184,115,51,'+(Math.random()*.4+.1)+')';
+      ctx.lineWidth=Math.random()+.5;
+      ctx.shadowColor='#d4a04c';
+      ctx.shadowBlur=12;
+      bolt(x,0,x+(Math.random()-.5)*200,c.height*.4,80,6);
+      ctx.stroke();
+    }
+    requestAnimationFrame(drawLightning);
+  }
+  drawLightning();
+})();
+
+// COMPLIANCE RIBBON TICKER
+(function(){
+  var rItems=['NAPIT Approved','2M Public Liability','18th Edition','Part P Registered','BS 7671 Compliant','South West Coverage','9 Specialist Sectors','Fixed-Price Quotes','Same-Day Certificates','07889 334849'];
+  var rt=document.getElementById('rtick');
+  var html='';
+  for(var i=0;i<rItems.length;i++){
+    html+='<div class="ri">'+rItems[i]+'</div>';
+  }
+  rt.textContent='';
+  var frag=document.createRange().createContextualFragment(html+html);
+  rt.appendChild(frag);
+})();
+
+// SCROLL REVEAL
+var revs=document.querySelectorAll('.rv');
+var ro=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('in');});},{threshold:.08});
+revs.forEach(function(r){ro.observe(r);});
+
+// MOBILE NAV
+document.getElementById('mobToggle').addEventListener('click', function() {
+  this.classList.toggle('open');
+  document.getElementById('navLinks').classList.toggle('open');
+});
+</script>
+
+<script src="tracking.js"></script>
+
+<!-- MOBILE CALL BAR -->
+<div class="mcb" aria-label="Quick contact">
+ <div class="mcb-grid">
+  <a href="tel:07889334849" class="mcb-call" aria-label="Call 07889 334849">
+   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.1-.04-.21-.05-.31-.05-.26 0-.51.1-.71.29l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.58l2.2-2.21c.28-.27.36-.66.25-1.01C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/></svg>
+   <span>Call Dan</span><small>07889 334849</small>
+  </a>
+  <a href="https://wa.me/447889334849" class="mcb-wa" aria-label="WhatsApp">
+   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.611.611l4.458-1.495A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+   <span>WhatsApp</span>
+  </a>
+  <a href="mailto:info@dselectricalinstallations.co.uk" class="mcb-mail" aria-label="Email">
+   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+   <span>Email</span>
+  </a>
+ </div>
+</div>
+
+
+<!-- DESKTOP QUOTE CTA -->
+<a href="tel:07889334849" class="dq-btn" aria-label="Call Dan for a quote">
+ <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.1-.04-.21-.05-.31-.05-.26 0-.51.1-.71.29l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.58l2.2-2.21c.28-.27.36-.66.25-1.01C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/></svg>
+ Call Dan &mdash; 07889 334849
+</a>
+
+</body>
+</html>

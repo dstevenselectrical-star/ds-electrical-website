@@ -1,0 +1,15 @@
+:3004 {
+    root * /Users/danstevens/Documents/ds-electrical-website
+    file_server
+    encode gzip
+
+    # Handle www redirect
+    @www host www.dselectricalsw.co.uk
+    handle @www {
+        root * /Users/danstevens/Documents/ds-electrical-website
+        file_server
+    }
+
+    # Try files with .html extension
+    try_files {path} {path}.html {path}/index.html
+}

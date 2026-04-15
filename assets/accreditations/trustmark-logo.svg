@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 100" fill="none">
+  <rect width="280" height="100" rx="8" fill="#fff"/>
+  <!-- TrustMark Shield -->
+  <g transform="translate(18,10)">
+    <path d="M35 8 L10 20 L10 45 C10 62 22 75 35 80 C48 75 60 62 60 45 L60 20 Z" fill="#00a7a7"/>
+    <path d="M25 42 L32 50 L48 32" stroke="#fff" stroke-width="4.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <!-- TrustMark Text -->
+  <text x="82" y="42" font-family="Arial,Helvetica,sans-serif" font-weight="800" font-size="30" fill="#00585c" letter-spacing="1">TrustMark</text>
+  <!-- Government Endorsed -->
+  <rect x="82" y="52" width="180" height="20" rx="3" fill="#00a7a7"/>
+  <text x="172" y="66" font-family="Arial,Helvetica,sans-serif" font-weight="700" font-size="9.5" fill="#fff" text-anchor="middle" letter-spacing="1">Government Endorsed Quality</text>
+  <!-- Crown -->
+  <g transform="translate(82,78)" fill="#333">
+    <path d="M0 10 L4 4 L8 8 L12 2 L16 8 L20 4 L24 10 L22 10 L22 14 L2 14 L2 10 Z" transform="scale(0.5)"/>
+  </g>
+  <text x="96" y="88" font-family="Arial,Helvetica,sans-serif" font-weight="600" font-size="7.5" fill="#666" letter-spacing="0.5">HM Government</text>
+</svg>

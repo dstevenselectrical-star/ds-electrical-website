@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 100" width="180" height="100">
+  <rect width="180" height="100" rx="6" fill="#1B3A5C"/>
+  <rect x="2" y="2" width="176" height="96" rx="5" fill="none" stroke="#fff" stroke-width="2"/>
+  <text x="90" y="28" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="400" font-size="10" fill="#a0c4e8" letter-spacing="3">BRITISH STANDARD</text>
+  <text x="90" y="58" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="28" fill="#FFFFFF" letter-spacing="1">BS 7671</text>
+  <text x="90" y="76" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="400" font-size="10" fill="rgba(255,255,255,0.7)" letter-spacing="1">18th Edition + Amd 2</text>
+  <line x1="30" y1="83" x2="150" y2="83" stroke="#fff" stroke-width="0.5" opacity="0.3"/>
+  <text x="90" y="95" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="8" fill="#a0c4e8" letter-spacing="2">COMPLIANT</text>
+</svg>

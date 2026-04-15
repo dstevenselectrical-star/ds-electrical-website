@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 380" width="300" height="380">
+  <rect width="300" height="380" rx="16" fill="#EDEDEE"/>
+  <!-- Eye/play icon -->
+  <g transform="translate(150,130)">
+    <!-- Outer circle (red) -->
+    <circle cx="0" cy="0" r="80" fill="#CF2E2B"/>
+    <!-- Bottom shadow -->
+    <path d="M-80,10 A80,80 0 0,0 80,10 L80,20 A80,80 0 0,1 -80,20 Z" fill="#8B2522" opacity="0.6"/>
+    <!-- Inner cutout (background color) -->
+    <circle cx="-10" cy="0" r="45" fill="#EDEDEE"/>
+    <!-- Play arrow -->
+    <polygon points="15,-35 60,0 15,35" fill="#CF2E2B"/>
+  </g>
+  <!-- Text -->
+  <text x="150" y="250" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="28" fill="#6D6E71" letter-spacing="2">AUTHORISED</text>
+  <text x="150" y="285" text-anchor="middle" font-family="Arial, sans-serif" font-weight="400" font-size="14" fill="#9D9FA2" letter-spacing="3">VALUE ADDED SOLUTION PARTNER</text>
+  <!-- Hikvision wordmark -->
+  <text x="90" y="330" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="24" fill="#E30613" letter-spacing="-0.5">HIK</text>
+  <text x="150" y="330" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="24" fill="#6D6E71" letter-spacing="-0.5">VISION</text>
+  <text x="237" y="325" font-family="Arial, sans-serif" font-size="10" fill="#6D6E71">&#174;</text>
+</svg>

@@ -1,0 +1,12 @@
+# Backups & dev artefacts
+.area-backups/
+.firecrawl/
+*.backup-*
+*.retired
+.DS_Store
+
+# Local dev
+.claude/launch.json
+
+# OS
+Thumbs.db

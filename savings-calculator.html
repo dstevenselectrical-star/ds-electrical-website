@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Energy Savings Calculator | DS Electrical | Somerset</title>
+<meta name="description" content="Calculate how much you could save with LED lighting upgrades. Free energy savings calculator from DS Electrical, Somerset. Call 07889 334849.">
+<link rel="canonical" href="https://www.dselectricalsw.co.uk/savings-calculator.html">
+<meta property="og:title" content="Energy Savings Calculator | DS Electrical | Somerset">
+<meta property="og:description" content="Calculate how much you could save with LED lighting upgrades. Free energy savings calculator from DS Electrical, Somerset.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.dselectricalsw.co.uk/savings-calculator.html">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="robots" content="index, follow">
+<link rel="manifest" href="/manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "WebApplication",
+ "name": "DS Electrical Energy Savings Calculator",
+ "applicationCategory": "UtilitiesApplication",
+ "operatingSystem": "Web",
+ "description": "Calculate potential energy savings from LED lighting upgrades for your Somerset property.",
+ "provider": {
+  "@type": "LocalBusiness",
+  "name": "DS Electrical Installations (SW) Ltd",
+  "telephone": "+447889334849",
+  "email": "info@dselectricalinstallations.co.uk",
+  "url": "https://www.dselectricalsw.co.uk",
+  "address": {"@type":"PostalAddress","streetAddress":"4 Abbey Meads","addressLocality":"Glastonbury","addressRegion":"Somerset","postalCode":"BA6 8EZ","addressCountry":"GB"}
+ }
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":["LocalBusiness","Electrician"],
+ "name":"DS Electrical Installation SW Ltd",
+ "url":"https://www.dselectricalsw.co.uk",
+ "telephone":"+447889334849",
+ "email":"info@dselectricalinstallations.co.uk",
+ "address":{"@type":"PostalAddress","streetAddress":"4 Abbey Meads","addressLocality":"Glastonbury","addressRegion":"Somerset","postalCode":"BA6 8EZ","addressCountry":"GB"},
+ "areaServed":[{"@type":"City","name":"Wells"},{"@type":"City","name":"Shepton Mallet"},{"@type":"City","name":"Bath"},{"@type":"City","name":"Frome"},{"@type":"City","name":"Midsomer Norton"},{"@type":"City","name":"Street"},{"@type":"City","name":"Glastonbury"},{"@type":"City","name":"Wedmore"},{"@type":"City","name":"Radstock"},{"@type":"City","name":"Castle Cary"},{"@type":"City","name":"Bruton"}],
+ "openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"07:00","closes":"18:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Saturday"],"opens":"08:00","closes":"14:00"}],
+ "priceRange":"££",
+ "image":"https://www.dselectricalsw.co.uk/logo-full.png",
+ "sameAs":[]
+}
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+ --dark:#0a0908;--dark2:#131110;--dark3:#1c1915;
+ --light:#f8f5f0;--light2:#eee9e0;--light3:#e2dbd0;
+ --brass:#b8944f;--gold:#d4a44a;
+ --text-dark:#1a1714;--text-muted:#6b6560;
+ --text-light:#f0e8da;--text-light-muted:#8c7d6a;
+ --green:#22c55e;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',sans-serif;background:var(--light);color:var(--text-dark);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none;transition:.2s}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1.5rem,5vw,4rem);background:rgba(10,9,8,.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.04)}
+.nav-logo img{height:70px;width:auto}
+.nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+.nav-links a{font-size:.78rem;font-weight:600;color:rgba(240,232,218,.6);letter-spacing:.08em;text-transform:uppercase}
+.nav-links a:hover{color:#fff}
+.nav-cta{background:var(--gold);color:var(--dark);padding:.5rem 1.3rem;border-radius:6px;font-weight:700;font-size:.78rem}
+.nav-cta:hover{background:var(--brass)}
+.nav-menu{display:none;background:none;border:none;color:#fff;font-size:1.5rem;cursor:pointer}
+
+/* HERO */
+.hero{background:var(--dark);padding:clamp(7rem,10vw,10rem) clamp(1.5rem,5vw,4rem) clamp(4rem,6vw,5rem);text-align:center}
+.hero-tag{font-size:.65rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem}
+.hero h1{font-size:clamp(2.8rem,6vw,5rem);font-weight:900;line-height:.95;color:#fff;letter-spacing:-.03em;margin-bottom:1.5rem}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero p{font-size:1.05rem;color:rgba(240,232,218,.5);max-width:520px;margin:0 auto;line-height:1.7}
+
+/* CALCULATOR SECTION */
+.calc-section{padding:clamp(4rem,8vw,6rem) clamp(1.5rem,5vw,4rem);background:var(--light)}
+.calc-container{max-width:700px;margin:0 auto}
+
+.calc-panel{background:#fff;border:1.5px solid var(--light3);border-radius:14px;padding:2.5rem;margin-bottom:2rem}
+.calc-panel h2{font-size:1.4rem;font-weight:800;color:var(--text-dark);margin-bottom:1.5rem}
+
+.input-group{margin-bottom:1.4rem}
+.input-group label{display:block;font-size:.85rem;font-weight:700;color:var(--text-dark);margin-bottom:.4rem}
+.input-group .hint{font-size:.75rem;color:var(--text-muted);margin-bottom:.4rem}
+.input-group input,.input-group select{width:100%;padding:.75rem 1rem;background:var(--light);border:1.5px solid var(--light3);border-radius:8px;color:var(--text-dark);font-family:'Outfit',sans-serif;font-size:1rem}
+.input-group input:focus,.input-group select:focus{outline:none;border-color:var(--gold)}
+
+.input-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+
+.btn{display:inline-block;padding:.85rem 2.5rem;background:var(--gold);color:var(--dark);border:none;border-radius:6px;font-weight:700;font-size:.92rem;cursor:pointer;font-family:'Outfit',sans-serif;letter-spacing:.02em;transition:all .25s;width:100%;text-align:center}
+.btn:hover{background:var(--brass);transform:translateY(-2px);box-shadow:0 8px 30px rgba(212,164,74,.3)}
+
+/* RESULTS */
+.results{display:none}
+.results.show{display:block}
+
+.result-hero{background:#fff;border:2px solid var(--green);border-radius:14px;padding:2.5rem;text-align:center;margin-bottom:1.5rem}
+.result-hero .big-label{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:2px}
+.result-hero .big-number{font-size:clamp(3rem,6vw,4rem);font-weight:900;color:var(--green);letter-spacing:-.02em;margin-top:.3rem}
+
+.result-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.5rem}
+.result-card{background:#fff;border:1.5px solid var(--light3);border-radius:12px;padding:1.5rem;text-align:center}
+.result-card .r-num{font-size:1.6rem;font-weight:900;color:var(--gold)}
+.result-card .r-label{font-size:.68rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;margin-top:.3rem;font-weight:600}
+
+.breakdown-panel{background:#fff;border:1.5px solid var(--light3);border-radius:14px;padding:2rem;margin-bottom:1.5rem}
+.breakdown-panel h3{font-size:1.1rem;font-weight:800;color:var(--text-dark);margin-bottom:1rem}
+.breakdown-row{display:flex;justify-content:space-between;padding:.6rem 0;border-bottom:1px solid var(--light3);font-size:.88rem}
+.breakdown-row:last-child{border-bottom:none}
+.breakdown-row .bd-label{color:var(--text-muted)}
+.breakdown-row .bd-value{font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--text-dark)}
+.breakdown-row.highlight .bd-value{color:var(--green);font-weight:800}
+
+/* CTA */
+.page-cta{background:var(--dark);padding:clamp(4rem,8vw,6rem) clamp(1.5rem,5vw,4rem);text-align:center}
+.page-cta h2{font-size:clamp(2rem,4vw,3rem);font-weight:900;color:#fff;margin-bottom:.75rem}
+.page-cta p{color:rgba(240,232,218,.5);margin-bottom:1.5rem}
+.cta-phone{font-family:'JetBrains Mono',monospace;font-size:clamp(1.8rem,4vw,3rem);font-weight:700;color:var(--gold);display:block;margin-bottom:2rem}
+.cta-phone:hover{color:var(--brass)}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-gold-link{background:var(--gold);color:var(--dark);padding:.8rem 2rem;border-radius:6px;font-weight:700;font-size:.85rem;display:inline-flex;align-items:center;gap:.5rem;transition:.25s;font-family:'Outfit',sans-serif}
+.btn-gold-link:hover{background:var(--brass);transform:translateY(-2px);box-shadow:0 8px 30px rgba(212,164,74,.3)}
+.btn-white{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.12);padding:.8rem 2rem;border-radius:6px;font-weight:700;font-size:.85rem;display:inline-flex;align-items:center;gap:.5rem;transition:.25s;font-family:'Outfit',sans-serif}
+.btn-white:hover{background:rgba(255,255,255,.14)}
+
+/* FOOTER */
+.footer{background:var(--dark);padding:3rem clamp(1.5rem,5vw,4rem) 1.5rem;border-top:1px solid rgba(255,255,255,.04)}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+.footer h4{font-size:.68rem;text-transform:uppercase;letter-spacing:.2em;color:var(--gold);margin-bottom:1rem;font-weight:700}
+.footer p,.footer a{font-size:.8rem;color:rgba(240,232,218,.4);line-height:2}
+.footer a:hover{color:var(--gold)}
+.footer-bottom{padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.03);display:flex;justify-content:space-between;font-size:.65rem;color:rgba(255,255,255,.2)}
+
+/* WHATSAPP */
+.wa{position:fixed;bottom:1.5rem;left:1.5rem;width:56px;height:56px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:99;box-shadow:0 4px 24px rgba(37,211,102,.3);transition:.2s}
+.wa:hover{transform:scale(1.1)}
+.wa svg{width:28px;height:28px;fill:#fff}
+
+/* MOBILE */
+@media(max-width:768px){
+ .nav-links{display:none;position:fixed;top:72px;left:0;right:0;background:rgba(10,9,8,.98);backdrop-filter:blur(20px);flex-direction:column;padding:2rem;gap:1.5rem;border-bottom:1px solid rgba(255,255,255,.06)}
+ .nav-links.open{display:flex}
+ .nav-menu{display:block}
+ .input-row{grid-template-columns:1fr}
+ .result-grid{grid-template-columns:1fr 1fr}
+ .result-hero .big-number{font-size:2.5rem}
+ .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:480px){
+ .result-grid{grid-template-columns:1fr}
+ .footer-grid{grid-template-columns:1fr}
+}
+
+/* Sticky mobile call bar */
+.mcb{display:none;position:fixed;bottom:0;left:0;right:0;z-index:98;background:#0a0908;border-top:1px solid rgba(212,164,74,.3);padding:.6rem .6rem calc(.6rem + env(safe-area-inset-bottom));box-shadow:0 -6px 24px rgba(0,0,0,.4)}
+.mcb-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:.5rem}
+.mcb a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.15rem;padding:.6rem .4rem;border-radius:8px;font-family:'Outfit',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.04em;text-decoration:none;transition:.2s}
+.mcb a svg{width:18px;height:18px}
+.mcb .mcb-call{background:#d4a44a;color:#0a0908}
+.mcb .mcb-call:hover{background:#b8944f}
+.mcb .mcb-wa{background:#25d366;color:#fff}
+.mcb .mcb-mail{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.14)}
+.mcb small{font-size:.62rem;font-weight:500;opacity:.75;letter-spacing:.02em;text-transform:none}
+@media(max-width:768px){.mcb{display:block}body{padding-bottom:72px}.wa{bottom:6rem !important}}
+
+
+/* Breadcrumb */
+.breadcrumb{background:var(--light,#f8f5f0);padding:1rem clamp(1.5rem,5vw,4rem);font-size:.78rem;border-bottom:1px solid var(--light3,#e2dbd0)}
+.breadcrumb-inner{max-width:1200px;margin:0 auto;display:flex;gap:.5rem;align-items:center;color:var(--text-muted,#6b6560);font-weight:500}
+.breadcrumb-inner a{color:var(--text-muted,#6b6560);text-decoration:none;transition:.2s}
+.breadcrumb-inner a:hover{color:var(--brass,#b8944f)}
+.breadcrumb-inner .sep{color:var(--light3,#e2dbd0)}
+.breadcrumb-inner .current{color:var(--text-dark,#1a1714);font-weight:700}
+
+
+/* Desktop quote CTA - hidden on mobile where call bar covers it */
+.dq-btn{position:fixed;right:1.25rem;bottom:1.25rem;z-index:99;display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 1.35rem;background:#d4a44a;color:#0a0908;border-radius:100px;font-family:'Outfit',sans-serif;font-weight:800;font-size:.8rem;letter-spacing:.04em;text-decoration:none;box-shadow:0 8px 32px rgba(212,164,74,.4);transition:.25s}
+.dq-btn:hover{background:#b8944f;transform:translateY(-2px);box-shadow:0 12px 40px rgba(212,164,74,.5)}
+.dq-btn svg{width:16px;height:16px}
+@media(max-width:768px){.dq-btn{display:none}}
+
+</style>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement": [
+  {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.dselectricalsw.co.uk/"},
+  {"@type": "ListItem", "position": 2, "name": "Savings Calculator", "item": "https://www.dselectricalsw.co.uk/savings-calculator.html"}
+ ]
+}
+</script>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+ <a href="/" class="nav-logo"><img src="logo-full.png" alt="DS Electrical"></a>
+ <ul class="nav-links" id="navLinks">
+  <li><a href="/commercial-electrical.html">Commercial</a></li>
+  <li><a href="/domestic.html">Domestic</a></li>
+  <li><a href="/eicr.html">EICR</a></li>
+  <li><a href="/ev-chargers.html">EV Chargers</a></li>
+  <li><a href="/cctv.html">CCTV</a></li>
+  <li><a href="/office-fit-outs.html">Office Fit-Outs</a></li>
+  <li><a href="/gallery.html">Gallery</a></li>
+  <li><a href="tel:07889334849" class="nav-cta">07889 334849</a></li>
+ </ul>
+ <button class="nav-menu" onclick="document.getElementById('navLinks').classList.toggle('open')">&#9776;</button>
+</nav>
+
+<nav class="breadcrumb" aria-label="Breadcrumb"><div class="breadcrumb-inner"><a href="/">Home</a><span class="sep">/</span><span class="current" aria-current="page">Savings Calculator</span></div></nav>
+
+<!-- HERO -->
+<section class="hero">
+ <div class="hero-tag">See Your Savings</div>
+ <h1>Energy <em>Savings</em> Calculator</h1>
+ <p>Find out how much you could save by switching to LED lighting. Enter your current setup and get instant results.</p>
+</section>
+
+<!-- CALCULATOR -->
+<section class="calc-section">
+ <div class="calc-container">
+  <div class="calc-panel" id="inputPanel">
+   <h2>Your Current Lighting</h2>
+
+   <div class="input-row">
+    <div class="input-group">
+     <label>Monthly Electricity Bill</label>
+     <div class="hint">Your average monthly bill in pounds</div>
+     <input type="number" id="monthlyBill" value="120" min="30" max="1000" step="10">
+    </div>
+    <div class="input-group">
+     <label>Number of Old Bulbs</label>
+     <div class="hint">Halogen, incandescent, or CFL bulbs to replace</div>
+     <input type="number" id="numBulbs" value="20" min="1" max="200" step="1">
+    </div>
+   </div>
+
+   <div class="input-row">
+    <div class="input-group">
+     <label>Average Wattage per Bulb</label>
+     <div class="hint">Typical halogen spot: 50W, incandescent: 60W</div>
+     <input type="number" id="oldWattage" value="50" min="10" max="200" step="5">
+    </div>
+    <div class="input-group">
+     <label>Hours Used per Day</label>
+     <div class="hint">Average across all bulbs</div>
+     <input type="number" id="hoursPerDay" value="5" min="1" max="24" step="0.5">
+    </div>
+   </div>
+
+   <div class="input-group">
+    <label>Electricity Tariff (p/kWh)</label>
+    <div class="hint">Check your bill &mdash; UK average is 24.5p</div>
+    <input type="number" id="tariff" value="24.5" min="10" max="60" step="0.5">
+   </div>
+
+   <button class="btn" onclick="calculate()" style="margin-top:.5rem">Calculate My Savings</button>
+  </div>
+
+  <div class="results" id="results">
+   <div class="result-hero">
+    <div class="big-label">Estimated Annual Saving</div>
+    <div class="big-number" id="annualSaving">--</div>
+   </div>
+
+   <div class="result-grid" id="resultGrid"></div>
+
+   <div class="breakdown-panel">
+    <h3>Breakdown</h3>
+    <div id="breakdownBody"></div>
+   </div>
+
+   <div class="calc-panel" style="text-align:center">
+    <p style="font-size:.88rem;color:var(--text-muted);line-height:1.7">These calculations are estimates based on typical LED replacements (10W per bulb). Actual savings may vary based on your specific setup, usage patterns, and tariff. Contact us for a free lighting survey and accurate quote.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- CTA -->
+<section class="page-cta">
+ <h2>Ready to Start Saving?</h2>
+ <p>Free lighting survey. Honest advice. Professional installation with certification.</p>
+ <span style="color:rgba(240,232,218,.4);font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:.4rem">Office</span>
+ <a href="tel:07889334849" class="cta-phone" style="font-size:clamp(2rem,4.5vw,3.2rem)">07889 334849</a>
+ <span style="color:rgba(240,232,218,.4);font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:.4rem">Direct</span>
+ <a href="tel:07889334849" style="font-family:'JetBrains Mono',monospace;font-size:clamp(1.2rem,2.5vw,1.8rem);font-weight:700;color:rgba(240,232,218,.5);display:block;margin-bottom:.2rem">Dan Stevens, Director: 07889 334849</a>
+ <a href="tel:07983106928" style="font-family:'JetBrains Mono',monospace;font-size:clamp(1.2rem,2.5vw,1.8rem);color:rgba(240,232,218,.35);display:block;margin-bottom:1.5rem">Dan Street, Director: 07983 106928</a>
+ <div class="cta-btns">
+  <a href="/instant-quote.html" class="btn-gold-link">Get Instant Quote</a>
+  <a href="https://wa.me/447889334849" class="btn-white">WhatsApp Us</a>
+  <a href="/price-guide.html" class="btn-white">View Price Guide</a>
+ </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+ <div class="footer-grid">
+  <div>
+   <h4>DS Electrical Installations (SW) Ltd</h4>
+   <p>4 Abbey Meads, Glastonbury, Somerset, BA6 8EZ</p>
+   <p><a href="tel:07889334849">07889 334849 (Dan Stevens)</a></p>
+   <p><a href="tel:07983106928">07983 106928 (Dan Street)</a></p>
+   <p><a href="mailto:info@dselectricalinstallations.co.uk">info@dselectricalinstallations.co.uk</a></p>
+  </div>
+  <div>
+   <h4>Services</h4>
+   <p><a href="/eicr.html">Rewires & EICR</a></p>
+   <p><a href="/ev-chargers.html">EV Chargers</a></p>
+   <p><a href="/cctv.html">CCTV & Security</a></p>
+   <p><a href="/commercial-electrical.html">Commercial</a></p>
+    <p><a href="/commercial-contracts.html">Maintenance Contracts</a></p>
+   <p><a href="/office-fit-outs.html">Office Fit-Outs</a></p>
+    <p><a href="/fibre-optic.html">Fibre Optic</a></p>
+    <p><a href="/fire-alarms.html">Fire Alarms</a></p>
+    <p><a href="/lighting.html">Emergency Lighting</a></p>
+   </div>
+  <div>
+   <h4>Areas</h4>
+   <p>Wells</p><p>Shepton Mallet</p><p>Bath</p><p>Frome</p><p>Midsomer Norton</p><p>Street</p>
+  </div>
+  <div>
+   <h4>Trust</h4>
+   <p>NAPIT Approved</p><p>CHAS Accredited</p><p>TrustMark Endorsed</p><p>Part P Registered</p>
+   <p style="margin-top:.5rem"><a href="/#reviews">5.0 Google Rating</a></p>
+    <p style="margin-top:.3rem"><a href="/contact.html">Contact Us</a></p>
+    <p><a href="/partners.html">Brands We Install</a></p>
+  </div>
+ </div>
+ <div class="footer-bottom">
+  <span>&copy; 2026 DS Electrical Installations (SW) Ltd</span>
+  <span><a href="/privacy.html">Privacy</a> &middot; <a href="/terms.html">Terms</a></span>
+ </div>
+</footer>
+
+<!-- WHATSAPP -->
+<a href="https://wa.me/447889334849" class="wa" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.611.611l4.458-1.495A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.344 0-4.508-.8-6.227-2.141l-.435-.344-3.208 1.076 1.076-3.208-.344-.435A9.956 9.956 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg></a>
+
+<script>
+function calculate() {
+ var monthlyBill = parseFloat(document.getElementById('monthlyBill').value) || 120;
+ var numBulbs = parseInt(document.getElementById('numBulbs').value) || 20;
+ var oldWattage = parseFloat(document.getElementById('oldWattage').value) || 50;
+ var hoursPerDay = parseFloat(document.getElementById('hoursPerDay').value) || 5;
+ var tariff = parseFloat(document.getElementById('tariff').value) || 24.5;
+
+ var ledWattage = 10; // typical LED replacement
+ var tariffPound = tariff / 100;
+
+ // Daily energy usage
+ var oldDailyKWh = (numBulbs * oldWattage * hoursPerDay) / 1000;
+ var ledDailyKWh = (numBulbs * ledWattage * hoursPerDay) / 1000;
+ var dailySavingKWh = oldDailyKWh - ledDailyKWh;
+
+ // Annual
+ var annualSavingKWh = dailySavingKWh * 365;
+ var annualSavingPounds = annualSavingKWh * tariffPound;
+
+ // Cost of LED upgrade (approx per bulb installed)
+ var costPerBulb = 55; // supply + fit
+ var totalUpgradeCost = numBulbs * costPerBulb;
+
+ // Payback
+ var paybackMonths = (totalUpgradeCost / annualSavingPounds) * 12;
+ var paybackYears = paybackMonths / 12;
+
+ // Old annual lighting cost
+ var oldAnnualCost = oldDailyKWh * 365 * tariffPound;
+ var newAnnualCost = ledDailyKWh * 365 * tariffPound;
+
+ // Display annual saving
+ document.getElementById('annualSaving').textContent = '\u00A3' + Math.round(annualSavingPounds).toLocaleString() + '/yr';
+
+ // Result cards
+ var grid = document.getElementById('resultGrid');
+ grid.textContent = '';
+ var cards = [
+  { num: Math.round(annualSavingKWh).toLocaleString() + ' kWh', label: 'Energy Saved Per Year' },
+  { num: paybackYears < 1 ? Math.round(paybackMonths) + ' months' : paybackYears.toFixed(1) + ' years', label: 'Payback Period' },
+  { num: '\u00A3' + Math.round(totalUpgradeCost).toLocaleString(), label: 'Est. Upgrade Cost' }
+ ];
+ cards.forEach(function(c) {
+  var card = document.createElement('div');
+  card.className = 'result-card';
+  var num = document.createElement('div');
+  num.className = 'r-num';
+  num.textContent = c.num;
+  var lbl = document.createElement('div');
+  lbl.className = 'r-label';
+  lbl.textContent = c.label;
+  card.appendChild(num);
+  card.appendChild(lbl);
+  grid.appendChild(card);
+ });
+
+ // Breakdown
+ var body = document.getElementById('breakdownBody');
+ body.textContent = '';
+ var rows = [
+  { label: 'Number of bulbs', value: numBulbs },
+  { label: 'Old bulb wattage', value: oldWattage + 'W each' },
+  { label: 'LED replacement wattage', value: ledWattage + 'W each (80% less)' },
+  { label: 'Hours used per day', value: hoursPerDay + ' hours' },
+  { label: 'Current annual lighting cost', value: '\u00A3' + Math.round(oldAnnualCost) },
+  { label: 'LED annual lighting cost', value: '\u00A3' + Math.round(newAnnualCost) },
+  { label: 'Annual saving', value: '\u00A3' + Math.round(annualSavingPounds), highlight: true },
+  { label: '5-year saving', value: '\u00A3' + Math.round(annualSavingPounds * 5), highlight: true },
+  { label: '10-year saving', value: '\u00A3' + Math.round(annualSavingPounds * 10), highlight: true }
+ ];
+ rows.forEach(function(r) {
+  var row = document.createElement('div');
+  row.className = 'breakdown-row' + (r.highlight ? ' highlight' : '');
+  var lbl = document.createElement('span');
+  lbl.className = 'bd-label';
+  lbl.textContent = r.label;
+  var val = document.createElement('span');
+  val.className = 'bd-value';
+  val.textContent = r.value;
+  row.appendChild(lbl);
+  row.appendChild(val);
+  body.appendChild(row);
+ });
+
+ document.getElementById('results').classList.add('show');
+ document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+</script>
+
+<!-- MOBILE CALL BAR -->
+<div class="mcb" aria-label="Quick contact">
+ <div class="mcb-grid">
+  <a href="tel:07889334849" class="mcb-call" aria-label="Call 07889 334849">
+   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.1-.04-.21-.05-.31-.05-.26 0-.51.1-.71.29l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.58l2.2-2.21c.28-.27.36-.66.25-1.01C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/></svg>
+   <span>Call Dan</span><small>07889 334849</small>
+  </a>
+  <a href="https://wa.me/447889334849" class="mcb-wa" aria-label="WhatsApp">
+   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.611.611l4.458-1.495A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+   <span>WhatsApp</span>
+  </a>
+  <a href="mailto:info@dselectricalinstallations.co.uk" class="mcb-mail" aria-label="Email">
+   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+   <span>Email</span>
+  </a>
+ </div>
+</div>
+
+
+<!-- DESKTOP QUOTE CTA -->
+<a href="tel:07889334849" class="dq-btn" aria-label="Call Dan for a quote">
+ <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.1-.04-.21-.05-.31-.05-.26 0-.51.1-.71.29l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.58l2.2-2.21c.28-.27.36-.66.25-1.01C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/></svg>
+ Call Dan &mdash; 07889 334849
+</a>
+
+</body>
+</html>

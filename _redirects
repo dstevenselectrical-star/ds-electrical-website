@@ -1,0 +1,11 @@
+/quote                /instant-quote          301
+/book                 /instant-quote          301
+/maintenance          /commercial-contracts   301
+/fire-alarm           /fire-alarms            301
+/ev                   /ev-chargers            301
+/ev-charger           /ev-chargers            301
+/rewire               /eicr                   301
+/rewires              /eicr                   301
+/emergency-lighting   /lighting               301
+/contact-us           /contact                301
+/commercial           /commercial-electrical  301
