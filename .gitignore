@@ -10,3 +10,11 @@
 
 # OS
 Thumbs.db
+
+# Live analytics (visitor data — contains IPs, grows indefinitely)
+analytics/hits.jsonl
+analytics/*.log
+analytics/*.db
+
+# Broken upload fragments
+photos/.*.broken-*

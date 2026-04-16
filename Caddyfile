@@ -1,7 +1,14 @@
 :3004 {
     root * /Users/danstevens/Documents/ds-electrical-website
-    file_server
     encode gzip
+
+    # Proxy analytics endpoint to Node server
+    handle /analytics/* {
+        uri strip_prefix /analytics
+        reverse_proxy localhost:3005
+    }
+
+    file_server
 
     # Handle www redirect
     @www host www.dselectricalsw.co.uk
