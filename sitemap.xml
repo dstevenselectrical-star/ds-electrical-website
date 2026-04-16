@@ -1,32 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <!-- Homepage -->
-  <url><loc>https://www.dselectricalsw.co.uk/</loc><lastmod>2026-04-14</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://www.dselectricalsw.co.uk/</loc><lastmod>2026-04-16</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
 
   <!-- Service Pages -->
-  <url><loc>https://www.dselectricalsw.co.uk/commercial-contracts.html</loc><lastmod>2026-04-15</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.dselectricalsw.co.uk/commercial-electrical.html</loc><lastmod>2026-04-15</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
   <url><loc>https://www.dselectricalsw.co.uk/domestic.html</loc><lastmod>2026-04-15</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://www.dselectricalsw.co.uk/commercial-electrical.html</loc><lastmod>2026-04-14</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.dselectricalsw.co.uk/commercial.html</loc><lastmod>2026-04-14</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.dselectricalsw.co.uk/eicr.html</loc><lastmod>2026-04-14</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-    <url><loc>https://www.dselectricalsw.co.uk/fire-alarms.html</loc><lastmod>2026-04-15</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.dselectricalsw.co.uk/faq.html</loc><lastmod>2026-04-15</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.dselectricalsw.co.uk/lighting.html</loc><lastmod>2026-04-14</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.dselectricalsw.co.uk/ev-chargers.html</loc><lastmod>2026-04-14</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.dselectricalsw.co.uk/cctv.html</loc><lastmod>2026-04-14</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.dselectricalsw.co.uk/eicr.html</loc><lastmod>2026-04-15</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.dselectricalsw.co.uk/ev-chargers.html</loc><lastmod>2026-04-15</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.dselectricalsw.co.uk/cctv.html</loc><lastmod>2026-04-15</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.dselectricalsw.co.uk/commercial-contracts.html</loc><lastmod>2026-04-15</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.dselectricalsw.co.uk/fire-alarms.html</loc><lastmod>2026-04-15</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.dselectricalsw.co.uk/lighting.html</loc><lastmod>2026-04-15</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.dselectricalsw.co.uk/fibre-optic.html</loc><lastmod>2026-04-15</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.dselectricalsw.co.uk/office-fit-outs.html</loc><lastmod>2026-04-14</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.dselectricalsw.co.uk/emergency.html</loc><lastmod>2026-04-14</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.dselectricalsw.co.uk/battery-storage.html</loc><lastmod>2026-04-14</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.dselectricalsw.co.uk/office-fit-outs.html</loc><lastmod>2026-04-15</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.dselectricalsw.co.uk/emergency.html</loc><lastmod>2026-04-15</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.dselectricalsw.co.uk/battery-storage.html</loc><lastmod>2026-04-15</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.dselectricalsw.co.uk/solar.html</loc><lastmod>2026-04-14</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.dselectricalsw.co.uk/contact.html</loc><lastmod>2026-04-15</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.dselectricalsw.co.uk/about.html</loc><lastmod>2026-04-15</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.dselectricalsw.co.uk/gallery.html</loc><lastmod>2026-04-15</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.dselectricalsw.co.uk/faq.html</loc><lastmod>2026-04-15</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.dselectricalsw.co.uk/instant-quote.html</loc><lastmod>2026-04-14</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.dselectricalsw.co.uk/price-guide.html</loc><lastmod>2026-04-14</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.dselectricalsw.co.uk/partners.html</loc><lastmod>2026-04-15</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.dselectricalsw.co.uk/about.html</loc><lastmod>2026-04-14</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.dselectricalsw.co.uk/gallery.html</loc><lastmod>2026-04-14</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.dselectricalsw.co.uk/instant-quote.html</loc><lastmod>2026-04-14</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.dselectricalsw.co.uk/price-guide.html</loc><lastmod>2026-04-14</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.dselectricalsw.co.uk/savings-calculator.html</loc><lastmod>2026-04-14</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.dselectricalsw.co.uk/sectors.html</loc><lastmod>2026-04-14</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- Revenue Pages -->
+  <url><loc>https://www.dselectricalsw.co.uk/maintenance-packages.html</loc><lastmod>2026-04-16</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.dselectricalsw.co.uk/landlord-eicr.html</loc><lastmod>2026-04-16</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+
+  <!-- Blog -->
+  <url><loc>https://www.dselectricalsw.co.uk/blog.html</loc><lastmod>2026-04-16</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
 
   <!-- Area Pages -->
   <url><loc>https://www.dselectricalsw.co.uk/areas/bath.html</loc><lastmod>2026-04-14</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
@@ -42,11 +46,14 @@
   <url><loc>https://www.dselectricalsw.co.uk/areas/wells.html</loc><lastmod>2026-04-14</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
 
   <!-- Blog Posts -->
-  <url><loc>https://www.dselectricalsw.co.uk/blog-cctv-installation-guide.html</loc><lastmod>2026-04-14</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.dselectricalsw.co.uk/blog-consumer-unit-upgrade.html</loc><lastmod>2026-04-14</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.dselectricalsw.co.uk/blog-cost-to-rewire-house-2026.html</loc><lastmod>2026-04-14</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://www.dselectricalsw.co.uk/blog-do-i-need-a-rewire.html</loc><lastmod>2026-04-14</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://www.dselectricalsw.co.uk/blog-eicr-explained.html</loc><lastmod>2026-04-14</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.dselectricalsw.co.uk/blog-commercial-eicr-requirements.html</loc><lastmod>2026-04-14</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.dselectricalsw.co.uk/blog-consumer-unit-upgrade.html</loc><lastmod>2026-04-14</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.dselectricalsw.co.uk/blog-best-home-ev-charger-2026.html</loc><lastmod>2026-04-14</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://www.dselectricalsw.co.uk/blog-ev-charger-installation-guide.html</loc><lastmod>2026-04-14</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.dselectricalsw.co.uk/blog-cctv-installation-guide.html</loc><lastmod>2026-04-14</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
 
   <!-- Legal -->
   <url><loc>https://www.dselectricalsw.co.uk/privacy.html</loc><lastmod>2026-04-14</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
@@ -71,4 +78,20 @@
   <url><loc>https://www.dselectricalsw.co.uk/services/rewires-glastonbury.html</loc><lastmod>2026-04-15</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.dselectricalsw.co.uk/services/rewires-shepton-mallet.html</loc><lastmod>2026-04-15</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.dselectricalsw.co.uk/services/rewires-wells.html</loc><lastmod>2026-04-15</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- CCTV Area Pages -->
+  <url><loc>https://www.dselectricalsw.co.uk/services/cctv-wells.html</loc><lastmod>2026-04-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.dselectricalsw.co.uk/services/cctv-bath.html</loc><lastmod>2026-04-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.dselectricalsw.co.uk/services/cctv-shepton-mallet.html</loc><lastmod>2026-04-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.dselectricalsw.co.uk/services/cctv-frome.html</loc><lastmod>2026-04-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.dselectricalsw.co.uk/services/cctv-glastonbury.html</loc><lastmod>2026-04-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.dselectricalsw.co.uk/services/cctv-bruton.html</loc><lastmod>2026-04-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- Fire Alarm Area Pages -->
+  <url><loc>https://www.dselectricalsw.co.uk/services/fire-alarm-wells.html</loc><lastmod>2026-04-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.dselectricalsw.co.uk/services/fire-alarm-bath.html</loc><lastmod>2026-04-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.dselectricalsw.co.uk/services/fire-alarm-shepton-mallet.html</loc><lastmod>2026-04-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.dselectricalsw.co.uk/services/fire-alarm-frome.html</loc><lastmod>2026-04-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.dselectricalsw.co.uk/services/fire-alarm-glastonbury.html</loc><lastmod>2026-04-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.dselectricalsw.co.uk/services/fire-alarm-bruton.html</loc><lastmod>2026-04-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
 </urlset>

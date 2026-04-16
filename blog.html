@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/shared.css">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Electrical Guides & Advice | DS Electrical Blog | Somerset</title>
+<meta name="description" content="Expert electrical guides from NAPIT approved contractors in Somerset. Rewiring costs, EICR advice, EV charger comparisons, CCTV guides and consumer unit upgrades.">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<link rel="canonical" href="https://www.dselectricalsw.co.uk/blog.html">
+<meta property="og:title" content="Electrical Guides & Advice | DS Electrical Blog">
+<meta property="og:description" content="Expert electrical guides from NAPIT approved contractors in Somerset.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.dselectricalsw.co.uk/blog.html">
+<meta property="og:image" content="https://www.dselectricalsw.co.uk/og-image.jpg">
+<meta property="og:locale" content="en_GB">
+<link rel="manifest" href="/manifest.json">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.dselectricalsw.co.uk/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://www.dselectricalsw.co.uk/blog.html"}]}
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--dark:#0a0908;--dark2:#131110;--dark3:#1c1915;--light:#f8f5f0;--light2:#eee9e0;--light3:#e2dbd0;--brass:#b8944f;--gold:#d4a44a;--text-dark:#1a1714;--text-muted:#6b6560;--text-light:#f0e8da;--text-light-muted:#8c7d6a}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',sans-serif;background:var(--light);color:var(--text-dark);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none;transition:.2s}
+img{display:block;max-width:100%}
+
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1.5rem,5vw,4rem);background:rgba(10,9,8,.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.04)}
+.nav-logo img{height:70px;width:auto}
+.nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+.nav-links a{font-size:.78rem;font-weight:600;color:rgba(240,232,218,.6);letter-spacing:.08em;text-transform:uppercase}
+.nav-links a:hover{color:#fff}
+.nav-links a.active{color:var(--gold)}
+.nav-cta{background:var(--gold);color:var(--dark);padding:.5rem 1.3rem;border-radius:6px;font-weight:700;font-size:.78rem}
+.nav-cta:hover{background:var(--brass)}
+.nav-menu{display:none;background:none;border:none;color:#fff;font-size:1.5rem;cursor:pointer}
+
+.breadcrumb{background:var(--light);padding:1rem clamp(1.5rem,5vw,4rem);font-size:.78rem;border-bottom:1px solid var(--light3)}
+.breadcrumb-inner{max-width:1200px;margin:0 auto;display:flex;gap:.5rem;align-items:center;color:var(--text-muted);font-weight:500}
+.breadcrumb-inner a{color:var(--text-muted)}
+.breadcrumb-inner a:hover{color:var(--brass)}
+.breadcrumb-inner .sep{color:var(--light3)}
+.breadcrumb-inner .current{color:var(--text-dark);font-weight:700}
+
+.section-tag{font-size:.65rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--brass);margin-bottom:1rem}
+
+.blog-hero{background:var(--dark);padding:clamp(8rem,12vw,10rem) clamp(1.5rem,5vw,4rem) clamp(3rem,5vw,4rem);text-align:center}
+.blog-hero h1{font-size:clamp(2.8rem,6vw,5rem);font-weight:900;line-height:.95;color:#fff;letter-spacing:-.03em;margin-bottom:1.2rem}
+.blog-hero h1 em{font-style:normal;color:var(--gold)}
+.blog-hero p{font-size:1.05rem;color:rgba(240,232,218,.55);max-width:520px;margin:0 auto;line-height:1.7}
+
+.blog-grid{padding:clamp(3rem,6vw,5rem) clamp(1.5rem,5vw,4rem);background:var(--light);max-width:1200px;margin:0 auto}
+.posts{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
+.post{background:#fff;border-radius:14px;padding:2rem 2.2rem;border:1px solid var(--light3);transition:.3s;display:flex;flex-direction:column}
+.post:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,.1);border-color:var(--brass)}
+.post-tag{font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--brass);margin-bottom:.6rem}
+.post h2{font-size:1.2rem;font-weight:800;line-height:1.25;margin-bottom:.6rem;color:var(--text-dark)}
+.post p{font-size:.88rem;color:var(--text-muted);line-height:1.65;flex:1}
+.post-link{display:inline-flex;align-items:center;gap:.3rem;margin-top:1rem;font-size:.8rem;font-weight:700;color:var(--brass);letter-spacing:.04em;text-transform:uppercase}
+.post:hover .post-link{color:var(--gold);gap:.5rem}
+
+.cta{background:var(--dark);padding:clamp(5rem,10vw,8rem) clamp(1.5rem,5vw,4rem);text-align:center}
+.cta h2{font-size:clamp(2.2rem,4.5vw,3.5rem);font-weight:900;line-height:1.05;letter-spacing:-.02em;color:#fff;margin-bottom:.75rem}
+.cta p{color:rgba(240,232,218,.5);font-size:1.05rem;line-height:1.7;max-width:480px;margin:0 auto 1.5rem;text-align:center}
+.cta-phone{font-family:'JetBrains Mono',monospace;font-size:clamp(1.4rem,3vw,2.2rem);font-weight:700;color:var(--gold);display:block;margin-bottom:2rem}
+.cta-phone:hover{color:var(--brass)}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn{padding:.8rem 2rem;border-radius:6px;font-weight:700;font-size:.85rem;letter-spacing:.02em;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:.5rem;transition:.25s}
+.btn-gold{background:var(--gold);color:var(--dark)}
+.btn-gold:hover{background:var(--brass);transform:translateY(-2px);box-shadow:0 8px 30px rgba(212,164,74,.3)}
+.btn-white{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.12)}
+.btn-white:hover{background:rgba(255,255,255,.14)}
+
+.footer{background:var(--dark);padding:3rem clamp(1.5rem,5vw,4rem) 1.5rem;border-top:1px solid rgba(255,255,255,.04)}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+.footer h4{font-size:.68rem;text-transform:uppercase;letter-spacing:.2em;color:var(--gold);margin-bottom:1rem;font-weight:700}
+.footer p,.footer a{font-size:.8rem;color:rgba(240,232,218,.4);line-height:2}
+.footer a:hover{color:var(--gold)}
+.footer-bottom{padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.03);display:flex;justify-content:space-between;font-size:.65rem;color:rgba(255,255,255,.2)}
+
+.wa{position:fixed;bottom:1.5rem;left:1.5rem;width:56px;height:56px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:99;box-shadow:0 4px 24px rgba(37,211,102,.3);transition:.2s}
+.wa:hover{transform:scale(1.1)}
+.wa svg{width:28px;height:28px;fill:#fff}
+
+.mcb{display:none;position:fixed;bottom:0;left:0;right:0;z-index:98;background:#0a0908;border-top:1px solid rgba(212,164,74,.3);padding:.6rem .6rem calc(.6rem + env(safe-area-inset-bottom));box-shadow:0 -6px 24px rgba(0,0,0,.4)}
+.mcb-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:.5rem}
+.mcb a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.15rem;padding:.6rem .4rem;border-radius:8px;font-family:'Outfit',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.04em;text-decoration:none;transition:.2s}
+.mcb a svg{width:18px;height:18px}
+.mcb .mcb-call{background:#d4a44a;color:#0a0908}
+.mcb .mcb-wa{background:#25d366;color:#fff}
+.mcb .mcb-mail{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.14)}
+.mcb small{font-size:.62rem;font-weight:500;opacity:.75;letter-spacing:.02em}
+@media(max-width:768px){.mcb{display:block}body{padding-bottom:72px}.wa{bottom:6rem !important}}
+
+.dq-btn{position:fixed;right:1.25rem;bottom:1.25rem;z-index:99;display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 1.35rem;background:#d4a44a;color:#0a0908;border-radius:100px;font-family:'Outfit',sans-serif;font-weight:800;font-size:.8rem;letter-spacing:.04em;text-decoration:none;box-shadow:0 8px 32px rgba(212,164,74,.4);transition:.25s}
+.dq-btn:hover{background:#b8944f;transform:translateY(-2px);box-shadow:0 12px 40px rgba(212,164,74,.5)}
+.dq-btn svg{width:16px;height:16px}
+@media(max-width:768px){.dq-btn{display:none}}
+
+@media(max-width:768px){
+ .nav-links{display:none;position:fixed;top:72px;left:0;right:0;background:rgba(10,9,8,.98);backdrop-filter:blur(20px);flex-direction:column;padding:2rem;gap:1.5rem;border-bottom:1px solid rgba(255,255,255,.06)}
+ .nav-links.open{display:flex}
+ .nav-menu{display:block}
+ .posts{grid-template-columns:1fr}
+ .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:480px){.footer-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+ <a href="/" class="nav-logo"><img src="logo-full.png" alt="DS Electrical"></a>
+ <ul class="nav-links" id="navLinks">
+  <li><a href="/commercial-electrical.html">Commercial</a></li>
+  <li><a href="/domestic.html">Domestic</a></li>
+  <li><a href="/eicr.html">EICR</a></li>
+  <li><a href="/ev-chargers.html">EV Chargers</a></li>
+  <li><a href="/cctv.html">CCTV</a></li>
+  <li><a href="/gallery.html">Gallery</a></li>
+  <li><a href="/blog.html" class="active">Blog</a></li>
+  <li><a href="tel:07889334849" class="nav-cta">07889 334849</a></li>
+ </ul>
+ <button class="nav-menu" onclick="document.getElementById('navLinks').classList.toggle('open')">&#9776;</button>
+</nav>
+
+<nav class="breadcrumb" aria-label="Breadcrumb"><div class="breadcrumb-inner"><a href="/">Home</a><span class="sep">/</span><span class="current" aria-current="page">Blog</span></div></nav>
+
+<section class="blog-hero">
+ <div class="section-tag">Expert Guides</div>
+ <h1>Electrical <em>Advice</em></h1>
+ <p>Honest, practical guides from NAPIT approved electricians. Costs, regulations, and what to expect — no sales pitch.</p>
+</section>
+
+<div class="blog-grid">
+ <div class="posts">
+
+  <a href="/blog-cost-to-rewire-house-2026.html" class="post">
+   <div class="post-tag">Domestic</div>
+   <h2>How Much Does It Cost to Rewire a House in 2026?</h2>
+   <p>Honest pricing for full and partial rewires in Somerset. 2-bed flat from &pound;3,500, 3-bed semi from &pound;4,500, 4-bed detached from &pound;6,500. Fixed-price quotes.</p>
+   <span class="post-link">Read guide &rarr;</span>
+  </a>
+
+  <a href="/blog-do-i-need-a-rewire.html" class="post">
+   <div class="post-tag">Domestic</div>
+   <h2>Do I Need a Rewire? 7 Warning Signs</h2>
+   <p>Seven warning signs your house needs rewiring. What a full rewire involves, typical costs, and when it's genuinely necessary.</p>
+   <span class="post-link">Read guide &rarr;</span>
+  </a>
+
+  <a href="/blog-eicr-explained.html" class="post">
+   <div class="post-tag">Landlords</div>
+   <h2>EICR Explained for Landlords</h2>
+   <p>What is an EICR? Legal requirements for landlords, what happens if you fail, costs, and how often you need one.</p>
+   <span class="post-link">Read guide &rarr;</span>
+  </a>
+
+  <a href="/blog-commercial-eicr-requirements.html" class="post">
+   <div class="post-tag">Commercial</div>
+   <h2>Commercial EICR Requirements: What Businesses Need to Know</h2>
+   <p>Commercial EICR testing explained. Legal requirements, insurance implications, 5-year testing schedule, and pass/fail outcomes.</p>
+   <span class="post-link">Read guide &rarr;</span>
+  </a>
+
+  <a href="/blog-consumer-unit-upgrade.html" class="post">
+   <div class="post-tag">Domestic</div>
+   <h2>Consumer Unit Upgrade Guide</h2>
+   <p>Everything you need to know about upgrading your fuse board. Regulations, costs, how long it takes, and what to expect on the day.</p>
+   <span class="post-link">Read guide &rarr;</span>
+  </a>
+
+  <a href="/blog-best-home-ev-charger-2026.html" class="post">
+   <div class="post-tag">EV Chargers</div>
+   <h2>Best Home EV Charger UK 2026</h2>
+   <p>Hypervolt 3, Fastamps, Easee, Ohme, Zappi and Andersen compared by an authorised installer. Honest verdict on tariffs, solar, and reliability.</p>
+   <span class="post-link">Read guide &rarr;</span>
+  </a>
+
+  <a href="/blog-ev-charger-installation-guide.html" class="post">
+   <div class="post-tag">EV Chargers</div>
+   <h2>EV Charger Installation Guide</h2>
+   <p>Home EV charger installation explained. Compare charger types, installation costs, OZEV grant eligibility, and what the process involves.</p>
+   <span class="post-link">Read guide &rarr;</span>
+  </a>
+
+  <a href="/blog-cctv-installation-guide.html" class="post">
+   <div class="post-tag">Security</div>
+   <h2>CCTV Installation Guide for Homes &amp; Businesses</h2>
+   <p>CCTV installation guide for Somerset. IP vs analogue, camera types, costs, and what to expect from a professional installation.</p>
+   <span class="post-link">Read guide &rarr;</span>
+  </a>
+
+ </div>
+</div>
+
+<section class="cta">
+ <div class="section-tag" style="color:var(--gold)">Need Help?</div>
+ <h2>Got a Question?<br>Ask Dan.</h2>
+ <p>Free advice, no obligation. We'll tell you what you need — and what you don't.</p>
+ <a href="tel:07889334849" class="cta-phone">07889 334849</a>
+ <div class="cta-btns">
+  <a href="/#contact" class="btn btn-gold">Get a Free Quote</a>
+  <a href="https://wa.me/447889334849" class="btn btn-white">WhatsApp</a>
+ </div>
+</section>
+
+<footer class="footer">
+ <div class="footer-grid">
+  <div>
+   <h4>DS Electrical Installations (SW) Ltd</h4>
+   <p>4 Abbey Meads, Glastonbury, Somerset, BA6 8EZ</p>
+   <p><a href="tel:07889334849">07889 334849 (Dan Stevens)</a></p>
+   <p><a href="tel:07983106928">07983 106928 (Dan Street)</a></p>
+   <p><a href="mailto:info@dselectricalinstallations.co.uk">info@dselectricalinstallations.co.uk</a></p>
+  </div>
+  <div>
+   <h4>Services</h4>
+   <p><a href="/eicr.html">Rewires & EICR</a></p>
+   <p><a href="/ev-chargers.html">EV Chargers</a></p>
+   <p><a href="/cctv.html">CCTV & Security</a></p>
+   <p><a href="/commercial-electrical.html">Commercial</a></p>
+   <p><a href="/office-fit-outs.html">Office Fit-Outs</a></p>
+   <p><a href="/fire-alarms.html">Fire Alarms</a></p>
+  </div>
+  <div>
+   <h4>Areas</h4>
+   <p>Wells</p><p>Shepton Mallet</p><p>Bath</p><p>Frome</p><p>Midsomer Norton</p><p>Street</p>
+  </div>
+  <div>
+   <h4>Company</h4>
+   <p><a href="/gallery.html">Gallery</a></p>
+   <p><a href="/blog.html">Blog</a></p>
+   <p><a href="/contact.html">Contact</a></p>
+   <p><a href="/about.html">About Us</a></p>
+   <p>NAPIT Approved</p><p>CHAS Accredited</p>
+  </div>
+ </div>
+ <div class="footer-bottom">
+  <span>&copy; 2026 DS Electrical Installations (SW) Ltd</span>
+  <span><a href="/privacy.html">Privacy</a> &middot; <a href="/terms.html">Terms</a></span>
+ </div>
+</footer>
+
+<a href="https://wa.me/447889334849" class="wa" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.611.611l4.458-1.495A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.344 0-4.508-.8-6.227-2.141l-.435-.344-3.208 1.076 1.076-3.208-.344-.435A9.956 9.956 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg></a>
+
+<div class="mcb" aria-label="Quick contact">
+ <div class="mcb-grid">
+  <a href="tel:07889334849" class="mcb-call"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.1-.04-.21-.05-.31-.05-.26 0-.51.1-.71.29l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.58l2.2-2.21c.28-.27.36-.66.25-1.01C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/></svg><span>Call Dan</span><small>07889 334849</small></a>
+  <a href="https://wa.me/447889334849" class="mcb-wa"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.611.611l4.458-1.495A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg><span>WhatsApp</span></a>
+  <a href="mailto:info@dselectricalinstallations.co.uk" class="mcb-mail"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg><span>Email</span></a>
+ </div>
+</div>
+
+<a href="tel:07889334849" class="dq-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.1-.04-.21-.05-.31-.05-.26 0-.51.1-.71.29l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.58l2.2-2.21c.28-.27.36-.66.25-1.01C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/></svg>Call Dan — 07889 334849</a>
+
+<script src="/email-popup.js" defer></script>
+<script src="/track.js" defer></script>
+<script src="/chat-widget.js" defer></script>
+</body>
+</html>
