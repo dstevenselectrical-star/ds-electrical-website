@@ -2,7 +2,7 @@
  var PHONE = '07889 334849';
  var FORMSUBMIT = 'https://formsubmit.co/ajax/info@dselectricalinstallations.co.uk';
  // Set after first `wrangler deploy`. Until then, AI fallback stays inactive and widget runs FAQ-only.
- var CHAT_WORKER_URL = '';
+ var CHAT_WORKER_URL = 'https://ds-electrical-chat.dstevenselectrical.workers.dev';
  var aiHistory = []; // conversation history sent to worker
 
  var FAQ = [
