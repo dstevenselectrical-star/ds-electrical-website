@@ -79,12 +79,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.dselectricalsw.co.uk/blog-commercial-three-phase-upgrade.html</loc>
-    <lastmod>2026-04-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://www.dselectricalsw.co.uk/blog-best-home-ev-charger-2026.html</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>monthly</changefreq>
@@ -110,6 +104,12 @@
   </url>
   <url>
     <loc>https://www.dselectricalsw.co.uk/blog-commercial-eicr-requirements.html</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.dselectricalsw.co.uk/blog-commercial-three-phase-upgrade.html</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -158,6 +158,12 @@
   </url>
   <url>
     <loc>https://www.dselectricalsw.co.uk/blog-landlord-eicr-2026.html</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.dselectricalsw.co.uk/blog-rewireable-fuse-to-18th-edition.html</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
