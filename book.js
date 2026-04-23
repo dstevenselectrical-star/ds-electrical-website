@@ -1,44 +1,76 @@
 // Booking form handler for DS Electrical fixed-price services.
-// Submits to FormSubmit AJAX (same service used sitewide for contact forms).
-// Falls back to pre-filled mailto: if the request fails (offline, CORS block, etc).
+// Primary: POST to our own /api/booking (logs ledger + Telegram + Brevo confirmation).
+// Fallback 1: FormSubmit AJAX (third-party, used as belt-and-braces).
+// Fallback 2: pre-filled mailto: (if everything else fails — offline / CORS / DNS).
 
 (function () {
   const form = document.getElementById('bookform');
   if (!form) return;
 
-  const BOOKING_ENDPOINT = 'https://formsubmit.co/ajax/info@dselectricalinstallations.co.uk';
+  const PRIMARY_ENDPOINT  = 'https://www.dselectricalsw.co.uk/api/booking';
+  const FALLBACK_ENDPOINT = 'https://formsubmit.co/ajax/info@dselectricalinstallations.co.uk';
 
   form.addEventListener('submit', async function (e) {
     e.preventDefault();
-    const data = Object.fromEntries(new FormData(form).entries());
-    data.service = form.dataset.service || data.service || 'Unknown service';
-    data.submitted_at = new Date().toISOString();
-    data.page = location.pathname;
-    data._subject = `${data.service} — booking from ${data.name || 'website'}`;
-    data._template = 'table';
-    data._captcha = 'false';
+    const raw = Object.fromEntries(new FormData(form).entries());
+    raw.service = form.dataset.service || raw.service || 'Unknown service';
+    raw.submitted_at = new Date().toISOString();
+    raw.page = location.pathname;
 
     const submitBtn = form.querySelector('button[type=submit]');
     submitBtn.disabled = true;
     submitBtn.textContent = 'Sending...';
 
+    // Map the booking form fields into the /api/booking schema
+    const payload = {
+      service:  raw.service,
+      name:     raw.name || '',
+      email:    raw.email || '',
+      phone:    raw.phone || '',
+      postcode: raw.postcode || raw.address || '',
+      when:     raw.dates || raw.when || '',
+      notes:    [raw.beds && ('Beds: ' + raw.beds), raw.notes].filter(Boolean).join(' — '),
+      source:   location.pathname,
+      website:  raw.website || ''  // honeypot
+    };
+
     let sent = false;
     try {
-      const res = await fetch(BOOKING_ENDPOINT, {
+      const res = await fetch(PRIMARY_ENDPOINT, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify(data),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
       });
       const json = await res.json().catch(() => ({}));
-      sent = res.ok && (json.success === 'true' || json.success === true);
+      sent = res.ok && json.ok === true;
     } catch (err) {
       sent = false;
     }
 
+    if (!sent) {
+      // Belt-and-braces: FormSubmit fallback so a single endpoint failure doesn't lose the lead
+      try {
+        const fbData = Object.assign({}, raw, {
+          _subject: raw.service + ' — booking from ' + (raw.name || 'website'),
+          _template: 'table',
+          _captcha: 'false'
+        });
+        const res = await fetch(FALLBACK_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(fbData),
+        });
+        const json = await res.json().catch(() => ({}));
+        sent = res.ok && (json.success === 'true' || json.success === true);
+      } catch (err) { /* fall through to mailto */ }
+    }
+
     if (sent) {
-      showSuccess(data, false);
+      showSuccess(payload, false);
       return;
     }
+
+    const data = raw;
 
     // Fallback: mailto: with pre-filled body
     const subject = encodeURIComponent(`${data.service} — booking request from ${data.name}`);

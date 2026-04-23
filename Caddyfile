@@ -8,6 +8,14 @@
         reverse_proxy localhost:3005
     }
 
+    # Proxy booking + analytics-hit endpoints directly to the node server
+    handle /api/booking {
+        reverse_proxy localhost:3005
+    }
+    handle /hit {
+        reverse_proxy localhost:3005
+    }
+
     file_server
 
     # Handle www redirect

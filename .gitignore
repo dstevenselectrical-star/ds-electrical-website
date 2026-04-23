@@ -24,3 +24,4 @@ worker/.wrangler/
 .wrangler/
 node_modules/
 photos/.pre-crop-*/
+analytics/bookings.jsonl
