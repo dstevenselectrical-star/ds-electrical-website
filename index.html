@@ -398,6 +398,7 @@ img{display:block;max-width:100%}
  <button class="nav-menu" onclick="document.getElementById('navLinks').classList.toggle('open')">&#9776;</button>
 </nav>
 
+<main>
 <!-- HERO -->
 <section class="hero">
  <div class="hero-text">
@@ -476,7 +477,7 @@ img{display:block;max-width:100%}
 <section style="background:var(--light);padding:clamp(5rem,9vw,7rem) clamp(1.5rem,5vw,4rem)">
  <div style="max-width:1200px;margin:0 auto">
   <div style="text-align:center;margin-bottom:3rem">
-   <div class="section-tag" style="color:var(--brass)">Why Choose DS Electrical</div>
+   <div class="section-tag">Why Choose DS Electrical</div>
    <h2 class="section-heading">Six reasons clients<br>keep coming back.</h2>
   </div>
   <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem" class="wcu-grid">
@@ -670,8 +671,8 @@ img{display:block;max-width:100%}
     </div>
     <div class="form-row">
      <div class="form-field full">
-      <label>Service Required</label>
-      <select name="service">
+      <label for="service-select">Service Required</label>
+      <select name="service" id="service-select">
        <option value="">Select a service...</option>
        <option>Domestic Rewire</option>
        <option>Consumer Unit Upgrade</option>
@@ -708,6 +709,7 @@ img{display:block;max-width:100%}
   <a href="mailto:info@dselectricalinstallations.co.uk" class="btn btn-white">Email Us</a>
  </div>
 </section>
+</main>
 
 <!-- FOOTER -->
 <footer class="footer">
@@ -773,7 +775,7 @@ img{display:block;max-width:100%}
 
 
 <!-- DESKTOP QUOTE CTA -->
-<a href="tel:07889334849" class="dq-btn" aria-label="Call Dan on 07889 334849 for a quote">
+<a href="tel:07889334849" class="dq-btn" aria-label="Call Dan 07889 334849">
  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.1-.04-.21-.05-.31-.05-.26 0-.51.1-.71.29l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.58l2.2-2.21c.28-.27.36-.66.25-1.01C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/></svg>
  Call Dan &mdash; 07889 334849
 </a>
