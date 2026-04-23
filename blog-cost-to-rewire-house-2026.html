@@ -15,7 +15,132 @@
 <meta name="twitter:image" content="https://www.dselectricalsw.co.uk/og-image.jpg">
 <meta name="keywords" content="house rewire cost 2026, rewire 3 bed house cost uk, full rewire price somerset, rewire cost wells bath frome, partial rewire cost, house rewire price guide">
 <link rel="canonical" href="https://www.dselectricalsw.co.uk/blog-cost-to-rewire-house-2026.html">
-<link rel="stylesheet" href="/shared.css">
+<style id="shared-inline">
+/* DS Electrical — Shared Styles */
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+ --dark:#0a0908;--dark2:#131110;--dark3:#1c1915;
+ --light:#f8f5f0;--light2:#eee9e0;--light3:#e2dbd0;
+ --brass:#b8944f;--gold:#d4a44a;
+ --text-dark:#1a1714;--text-muted:#6b6560;
+ --text-light:#f0e8da;--text-light-muted:#8c7d6a;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',sans-serif;background:var(--light);color:var(--text-dark);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none;transition:.2s}
+img{display:block;max-width:100%}
+
+/* Nav */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1.5rem,5vw,4rem);background:rgba(10,9,8,.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.04)}
+.nav-logo img{height:70px;width:auto}
+.nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+.nav-links a{font-size:.78rem;font-weight:600;color:rgba(240,232,218,.6);letter-spacing:.08em;text-transform:uppercase}
+.nav-links a:hover{color:#fff}
+.nav-links a.active{color:var(--gold)}
+.nav-cta{background:var(--gold);color:var(--dark);padding:.5rem 1.3rem;border-radius:6px;font-weight:700;font-size:.78rem}
+.nav-cta:hover{background:var(--brass)}
+.nav-menu{display:none;background:none;border:none;color:#fff;font-size:1.5rem;cursor:pointer}
+
+/* Shared components */
+.section-tag{font-size:.65rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--brass);margin-bottom:1rem}
+.section-heading{font-size:clamp(2.2rem,4.5vw,3.5rem);font-weight:900;line-height:1.05;letter-spacing:-.02em;margin-bottom:.75rem}
+.section-desc{color:var(--text-muted);font-size:1.05rem;line-height:1.7;max-width:480px;margin-bottom:3rem}
+.btn{padding:.8rem 2rem;border-radius:6px;font-weight:700;font-size:.85rem;letter-spacing:.02em;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:.5rem;transition:.25s}
+.btn-gold{background:var(--gold);color:var(--dark)}
+.btn-gold:hover{background:var(--brass);transform:translateY(-2px);box-shadow:0 8px 30px rgba(212,164,74,.3)}
+.btn-white{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.12)}
+.btn-white:hover{background:rgba(255,255,255,.14)}
+
+/* Breadcrumb */
+.breadcrumb{background:var(--light);padding:1rem clamp(1.5rem,5vw,4rem);font-size:.78rem;border-bottom:1px solid var(--light3)}
+.breadcrumb-inner{max-width:1200px;margin:0 auto;display:flex;gap:.5rem;align-items:center;color:var(--text-muted);font-weight:500}
+.breadcrumb-inner a{color:var(--text-muted);text-decoration:none;transition:.2s}
+.breadcrumb-inner a:hover{color:var(--brass)}
+.breadcrumb-inner .sep{color:var(--light3)}
+.breadcrumb-inner .current{color:var(--text-dark);font-weight:700}
+
+/* Trust strip */
+.tstrip{background:var(--light2);padding:2.5rem clamp(1.5rem,5vw,4rem);border-top:1px solid var(--light3);border-bottom:1px solid var(--light3)}
+.tstrip-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:center}
+.tstat-num{font-size:1.9rem;font-weight:900;color:var(--text-dark);font-family:'JetBrains Mono',monospace;line-height:1}
+.tstat-lbl{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.18em;color:var(--text-muted);margin-top:.5rem}
+
+/* CTA */
+.cta{background:var(--dark);padding:clamp(5rem,10vw,8rem) clamp(1.5rem,5vw,4rem);text-align:center}
+.cta .section-heading{color:#fff}
+.cta .section-desc{color:rgba(240,232,218,.5);margin:0 auto 1.5rem;text-align:center}
+.cta-phone-label{font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(240,232,218,.4);display:block;margin-bottom:.6rem}
+.cta-phone{font-family:'JetBrains Mono',monospace;font-size:clamp(1.4rem,3vw,2.2rem);font-weight:700;color:rgba(240,232,218,.5);display:block;margin-bottom:.2rem}
+.cta-phone:hover{color:var(--gold)}
+.cta-phone-2{font-family:'JetBrains Mono',monospace;font-size:clamp(1.4rem,3vw,2.2rem);color:rgba(240,232,218,.35);display:block;margin-bottom:2rem}
+.cta-phone-2:hover{color:var(--gold)}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+
+/* Footer */
+.footer{background:var(--dark);padding:3rem clamp(1.5rem,5vw,4rem) 1.5rem;border-top:1px solid rgba(255,255,255,.04)}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+.footer h4{font-size:.68rem;text-transform:uppercase;letter-spacing:.2em;color:var(--gold);margin-bottom:1rem;font-weight:700}
+.footer p,.footer a{font-size:.8rem;color:rgba(240,232,218,.4);line-height:2}
+.footer a:hover{color:var(--gold)}
+.footer-bottom{padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.03);display:flex;justify-content:space-between;font-size:.65rem;color:rgba(255,255,255,.2)}
+
+/* WhatsApp */
+.wa{position:fixed;bottom:1.5rem;left:1.5rem;width:56px;height:56px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:99;box-shadow:0 4px 24px rgba(37,211,102,.3);transition:.2s}
+.wa:hover{transform:scale(1.1)}
+.wa svg{width:28px;height:28px;fill:#fff}
+
+/* Mobile call bar */
+.mcb{display:none;position:fixed;bottom:0;left:0;right:0;z-index:98;background:#0a0908;border-top:1px solid rgba(212,164,74,.3);padding:.6rem .6rem calc(.6rem + env(safe-area-inset-bottom));box-shadow:0 -6px 24px rgba(0,0,0,.4)}
+.mcb-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:.5rem}
+.mcb a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.15rem;padding:.6rem .4rem;border-radius:8px;font-family:'Outfit',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.04em;text-decoration:none;transition:.2s}
+.mcb a svg{width:18px;height:18px}
+.mcb .mcb-call{background:#d4a44a;color:#0a0908}
+.mcb .mcb-call:hover{background:#b8944f}
+.mcb .mcb-wa{background:#25d366;color:#fff}
+.mcb .mcb-mail{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.14)}
+.mcb small{font-size:.62rem;font-weight:500;opacity:.75;letter-spacing:.02em;text-transform:none}
+
+/* Desktop quote CTA */
+.dq-btn{position:fixed;right:1.25rem;bottom:1.25rem;z-index:99;display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 1.35rem;background:#d4a44a;color:#0a0908;border-radius:100px;font-family:'Outfit',sans-serif;font-weight:800;font-size:.8rem;letter-spacing:.04em;text-decoration:none;box-shadow:0 8px 32px rgba(212,164,74,.4);transition:.25s}
+.dq-btn:hover{background:#b8944f;transform:translateY(-2px);box-shadow:0 12px 40px rgba(212,164,74,.5)}
+.dq-btn svg{width:16px;height:16px}
+
+/* Related services */
+.related-svc{background:var(--dark);padding:clamp(4rem,7vw,5rem) clamp(1.5rem,5vw,4rem);color:#fff}
+.related-svc-inner{max-width:1200px;margin:0 auto}
+.related-svc .section-tag{color:#d4a44a}
+.related-svc h2{font-size:clamp(1.8rem,3.2vw,2.6rem);font-weight:900;line-height:1.1;color:#fff;margin-bottom:2.5rem;letter-spacing:-.02em}
+.related-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.related-card{display:block;padding:1.5rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:12px;text-decoration:none;transition:.25s}
+.related-card:hover{background:rgba(212,164,74,.08);border-color:rgba(212,164,74,.3);transform:translateY(-3px)}
+.related-card h3{font-size:.95rem;font-weight:800;color:#fff;margin-bottom:.4rem}
+.related-card p{font-size:.78rem;color:rgba(240,232,218,.5);line-height:1.5}
+.related-card .arrow{display:inline-block;margin-top:.8rem;color:#d4a44a;font-size:.8rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
+
+/* Responsive */
+@media(max-width:1024px){
+ .related-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:900px){
+ .related-grid{grid-template-columns:repeat(2,1fr)}
+ .tstrip-inner{grid-template-columns:repeat(2,1fr);gap:1.5rem}
+}
+@media(max-width:768px){
+ .nav-links{display:none;position:fixed;top:72px;left:0;right:0;background:rgba(10,9,8,.98);backdrop-filter:blur(20px);flex-direction:column;padding:2rem;gap:1.5rem;border-bottom:1px solid rgba(255,255,255,.06)}
+ .nav-links.open{display:flex}
+ .nav-menu{display:block}
+ .mcb{display:block}
+ body{padding-bottom:72px}
+ .wa{bottom:6rem !important}
+ .dq-btn{display:none}
+ .footer-grid{grid-template-columns:1fr 1fr}
+ .related-grid{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+ .footer-grid{grid-template-columns:1fr}
+}
+
+</style>
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="manifest" href="/manifest.json">
