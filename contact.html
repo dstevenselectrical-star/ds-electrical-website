@@ -81,10 +81,13 @@ body{font-family:'Outfit',sans-serif;background:var(--light);color:var(--text-da
 @media(max-width:768px){.nav-links{display:none;position:fixed;top:72px;left:0;right:0;background:rgba(10,9,8,.98);flex-direction:column;padding:2rem;gap:1.5rem}}
 </style>
 <script src="/analytics.js" defer></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","speakable":{"@type":"SpeakableSpecification","cssSelector":["h1",".hero-tagline",".intro-text",".answer"]}}
+</script>
 </head>
 <body>
 <nav class="nav">
- <a href="/" class="nav-logo"><img src="/logo-full.png" alt="DS Electrical"></a>
+ <a href="/" class="nav-logo"><img src="/logo-full.png" alt="DS Electrical" loading="lazy" decoding="async"></a>
  <ul class="nav-links" id="navLinks">
   <li><a href="/commercial-electrical.html">Commercial</a></li>
   <li><a href="/domestic.html">Domestic</a></li>
