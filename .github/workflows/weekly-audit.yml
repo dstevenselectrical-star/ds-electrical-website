@@ -1,0 +1,69 @@
+name: Weekly SEO + Performance Audit
+
+on:
+  schedule:
+    # Every Monday at 08:00 UK time (07:00 UTC)
+    - cron: "0 7 * * 1"
+  workflow_dispatch: # Allow manual runs
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+      id-token: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Run Claude Site Audit
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          prompt: |
+            You are auditing the DS Electrical static website repo (https://www.dselectricalsw.co.uk).
+
+            Scan every HTML file in the repository (root + areas/ + blog-*.html) and produce a single weekly audit issue titled:
+            "Weekly site audit: ${{ github.run_id }}"
+
+            Check for and report:
+
+            1. **Broken or inconsistent metadata**
+               - Pages missing canonical link, og:image, or twitter:card
+               - Duplicate <title> or meta description across pages
+               - Titles over 60 chars or descriptions over 160 chars
+
+            2. **Schema.org completeness**
+               - Pages missing BreadcrumbList on non-homepage pages that have a visible breadcrumb
+               - Malformed JSON-LD (unparseable or missing required fields)
+               - Missing LocalBusiness schema on key landing pages
+
+            3. **Accessibility quick wins**
+               - <img> without alt attribute
+               - Links with no descriptive text ("click here", bare URLs)
+               - Contrast-at-risk patterns (light text on var(--light) background)
+
+            4. **Performance red flags**
+               - <img> with src ending in .jpg where a .webp twin exists in photos/ and is smaller
+               - Pages without font preconnect for fonts.googleapis.com + fonts.gstatic.com
+               - Render-blocking <script> tags in <head> without defer/async
+
+            5. **DS-specific content correctness**
+               - Any mention of "solar" or "battery storage" as a DS Electrical service (DS does NOT offer these)
+               - Use of the office number 01458 833844 anywhere (mobile-only: 07889 334849, 07983 106928)
+               - Promotion of Glastonbury as a target service area (it's our base only, not a target)
+               - References to Netlify (site is self-hosted via Caddy + Cloudflare tunnel)
+
+            6. **Top 3 fixes to prioritise** — rank by user-visible impact
+
+            Open the issue with the findings. Include:
+            - Summary line at top with counts of each category
+            - Checkbox list of each issue with file:line references where relevant
+            - "Top 3 fixes" section Dan can action immediately
+
+            If there are zero findings in every category, open the issue anyway with "All green this week" and a short note on what you checked.
+          claude_args: |
+            --allowedTools "Bash(gh issue create:*),Bash(grep:*),Bash(find:*),Bash(cat:*),Bash(wc:*)"

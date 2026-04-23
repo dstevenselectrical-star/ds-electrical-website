@@ -1,6 +1,9 @@
 (function(){
  var PHONE = '07889 334849';
  var FORMSUBMIT = 'https://formsubmit.co/ajax/info@dselectricalinstallations.co.uk';
+ // Set after first `wrangler deploy`. Until then, AI fallback stays inactive and widget runs FAQ-only.
+ var CHAT_WORKER_URL = '';
+ var aiHistory = []; // conversation history sent to worker
 
  var FAQ = [
   {keys:['price','cost','how much','quote','estimate','rewire cost','rewire price'],
@@ -33,8 +36,8 @@
   {keys:['book','appointment','available','when','schedule','diary','slot'],
    answer:'We usually have availability within 1\u20132 weeks for standard work. Emergency callouts within 2 hours. Leave your details and Dan will call you back.',
    followUp:'quote'},
-  {keys:['solar','battery','storage','panels','pv','givenergy','tesla'],
-   answer:'We install solar PV systems, battery storage (GivEnergy, Tesla Powerwall), and hybrid inverters. MCS certified.',
+  {keys:['solar','battery','storage','panels','pv','givenergy','tesla','powerwall','mcs'],
+   answer:'We don\u2019t do solar panels or battery storage — but we do handle everything electrical around them: EV chargers, consumer unit upgrades, EICR testing, full and partial rewires. Happy to quote for any of those?',
    followUp:'quote'},
   {keys:['payment','pay','deposit','invoice','bank transfer'],
    answer:'Payment by bank transfer within 30 days of invoice. For larger projects we may ask for a 25\u201350% deposit. No day rates \u2014 always fixed-price quotes.'},
@@ -309,6 +312,8 @@
   if(match){
    setTimeout(function(){
     addMsg(match.answer, 'bot');
+    aiHistory.push({role:'user', content:input});
+    aiHistory.push({role:'assistant', content:match.answer});
     if(match.followUp === 'quote' && !lead.email){
      setTimeout(function(){
       addMsg("Want a quote? I just need a few details and Dan will call you back.", 'bot');
@@ -319,6 +324,11 @@
      }, 600);
     }
    }, 400);
+   return;
+  }
+  // No FAQ match — try AI fallback if worker URL is configured, else static fallback
+  if(CHAT_WORKER_URL){
+   askAI(input);
   } else {
    setTimeout(function(){
     addMsg("I\u2019m not sure about that one. For anything specific, call Dan directly on " + PHONE + " or ask me about:", 'bot');
@@ -330,6 +340,51 @@
     ]);
    }, 400);
   }
+ }
+
+ function askAI(input){
+  aiHistory.push({role:'user', content:input});
+  // Cap history to last 10 messages to keep the payload and token cost small
+  var payload = aiHistory.slice(-10);
+
+  var thinkingMsg = el('div', 'cw-msg bot', 'Thinking...');
+  document.getElementById('cwMsgs').appendChild(thinkingMsg);
+
+  fetch(CHAT_WORKER_URL, {
+   method:'POST',
+   headers:{'Content-Type':'application/json'},
+   body:JSON.stringify({messages: payload})
+  })
+  .then(function(r){ return r.json(); })
+  .then(function(data){
+   thinkingMsg.remove();
+   if(data && data.reply){
+    addMsg(data.reply, 'bot');
+    aiHistory.push({role:'assistant', content:data.reply});
+    if(!lead.email && /quote|price|cost|book/i.test(data.reply + ' ' + input)){
+     setTimeout(function(){
+      showQuickReplies([
+       {label:'Get a quote', action:startCapture},
+       {label:'Call now', action:function(){window.location.href='tel:07889334849'}}
+      ]);
+     }, 400);
+    }
+   } else {
+    aiFailFallback();
+   }
+  })
+  .catch(function(){
+   thinkingMsg.remove();
+   aiFailFallback();
+  });
+ }
+
+ function aiFailFallback(){
+  addMsg("Sorry, I\u2019m having trouble just now. Call Dan directly on " + PHONE + " or I can grab your details and he\u2019ll call back.", 'bot');
+  showQuickReplies([
+   {label:'Get a callback', action:startCapture},
+   {label:'Call ' + PHONE, action:function(){window.location.href='tel:07889334849'}}
+  ]);
  }
 
  function sendMessage(){

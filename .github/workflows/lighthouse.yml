@@ -1,0 +1,44 @@
+name: Lighthouse CI
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: [main]
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install serve
+        run: npm install -g serve@14
+
+      - name: Start static server
+        run: |
+          serve -l 3000 . &
+          # Wait for server readiness
+          until curl -s -o /dev/null http://localhost:3000/; do sleep 1; done
+
+      - name: Run Lighthouse
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          urls: |
+            http://localhost:3000/
+            http://localhost:3000/commercial-electrical.html
+            http://localhost:3000/eicr.html
+            http://localhost:3000/ev-chargers.html
+            http://localhost:3000/book-eicr.html
+            http://localhost:3000/testimonials.html
+          uploadArtifacts: true
+          temporaryPublicStorage: true
+          configPath: ./.github/lighthouse-config.json

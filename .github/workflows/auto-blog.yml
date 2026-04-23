@@ -1,0 +1,62 @@
+name: Auto-blog drafter
+
+on:
+  issues:
+    types: [opened, labeled]
+
+jobs:
+  draft-post:
+    if: contains(github.event.issue.labels.*.name, 'claude-draft') && startsWith(github.event.issue.title, '[blog]')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+      id-token: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Draft blog post with Claude
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          prompt: |
+            ISSUE NUMBER: ${{ github.event.issue.number }}
+            ISSUE TITLE: ${{ github.event.issue.title }}
+
+            Read the issue body with `gh issue view ${{ github.event.issue.number }}` to get the topic, primary service, target keyword, angle, and anything to avoid.
+
+            Your job: draft a new SEO-optimised blog post as an HTML file and open a PR.
+
+            **Strict rules — absolute no-fly zone:**
+            - DS Electrical does NOT offer solar panels or battery storage. Never mention them as services.
+            - Use phone numbers 07889 334849 and 07983 106928 only. NEVER use 01458 833844.
+            - Do NOT promote Glastonbury as a target service area (it's just where we're based). Target areas: Wells, Bath, Shepton Mallet, Frome, Radstock, Midsomer Norton, Castle Cary, Bruton, Street, Wedmore.
+            - Use real photos from the /photos/ directory (run `ls photos/` to see what's available). Never invent image paths. Prefer <picture> with WebP source + JPG fallback where both exist.
+            - Match the site's existing design system: link /shared.css and /analytics.js, use Outfit + JetBrains Mono fonts with preconnects, dark/light alternating sections, brass (#c4a476) and gold (#d4a44a) accents.
+
+            **Structure requirements:**
+            - Filename: blog-<slug-of-topic>.html in repo root
+            - Full <!DOCTYPE html> document, self-contained, following the pattern of existing blog-*.html files in the repo (read one as a template first)
+            - <title> under 60 chars including " | DS Electrical"
+            - <meta name="description"> under 160 chars
+            - Canonical link to https://www.dselectricalsw.co.uk/<filename>
+            - og:image pointing to /og-image.jpg, og:type "article"
+            - JSON-LD: BlogPosting schema with author (DS Electrical Installations SW Ltd), datePublished today, mainEntityOfPage
+            - JSON-LD: BreadcrumbList (Home > Blog > This post)
+            - Include 1-2 real work photos via <picture> tags
+            - 900-1500 words
+            - Internal links to the primary service page (e.g. /eicr.html) and /testimonials.html
+            - Strong CTA section at the end linking to /contact.html or a specific booking page (e.g. /book-eicr.html)
+            - Include <script src="/analytics.js" defer></script> before </head>
+
+            **Before you finish:**
+            - Add a link to the new post in blog.html's listing (if blog.html exists)
+            - Update sitemap.xml if it exists
+
+            Open the PR targeting main. PR title: "[blog draft] <the topic>". PR body: summary of what the post covers, a note that it's AI-drafted and awaiting review, and a checklist for the reviewer (factual accuracy, tone match, image selection, CTA placement). Link the original issue with "Closes #${{ github.event.issue.number }}" in the PR body.
+          claude_args: |
+            --allowedTools "Bash(gh issue view:*),Bash(gh pr create:*),Bash(git:*),Bash(ls:*),Bash(cat:*),Bash(grep:*),Bash(find:*),Bash(head:*),Bash(wc:*),Write,Edit,Read,Glob"

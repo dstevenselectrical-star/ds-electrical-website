@@ -1,0 +1,8 @@
+name = "ds-electrical-chat"
+main = "chat-worker.js"
+compatibility_date = "2026-04-22"
+
+# Route: set up via Cloudflare dashboard after first deploy, or uncomment and edit if you have a zone:
+# routes = [
+#   { pattern = "chat.dselectricalsw.co.uk/*", zone_name = "dselectricalsw.co.uk" }
+# ]

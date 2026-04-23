@@ -1,0 +1,47 @@
+name: New blog post
+description: Request a new SEO-optimised blog post. Claude will draft it as a PR.
+title: "[blog] "
+labels: ["blog", "claude-draft"]
+body:
+  - type: input
+    id: topic
+    attributes:
+      label: Topic
+      description: Plain-English topic for the post.
+      placeholder: e.g. "Signs you need a full house rewire in 2026"
+    validations:
+      required: true
+  - type: dropdown
+    id: service
+    attributes:
+      label: Primary service this ties back to
+      options:
+        - EICR
+        - Full/partial rewire
+        - EV charger install
+        - Consumer unit / fuse board upgrade
+        - CCTV
+        - Fire alarm / BS 5839
+        - Emergency lighting / BS 5266
+        - Data / fibre / networking
+        - Commercial 3-phase
+        - 24-hour callouts
+        - Other (specify below)
+    validations:
+      required: true
+  - type: input
+    id: keyword
+    attributes:
+      label: Target search keyword (optional)
+      placeholder: e.g. "how much does a house rewire cost somerset 2026"
+  - type: textarea
+    id: angle
+    attributes:
+      label: Angle / anything specific to include
+      description: Facts, pricing, personal anecdotes, local references, things to avoid.
+      placeholder: "Mention we work across Wells, Bath, Shepton Mallet. Prices from £3,500 for a typical 3-bed rewire."
+  - type: textarea
+    id: avoid
+    attributes:
+      label: Anything to NOT mention
+      placeholder: "Don't mention solar or battery storage (we don't do those)."
