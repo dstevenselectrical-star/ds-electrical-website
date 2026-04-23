@@ -9,3 +9,11 @@
 /emergency-lighting   /lighting               301
 /contact-us           /contact                301
 /commercial           /commercial-electrical  301
+/solar                /ev-chargers            301
+/solar.html           /ev-chargers.html       301
+/battery              /ev-chargers            301
+/battery-storage      /ev-chargers            301
+/battery-storage.html /ev-chargers.html       301
+/24hr                 /24-hour-callouts       301
+/24-hour              /24-hour-callouts       301
+/callouts             /24-hour-callouts       301

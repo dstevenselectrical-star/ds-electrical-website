@@ -1,12 +1,12 @@
 // Booking form handler for DS Electrical fixed-price services.
-// Submits to the existing /api/booking endpoint on ds-analytics (port 3005) if available,
-// otherwise falls back to opening a pre-filled mailto: to info@dselectricalinstallations.co.uk.
+// Submits to FormSubmit AJAX (same service used sitewide for contact forms).
+// Falls back to pre-filled mailto: if the request fails (offline, CORS block, etc).
 
 (function () {
   const form = document.getElementById('bookform');
   if (!form) return;
 
-  const BOOKING_ENDPOINT = '/api/booking';
+  const BOOKING_ENDPOINT = 'https://formsubmit.co/ajax/info@dselectricalinstallations.co.uk';
 
   form.addEventListener('submit', async function (e) {
     e.preventDefault();
@@ -14,6 +14,9 @@
     data.service = form.dataset.service || data.service || 'Unknown service';
     data.submitted_at = new Date().toISOString();
     data.page = location.pathname;
+    data._subject = `${data.service} — booking from ${data.name || 'website'}`;
+    data._template = 'table';
+    data._captcha = 'false';
 
     const submitBtn = form.querySelector('button[type=submit]');
     submitBtn.disabled = true;
@@ -23,10 +26,11 @@
     try {
       const res = await fetch(BOOKING_ENDPOINT, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify(data),
       });
-      sent = res.ok;
+      const json = await res.json().catch(() => ({}));
+      sent = res.ok && (json.success === 'true' || json.success === true);
     } catch (err) {
       sent = false;
     }
