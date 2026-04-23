@@ -23,3 +23,4 @@ photos/.*.broken-*
 worker/.wrangler/
 .wrangler/
 node_modules/
+photos/.pre-crop-*/
