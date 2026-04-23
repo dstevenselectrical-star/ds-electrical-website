@@ -1,0 +1,49 @@
+name: IndexNow ping
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'sitemap.xml'
+      - '**.html'
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Submit sitemap URLs to IndexNow (Bing/Yandex/DuckDuckGo)
+        run: |
+          python3 <<'PY'
+          import re, json, urllib.request, glob, os
+          # Find the IndexNow key file in repo root
+          key_files = [f for f in glob.glob('*.txt') if re.fullmatch(r'[a-f0-9]{32}\.txt', f)]
+          if not key_files:
+              print("No IndexNow key file found in repo root")
+              exit(0)
+          key = key_files[0].replace('.txt', '')
+          with open('sitemap.xml') as f:
+              sm = f.read()
+          urls = re.findall(r'<loc>([^<]+)</loc>', sm)
+          if not urls:
+              print("No URLs in sitemap")
+              exit(0)
+          payload = {
+              "host": "www.dselectricalsw.co.uk",
+              "key": key,
+              "keyLocation": f"https://www.dselectricalsw.co.uk/{key}.txt",
+              "urlList": urls
+          }
+          req = urllib.request.Request(
+              "https://api.indexnow.org/IndexNow",
+              data=json.dumps(payload).encode(),
+              headers={"Content-Type": "application/json"}
+          )
+          try:
+              with urllib.request.urlopen(req, timeout=20) as r:
+                  print(f"✓ IndexNow submitted {len(urls)} URLs, HTTP {r.status}")
+          except Exception as e:
+              print(f"⚠ IndexNow error: {e}")
+              exit(0)  # Never fail the build on indexing ping
+          PY

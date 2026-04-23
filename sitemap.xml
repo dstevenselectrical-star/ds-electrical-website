@@ -10,7 +10,7 @@
     <loc>https://www.dselectricalsw.co.uk/about.html</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://www.dselectricalsw.co.uk/areas/bath.html</loc>
@@ -82,61 +82,61 @@
     <loc>https://www.dselectricalsw.co.uk/blog-best-home-ev-charger-2026.html</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.dselectricalsw.co.uk/blog-cctv-installation-guide.html</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.dselectricalsw.co.uk/blog-commercial-eicr-requirements.html</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.dselectricalsw.co.uk/blog-consumer-unit-upgrade.html</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.dselectricalsw.co.uk/blog-cost-to-rewire-house-2026.html</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.dselectricalsw.co.uk/blog-do-i-need-a-rewire.html</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.dselectricalsw.co.uk/blog-eicr-explained.html</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.dselectricalsw.co.uk/blog-ev-charger-installation-guide.html</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.dselectricalsw.co.uk/blog-fuse-board-warning-signs-2026.html</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.dselectricalsw.co.uk/blog.html</loc>
     <lastmod>2026-04-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.dselectricalsw.co.uk/book-eicr.html</loc>
@@ -178,7 +178,7 @@
     <loc>https://www.dselectricalsw.co.uk/contact.html</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://www.dselectricalsw.co.uk/data-networking.html</loc>
@@ -490,6 +490,6 @@
     <loc>https://www.dselectricalsw.co.uk/testimonials.html</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
   </url>
 </urlset>
