@@ -1,0 +1,105 @@
+name: Validate JSON-LD + internal links
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Validate all JSON-LD blocks parse + sanity check
+        run: |
+          python3 <<'PY'
+          import re, glob, json, sys
+          errors = []
+          count = 0
+          for f in sorted(glob.glob('*.html') + glob.glob('areas/*.html') + glob.glob('services/*.html')):
+              with open(f) as fh:
+                  content = fh.read()
+              for m in re.finditer(r'<script type="application/ld\+json">(.*?)</script>', content, re.DOTALL):
+                  block = m.group(1).strip()
+                  try:
+                      data = json.loads(block)
+                      count += 1
+                      if isinstance(data, dict):
+                          t = data.get('@type', '')
+                          if t == 'Product' and 'offers' not in data:
+                              errors.append(f"{f}: Product missing 'offers'")
+                          if t == 'LocalBusiness' and 'telephone' not in data and 'contactPoint' not in data:
+                              errors.append(f"{f}: LocalBusiness missing contact")
+                  except json.JSONDecodeError as e:
+                      errors.append(f"{f}: parse error — {str(e)[:120]}")
+          print(f"✓ Validated {count} JSON-LD blocks")
+          if errors:
+              print(f"\n✗ {len(errors)} errors:")
+              for e in errors:
+                  print(f"  {e}")
+              sys.exit(1)
+          PY
+
+      - name: Check internal links resolve
+        run: |
+          python3 <<'PY'
+          import re, os, glob, sys
+          all_files = set(f for f in glob.glob('**/*', recursive=True) if os.path.isfile(f))
+          broken = []
+          for html in sorted(glob.glob('*.html') + glob.glob('areas/*.html') + glob.glob('services/*.html')):
+              with open(html) as f:
+                  content = f.read()
+              for m in re.finditer(r'href="([^"]+)"', content):
+                  href = m.group(1).split('#')[0].split('?')[0]
+                  if not href or href.startswith(('http://','https://','tel:','mailto:','wa.me')):
+                      continue
+                  if href.startswith('/'):
+                      href = href.lstrip('/')
+                  if href == '':
+                      href = 'index.html'
+                  if href.endswith('/'):
+                      href = href + 'index.html'
+                  if href not in all_files and (href + '.html') not in all_files:
+                      broken.append(f"{html} -> {m.group(1)}")
+          if broken:
+              print(f"✗ {len(broken)} broken internal links:")
+              for b in broken[:30]:
+                  print(f"  {b}")
+              sys.exit(1)
+          else:
+              print("✓ All internal links resolve")
+          PY
+
+      - name: Audit sitemap.xml completeness
+        run: |
+          python3 <<'PY'
+          import re, glob, sys
+          pages = set()
+          for f in sorted(glob.glob('*.html') + glob.glob('areas/*.html') + glob.glob('services/*.html')):
+              with open(f) as fh:
+                  head = fh.read(500)
+              if 'http-equiv="refresh"' in head or f in ('404.html','thanks.html'):
+                  continue
+              pages.add(f)
+          with open('sitemap.xml') as f:
+              sm = f.read()
+          urls = set()
+          for m in re.finditer(r'<loc>https?://[^/]+/([^<]*)</loc>', sm):
+              u = m.group(1) or 'index.html'
+              if u.endswith('/'): u = u + 'index.html'
+              urls.add(u)
+          missing = sorted(pages - urls)
+          orphan = sorted(urls - pages)
+          if missing or orphan:
+              if missing:
+                  print(f"✗ {len(missing)} pages missing from sitemap:")
+                  for p in missing: print(f"  {p}")
+              if orphan:
+                  print(f"✗ {len(orphan)} sitemap URLs don't exist:")
+                  for p in orphan: print(f"  {p}")
+              sys.exit(1)
+          print(f"✓ Sitemap matches {len(pages)} indexable pages")
+          PY
