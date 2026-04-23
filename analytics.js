@@ -65,4 +65,11 @@
     var service = form.dataset.service || form.getAttribute('name') || 'form';
     gtag('event', 'form_submit', { form_name: service, page_path: location.pathname });
   }, { passive: true });
+
+  // --- Service Worker registration (offline + faster repeat visits) ---
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('/sw.js').catch(function () {});
+    });
+  }
 })();
