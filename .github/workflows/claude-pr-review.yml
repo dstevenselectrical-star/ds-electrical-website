@@ -1,0 +1,47 @@
+name: Claude PR Review
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: [main]
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+      id-token: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 1
+
+      - name: Claude PR Review
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          track_progress: true
+          prompt: |
+            REPO: ${{ github.repository }}
+            PR NUMBER: ${{ github.event.pull_request.number }}
+
+            Review this pull request for the DS Electrical static website (https://www.dselectricalsw.co.uk).
+
+            Focus strictly on issues that would affect a live customer visit:
+
+            1. **Broken HTML / JSON-LD** — unclosed tags, malformed schema.org blocks, missing alt text
+            2. **SEO regressions** — missing/duplicated meta tags, canonical issues, missing BreadcrumbList
+            3. **Performance red flags** — huge unoptimised images (prefer <picture> + WebP), render-blocking resources, missing font preconnects
+            4. **Content correctness** — DS Electrical does NOT offer solar or battery storage; flag any reintroduction
+            5. **Brand standards** — no AI slop/stock photos, real work photos only
+            6. **Forms** — confirm form submissions use FormSubmit action (formsubmit.co/info@dselectricalinstallations.co.uk) not a non-existent /api/ endpoint
+            7. **Contact details** — phone 07889 334849 and 07983 106928; email info@dselectricalinstallations.co.uk; no office number 01458 833844
+            8. **Glastonbury rule** — site is based in Glastonbury but must not promote it as a target area; cover Wells/Bath/Shepton Mallet/Frome etc
+
+            Be concise. Inline comments for specific issues, top-level for overall summary.
+            If the changes look good, just say so briefly.
+
+          claude_args: |
+            --allowedTools "mcp__github_inline_comment__create_inline_comment,Bash(gh pr comment:*),Bash(gh pr diff:*),Bash(gh pr view:*)"
