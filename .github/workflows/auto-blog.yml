@@ -6,7 +6,7 @@ on:
 
 concurrency:
   group: auto-blog-issue-${{ github.event.issue.number }}
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   draft-post:
