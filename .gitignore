@@ -1,5 +1,25 @@
-# Wrangler local cache (should never be committed)
+# Backups & dev artefacts
+.area-backups/
+.firecrawl/
+*.backup-*
+*.retired
+.DS_Store
+
+# Local dev
+.claude/launch.json
+
+# OS
+Thumbs.db
+
+# Live analytics (visitor data — contains IPs, grows indefinitely)
+analytics/hits.jsonl
+analytics/*.log
+analytics/*.db
+
+# Broken upload fragments
+photos/.*.broken-*
+
+# Wrangler (Cloudflare Workers) local cache
 worker/.wrangler/
 .wrangler/
 node_modules/
-.DS_Store
