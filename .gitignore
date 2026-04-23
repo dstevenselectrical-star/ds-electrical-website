@@ -1,20 +1,5 @@
-# Backups & dev artefacts
-.area-backups/
-.firecrawl/
-*.backup-*
-*.retired
+# Wrangler local cache (should never be committed)
+worker/.wrangler/
+.wrangler/
+node_modules/
 .DS_Store
-
-# Local dev
-.claude/launch.json
-
-# OS
-Thumbs.db
-
-# Live analytics (visitor data — contains IPs, grows indefinitely)
-analytics/hits.jsonl
-analytics/*.log
-analytics/*.db
-
-# Broken upload fragments
-photos/.*.broken-*
