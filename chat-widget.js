@@ -10,7 +10,7 @@
    answer:'We provide free, fixed-price quotes with no obligation. A typical 3-bed rewire starts from around \u00a33,500. Consumer unit upgrades from \u00a3650. EV chargers from \u00a3850 installed. Want a quote for your specific job?',
    followUp:'quote'},
   {keys:['eicr','electrical test','landlord','rental','inspection','condition report','testing'],
-   answer:'EICRs start from \u00a3150 for a small property. Landlords need one every 5 years by law. We can usually book within a week and issue the report within 5 working days.',
+   answer:'EICRs are priced per circuit \u2014 \u00a330 per circuit for domestic / single-phase, \u00a340 per circuit for commercial 3-phase. A typical 3-bed house has 6\u201310 circuits. Send your address and we\u2019ll come back with a firm quote the same day, and the certificate is issued the day of testing.',
    followUp:'quote'},
   {keys:['ev charger','ev','electric car','charger','charging','hypervolt','zappi','ohme','easee'],
    answer:'We install Hypervolt 3, Fastamps, Easee, Ohme, Zappi and Andersen. Prices from \u00a3850 fully installed including the dedicated circuit. We handle the DNO notification and all paperwork.',
@@ -277,13 +277,23 @@
   }
  }
 
+ function buildTranscript(){
+  if(!aiHistory.length) return '(no prior conversation — user clicked "Get a quote" directly)';
+  return aiHistory.map(function(m){
+   return (m.role === 'user' ? 'User: ' : 'Bot:  ') + m.content;
+  }).join('\n');
+ }
+
  function submitLead(){
+  var transcript = buildTranscript();
   var data = new FormData();
   data.append('name', lead.name);
   data.append('email', lead.email);
   data.append('phone', lead.phone);
   data.append('source', 'Chat widget');
   data.append('page', lead.page);
+  data.append('transcript', transcript);
+  data.append('referrer', document.referrer || '(direct)');
   data.append('_subject', 'Chat Lead: ' + lead.name + ' \u2014 ' + lead.phone);
   data.append('_template', 'table');
   data.append('_captcha', 'false');
@@ -293,6 +303,15 @@
    body:data,
    headers:{'Accept':'application/json'}
   }).catch(function(){});
+
+  // Fire GA4 conversion event so chat leads show up in analytics.
+  if(typeof window.gtag === 'function'){
+   window.gtag('event', 'chat_lead_submit', {
+    page_path: lead.page,
+    has_transcript: aiHistory.length > 0,
+    turns: aiHistory.length
+   });
+  }
  }
 
  function findAnswer(input){

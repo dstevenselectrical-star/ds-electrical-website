@@ -17,3 +17,11 @@
 /24hr                 /24-hour-callouts       301
 /24-hour              /24-hour-callouts       301
 /callouts             /24-hour-callouts       301
+/heritage             /heritage-installations 301
+/heritage.html        /heritage-installations.html 301
+/listed               /heritage-installations 301
+/listed-buildings     /heritage-installations 301
+/period               /heritage-installations 301
+/period-homes         /heritage-installations 301
+/grade-ii             /heritage-installations 301
+/conservation         /heritage-installations 301

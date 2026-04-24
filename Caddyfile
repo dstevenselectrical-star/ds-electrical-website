@@ -2,6 +2,16 @@
     root * /Users/danstevens/Documents/ds-electrical-website
     encode gzip
 
+    # Short URL redirects for Heritage sub-brand
+    redir /heritage /heritage-installations.html 301
+    redir /heritage.html /heritage-installations.html 301
+    redir /listed /heritage-installations.html 301
+    redir /listed-buildings /heritage-installations.html 301
+    redir /period /heritage-installations.html 301
+    redir /period-homes /heritage-installations.html 301
+    redir /conservation /heritage-installations.html 301
+    redir /grade-ii /heritage-installations.html 301
+
     # Proxy analytics endpoint to Node server
     handle /analytics/* {
         uri strip_prefix /analytics

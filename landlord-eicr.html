@@ -180,13 +180,11 @@ img{display:block;max-width:100%}
  ],
  "hasOfferCatalog": {
   "@type": "OfferCatalog",
-  "name": "Landlord EICR Packages",
+  "name": "Landlord EICR Services",
   "itemListElement": [
-   {"@type": "Offer", "name": "1 Property", "price": "150", "priceCurrency": "GBP", "itemOffered": {"@type": "Service", "name": "Single Property EICR"}},
-   {"@type": "Offer", "name": "2-3 Properties", "price": "135", "priceCurrency": "GBP", "itemOffered": {"@type": "Service", "name": "Multi-Property EICR"}},
-   {"@type": "Offer", "name": "4-6 Properties", "price": "120", "priceCurrency": "GBP", "itemOffered": {"@type": "Service", "name": "Portfolio EICR"}},
-   {"@type": "Offer", "name": "7+ Properties", "price": "110", "priceCurrency": "GBP", "itemOffered": {"@type": "Service", "name": "Large Portfolio EICR"}},
-   {"@type": "Offer", "name": "HMO (per unit)", "price": "95", "priceCurrency": "GBP", "itemOffered": {"@type": "Service", "name": "HMO EICR"}}
+   {"@type": "Offer", "name": "Domestic / single-phase EICR", "priceCurrency": "GBP", "priceSpecification": {"@type": "UnitPriceSpecification", "price": "30", "priceCurrency": "GBP", "referenceQuantity": {"@type": "QuantitativeValue", "value": "1", "unitText": "circuit"}}, "availability": "https://schema.org/InStock", "itemOffered": {"@type": "Service", "name": "Domestic EICR (£30 per circuit)"}},
+   {"@type": "Offer", "name": "Commercial 3-phase EICR", "priceCurrency": "GBP", "priceSpecification": {"@type": "UnitPriceSpecification", "price": "40", "priceCurrency": "GBP", "referenceQuantity": {"@type": "QuantitativeValue", "value": "1", "unitText": "circuit"}}, "availability": "https://schema.org/InStock", "itemOffered": {"@type": "Service", "name": "Commercial 3-phase EICR (£40 per circuit)"}},
+   {"@type": "Offer", "name": "HMO EICR", "priceCurrency": "GBP", "priceSpecification": {"@type": "UnitPriceSpecification", "price": "30", "priceCurrency": "GBP", "referenceQuantity": {"@type": "QuantitativeValue", "value": "1", "unitText": "circuit"}}, "availability": "https://schema.org/InStock", "itemOffered": {"@type": "Service", "name": "HMO EICR (£30 per circuit per unit)"}}
   ]
  }
 }
@@ -438,31 +436,52 @@ img{display:block;max-width:100%}
  </div>
  <div class="pricing-table">
   <div class="pricing-row header">
-   <div class="pr-label">Properties</div>
-   <div class="pr-price">Price Each</div>
+   <div class="pr-label">Installation type</div>
+   <div class="pr-price">Rate</div>
   </div>
   <div class="pricing-row">
-   <div class="pr-label">1 property</div>
-   <div class="pr-price">&pound;150</div>
-  </div>
-  <div class="pricing-row">
-   <div class="pr-label">2&ndash;3 properties <small>Save &pound;15 each</small></div>
-   <div class="pr-price">&pound;135 <span>each</span></div>
-  </div>
-  <div class="pricing-row">
-   <div class="pr-label">4&ndash;6 properties <small>Save &pound;30 each</small></div>
-   <div class="pr-price">&pound;120 <span>each</span></div>
+   <div class="pr-label">Domestic / single-phase <small>Typical 3-bed: 6&ndash;10 circuits</small></div>
+   <div class="pr-price">&pound;30 <span>per circuit</span></div>
   </div>
   <div class="pricing-row best">
-   <div class="pr-label">7+ properties <small>Best value -- save &pound;40 each</small></div>
-   <div class="pr-price">&pound;110 <span>each</span></div>
+   <div class="pr-label">Commercial / 3-phase <small>Priced per distribution board</small></div>
+   <div class="pr-price">&pound;40 <span>per circuit</span></div>
   </div>
   <div class="pricing-row">
-   <div class="pr-label">HMO <small>Per individual unit</small></div>
-   <div class="pr-price">&pound;95 <span>/unit</span></div>
+   <div class="pr-label">HMO <small>Per individual unit &mdash; priced per circuit on each unit</small></div>
+   <div class="pr-price">&pound;30 <span>per circuit</span></div>
   </div>
  </div>
+ <div style="margin-top:2rem;padding:1.25rem 1.5rem;background:#f8f5f0;border-left:4px solid #d4a44a;border-radius:4px;max-width:760px">
+  <p style="font-size:.9rem;color:#1a1714;line-height:1.75;margin:0"><strong>Worked example.</strong> A 3-bed semi with 8 circuits (lights up/down, ring main up/down, cooker, shower, immersion, outside lights) = 8 &times; &pound;30 = <strong>&pound;240</strong>. A 2-bed flat with 5 circuits = <strong>&pound;150</strong>. A small commercial unit with 12 three-phase circuits = 12 &times; &pound;40 = <strong>&pound;480</strong>. Portfolio discounts for multi-property landlords &mdash; call Dan.</p>
+ </div>
+ <p style="font-size:.9rem;color:#6b6560;line-height:1.7;margin-top:1.5rem;max-width:640px">Every property has a different number of circuits, so every quote is different. Call Dan on 07889 334849 or send your address below and we&rsquo;ll work out the count and come back with a firm quote the same day.</p>
 </section>
+
+<!-- WHY PER-CIRCUIT POSITIONING -->
+<section style="background:#0a0908;color:#f0e8da;padding:clamp(4rem,7vw,6rem) clamp(1.5rem,5vw,4rem)">
+ <div style="max-width:1100px;margin:0 auto">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:.68rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:#d4a44a;margin-bottom:.9rem">The reality of a proper EICR</div>
+  <h2 style="font-size:clamp(1.8rem,3.2vw,2.6rem);font-weight:900;line-height:1.15;margin-bottom:1.25rem;color:#fff;letter-spacing:-.02em;max-width:900px">When you see an EICR advertised for &pound;60, that&rsquo;s not an EICR. It&rsquo;s a receipt for a visit.</h2>
+  <p style="font-size:1rem;color:rgba(240,232,218,.7);line-height:1.75;max-width:820px;margin-bottom:2rem">A real EICR is an in-depth testing procedure that every circuit in the installation is put through &mdash; dead and live &mdash; against BS&nbsp;7671 criteria. Insulation resistance at 500&nbsp;V&nbsp;DC. Earth-loop impedance measured against the short-circuit fault current. RCD trip-time at both &frac12;&times; and 5&times; the rated residual current. Continuity end-to-end. Polarity. Bonding. Earthing. Every reading logged. Every observation coded. Every certificate signed and lodged with NAPIT.</p>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:2rem" class="lleic-grid">
+   <div style="background:rgba(255,255,255,.04);border:1px solid rgba(212,164,74,.18);border-radius:10px;padding:1.25rem 1.4rem">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:.7rem;color:#d4a44a;font-weight:700;letter-spacing:.15em;margin-bottom:.5rem">01 &middot; Equipment</div>
+    <p style="font-size:.9rem;color:rgba(240,232,218,.72);line-height:1.65;margin:0">Megger MFT1741 multifunction tester (~&pound;1,400). UKAS-traceable annual calibration. Low-resistance ohmmeter, insulation tester, RCD tester, approved voltage indicator, proving unit. Not a socket tester.</p>
+   </div>
+   <div style="background:rgba(255,255,255,.04);border:1px solid rgba(212,164,74,.18);border-radius:10px;padding:1.25rem 1.4rem">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:.7rem;color:#d4a44a;font-weight:700;letter-spacing:.15em;margin-bottom:.5rem">02 &middot; Qualifications</div>
+    <p style="font-size:.9rem;color:rgba(240,232,218,.72);line-height:1.65;margin:0">C&amp;G 2391 / 2394 / 2395 Level&nbsp;3 Award in Inspection, Testing &amp; Certification. BS&nbsp;7671:2018+A2 18th Edition current. Continuing professional development. NAPIT Approved Contractor &mdash; governing body, annual subscription.</p>
+   </div>
+   <div style="background:rgba(255,255,255,.04);border:1px solid rgba(212,164,74,.18);border-radius:10px;padding:1.25rem 1.4rem">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:.7rem;color:#d4a44a;font-weight:700;letter-spacing:.15em;margin-bottom:.5rem">03 &middot; Legal weight</div>
+    <p style="font-size:.9rem;color:rgba(240,232,218,.72);line-height:1.65;margin:0">Valid for Electrical Safety Standards (PRS England) Regulations&nbsp;2020. Admissible for lender surveys, insurance claims, local-authority enforcement. Fines up to &pound;30,000 per breach for non-compliance.</p>
+   </div>
+  </div>
+  <p style="font-size:.95rem;color:rgba(240,232,218,.7);line-height:1.75;max-width:820px"><em style="color:#d4a44a;font-style:normal;font-weight:700">Per-circuit pricing is the honest way to charge for this.</em> A flat fee under-prices large houses and over-prices small flats. &pound;30 per circuit (&pound;40 on commercial 3-phase) means your quote matches what your installation actually needs &mdash; and the certificate is worth something when you hand it to the letting agent, the lender, or the local authority.</p>
+ </div>
+</section>
+<style>@media(max-width:900px){.lleic-grid{grid-template-columns:1fr 1fr!important}}@media(max-width:560px){.lleic-grid{grid-template-columns:1fr!important}}</style>
 
 <!-- WHAT'S INCLUDED -->
 <section class="included">
