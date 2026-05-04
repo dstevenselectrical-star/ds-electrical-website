@@ -33,7 +33,7 @@
 :root{
  --dark:#0a0908;--dark2:#131110;--dark3:#1c1915;
  --light:#f8f5f0;--light2:#eee9e0;--light3:#e2dbd0;
- --brass:#b8944f;--gold:#d4a44a;
+ --brass:#b8944f;--gold:#d4a44a;--brass-text:#7a5e28;
  --text-dark:#1a1714;--text-muted:#6b6560;
  --text-light:#f0e8da;--text-light-muted:#8c7d6a;
 }
@@ -52,7 +52,7 @@ img{display:block;max-width:100%}
 .nav-cta:hover{background:var(--brass)}
 .nav-menu{display:none;background:none;border:none;color:#fff;font-size:1.5rem;cursor:pointer}
 
-.section-tag{font-size:.65rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--brass);margin-bottom:1rem}
+.section-tag{font-size:.65rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--brass-text);margin-bottom:1rem}
 .section-heading{font-size:clamp(2.2rem,4.5vw,3.5rem);font-weight:900;line-height:1.05;letter-spacing:-.02em;margin-bottom:.75rem}
 .section-desc{color:var(--text-muted);font-size:1.05rem;line-height:1.7;max-width:580px;margin-bottom:3rem}
 .btn{padding:.8rem 2rem;border-radius:6px;font-weight:700;font-size:.85rem;letter-spacing:.02em;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:.5rem;transition:.25s}
@@ -451,7 +451,7 @@ img{display:block;max-width:100%}
 <!-- INDICATIVE PRICING DISCLAIMER (mandatory, gold-bordered) -->
 <section style="padding:0 clamp(1.5rem,5vw,4rem) clamp(2rem,5vw,3rem);background:var(--light)" data-block="ten-step-pricing-disclaimer-v1">
  <div style="max-width:880px;margin:0 auto;border:2px solid var(--gold);border-radius:14px;padding:1.5rem 1.75rem;background:rgba(212,164,74,.06)">
-  <div style="font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--brass);font-weight:700;margin-bottom:.6rem">Indicative pricing notice</div>
+  <div style="font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--brass-text);font-weight:700;margin-bottom:.6rem">Indicative pricing notice</div>
   <p style="color:var(--text-dark);font-size:.95rem;line-height:1.7;margin:0">All prices on this site and on our quotes are shown as <strong>&ldquo;from&nbsp;&pound;&rdquo; per-job indicative figures</strong>. Every electrical job is variable &mdash; cable runs, board condition, accessibility, certification scope and material costs all move the final figure. We never list-price a job as if a fixed amount applies to every property. The exact figure is confirmed in writing after the free site survey, valid for 30 days, and includes VAT at&nbsp;20&nbsp;percent.</p>
  </div>
 </section>
@@ -470,7 +470,7 @@ img{display:block;max-width:100%}
     <div class="timeline-card">
      <div class="timeline-meta">Step 01 &middot; ~30 min on-site &middot; free, no obligation</div>
      <h3>Free site survey</h3>
-     <p>Book by phone (07889&nbsp;334849), WhatsApp, or the online form at <a href="/quote/" style="color:var(--brass);font-weight:700">/quote/</a>. Dan attends in person, takes around 30&nbsp;minutes, photographs every relevant area, takes measurements and runs a condition assessment of the existing wiring (consumer unit, earthing, bonding, accessible cabling, RCD provision). No obligation, no booking fee, no follow-up sales pressure.</p>
+     <p>Book by phone (07889&nbsp;334849), WhatsApp, or the online form at <a href="/quote/" style="color:var(--brass-text);font-weight:700">/quote/</a>. Dan attends in person, takes around 30&nbsp;minutes, photographs every relevant area, takes measurements and runs a condition assessment of the existing wiring (consumer unit, earthing, bonding, accessible cabling, RCD provision). No obligation, no booking fee, no follow-up sales pressure.</p>
      <ul>
       <li>You see: Dan on the doorstep with ID, voltage indicator and clipboard</li>
       <li>You receive: a verbal scope summary on the day and confirmation that a written quote is on the way</li>
@@ -596,7 +596,7 @@ img{display:block;max-width:100%}
     <div class="timeline-card">
      <div class="timeline-meta">Step 10 &middot; 6-year warranty &middot; follow-up at 1 month + 1 year</div>
      <h3>6-year warranty &amp; follow-up</h3>
-     <p>Workmanship is backed for <strong>6 years</strong> through NAPIT&rsquo;s Insurance Backed Guarantee scheme on Part&nbsp;P notifiable work, plus our own 12-month direct workmanship guarantee on every job (no fine-print exclusions). We call back at <strong>1 month</strong> for a snag-check, and again at <strong>1 year</strong> for a proactive check-in &mdash; before issues become problems. With your permission, a photograph of the finished installation is added to <a href="/gallery.html" style="color:var(--brass);font-weight:700">/gallery.html</a>.</p>
+     <p>Workmanship is backed for <strong>6 years</strong> through NAPIT&rsquo;s Insurance Backed Guarantee scheme on Part&nbsp;P notifiable work, plus our own 12-month direct workmanship guarantee on every job (no fine-print exclusions). We call back at <strong>1 month</strong> for a snag-check, and again at <strong>1 year</strong> for a proactive check-in &mdash; before issues become problems. With your permission, a photograph of the finished installation is added to <a href="/gallery.html" style="color:var(--brass-text);font-weight:700">/gallery.html</a>.</p>
      <ul>
       <li>You keep: NAPIT IBG cover for 6 years &mdash; protects you if we cease trading</li>
       <li>Manufacturer warranties layered on top &mdash; typically 2&ndash;5 years on accessories, fuse boards, EV chargers</li>
@@ -618,11 +618,11 @@ img{display:block;max-width:100%}
    <p style="color:var(--text-muted);font-size:1.05rem;line-height:1.75;margin:0 auto;max-width:680px">Five practices we refuse to use, even when the rest of the trade does. If any of these are dealbreakers for you &mdash; they are also dealbreakers for us.</p>
   </div>
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem">
-   <div style="background:#fff;border:1.5px solid var(--light3);border-radius:12px;padding:1.5rem"><div style="font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.2em;color:var(--brass);font-weight:700;margin-bottom:.6rem">No 1</div><h3 style="font-size:1rem;font-weight:800;color:var(--text-dark);margin-bottom:.4rem">Fixed-price headline lies</h3><p style="font-size:.88rem;color:var(--text-muted);line-height:1.7;margin:0">No &ldquo;rewire any house&nbsp;&pound;X&rdquo; ads. Every job is from-priced and confirmed in writing after a survey.</p></div>
-   <div style="background:#fff;border:1.5px solid var(--light3);border-radius:12px;padding:1.5rem"><div style="font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.2em;color:var(--brass);font-weight:700;margin-bottom:.6rem">No 2</div><h3 style="font-size:1rem;font-weight:800;color:var(--text-dark);margin-bottom:.4rem">No-show or silent reschedules</h3><p style="font-size:.88rem;color:var(--text-muted);line-height:1.7;margin:0">If we are running late, you get a call before the slot ends. Booked dates are not moved without your sign-off.</p></div>
-   <div style="background:#fff;border:1.5px solid var(--light3);border-radius:12px;padding:1.5rem"><div style="font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.2em;color:var(--brass);font-weight:700;margin-bottom:.6rem">No 3</div><h3 style="font-size:1rem;font-weight:800;color:var(--text-dark);margin-bottom:.4rem">Leave site dirty</h3><p style="font-size:.88rem;color:var(--text-muted);line-height:1.7;margin:0">Daily tidy-up at the end of every shift. Final hoover and wipe-down before handover, every job.</p></div>
-   <div style="background:#fff;border:1.5px solid var(--light3);border-radius:12px;padding:1.5rem"><div style="font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.2em;color:var(--brass);font-weight:700;margin-bottom:.6rem">No 4</div><h3 style="font-size:1rem;font-weight:800;color:var(--text-dark);margin-bottom:.4rem">Ignore Building Regs</h3><p style="font-size:.88rem;color:var(--text-muted);line-height:1.7;margin:0">Every notifiable circuit is BS&nbsp;7671:2018+A2:2022 compliant. No shortcuts on bonding, RCD protection, AFDD or SPD where regs require.</p></div>
-   <div style="background:#fff;border:1.5px solid var(--light3);border-radius:12px;padding:1.5rem"><div style="font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.2em;color:var(--brass);font-weight:700;margin-bottom:.6rem">No 5</div><h3 style="font-size:1rem;font-weight:800;color:var(--text-dark);margin-bottom:.4rem">Work without notification</h3><p style="font-size:.88rem;color:var(--text-muted);line-height:1.7;margin:0">All Part&nbsp;P notifiable work is lodged with NAPIT&nbsp;66245. No undocumented installs &mdash; ever.</p></div>
+   <div style="background:#fff;border:1.5px solid var(--light3);border-radius:12px;padding:1.5rem"><div style="font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.2em;color:var(--brass-text);font-weight:700;margin-bottom:.6rem">No 1</div><h3 style="font-size:1rem;font-weight:800;color:var(--text-dark);margin-bottom:.4rem">Fixed-price headline lies</h3><p style="font-size:.88rem;color:var(--text-muted);line-height:1.7;margin:0">No &ldquo;rewire any house&nbsp;&pound;X&rdquo; ads. Every job is from-priced and confirmed in writing after a survey.</p></div>
+   <div style="background:#fff;border:1.5px solid var(--light3);border-radius:12px;padding:1.5rem"><div style="font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.2em;color:var(--brass-text);font-weight:700;margin-bottom:.6rem">No 2</div><h3 style="font-size:1rem;font-weight:800;color:var(--text-dark);margin-bottom:.4rem">No-show or silent reschedules</h3><p style="font-size:.88rem;color:var(--text-muted);line-height:1.7;margin:0">If we are running late, you get a call before the slot ends. Booked dates are not moved without your sign-off.</p></div>
+   <div style="background:#fff;border:1.5px solid var(--light3);border-radius:12px;padding:1.5rem"><div style="font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.2em;color:var(--brass-text);font-weight:700;margin-bottom:.6rem">No 3</div><h3 style="font-size:1rem;font-weight:800;color:var(--text-dark);margin-bottom:.4rem">Leave site dirty</h3><p style="font-size:.88rem;color:var(--text-muted);line-height:1.7;margin:0">Daily tidy-up at the end of every shift. Final hoover and wipe-down before handover, every job.</p></div>
+   <div style="background:#fff;border:1.5px solid var(--light3);border-radius:12px;padding:1.5rem"><div style="font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.2em;color:var(--brass-text);font-weight:700;margin-bottom:.6rem">No 4</div><h3 style="font-size:1rem;font-weight:800;color:var(--text-dark);margin-bottom:.4rem">Ignore Building Regs</h3><p style="font-size:.88rem;color:var(--text-muted);line-height:1.7;margin:0">Every notifiable circuit is BS&nbsp;7671:2018+A2:2022 compliant. No shortcuts on bonding, RCD protection, AFDD or SPD where regs require.</p></div>
+   <div style="background:#fff;border:1.5px solid var(--light3);border-radius:12px;padding:1.5rem"><div style="font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.2em;color:var(--brass-text);font-weight:700;margin-bottom:.6rem">No 5</div><h3 style="font-size:1rem;font-weight:800;color:var(--text-dark);margin-bottom:.4rem">Work without notification</h3><p style="font-size:.88rem;color:var(--text-muted);line-height:1.7;margin:0">All Part&nbsp;P notifiable work is lodged with NAPIT&nbsp;66245. No undocumented installs &mdash; ever.</p></div>
   </div>
  </div>
 </section>

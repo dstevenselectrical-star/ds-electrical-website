@@ -12,7 +12,7 @@
 :root{
  --dark:#0a0908;--dark2:#131110;--dark3:#1c1915;
  --light:#f8f5f0;--light2:#eee9e0;--light3:#e2dbd0;
- --brass:#b8944f;--gold:#d4a44a;
+ --brass:#b8944f;--gold:#d4a44a;--brass-text:#7a5e28;
  --text-dark:#1a1714;--text-muted:#6b6560;
  --text-light:#f0e8da;--text-light-muted:#8c7d6a;
 }
@@ -33,7 +33,7 @@ img{display:block;max-width:100%}
 .nav-menu{display:none;background:none;border:none;color:#fff;font-size:1.5rem;cursor:pointer}
 
 /* Shared components */
-.section-tag{font-size:.65rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--brass);margin-bottom:1rem}
+.section-tag{font-size:.65rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--brass-text);margin-bottom:1rem}
 .section-heading{font-size:clamp(2.2rem,4.5vw,3.5rem);font-weight:900;line-height:1.05;letter-spacing:-.02em;margin-bottom:.75rem}
 .section-desc{color:var(--text-muted);font-size:1.05rem;line-height:1.7;max-width:480px;margin-bottom:3rem}
 .btn{padding:.8rem 2rem;border-radius:6px;font-weight:700;font-size:.85rem;letter-spacing:.02em;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:.5rem;transition:.25s}
@@ -270,7 +270,7 @@ img{display:block;max-width:100%}
 
 /* SERVICES -- LIGHT */
 .services{padding:clamp(5rem,10vw,8rem) clamp(1.5rem,5vw,4rem);background:var(--light)}
-.section-tag{font-size:.65rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
+.section-tag{font-size:.65rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--brass-text);margin-bottom:1rem}
 .services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
 .service-card{background:#fff;border-radius:14px;padding:2.5rem 2rem;border:1px solid var(--light3);transition:.3s}
 .service-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.08);border-color:var(--brass)}
@@ -481,11 +481,11 @@ img{display:block;max-width:100%}
   <div class="service-card">
    <picture><source srcset="photos/prism-comms-cabinet-dressed.webp" type="image/webp"><img src="photos/prism-comms-cabinet-dressed.jpg" alt="Commercial network infrastructure with dressed comms cabinet by DS Electrical" loading="lazy" width="1200" height="900"></picture>
    <h3>Network Infrastructure</h3>
-   <p>Commercial Wi-Fi (Reyee &amp; Ruijie), PoE switching, comms cabinets, structured Cat6/Cat6a cabling, fibre optic backbones. Schools, surgeries, factories, offices, libraries. Single SSID seamless roaming, free cloud controller, IP67 outdoor coverage. <a href="/network-infrastructure.html" style="color:var(--brass);font-weight:700">Full network infrastructure page &rarr;</a></p>
+   <p>Commercial Wi-Fi (Reyee &amp; Ruijie), PoE switching, comms cabinets, structured Cat6/Cat6a cabling, fibre optic backbones. Schools, surgeries, factories, offices, libraries. Single SSID seamless roaming, free cloud controller, IP67 outdoor coverage. <a href="/network-infrastructure.html" style="color:var(--brass-text);font-weight:700">Full network infrastructure page &rarr;</a></p>
   </div>
  </div>
  <div style="margin-top:2.5rem;padding:1.5rem 1.75rem;background:var(--light2);border-left:4px solid var(--gold);border-radius:6px">
-  <p style="margin:0;font-size:.95rem;color:var(--text-muted);line-height:1.7"><strong style="color:var(--text-dark)">Looking for something else?</strong> We cover <a href="/network-infrastructure.html" style="color:var(--brass);font-weight:700">network infrastructure</a> (<a href="/wifi-access-points.html" style="color:var(--brass);font-weight:700">Wi-Fi APs</a>, <a href="/poe-networking.html" style="color:var(--brass);font-weight:700">PoE switching</a>, <a href="/network-cabinets.html" style="color:var(--brass);font-weight:700">cabinets</a>), <a href="/lighting.html" style="color:var(--brass);font-weight:700">commercial &amp; emergency lighting</a>, <a href="/fire-alarms.html" style="color:var(--brass);font-weight:700">fire alarms</a>, <a href="/eicr.html" style="color:var(--brass);font-weight:700">EICR testing</a>, <a href="/fibre-optic.html" style="color:var(--brass);font-weight:700">fibre optic</a>, <a href="/cctv.html" style="color:var(--brass);font-weight:700">CCTV &amp; access control</a>, <a href="/commercial-contracts.html" style="color:var(--brass);font-weight:700">maintenance contracts</a> and <a href="/office-fit-outs.html" style="color:var(--brass);font-weight:700">office fit-outs</a> on dedicated pages.</p>
+  <p style="margin:0;font-size:.95rem;color:var(--text-muted);line-height:1.7"><strong style="color:var(--text-dark)">Looking for something else?</strong> We cover <a href="/network-infrastructure.html" style="color:var(--brass-text);font-weight:700">network infrastructure</a> (<a href="/wifi-access-points.html" style="color:var(--brass-text);font-weight:700">Wi-Fi APs</a>, <a href="/poe-networking.html" style="color:var(--brass-text);font-weight:700">PoE switching</a>, <a href="/network-cabinets.html" style="color:var(--brass-text);font-weight:700">cabinets</a>), <a href="/lighting.html" style="color:var(--brass-text);font-weight:700">commercial &amp; emergency lighting</a>, <a href="/fire-alarms.html" style="color:var(--brass-text);font-weight:700">fire alarms</a>, <a href="/eicr.html" style="color:var(--brass-text);font-weight:700">EICR testing</a>, <a href="/fibre-optic.html" style="color:var(--brass-text);font-weight:700">fibre optic</a>, <a href="/cctv.html" style="color:var(--brass-text);font-weight:700">CCTV &amp; access control</a>, <a href="/commercial-contracts.html" style="color:var(--brass-text);font-weight:700">maintenance contracts</a> and <a href="/office-fit-outs.html" style="color:var(--brass-text);font-weight:700">office fit-outs</a> on dedicated pages.</p>
  </div>
 </section>
 
@@ -725,7 +725,7 @@ img{display:block;max-width:100%}
    </div>
    <div>
     <h4 style="font-size:.95rem;font-weight:800;color:var(--text-dark);margin-bottom:.4rem">Multi-site B2B</h4>
-    <p style="font-size:.85rem;color:var(--text-muted);line-height:1.6">If you run several sites and want one electrician on retainer for EICR, emergency lighting, fire alarm and reactive callouts, see our <a href="/commercial-contracts.html" style="color:var(--brass);font-weight:700">commercial maintenance contracts</a> for fixed-price quarterly visits and SLA response times.</p>
+    <p style="font-size:.85rem;color:var(--text-muted);line-height:1.6">If you run several sites and want one electrician on retainer for EICR, emergency lighting, fire alarm and reactive callouts, see our <a href="/commercial-contracts.html" style="color:var(--brass-text);font-weight:700">commercial maintenance contracts</a> for fixed-price quarterly visits and SLA response times.</p>
    </div>
   </div>
  </div>
@@ -842,7 +842,7 @@ img{display:block;max-width:100%}
   </details>
   <details style="border-bottom:1px solid var(--light3);padding:1.2rem 0">
    <summary style="font-weight:700;color:var(--text-dark);cursor:pointer;font-size:1rem;list-style:none;display:flex;justify-content:space-between;align-items:center">Do you offer maintenance contracts?<span style="color:var(--gold);font-size:1.2rem">+</span></summary>
-   <p style="color:var(--text-muted);margin-top:.75rem;line-height:1.7;font-size:.9rem">Yes. We offer planned preventative maintenance contracts covering EICR testing, emergency lighting, fire alarm servicing, PAT testing, and 24/7 emergency callout. See our <a href="/maintenance-packages.html" style="color:var(--brass);font-weight:700">maintenance packages</a> page for pricing.</p>
+   <p style="color:var(--text-muted);margin-top:.75rem;line-height:1.7;font-size:.9rem">Yes. We offer planned preventative maintenance contracts covering EICR testing, emergency lighting, fire alarm servicing, PAT testing, and 24/7 emergency callout. See our <a href="/maintenance-packages.html" style="color:var(--brass-text);font-weight:700">maintenance packages</a> page for pricing.</p>
   </details>
  </div>
 </section>

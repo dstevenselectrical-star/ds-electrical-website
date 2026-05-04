@@ -11,7 +11,7 @@
 :root{
  --dark:#0a0908;--dark2:#131110;--dark3:#1c1915;
  --light:#f8f5f0;--light2:#eee9e0;--light3:#e2dbd0;
- --brass:#b8944f;--gold:#d4a44a;
+ --brass:#b8944f;--gold:#d4a44a;--brass-text:#7a5e28;
  --text-dark:#1a1714;--text-muted:#6b6560;
  --text-light:#f0e8da;--text-light-muted:#8c7d6a;
 }
@@ -30,7 +30,7 @@ img{display:block;max-width:100%}
 .nav-cta:hover{background:var(--brass)}
 .nav-menu{display:none;background:none;border:none;color:#fff;font-size:1.5rem;cursor:pointer}
 
-.section-tag{font-size:.65rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--brass);margin-bottom:1rem}
+.section-tag{font-size:.65rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--brass-text);margin-bottom:1rem}
 .section-heading{font-size:clamp(2.2rem,4.5vw,3.5rem);font-weight:900;line-height:1.05;letter-spacing:-.02em;margin-bottom:.75rem}
 .section-desc{color:var(--text-muted);font-size:1.05rem;line-height:1.7;max-width:600px;margin-bottom:2rem}
 .btn{padding:.8rem 2rem;border-radius:6px;font-weight:700;font-size:.85rem;letter-spacing:.02em;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:.5rem;transition:.25s}
@@ -232,9 +232,9 @@ img{display:block;max-width:100%}
 .profile-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:340px 1fr;gap:3rem;align-items:start}
 .profile-photo{background:#fff;border:1px solid var(--light3);border-radius:14px;overflow:hidden;position:sticky;top:90px;aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-size:.78rem;text-align:center;padding:1rem}
 .profile-photo img{width:100%;height:100%;object-fit:cover;display:block}
-.profile-content .profile-tag{font-size:.65rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--brass);margin-bottom:.5rem}
+.profile-content .profile-tag{font-size:.65rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--brass-text);margin-bottom:.5rem}
 .profile-content h2{font-size:clamp(2rem,4vw,3rem);font-weight:900;line-height:1.05;letter-spacing:-.02em;margin-bottom:.4rem;color:var(--text-dark)}
-.profile-content .profile-role{font-family:'JetBrains Mono',monospace;font-size:.95rem;font-weight:700;color:var(--gold);background:rgba(212,164,74,.1);padding:.4rem .9rem;border-radius:6px;display:inline-block;margin-bottom:1.5rem}
+.profile-content .profile-role{font-family:'JetBrains Mono',monospace;font-size:.95rem;font-weight:700;color:var(--brass-text);background:rgba(212,164,74,.1);padding:.4rem .9rem;border-radius:6px;display:inline-block;margin-bottom:1.5rem}
 .profile-content p{font-size:1rem;color:var(--text-muted);line-height:1.8;margin-bottom:1.1rem}
 .profile-content p strong{color:var(--text-dark);font-weight:700}
 .profile-quote{font-size:1.1rem;line-height:1.7;color:var(--text-dark);font-style:italic;border-left:3px solid var(--gold);padding:.5rem 0 .5rem 1.2rem;margin:1.5rem 0}
@@ -257,7 +257,7 @@ img{display:block;max-width:100%}
 .value-head{text-align:center;margin-bottom:3rem}
 .value-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
 .value-card{background:#fff;border:1px solid var(--light3);border-radius:12px;padding:1.75rem}
-.value-card .vnum{font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:700;color:var(--brass);letter-spacing:.18em;margin-bottom:.6rem}
+.value-card .vnum{font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:700;color:var(--brass-text);letter-spacing:.18em;margin-bottom:.6rem}
 .value-card h3{font-size:1.05rem;font-weight:800;color:var(--text-dark);margin-bottom:.5rem;line-height:1.3}
 .value-card p{font-size:.88rem;color:var(--text-muted);line-height:1.65}
 
@@ -353,11 +353,11 @@ img{display:block;max-width:100%}
     </div>
     <div class="profile-meta-item">
      <div class="label">Direct line</div>
-     <div class="value"><a class="p-tel" href="tel:07889334849" style="color:var(--brass);font-weight:700">07889 334849</a></div>
+     <div class="value"><a class="p-tel" style="color:var(--brass-text);font-weight:700">07889 334849</a></div>
     </div>
     <div class="profile-meta-item">
      <div class="label">Email</div>
-     <div class="value"><a class="u-email" href="mailto:dstevenselectrical@gmail.com" style="color:var(--brass);font-weight:700;font-size:.85rem">dstevenselectrical@gmail.com</a></div>
+     <div class="value"><a class="u-email" style="color:var(--brass-text);font-weight:700;font-size:.85rem">dstevenselectrical@gmail.com</a></div>
     </div>
    </div>
 
@@ -385,7 +385,7 @@ img{display:block;max-width:100%}
 
    <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1rem">
     <a href="tel:07889334849" class="btn btn-gold">Call Dan &mdash; 07889 334849</a>
-    <a href="https://wa.me/447889334849" class="btn btn-white" style="background:#25d366;color:#fff;border:none">WhatsApp</a>
+    <a href="https://wa.me/447889334849" class="btn btn-white" style="background:#25d366;color:#0a0908;border:none">WhatsApp</a>
    </div>
   </div>
  </div>
