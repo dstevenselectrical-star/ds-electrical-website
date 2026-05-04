@@ -19,7 +19,7 @@ jobs:
           import re, glob, json, sys
           errors = []
           count = 0
-          for f in sorted(glob.glob('*.html') + glob.glob('areas/*.html') + glob.glob('services/*.html')):
+          for f in sorted(glob.glob('*.html') + glob.glob('areas/*.html') + glob.glob('services/*.html') + glob.glob('case-studies/*.html') + glob.glob('reviews/*.html') + glob.glob('service-areas/*.html')):
               with open(f) as fh:
                   content = fh.read()
               for m in re.finditer(r'<script type="application/ld\+json">(.*?)</script>', content, re.DOTALL):
@@ -49,7 +49,7 @@ jobs:
           import re, os, glob, sys
           all_files = set(f for f in glob.glob('**/*', recursive=True) if os.path.isfile(f))
           broken = []
-          for html in sorted(glob.glob('*.html') + glob.glob('areas/*.html') + glob.glob('services/*.html')):
+          for html in sorted(glob.glob('*.html') + glob.glob('areas/*.html') + glob.glob('services/*.html') + glob.glob('case-studies/*.html') + glob.glob('reviews/*.html') + glob.glob('service-areas/*.html')):
               with open(html) as f:
                   content = f.read()
               for m in re.finditer(r'href="([^"]+)"', content):
@@ -78,7 +78,7 @@ jobs:
           python3 <<'PY'
           import re, glob, sys
           pages = set()
-          for f in sorted(glob.glob('*.html') + glob.glob('areas/*.html') + glob.glob('services/*.html')):
+          for f in sorted(glob.glob('*.html') + glob.glob('areas/*.html') + glob.glob('services/*.html') + glob.glob('case-studies/*.html') + glob.glob('reviews/*.html') + glob.glob('service-areas/*.html')):
               with open(f) as fh:
                   head = fh.read(500)
               if 'http-equiv="refresh"' in head or f in ('404.html','thanks.html'):
