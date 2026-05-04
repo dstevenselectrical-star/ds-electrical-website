@@ -1,10 +1,15 @@
 name: Weekly SEO + Performance Audit
 
 on:
-  schedule:
-    # Every Monday at 08:00 UK time (07:00 UTC)
-    - cron: "0 7 * * 1"
-  workflow_dispatch: # Allow manual runs
+  # Schedule disabled 2026-05-04 - Anthropic API balance too low; this workflow uses
+  # anthropics/claude-code-action and was failing every Monday with "Credit balance is
+  # too low" for ~2 weeks. Per memory rule feedback_api_waste.md: no paid API spend
+  # while revenue is zero. Re-enable by uncommenting the schedule once revenue
+  # justifies the spend, OR replace the audit with a free Python script (the
+  # validate-schemas.yml workflow already covers JSON-LD + internal links + sitemap).
+  # schedule:
+  #   - cron: "0 7 * * 1"  # Every Monday at 07:00 UTC (08:00 UK)
+  workflow_dispatch: # Manual runs only - Dan triggers explicitly when API balance allows
 
 jobs:
   audit:
