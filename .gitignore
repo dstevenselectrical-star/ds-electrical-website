@@ -25,3 +25,7 @@ worker/.wrangler/
 node_modules/
 photos/.pre-crop-*/
 analytics/bookings.jsonl
+audits/
+
+# Local Caddy rollback backups (created on infra changes; keep local only)
+Caddyfile.bak-*

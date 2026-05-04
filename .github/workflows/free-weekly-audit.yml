@@ -1,0 +1,60 @@
+name: Free Weekly Site Audit
+
+# $0-cost replacement for the disabled paid weekly-audit.yml
+# Uses Python stdlib + lxml only. No Anthropic API, no OpenAI, no external paid service.
+# Replicates the same 6 audit checks the paid version did.
+
+on:
+  schedule:
+    - cron: "0 7 * * 1"  # Every Monday at 07:00 UTC (08:00 UK)
+  workflow_dispatch:
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: python -m pip install --upgrade lxml
+
+      - name: Run free audit
+        id: audit
+        env:
+          GITHUB_RUN_ID: ${{ github.run_id }}
+          GITHUB_WORKSPACE: ${{ github.workspace }}
+        run: |
+          python3 .github/scripts/free_audit.py > "audit-report-${GITHUB_RUN_ID}.md"
+          echo "report_path=audit-report-${GITHUB_RUN_ID}.md" >> "$GITHUB_OUTPUT"
+          echo "----- Report preview (first 60 lines) -----"
+          head -60 "audit-report-${GITHUB_RUN_ID}.md"
+
+      - name: Upload report artifact
+        env:
+          GITHUB_RUN_ID: ${{ github.run_id }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: audit-report-${{ github.run_id }}
+          path: audit-report-${{ github.run_id }}.md
+          retention-days: 90
+
+      - name: Open GitHub issue with audit report
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_RUN_ID: ${{ github.run_id }}
+        run: |
+          gh issue create \
+            --title "Weekly site audit: ${GITHUB_RUN_ID}" \
+            --label audit \
+            --body-file "audit-report-${GITHUB_RUN_ID}.md"
