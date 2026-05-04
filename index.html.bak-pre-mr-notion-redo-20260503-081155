@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style id="shared-inline">
+/* DS Electrical — Shared Styles */
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+ --dark:#0a0908;--dark2:#131110;--dark3:#1c1915;
+ --light:#f8f5f0;--light2:#eee9e0;--light3:#e2dbd0;
+ --brass:#b8944f;--gold:#d4a44a;
+ --text-dark:#1a1714;--text-muted:#6b6560;
+ --text-light:#f0e8da;--text-light-muted:#8c7d6a;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',sans-serif;background:var(--light);color:var(--text-dark);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none;transition:.2s}
+img{display:block;max-width:100%}
+
+/* Nav */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1.5rem,5vw,4rem);background:rgba(10,9,8,.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.04)}
+.nav-logo img{height:70px;width:auto}
+.nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+.nav-links a{font-size:.78rem;font-weight:600;color:rgba(240,232,218,.6);letter-spacing:.08em;text-transform:uppercase}
+.nav-links a:hover{color:#fff}
+.nav-links a.active{color:var(--gold)}
+.nav-cta{background:var(--gold);color:var(--dark);padding:.5rem 1.3rem;border-radius:6px;font-weight:700;font-size:.78rem}
+.nav-cta:hover{background:var(--brass)}
+.nav-menu{display:none;background:none;border:none;color:#fff;font-size:1.5rem;cursor:pointer}
+
+/* Shared components */
+.section-tag{font-size:.65rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--brass);margin-bottom:1rem}
+.section-heading{font-size:clamp(2.2rem,4.5vw,3.5rem);font-weight:900;line-height:1.05;letter-spacing:-.02em;margin-bottom:.75rem}
+.section-desc{color:var(--text-muted);font-size:1.05rem;line-height:1.7;max-width:480px;margin-bottom:3rem}
+.btn{padding:.8rem 2rem;border-radius:6px;font-weight:700;font-size:.85rem;letter-spacing:.02em;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:.5rem;transition:.25s}
+.btn-gold{background:var(--gold);color:var(--dark)}
+.btn-gold:hover{background:var(--brass);transform:translateY(-2px);box-shadow:0 8px 30px rgba(212,164,74,.3)}
+.btn-white{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.12)}
+.btn-white:hover{background:rgba(255,255,255,.14)}
+
+/* Breadcrumb */
+.breadcrumb{background:var(--light);padding:1rem clamp(1.5rem,5vw,4rem);font-size:.78rem;border-bottom:1px solid var(--light3)}
+.breadcrumb-inner{max-width:1200px;margin:0 auto;display:flex;gap:.5rem;align-items:center;color:var(--text-muted);font-weight:500}
+.breadcrumb-inner a{color:var(--text-muted);text-decoration:none;transition:.2s}
+.breadcrumb-inner a:hover{color:var(--brass)}
+.breadcrumb-inner .sep{color:var(--light3)}
+.breadcrumb-inner .current{color:var(--text-dark);font-weight:700}
+
+/* Trust strip */
+.tstrip{background:var(--light2);padding:2.5rem clamp(1.5rem,5vw,4rem);border-top:1px solid var(--light3);border-bottom:1px solid var(--light3)}
+.tstrip-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:center}
+.tstat-num{font-size:1.9rem;font-weight:900;color:var(--text-dark);font-family:'JetBrains Mono',monospace;line-height:1}
+.tstat-lbl{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.18em;color:var(--text-muted);margin-top:.5rem}
+
+/* CTA */
+.cta{background:var(--dark);padding:clamp(5rem,10vw,8rem) clamp(1.5rem,5vw,4rem);text-align:center}
+.cta .section-heading{color:#fff}
+.cta .section-desc{color:rgba(240,232,218,.5);margin:0 auto 1.5rem;text-align:center}
+.cta-phone-label{font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(240,232,218,.4);display:block;margin-bottom:.6rem}
+.cta-phone{font-family:'JetBrains Mono',monospace;font-size:clamp(1.4rem,3vw,2.2rem);font-weight:700;color:rgba(240,232,218,.5);display:block;margin-bottom:.2rem}
+.cta-phone:hover{color:var(--gold)}
+.cta-phone-2{font-family:'JetBrains Mono',monospace;font-size:clamp(1.4rem,3vw,2.2rem);color:rgba(240,232,218,.35);display:block;margin-bottom:2rem}
+.cta-phone-2:hover{color:var(--gold)}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+
+/* Footer */
+.footer{background:var(--dark);padding:3rem clamp(1.5rem,5vw,4rem) 1.5rem;border-top:1px solid rgba(255,255,255,.04)}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+.footer h4{font-size:.68rem;text-transform:uppercase;letter-spacing:.2em;color:var(--gold);margin-bottom:1rem;font-weight:700}
+.footer p,.footer a{font-size:.8rem;color:rgba(240,232,218,.4);line-height:2}
+.footer a:hover{color:var(--gold)}
+.footer-bottom{padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.03);display:flex;justify-content:space-between;font-size:.65rem;color:rgba(255,255,255,.2)}
+
+/* WhatsApp */
+.wa{position:fixed;bottom:1.5rem;left:1.5rem;width:56px;height:56px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:99;box-shadow:0 4px 24px rgba(37,211,102,.3);transition:.2s}
+.wa:hover{transform:scale(1.1)}
+.wa svg{width:28px;height:28px;fill:#fff}
+
+/* Mobile call bar */
+.mcb{display:none;position:fixed;bottom:0;left:0;right:0;z-index:98;background:#0a0908;border-top:1px solid rgba(212,164,74,.3);padding:.6rem .6rem calc(.6rem + env(safe-area-inset-bottom));box-shadow:0 -6px 24px rgba(0,0,0,.4)}
+.mcb-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:.5rem}
+.mcb a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.15rem;padding:.6rem .4rem;border-radius:8px;font-family:'Outfit',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.04em;text-decoration:none;transition:.2s}
+.mcb a svg{width:18px;height:18px}
+.mcb .mcb-call{background:#d4a44a;color:#0a0908}
+.mcb .mcb-call:hover{background:#b8944f}
+.mcb .mcb-wa{background:#25d366;color:#fff}
+.mcb .mcb-mail{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.14)}
+.mcb small{font-size:.62rem;font-weight:500;opacity:.75;letter-spacing:.02em;text-transform:none}
+
+/* Desktop quote CTA */
+.dq-btn{position:fixed;right:1.25rem;bottom:1.25rem;z-index:99;display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 1.35rem;background:#d4a44a;color:#0a0908;border-radius:100px;font-family:'Outfit',sans-serif;font-weight:800;font-size:.8rem;letter-spacing:.04em;text-decoration:none;box-shadow:0 8px 32px rgba(212,164,74,.4);transition:.25s}
+.dq-btn:hover{background:#b8944f;transform:translateY(-2px);box-shadow:0 12px 40px rgba(212,164,74,.5)}
+.dq-btn svg{width:16px;height:16px}
+
+/* Related services */
+.related-svc{background:var(--dark);padding:clamp(4rem,7vw,5rem) clamp(1.5rem,5vw,4rem);color:#fff}
+.related-svc-inner{max-width:1200px;margin:0 auto}
+.related-svc .section-tag{color:#d4a44a}
+.related-svc h2{font-size:clamp(1.8rem,3.2vw,2.6rem);font-weight:900;line-height:1.1;color:#fff;margin-bottom:2.5rem;letter-spacing:-.02em}
+.related-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.related-card{display:block;padding:1.5rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:12px;text-decoration:none;transition:.25s}
+.related-card:hover{background:rgba(212,164,74,.08);border-color:rgba(212,164,74,.3);transform:translateY(-3px)}
+.related-card h3{font-size:.95rem;font-weight:800;color:#fff;margin-bottom:.4rem}
+.related-card p{font-size:.78rem;color:rgba(240,232,218,.5);line-height:1.5}
+.related-card .arrow{display:inline-block;margin-top:.8rem;color:#d4a44a;font-size:.8rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
+
+/* Responsive */
+@media(max-width:1024px){
+ .related-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:900px){
+ .related-grid{grid-template-columns:repeat(2,1fr)}
+ .tstrip-inner{grid-template-columns:repeat(2,1fr);gap:1.5rem}
+}
+@media(max-width:768px){
+ .nav-links{display:none;position:fixed;top:72px;left:0;right:0;background:rgba(10,9,8,.98);backdrop-filter:blur(20px);flex-direction:column;padding:2rem;gap:1.5rem;border-bottom:1px solid rgba(255,255,255,.06)}
+ .nav-links.open{display:flex}
+ .nav-menu{display:block}
+ .mcb{display:block}
+ body{padding-bottom:72px}
+ .wa{bottom:6rem !important}
+ .dq-btn{display:none}
+ .footer-grid{grid-template-columns:1fr 1fr}
+ .related-grid{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+ .footer-grid{grid-template-columns:1fr}
+}
+
+</style>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Electrical Contractors | Mid Somerset | DS Electrical</title>
+<meta name="description" content="Commercial and domestic electrical contractors in Mid Somerset. NAPIT approved. Rewires, 3-phase, EV, CCTV, fit-outs. Wells, Bath, Shepton Mallet.">
+<meta name="keywords" content="commercial electrician somerset, commercial electrical contractor bath, electrician for business somerset, 3 phase installation somerset, commercial EICR somerset, office fit out electrician, data cabling contractor somerset, NAPIT electrician wells">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<meta name="geo.region" content="GB-SOM">
+<meta property="og:title" content="Commercial & Domestic Electrical Contractors | Mid Somerset">
+<meta property="og:description" content="Commercial and domestic electrical contractors in Mid Somerset. NAPIT approved. Rewires, 3-phase, EV, CCTV, fit-outs. Call 07889 334849.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.dselectricalsw.co.uk/">
+<meta property="og:image" content="https://www.dselectricalsw.co.uk/og-image.jpg">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Commercial & Domestic Electrical Contractors | Mid Somerset">
+<meta name="twitter:description" content="NAPIT approved electrical contractors in Mid Somerset. Rewires, 3-phase, EV, CCTV, fit-outs. Wells, Bath, Shepton Mallet. Call 07889 334849.">
+<meta name="twitter:image" content="https://www.dselectricalsw.co.uk/og-image.jpg">
+<link rel="canonical" href="https://www.dselectricalsw.co.uk/">
+<link rel="manifest" href="/manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="image" href="/photos/hero-kitchen.webp" type="image/webp" fetchpriority="high" media="(min-width: 769px)">
+<link rel="preload" as="image" href="/photos/hero-kitchen-mobile.webp" type="image/webp" fetchpriority="high" media="(max-width: 768px)">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap"></noscript>
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":["LocalBusiness","Electrician"],
+ "@id":"https://www.dselectricalsw.co.uk/#organization",
+ "name":"DS Electrical Installations (SW) Ltd",
+ "alternateName":"DS Electrical",
+ "legalName":"DS Electrical Installations SW Ltd",
+ "url":"https://www.dselectricalsw.co.uk",
+ "logo":"https://www.dselectricalsw.co.uk/logo-full.png",
+ "image":"https://www.dselectricalsw.co.uk/logo-full.png",
+ "telephone":"+447889334849",
+ "email":"info@dselectricalsw.co.uk",
+ "foundingDate":"2011",
+ "slogan":"Commercial and domestic electrical contractors in Mid Somerset",
+ "description":"NAPIT approved electrical contractors in Mid Somerset. Commercial and domestic rewires, EV chargers, CCTV, fire alarms, emergency lighting, and 24-hour emergency callouts.",
+ "founder":[
+  {"@type":"Person","name":"Dan Stevens","jobTitle":"Director","telephone":"+447889334849","worksFor":{"@id":"https://www.dselectricalsw.co.uk/#organization"}},
+  {"@type":"Person","name":"Dan Street","jobTitle":"Director","telephone":"+447983106928","worksFor":{"@id":"https://www.dselectricalsw.co.uk/#organization"}}
+ ],
+ "address":{"@type":"PostalAddress","addressLocality":"Glastonbury","addressRegion":"Somerset","postalCode":"BA6","addressCountry":"GB"},
+ "geo":{"@type":"GeoCoordinates","latitude":51.1488,"longitude":-2.7144},
+ "openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"08:00","closes":"18:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"09:00","closes":"13:00"}],
+ "knowsAbout":["Commercial Electrical Installation","Domestic Rewires","Three-Phase Power","Distribution Boards","EICR Testing","Fire Alarm Installation BS 5839","Emergency Lighting BS 5266","24-Hour Emergency Callouts","EV Charger Installation","Hypervolt 3","Fastamps","CCTV Installation","Hikvision","Data Cabling","Office Fit-Outs","Heritage Lighting","Listed Building Rewiring","Agricultural Electrical"],
+ "areaServed":[{"@type":"City","name":"Wells"},{"@type":"City","name":"Shepton Mallet"},{"@type":"City","name":"Bath"},{"@type":"City","name":"Frome"},{"@type":"City","name":"Midsomer Norton"},{"@type":"City","name":"Street"},{"@type":"City","name":"Glastonbury"},{"@type":"City","name":"Wedmore"},{"@type":"City","name":"Radstock"},{"@type":"City","name":"Castle Cary"},{"@type":"City","name":"Bruton"},{"@type":"AdministrativeArea","name":"Somerset"}],
+ "aggregateRating":{"@type":"AggregateRating","ratingValue":"5.0","reviewCount":"11","bestRating":"5","worstRating":"5"},
+ "review":[
+  {"@type":"Review","reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"author":{"@type":"Person","name":"Nicola Laing"},"datePublished":"2025-12-15","reviewBody":"Brilliant experience using Dan for a full revamp of the electrics ready for the new kitchen. It was a large project and he explained things clearly and gave me options."},
+  {"@type":"Review","reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"author":{"@type":"Person","name":"Catherine Wyatt"},"datePublished":"2025-04-10","reviewBody":"Dan and his team did a fantastic job upgrading everything in my flat. Professional, tidy, and excellent quality work throughout."},
+  {"@type":"Review","reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"author":{"@type":"Person","name":"Verified Client"},"publisher":{"@type":"Organization","name":"Checkatrade"},"reviewBody":"Dan arrived on time, completed the job in a professional and speedy way. There was no mess to clean up. I would highly recommend."}
+ ],
+ "hasCredential":[{"@type":"EducationalOccupationalCredential","name":"NAPIT Approved","credentialCategory":"professional certification"},{"@type":"EducationalOccupationalCredential","name":"CHAS Accredited","credentialCategory":"contractor compliance"},{"@type":"EducationalOccupationalCredential","name":"TrustMark Government Endorsed","credentialCategory":"government endorsement"},{"@type":"EducationalOccupationalCredential","name":"Part P Registered","credentialCategory":"building regulations"},{"@type":"EducationalOccupationalCredential","name":"BS 7671 18th Edition","credentialCategory":"technical qualification"},{"@type":"EducationalOccupationalCredential","name":"City & Guilds 2391 Inspection & Testing","credentialCategory":"technical qualification"},{"@type":"EducationalOccupationalCredential","name":"Hikvision Accredited Installer","credentialCategory":"manufacturer accreditation"}],
+ "makesOffer":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"Electrical Installation Condition Report (EICR)"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Full and Partial House Rewires"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"EV Charger Installation"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"CCTV and Intruder Alarm Installation"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Commercial Fire Alarm Installation"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Emergency Lighting BS 5266"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"24-Hour Emergency Electrician Callouts"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Lighting Design and Installation"}}],
+ "priceRange":"££",
+ "currenciesAccepted":"GBP",
+ "paymentAccepted":"Cash, Bank Transfer, Credit Card, Invoice",
+ "sameAs":["https://g.co/kgs/DS-Electrical-Installations-SW"],
+ "hasMap":"https://maps.google.com/maps?q=DS+Electrical+Installations+SW+Glastonbury+BA6+8EZ"
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"FAQPage",
+ "mainEntity":[
+  {"@type":"Question","name":"How much does a full rewire cost?","acceptedAnswer":{"@type":"Answer","text":"A typical 3-bed house rewire starts from around £3,500. Price depends on the number of circuits, accessibility, and whether it includes a consumer unit upgrade."}},
+  {"@type":"Question","name":"Do I need an EICR for my rental property?","acceptedAnswer":{"@type":"Answer","text":"Yes. Since April 2021, all landlords in England must have a valid EICR before new tenancies and at least every 5 years."}},
+  {"@type":"Question","name":"Are you insured?","acceptedAnswer":{"@type":"Answer","text":"Yes. We carry £2 million public liability insurance and all our work is guaranteed. We're also NAPIT approved, CHAS accredited, and TrustMark endorsed."}},
+  {"@type":"Question","name":"How quickly can you respond to emergencies?","acceptedAnswer":{"@type":"Answer","text":"We aim to respond to all emergency callouts within 2 hours across our Mid Somerset coverage area."}},
+  {"@type":"Question","name":"What areas do you cover?","acceptedAnswer":{"@type":"Answer","text":"We're based in Glastonbury and cover all of Mid Somerset including Wells, Shepton Mallet, Bath, Frome, Street, Midsomer Norton, Bruton, Castle Cary, Radstock, and Wedmore."}}
+ ]
+}
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+/* ═══ NAV ═══ */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1.5rem,5vw,4rem);background:rgba(10,9,8,.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.04)}
+
+/* ═══ HERO — DARK ═══ */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;background:var(--dark)}
+.hero-text{display:flex;flex-direction:column;justify-content:center;padding:clamp(6rem,8vw,8rem) clamp(2rem,5vw,5rem) clamp(4rem,6vw,6rem)}
+.hero-tag{font-size:.65rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:2rem}
+.hero-tag span{display:inline-flex;align-items:center;gap:.5rem}
+.hero-tag span::before{content:'';width:8px;height:8px;background:#5a9e6f;border-radius:50%}
+
+.hero h1{font-size:clamp(3.5rem,8vw,7rem);font-weight:900;line-height:.88;color:#fff;letter-spacing:-.03em;margin-bottom:2rem}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero-desc{font-size:1.1rem;color:rgba(240,232,218,.6);line-height:1.7;max-width:420px;margin-bottom:2.5rem}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+.hero-phone{font-family:'JetBrains Mono',monospace;font-size:.95rem;color:rgba(240,232,218,.5);margin-top:1.5rem;display:block}
+.hero-phone:hover{color:var(--gold)}
+.hero-img{position:relative;overflow:hidden}
+.hero-img img{width:100%;height:100%;object-fit:cover;object-position:center 60%}
+.hero-img::before{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,var(--dark) 0%,transparent 30%)}
+.hero-img::after{content:'';position:absolute;bottom:0;left:0;right:0;height:25%;z-index:1;background:linear-gradient(to top,var(--dark),transparent)}
+
+/* ═══ STATS — DARK ═══ */
+.stats-bar{background:var(--dark);padding:0 clamp(1.5rem,5vw,4rem) 4rem}
+.stats-inner{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid rgba(255,255,255,.06);border-radius:12px;overflow:hidden}
+.stat{padding:2rem;text-align:center;border-right:1px solid rgba(255,255,255,.06)}
+.stat:last-child{border-right:none}
+.stat-num{font-size:clamp(2rem,3vw,2.8rem);font-weight:900;color:#fff;font-family:'JetBrains Mono',monospace}
+.stat-label{font-size:.7rem;color:rgba(240,232,218,.78);text-transform:uppercase;letter-spacing:.15em;margin-top:.3rem}
+
+/* ═══ SERVICES — LIGHT ═══ */
+.services{padding:clamp(5rem,10vw,8rem) clamp(1.5rem,5vw,4rem);background:var(--light)}
+.section-tag{font-size:.65rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.svc{border-radius:14px;overflow:hidden;position:relative;aspect-ratio:4/3;cursor:pointer;transition:.4s}
+.svc:hover{transform:translateY(-5px);box-shadow:0 20px 50px rgba(0,0,0,.15)}
+.svc img{width:100%;height:100%;object-fit:cover;transition:.5s}
+.svc:hover img{transform:scale(1.05)}
+.svc-overlay{position:absolute;inset:0;background:linear-gradient(0deg,rgba(10,9,8,.88) 0%,rgba(10,9,8,.2) 50%,transparent 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:1.8rem}
+.svc h3{font-size:1.15rem;font-weight:800;color:#fff;margin-bottom:.3rem}
+.svc p{font-size:.8rem;color:rgba(240,232,218,.65);line-height:1.5}
+
+/* ═══ PHOTO BREAK — FULL BLEED ═══ */
+.photo-break{position:relative;height:60vh;overflow:hidden}
+.photo-break img{width:100%;height:100%;object-fit:cover;object-position:center 40%}
+.photo-break::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(10,9,8,.7) 0%,transparent 50%,rgba(10,9,8,.3) 100%)}
+.photo-break-inner{position:absolute;bottom:0;left:0;right:0;z-index:2;padding:3rem clamp(1.5rem,5vw,4rem)}
+.photo-break-inner h2{font-size:clamp(1.6rem,3vw,2.5rem);font-weight:800;color:#fff;line-height:1.15;margin-bottom:.5rem}
+.photo-break-inner p{font-size:.95rem;color:rgba(240,232,218,.6);max-width:500px}
+
+/* ═══ TRUST — LIGHT ═══ */
+.trust{padding:3.5rem clamp(1.5rem,5vw,4rem);background:var(--light2);border-top:1px solid var(--light3);border-bottom:1px solid var(--light3)}
+.trust-row{display:flex;align-items:center;gap:3.5rem;justify-content:center;flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:.6rem;opacity:.85;transition:.3s}
+.trust-item img{filter:grayscale(0.3) contrast(1.2);max-height:48px;width:auto}
+.trust-item:hover{opacity:1}
+.trust-item img{height:32px}
+.trust-item span{font-size:.7rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;font-weight:600}
+
+/* ═══ REVIEWS — DARK ═══ */
+.reviews{background:var(--dark);padding:clamp(5rem,10vw,8rem) clamp(1.5rem,5vw,4rem);display:grid;grid-template-columns:1fr 1fr;gap:clamp(3rem,6vw,6rem);align-items:center}
+.reviews-photo{border-radius:14px;overflow:hidden;aspect-ratio:3/4;max-height:600px}
+.reviews-photo img{width:100%;height:100%;object-fit:cover}
+.reviews-body .section-tag{color:var(--gold)}
+.reviews-body .section-heading{color:#fff}
+.review{padding:1.5rem 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.review:last-of-type{border-bottom:none}
+.review-stars{color:var(--gold);font-size:.85rem;letter-spacing:2px;margin-bottom:.5rem}
+.review-text{font-size:.92rem;color:rgba(240,232,218,.7);line-height:1.7;font-style:italic}
+.review-author{font-size:.78rem;font-weight:700;color:var(--gold);margin-top:.5rem}
+.review-from{font-size:.65rem;color:rgba(240,232,218,.3)}
+.reviews-link{display:inline-flex;align-items:center;gap:.4rem;margin-top:1.5rem;font-size:.8rem;font-weight:700;color:var(--gold);letter-spacing:.06em;text-transform:uppercase}
+.reviews-link:hover{gap:.7rem}
+
+/* ═══ AREAS — LIGHT ═══ */
+.areas{padding:clamp(5rem,10vw,8rem) clamp(1.5rem,5vw,4rem);background:var(--light)}
+.area-pills{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:2rem}
+.area-pill{padding:.6rem 1.5rem;border:1.5px solid var(--light3);border-radius:100px;font-size:.82rem;font-weight:600;color:var(--text-muted);transition:.25s}
+.area-pill:hover{border-color:var(--brass);color:var(--brass);background:rgba(184,148,79,.06)}
+
+/* ═══ CTA — DARK ═══ */
+.cta{background:var(--dark);padding:clamp(5rem,10vw,8rem) clamp(1.5rem,5vw,4rem);text-align:center}
+.cta-phone-office{font-family:'JetBrains Mono',monospace;font-size:clamp(2.2rem,5vw,3.8rem);font-weight:700;color:var(--gold);display:block;margin-bottom:.3rem}
+.cta-phone-office:hover{color:var(--brass)}
+
+/* ═══ FOOTER — DARK ═══ */
+.footer{background:var(--dark);padding:3rem clamp(1.5rem,5vw,4rem) 1.5rem;border-top:1px solid rgba(255,255,255,.04)}
+
+/* ═══ WHATSAPP ═══ */
+.wa{position:fixed;bottom:1.5rem;left:1.5rem;width:56px;height:56px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:99;box-shadow:0 4px 24px rgba(37,211,102,.3);transition:.2s}
+
+/* ═══ MOBILE ═══ */
+@media(max-width:1024px){
+ .hero{grid-template-columns:1fr;min-height:auto}
+ .hero-text{padding:6rem 2rem 2.5rem;order:2}
+ .hero-img{height:42vh;max-height:420px;order:1}
+ .hero-img::before{background:linear-gradient(180deg,var(--dark) 5%,transparent 30%)}
+ .services-grid{grid-template-columns:1fr 1fr}
+ .reviews{grid-template-columns:1fr}
+ .reviews-photo{max-height:350px;aspect-ratio:16/9}
+}
+@media(max-width:768px){
+ .hero h1{font-size:clamp(2.6rem,9vw,3.8rem);line-height:.95;margin-bottom:1.4rem}
+ .hero-tag{margin-bottom:1.4rem}
+ .hero-desc{font-size:1rem;line-height:1.55;margin-bottom:1.6rem}
+ .hero-img{height:36vh;min-height:240px;max-height:340px}
+ .stats-inner{grid-template-columns:1fr 1fr}
+ .stat{border-right:none;border-bottom:1px solid rgba(255,255,255,.06)}
+ .services-grid{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+ .hero-text{padding:5rem 1.2rem 1.8rem}
+ .hero h1{font-size:2.4rem;line-height:.98;letter-spacing:-.02em}
+ .hero-img{height:32vh;min-height:220px;max-height:300px}
+ .hero-btns{gap:.6rem}
+ .hero-btns .btn{flex:1;text-align:center;font-size:.85rem;padding:.85rem 1rem}
+}
+
+/* ═══ CONTACT FORM ═══ */
+.contact-form{background:var(--light);padding:clamp(5rem,10vw,8rem) clamp(1.5rem,5vw,4rem)}
+.contact-inner{max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:clamp(3rem,6vw,5rem);align-items:start}
+.contact-info h2{font-size:clamp(2rem,4vw,3rem);font-weight:900;line-height:1.05;letter-spacing:-.02em;margin-bottom:1rem}
+.contact-info p{color:var(--text-muted);line-height:1.7;margin-bottom:2rem}
+.contact-detail{display:flex;align-items:flex-start;gap:.75rem;padding:.75rem 0;border-bottom:1px solid var(--light3)}
+.contact-detail:last-of-type{border-bottom:none}
+.contact-detail svg{width:20px;height:20px;color:var(--gold);flex-shrink:0;margin-top:.15rem}
+.contact-detail div{font-size:.9rem;color:var(--text-muted);line-height:1.5}
+.contact-detail strong{color:var(--text-dark);display:block;margin-bottom:.1rem}
+.contact-detail a{color:var(--text-dark);font-weight:600}
+.contact-detail a:hover{color:var(--brass)}
+.form-card{background:#fff;border-radius:14px;padding:2.5rem;box-shadow:0 4px 24px rgba(0,0,0,.06);border:1px solid var(--light3)}
+.form-card h3{font-size:1.2rem;font-weight:800;margin-bottom:.3rem}
+.form-card .form-sub{font-size:.85rem;color:var(--text-muted);margin-bottom:1.5rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:.75rem}
+.form-field{display:flex;flex-direction:column;gap:.3rem}
+.form-field.full{grid-column:1/-1}
+.form-field label{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--brass)}
+.form-field input,.form-field select,.form-field textarea{border:1.5px solid var(--light3);border-radius:8px;padding:.7rem .9rem;font-family:'Outfit',sans-serif;font-size:.9rem;color:var(--text-dark);background:var(--light);outline:none;transition:.2s}
+.form-field input:focus,.form-field select:focus,.form-field textarea:focus{border-color:var(--gold);background:#fff}
+.form-field textarea{resize:vertical;min-height:90px}
+.form-field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b6560' d='M2 4l4 4 4-4'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .9rem center}
+.form-submit-btn{width:100%;margin-top:1rem;padding:.85rem;background:var(--gold);color:var(--dark);border:none;border-radius:8px;font-family:'Outfit',sans-serif;font-weight:800;font-size:.9rem;cursor:pointer;transition:.25s}
+.form-submit-btn:hover{background:var(--brass);transform:translateY(-2px);box-shadow:0 8px 30px rgba(212,164,74,.3)}
+@media(max-width:768px){.contact-inner{grid-template-columns:1fr}.form-row{grid-template-columns:1fr}.form-field.full{grid-column:1}}
+
+/* Sticky mobile call bar */
+.mcb{display:none;position:fixed;bottom:0;left:0;right:0;z-index:98;background:#0a0908;border-top:1px solid rgba(212,164,74,.3);padding:.6rem .6rem calc(.6rem + env(safe-area-inset-bottom));box-shadow:0 -6px 24px rgba(0,0,0,.4)}
+@media(max-width:768px){.wa{display:none !important}}
+
+/* Desktop quote CTA - hidden on mobile where call bar covers it */
+.dq-btn{position:fixed;right:1.25rem;bottom:1.25rem;z-index:99;display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 1.35rem;background:#d4a44a;color:#0a0908;border-radius:100px;font-family:'Outfit',sans-serif;font-weight:800;font-size:.8rem;letter-spacing:.04em;text-decoration:none;box-shadow:0 8px 32px rgba(212,164,74,.4);transition:.25s}
+@media(max-width:768px){}
+
+/* Trust-badge logo hover lift */
+.trust-item{transition:transform .25s ease,filter .25s ease}
+.trust-item:hover{transform:translateY(-3px);filter:brightness(1.08)}
+
+/* Subtle ambient gradient behind hero */
+.hero-text::after{content:'';position:absolute;top:-20%;right:-30%;width:60%;height:140%;background:radial-gradient(circle,rgba(212,164,74,.08) 0%,transparent 60%);pointer-events:none;z-index:0;animation:drift 24s ease-in-out infinite}
+@keyframes drift{0%,100%{transform:translate(0,0)}50%{transform:translate(-6%,4%)}}
+
+/* Live line indicator — amber pulse for the 24hr callouts card */
+.live-line{display:inline-flex;align-items:center;gap:.5rem;font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.live-line::before{content:'';width:8px;height:8px;background:#5a9e6f;border-radius:50%;animation:pulse 1.8s cubic-bezier(.4,0,.6,1) infinite}
+@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(90,158,111,.6)}50%{opacity:.85;box-shadow:0 0 0 8px rgba(90,158,111,0)}}
+</style>
+<script src="/analytics.js" defer></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","speakable":{"@type":"SpeakableSpecification","cssSelector":["h1",".hero-tagline",".intro-text",".answer"]}}
+</script>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+ <a href="/" class="nav-logo"><img src="logo-full.png" alt="DS Electrical" loading="lazy" decoding="async"></a>
+ <ul class="nav-links" id="navLinks">
+  <li><a href="/commercial-electrical.html">Commercial</a></li>
+  <li><a href="/domestic.html">Domestic</a></li>
+  <li><a href="/rewires.html">Rewires</a></li>
+  <li><a href="/heritage-installations.html">Heritage</a></li>
+  <li><a href="/eicr.html">EICR</a></li>
+  <li><a href="/ev-chargers.html">EV Chargers</a></li>
+  <li><a href="/cctv.html">CCTV</a></li>
+  <li><a href="/24-hour-callouts.html">24hr Callouts</a></li>
+  <li><a href="/gallery.html">Gallery</a></li>
+  <li><a href="/blog.html">Blog</a></li>
+  <li><a href="/contact.html">Contact</a></li>
+  <li><a href="tel:07889334849" class="nav-cta">07889 334849</a></li>
+ </ul>
+ <button class="nav-menu" onclick="document.getElementById('navLinks').classList.toggle('open')">&#9776;</button>
+</nav>
+
+<main>
+<!-- HERO -->
+<section class="hero">
+ <div class="hero-text">
+
+  <div class="hero-tag"><span>NAPIT Approved &middot; 5.0 Google Rating</span></div>
+  <h1>Commercial &amp; Domestic<br>Electrical Contractors<br>in <em>Mid Somerset</em></h1>
+  <p class="hero-desc">NAPIT approved electrical contractors across Mid Somerset. Domestic rewires and consumer units, hotel and care home EICR and maintenance contracts, fire alarms, emergency lighting tests, EV chargers, CCTV and commercial fit-outs.</p>
+  <div class="hero-btns">
+   <a href="#contact" class="btn btn-gold">Get a Free Quote</a>
+   <a href="/gallery.html" class="btn btn-white">View Our Work</a>
+  </div>
+  <a href="tel:07889334849" class="hero-phone">07889 334849</a>
+ </div>
+ <div class="hero-img">
+  <picture>
+   <source media="(max-width: 768px)" srcset="photos/hero-kitchen-mobile.webp" type="image/webp">
+   <source srcset="photos/hero-kitchen.webp" type="image/webp">
+   <img src="photos/hero-kitchen.jpg" alt="Kitchen pendant lighting installation by DS Electrical" width="1366" height="1025" fetchpriority="high">
+  </picture>
+ </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+ <div class="stats-inner">
+  <div class="stat"><div class="stat-num">500+</div><div class="stat-label">Projects Completed</div></div>
+  <div class="stat"><div class="stat-num">5.0</div><div class="stat-label">Google Rating</div></div>
+  <div class="stat"><div class="stat-num">15+</div><div class="stat-label">Years Experience</div></div>
+  <div class="stat"><div class="stat-num">6</div><div class="stat-label">Accreditations</div></div>
+ </div>
+</div>
+
+<!-- FIXED-PRICE BOOKING STRIP -->
+<section class="booking-strip" aria-label="Fixed-price online bookings">
+ <style>
+  .booking-strip{background:linear-gradient(180deg,#0a0908 0%,#131110 100%);padding:clamp(2.5rem,5vw,4rem) clamp(1.5rem,5vw,4rem);border-top:1px solid rgba(212,164,74,.15);border-bottom:1px solid rgba(212,164,74,.15)}
+  .bs-tag{font-size:.65rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);text-align:center;margin-bottom:.6rem}
+  .bs-h2{font-size:clamp(1.6rem,3.2vw,2.4rem);font-weight:900;color:#fff;text-align:center;letter-spacing:-.015em;margin-bottom:.5rem}
+  .bs-sub{color:rgba(240,232,218,.6);text-align:center;max-width:520px;margin:0 auto 2.4rem;font-size:.95rem;line-height:1.6}
+  .bs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;max-width:1100px;margin:0 auto}
+  .bs-card{background:rgba(255,255,255,.03);border:1px solid rgba(212,164,74,.15);border-radius:12px;padding:1.6rem 1.4rem;text-align:center;transition:.25s;color:inherit;text-decoration:none;display:block}
+  .bs-card:hover{transform:translateY(-3px);border-color:var(--gold);background:rgba(212,164,74,.06)}
+  .bs-card .price{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:clamp(1.9rem,3.5vw,2.6rem);font-weight:700;color:var(--gold);line-height:1;margin-bottom:.4rem}
+  .bs-card .price small{font-size:.55em;color:rgba(240,232,218,.5);font-weight:500;letter-spacing:.05em;display:block;margin-top:.2rem}
+  .bs-card h3{font-size:1.05rem;font-weight:700;color:#fff;margin:.6rem 0 .35rem}
+  .bs-card p{font-size:.82rem;color:rgba(240,232,218,.55);line-height:1.55;margin-bottom:1rem}
+  .bs-cta{display:inline-flex;align-items:center;gap:.4rem;font-size:.78rem;font-weight:700;color:var(--gold);letter-spacing:.05em;text-transform:uppercase}
+  .bs-cta::after{content:'\2192';transition:.2s}
+  .bs-card:hover .bs-cta::after{transform:translateX(3px)}
+  @media(max-width:760px){.bs-grid{grid-template-columns:1fr;gap:.9rem}}
+ </style>
+ <div class="bs-tag">Book Online — Fixed Prices</div>
+ <h2 class="bs-h2">Three jobs, three flat rates.</h2>
+ <p class="bs-sub">Most-requested services with all-in pricing — no surveys, no surprises. Book in 60 seconds.</p>
+ <div class="bs-grid">
+  <a href="/book-eicr.html" class="bs-card">
+   <div class="price">&pound;30<small>per circuit</small></div>
+   <h3>Landlord / homeowner EICR</h3>
+   <p>Priced per circuit &mdash; a typical 3-bed house has 6&ndash;10 circuits. NAPIT-issued certificate, fully BS 7671 compliant. Firm quote same day.</p>
+   <span class="bs-cta">Request EICR quote</span>
+  </a>
+  <a href="/book-fuseboard.html" class="bs-card">
+   <div class="price">&pound;99<small>Fuse Board Check</small></div>
+   <h3>Consumer unit health check</h3>
+   <p>Full inspection, written report, RCD test. Credited against any upgrade if you proceed.</p>
+   <span class="bs-cta">Book Fuse Board Check</span>
+  </a>
+  <a href="/book-ev-charger.html" class="bs-card">
+   <div class="price">&pound;495<small>EV Charger Installed</small></div>
+   <h3>7kW EV charger fitted</h3>
+   <p>Hypervolt 3 / Fastamps. Type A RCBO, BS 7671 cert, Building Control notified. OZEV grant handled.</p>
+   <span class="bs-cta">Book EV Charger</span>
+  </a>
+ </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services">
+ <div class="section-tag">What We Do</div>
+ <h2 class="section-heading">Electrical Services<br>Across Mid Somerset</h2>
+ <p class="section-desc">Every project wired right, certified, and handed over clean.</p>
+ <div class="services-grid">
+  <a href="/domestic.html" class="svc">
+   <picture><source srcset="photos/luxury-kitchen.webp" type="image/webp"><img src="photos/luxury-kitchen.jpg" alt="Modern kitchen with pendant lights by DS Electrical" loading="lazy" width="738" height="985"></picture>
+   <div class="svc-overlay"><h3>Domestic & Rewires</h3><p>Full and partial rewires, consumer unit upgrades, kitchen and bathroom circuits, pendant lighting, socket additions, fault finding and extension work. Every job BS 7671 tested and NAPIT certified.</p></div>
+  </a>
+  <a href="/heritage-installations.html" class="svc">
+   <picture><source srcset="photos/period-wall-sconce.webp" type="image/webp"><img src="photos/period-wall-sconce.webp" alt="Brass wall sconce in period home installed by DS Electrical" loading="lazy" width="900" height="1200"></picture>
+   <div class="svc-overlay"><h3>Heritage Installations</h3><p>Specialist electrical for Grade I &amp; II listed buildings, period homes and architect-led refurbishments. Concealed wiring, restoration-grade fittings, conservation-officer documentation. From &pound;15,000.</p></div>
+  </a>
+  <a href="/commercial-electrical.html" class="svc">
+   <picture><source srcset="photos/warehouse-lighting.webp" type="image/webp"><img src="photos/warehouse-lighting.jpg" alt="Industrial warehouse LED lighting installation" loading="lazy" width="1200" height="1200"></picture>
+   <div class="svc-overlay"><h3>Commercial & Industrial</h3><p>Three-phase supplies, main switch panels and sub-distribution boards, warehouse high-bay LED, control panels, machinery wiring, power factor correction, thermal imaging surveys and planned maintenance. CHAS accredited for contractor compliance.</p></div>
+  </a>
+  <a href="/cctv.html" class="svc">
+   <picture><source srcset="photos/cctv-cameras.webp" type="image/webp"><img src="photos/cctv-cameras.jpg" alt="CCTV cameras installed by DS Electrical" loading="lazy" width="1200" height="1200"></picture>
+   <div class="svc-overlay"><h3>CCTV, Alarms & Security</h3><p>Hikvision 4K AcuSense and ColorVu cameras, NVR systems with remote Hik-Connect viewing, AX PRO wireless intruder alarms, access control and video entry. GDPR-compliant signage and commissioning included.</p></div>
+  </a>
+  <a href="/office-fit-outs.html" class="svc">
+   <picture><source srcset="photos/fibre-panel.webp" type="image/webp"><img src="photos/fibre-panel.jpg" alt="Fibre optic patch panel installation" loading="lazy" width="1200" height="1200"></picture>
+   <div class="svc-overlay"><h3>Data, Fibre & Office Fit-Outs</h3><p>Cat6 and Cat6A structured cabling, fibre optic runs and terminations, Cisco Meraki Wi-Fi, comms cabinets, server rooms, Cat A and Cat B office fit-outs, small power layouts, lighting and HVAC interfaces.</p></div>
+  </a>
+  <a href="/ev-chargers.html" class="svc">
+   <picture><source srcset="photos/ev-charger.webp" type="image/webp"><img src="photos/ev-charger.jpg" alt="EV charger installation" loading="lazy" width="1000" height="666"></picture>
+   <div class="svc-overlay"><h3>EV Charger Installation</h3><p>Hypervolt 3, Fastamps, Easee, Ohme, Zappi and Andersen. Dedicated 32A radial circuits, Type A RCD with 6mA DC detection, PME earthing surveys, DNO notification and OZEV grant paperwork handled end-to-end.</p></div>
+  </a>
+  <a href="/lighting.html" class="svc">
+   <picture><source srcset="photos/barn-conversion.webp?v=2" type="image/webp"><img src="photos/barn-conversion.jpg?v=2" alt="Barn conversion with exposed beams and pendant lights by DS Electrical" loading="lazy" width="737" height="984"></picture>
+   <div class="svc-overlay"><h3>Lighting Design & Install</h3><p>Residential, heritage and commercial schemes. LED strip, downlights, pendants, track, landscape and external lighting. Smart controls (Lutron, Rako, Casambi, DALI-2). BS 5266 emergency lighting and BS 5839 fire alarm integration.</p></div>
+  </a>
+ </div>
+</section>
+
+<!-- PHOTO BREAK -->
+<a href="/heritage-installations.html" class="photo-break" style="display:block;text-decoration:none">
+ <picture><source srcset="photos/church.webp" type="image/webp"><img src="photos/church.jpg" alt="DS Electrical working in heritage church building" loading="lazy" width="1256" height="2233"></picture>
+ <div class="photo-break-inner">
+  <h2>From heritage buildings<br>to new builds.</h2>
+  <p>Listed-building specialists. Conservation-officer-friendly documentation. From &pound;15,000. &rarr; DS Heritage Installations</p>
+ </div>
+</a>
+
+<!-- WHY CHOOSE US -->
+<section style="background:var(--light);padding:clamp(5rem,9vw,7rem) clamp(1.5rem,5vw,4rem)">
+ <div style="max-width:1200px;margin:0 auto">
+  <div style="text-align:center;margin-bottom:3rem">
+   <div class="section-tag">Why Choose DS Electrical</div>
+   <h2 class="section-heading">Six reasons clients<br>keep coming back.</h2>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem" class="wcu-grid">
+   <div style="background:#fff;padding:2rem;border-radius:12px;border:1px solid var(--light3);transition:.25s">
+    <div style="width:44px;height:44px;border-radius:10px;background:var(--gold);color:var(--dark);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-weight:900;font-size:.95rem;margin-bottom:1rem">01</div>
+    <h3 style="font-size:1.05rem;font-weight:800;margin-bottom:.5rem">Directors on the tools</h3>
+    <p style="font-size:.9rem;color:var(--text-muted);line-height:1.6">You speak to Dan Stevens or Dan Street and the person quoting the work is the person doing it. No call centre, no chain of sub-contractors, no surprise substitutions.</p>
+   </div>
+   <div style="background:#fff;padding:2rem;border-radius:12px;border:1px solid var(--light3)">
+    <div style="width:44px;height:44px;border-radius:10px;background:var(--gold);color:var(--dark);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-weight:900;font-size:.95rem;margin-bottom:1rem">02</div>
+    <h3 style="font-size:1.05rem;font-weight:800;margin-bottom:.5rem">Fixed-price quoting</h3>
+    <p style="font-size:.9rem;color:var(--text-muted);line-height:1.6">Free site survey, written fixed-price quote within 48 hours. No day rates, no open-ended bills, no &ldquo;while we&rsquo;re here&rdquo; surprises. The price you agree is the price you pay.</p>
+   </div>
+   <div style="background:#fff;padding:2rem;border-radius:12px;border:1px solid var(--light3)">
+    <div style="width:44px;height:44px;border-radius:10px;background:var(--gold);color:var(--dark);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-weight:900;font-size:.95rem;margin-bottom:1rem">03</div>
+    <h3 style="font-size:1.05rem;font-weight:800;margin-bottom:.5rem">Every job certified</h3>
+    <p style="font-size:.9rem;color:var(--text-muted);line-height:1.6">Full BS 7671:2018+A2 Electrical Installation Certificate or Minor Works every time. NAPIT Part P notification lodged on your behalf. Complete compliance pack for your insurer or conveyancer.</p>
+   </div>
+   <div style="background:#fff;padding:2rem;border-radius:12px;border:1px solid var(--light3)">
+    <div style="width:44px;height:44px;border-radius:10px;background:var(--gold);color:var(--dark);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-weight:900;font-size:.95rem;margin-bottom:1rem">04</div>
+    <h3 style="font-size:1.05rem;font-weight:800;margin-bottom:.5rem">Zero snagging, clean finish</h3>
+    <p style="font-size:.9rem;color:var(--text-muted);line-height:1.6">Cordless extraction on every drill, dust sheets on every surface, chases filled ready for your plasterer, clean-up at the end of every day. We leave the site better than we found it.</p>
+   </div>
+   <div style="background:#fff;padding:2rem;border-radius:12px;border:1px solid var(--light3)">
+    <div style="width:44px;height:44px;border-radius:10px;background:var(--gold);color:var(--dark);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-weight:900;font-size:.95rem;margin-bottom:1rem">05</div>
+    <h3 style="font-size:1.05rem;font-weight:800;margin-bottom:.5rem">Heritage-sensitive</h3>
+    <p style="font-size:.9rem;color:var(--text-muted);line-height:1.6">Mid Somerset is full of Listed buildings, barn conversions, and period cottages. See our dedicated <a href="/heritage-installations.html" style="color:var(--brass);font-weight:700;text-decoration:underline;text-underline-offset:3px">DS Heritage Installations</a> service for conservation-officer documentation, concealed wiring and restoration-grade fittings.</p>
+   </div>
+   <div style="background:#fff;padding:2rem;border-radius:12px;border:1px solid var(--light3)">
+    <div style="width:44px;height:44px;border-radius:10px;background:var(--gold);color:var(--dark);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-weight:900;font-size:.95rem;margin-bottom:1rem">06</div>
+    <h3 style="font-size:1.05rem;font-weight:800;margin-bottom:.5rem">Same-day response</h3>
+    <p style="font-size:.9rem;color:var(--text-muted);line-height:1.6">Enquiries answered the same working day. Emergency callouts within 2 hours across Mid Somerset. Contract clients get a guaranteed 2-hour response and a 24-hour emergency line.</p>
+   </div>
+  </div>
+ </div>
+</section>
+<style>@media(max-width:900px){.wcu-grid{grid-template-columns:repeat(2,1fr) !important}}@media(max-width:600px){.wcu-grid{grid-template-columns:1fr !important}}</style>
+
+<!-- TRUST -->
+<div class="trust">
+ <div class="trust-row">
+  <div class="trust-item"><img src="assets/accreditations/napit-official.png" alt="NAPIT approved electrical contractor" loading="lazy" decoding="async"><span>NAPIT</span></div>
+  <div class="trust-item"><img src="assets/accreditations/chas-official.png" alt="CHAS accredited contractor" loading="lazy" decoding="async"><span>CHAS</span></div>
+  <div class="trust-item"><img src="assets/accreditations/city-guilds-logo.png" alt="City and Guilds qualified electrician" loading="lazy" decoding="async"><span>City & Guilds</span></div>
+  <div class="trust-item"><img src="assets/accreditations/trustmark.svg" alt="TrustMark government endorsed" loading="lazy" decoding="async"><span>TrustMark</span></div>
+  <div class="trust-item"><img src="assets/accreditations/part-p.svg" alt="Part P registered electrician" loading="lazy" decoding="async"><span>Part P</span></div>
+  <div class="trust-item"><img src="assets/accreditations/bs7671.svg" alt="BS 7671 18th Edition compliant" loading="lazy" decoding="async"><span>BS 7671</span></div>
+ </div>
+</div>
+
+<!-- MEET DAN -->
+<section style="background:var(--dark);padding:clamp(5rem,10vw,8rem) clamp(1.5rem,5vw,4rem)">
+ <div style="display:grid;grid-template-columns:auto 1fr;gap:clamp(2rem,5vw,4rem);align-items:center;max-width:900px">
+  <picture><source srcset="photos/dan-portrait.webp" type="image/webp"><img src="photos/dan-portrait.jpg" alt="Dan Stevens, Director of DS Electrical" style="width:200px;height:200px;border-radius:50%;object-fit:cover;border:3px solid rgba(212,164,74,.2)" loading="lazy" width="1600" height="2115"></picture>
+  <div>
+   <div class="section-tag" style="color:var(--gold)">About Us</div>
+   <h2 class="section-heading" style="color:#fff">Run by electricians,<br>not a call centre.</h2>
+   <p style="color:rgba(240,232,218,.6);line-height:1.7;font-size:.95rem;margin-bottom:1rem">DS Electrical is run by directors Dan Stevens and Dan Street. 15+ years in the trade, NAPIT approved, and based right here in Glastonbury. When you call, you speak to the person doing the work.</p>
+   <div style="display:flex;gap:2rem;flex-wrap:wrap;margin-top:1.5rem">
+    <div><span style="font-size:.65rem;text-transform:uppercase;letter-spacing:.2em;color:var(--gold);display:block;margin-bottom:.25rem">Insurance</span><span style="color:#fff;font-weight:700;font-size:.95rem">&pound;2M Public Liability</span></div>
+    <div><span style="font-size:.65rem;text-transform:uppercase;letter-spacing:.2em;color:var(--gold);display:block;margin-bottom:.25rem">Guarantee</span><span style="color:#fff;font-weight:700;font-size:.95rem">All Work Guaranteed</span></div>
+    <div><span style="font-size:.65rem;text-transform:uppercase;letter-spacing:.2em;color:var(--gold);display:block;margin-bottom:.25rem">Response</span><span style="color:#fff;font-weight:700;font-size:.95rem">Enquiries Answered Same Day</span></div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews" id="reviews">
+ <div class="reviews-photo">
+  <img src="photos/atmospheric-kitchen.jpg?v=3" alt="Luxury kitchen with pendant lights and glass cabinets by DS Electrical" loading="lazy" decoding="async" width="738" height="1280">
+ </div>
+ <div class="reviews-body">
+  <div class="section-tag">Client Reviews</div>
+  <h2 class="section-heading">5.0 on Google.<br>Every single time.</h2>
+  <div class="rating-badge" style="display:flex;align-items:center;gap:1rem;margin:1.5rem 0 2rem;padding:1rem 1.25rem;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,.06);max-width:420px">
+   <div style="font-size:2.8rem;font-weight:900;font-family:'JetBrains Mono',monospace;color:var(--dark);line-height:1">5.0</div>
+   <div>
+    <div style="color:#fbbc04;font-size:1.2rem;letter-spacing:.1em;line-height:1">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+    <div style="font-size:.8rem;color:var(--text-muted);margin-top:.2rem">Based on <strong style="color:var(--dark)">11 Google reviews</strong></div>
+    <a href="https://www.google.com/search?q=DS+Electrical+Installations+SW+Ltd+Reviews" target="_blank" rel="noopener" style="font-size:.75rem;color:var(--brass);font-weight:600;text-decoration:underline">Read on Google &rarr;</a>
+   </div>
+  </div>
+  <div class="review">
+   <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+   <p class="review-text">"Brilliant experience using Dan for a full revamp of the electrics ready for the new kitchen. It was a large project and he explained things clearly and gave me options."</p>
+   <div class="review-author">Nicola Laing</div>
+   <div class="review-from">Google &middot; Kitchen rewire</div>
+  </div>
+  <div class="review">
+   <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+   <p class="review-text">"Dan and his team did a fantastic job upgrading everything in my flat. Professional, tidy, and excellent quality work throughout."</p>
+   <div class="review-author">Catherine Wyatt</div>
+   <div class="review-from">Google &middot; Flat upgrade</div>
+  </div>
+  <div class="review">
+   <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+   <p class="review-text">"Dan arrived on time, completed the job in a professional and speedy way. There was no mess to clean up. I would highly recommend."</p>
+   <div class="review-author">Verified Client</div>
+   <div class="review-from">Checkatrade</div>
+  </div>
+  <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--light3)">
+   <div style="flex:1;min-width:130px"><div style="font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--brass);margin-bottom:.25rem">Insurance</div><div style="font-size:.95rem;font-weight:700;color:var(--dark)">&pound;2M Public Liability</div></div>
+   <div style="flex:1;min-width:130px"><div style="font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--brass);margin-bottom:.25rem">Accredited</div><div style="font-size:.95rem;font-weight:700;color:var(--dark)">NAPIT &middot; CHAS &middot; TrustMark</div></div>
+   <div style="flex:1;min-width:130px"><div style="font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--brass);margin-bottom:.25rem">Experience</div><div style="font-size:.95rem;font-weight:700;color:var(--dark)">15+ Years</div></div>
+  </div>
+  <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1.5rem">
+   <a href="/testimonials.html" class="reviews-link">See all reviews &rarr;</a>
+   <a href="https://g.co/kgs/DS-Electrical-Installations-SW" target="_blank" rel="noopener" class="reviews-link" style="color:var(--text-dark)">Read on Google &rarr;</a>
+  </div>
+ </div>
+</section>
+
+<!-- AREAS -->
+<section class="areas">
+ <div class="section-tag">Coverage</div>
+ <h2 class="section-heading">Mid Somerset<br>& Surrounding Areas</h2>
+ <p class="section-desc">Based in Glastonbury. We cover the lot.</p>
+ <div class="area-pills">
+  <a href="/areas/wells.html" class="area-pill">Wells</a><a href="/areas/shepton-mallet.html" class="area-pill">Shepton Mallet</a><a href="/areas/bath.html" class="area-pill">Bath</a><a href="/areas/frome.html" class="area-pill">Frome</a><a href="/areas/glastonbury.html" class="area-pill">Glastonbury</a><a href="/areas/street.html" class="area-pill">Street</a><a href="/areas/midsomer-norton.html" class="area-pill">Midsomer Norton</a><a href="/areas/bruton.html" class="area-pill">Bruton</a><a href="/areas/castle-cary.html" class="area-pill">Castle Cary</a><a href="/areas/radstock.html" class="area-pill">Radstock</a><a href="/areas/wedmore.html" class="area-pill">Wedmore</a>
+ </div>
+</section>
+
+<!-- FAQ -->
+<section style="background:var(--dark);padding:clamp(5rem,10vw,8rem) clamp(1.5rem,5vw,4rem)">
+ <div class="section-tag" style="color:var(--gold)">Common Questions</div>
+ <h2 class="section-heading" style="color:#fff;margin-bottom:2.5rem">Frequently Asked</h2>
+ <div style="max-width:700px">
+  <details style="border-bottom:1px solid rgba(255,255,255,.06);padding:1.2rem 0">
+   <summary style="font-weight:700;color:#fff;cursor:pointer;font-size:1rem;list-style:none;display:flex;justify-content:space-between;align-items:center">How much does a full rewire cost?<span style="color:var(--gold);font-size:1.2rem">+</span></summary>
+   <p style="color:rgba(240,232,218,.6);margin-top:.75rem;line-height:1.7;font-size:.9rem">A typical 3-bed house rewire starts from around &pound;3,500. Price depends on the number of circuits, accessibility, and whether it includes a consumer unit upgrade. We provide free, no-obligation quotes with a full breakdown.</p>
+  </details>
+  <details style="border-bottom:1px solid rgba(255,255,255,.06);padding:1.2rem 0">
+   <summary style="font-weight:700;color:#fff;cursor:pointer;font-size:1rem;list-style:none;display:flex;justify-content:space-between;align-items:center">Do I need an EICR for my rental property?<span style="color:var(--gold);font-size:1.2rem">+</span></summary>
+   <p style="color:rgba(240,232,218,.6);margin-top:.75rem;line-height:1.7;font-size:.9rem">Yes. Since April 2021, all landlords in England must have a valid EICR before new tenancies and at least every 5 years. We can test and certify your property, usually within 24 hours of booking.</p>
+  </details>
+  <details style="border-bottom:1px solid rgba(255,255,255,.06);padding:1.2rem 0">
+   <summary style="font-weight:700;color:#fff;cursor:pointer;font-size:1rem;list-style:none;display:flex;justify-content:space-between;align-items:center">Are you insured?<span style="color:var(--gold);font-size:1.2rem">+</span></summary>
+   <p style="color:rgba(240,232,218,.6);margin-top:.75rem;line-height:1.7;font-size:.9rem">Yes. We carry &pound;2 million public liability insurance and all our work is guaranteed. We're also NAPIT approved, CHAS accredited, and TrustMark endorsed.</p>
+  </details>
+  <details style="border-bottom:1px solid rgba(255,255,255,.06);padding:1.2rem 0">
+   <summary style="font-weight:700;color:#fff;cursor:pointer;font-size:1rem;list-style:none;display:flex;justify-content:space-between;align-items:center">How quickly can you respond to emergencies?<span style="color:var(--gold);font-size:1.2rem">+</span></summary>
+   <p style="color:rgba(240,232,218,.6);margin-top:.75rem;line-height:1.7;font-size:.9rem">We aim to respond to all emergency callouts within 2 hours across our Mid Somerset coverage area. For non-urgent enquiries, we get back to you the same day.</p>
+  </details>
+  <details style="border-bottom:1px solid rgba(255,255,255,.06);padding:1.2rem 0">
+   <summary style="font-weight:700;color:#fff;cursor:pointer;font-size:1rem;list-style:none;display:flex;justify-content:space-between;align-items:center">What areas do you cover?<span style="color:var(--gold);font-size:1.2rem">+</span></summary>
+   <p style="color:rgba(240,232,218,.6);margin-top:.75rem;line-height:1.7;font-size:.9rem">We're based in Glastonbury and cover all of Mid Somerset including Wells, Shepton Mallet, Bath, Frome, Street, Midsomer Norton, Bruton, Castle Cary, Radstock, and Wedmore.</p>
+  </details>
+ </div>
+</section>
+
+<!-- CONTACT FORM -->
+<section class="contact-form" id="contact">
+ <div class="contact-inner">
+  <div class="contact-info">
+   <div class="section-tag">Get In Touch</div>
+   <h2>Request a<br>Free Quote</h2>
+   <p>Fill in the form and we'll get back to you the same working day. Or call Dan directly for an immediate response.</p>
+   <div class="contact-detail">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.1-.04-.21-.05-.31-.05-.26 0-.51.1-.71.29l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.58l2.2-2.21c.28-.27.36-.66.25-1.01C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/></svg>
+    <div><strong>Dan Stevens, Director</strong><a href="tel:07889334849">07889 334849</a></div>
+   </div>
+   <div class="contact-detail">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.1-.04-.21-.05-.31-.05-.26 0-.51.1-.71.29l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.58l2.2-2.21c.28-.27.36-.66.25-1.01C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/></svg>
+    <div><strong>Dan Street, Director</strong><a href="tel:07983106928">07983 106928</a></div>
+   </div>
+   <div class="contact-detail">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+    <div><strong>Email</strong><a href="mailto:info@dselectricalsw.co.uk">info@dselectricalsw.co.uk</a></div>
+   </div>
+   <div class="contact-detail">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+    <div><strong>Base</strong>Glastonbury, Somerset<br><span style="font-size:.78rem;color:var(--text-muted)">Covering Wells, Bath, Shepton Mallet &amp; surrounding areas</span></div>
+   </div>
+  </div>
+  <div class="form-card">
+   <h3>Quick Enquiry</h3>
+   <p class="form-sub">We'll respond the same working day.</p>
+   <form action="https://formsubmit.co/info@dselectricalsw.co.uk" method="POST">
+    <input type="hidden" name="_subject" value="Website Enquiry — DS Electrical">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    <input type="text" name="_honey" style="display:none">
+    <input type="hidden" name="_next" value="https://www.dselectricalsw.co.uk/thanks.html">
+    <div class="form-row">
+     <div class="form-field"><label>Name</label><input type="text" name="name" required placeholder="Your name"></div>
+     <div class="form-field"><label>Phone</label><input type="tel" name="phone" required placeholder="Your number"></div>
+    </div>
+    <div class="form-row">
+     <div class="form-field full"><label>Email</label><input type="email" name="email" required placeholder="Your email"></div>
+    </div>
+    <div class="form-row">
+     <div class="form-field full">
+      <label for="service-select">Service Required</label>
+      <select name="service" id="service-select">
+       <option value="">Select a service...</option>
+       <option>Domestic Rewire</option>
+       <option>Consumer Unit Upgrade</option>
+       <option>EICR / Electrical Testing</option>
+       <option>EV Charger Installation</option>
+       <option>CCTV &amp; Security</option>
+       <option>Commercial / Industrial</option>
+       <option>Fire Alarm / Emergency Lighting</option>
+       <option>Office Fit-Out / Data Cabling</option>
+       <option>Lighting Design</option>
+       <option>Other</option>
+      </select>
+     </div>
+    </div>
+    <div class="form-row">
+     <div class="form-field full"><label>Tell Us About Your Project</label><textarea name="message" rows="4" placeholder="Brief description of what you need..."></textarea></div>
+    </div>
+    <button type="submit" class="form-submit-btn">Send Enquiry</button>
+   </form>
+  </div>
+ </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+ <div class="section-tag" style="color:var(--gold)">Prefer to Call?</div>
+ <h2 class="section-heading">Speak to Dan<br>Directly</h2>
+ <p class="section-desc">No call centres, no gatekeepers. You speak to the person doing the work.</p>
+ <span class="cta-phone-label">Direct</span>
+ <a href="tel:07889334849" class="cta-phone">Dan Stevens: 07889 334849</a>
+ <a href="tel:07983106928" class="cta-phone-2">Dan Street: 07983 106928</a>
+ <div class="cta-btns">
+  <a href="https://wa.me/447889334849" class="btn btn-gold">WhatsApp Dan</a>
+  <a href="mailto:info@dselectricalsw.co.uk" class="btn btn-white">Email Us</a>
+ </div>
+</section>
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+ <div class="footer-grid">
+  <div>
+   <h3>DS Electrical Installations (SW) Ltd</h3>
+   <p>Glastonbury, Somerset</p>
+   <p><a href="tel:07889334849">07889 334849 (Dan Stevens)</a></p>
+   <p><a href="tel:07983106928">07983 106928 (Dan Street)</a></p>
+   <p><a href="mailto:info@dselectricalsw.co.uk">info@dselectricalsw.co.uk</a></p>
+  </div>
+  <div>
+   <h3>Services</h3>
+   <p><a href="/heritage-installations.html">Heritage Installations</a></p>
+   <p><a href="/eicr.html">Rewires & EICR</a></p>
+   <p><a href="/ev-chargers.html">EV Chargers</a></p>
+   <p><a href="/cctv.html">CCTV & Security</a></p>
+   <p><a href="/commercial-electrical.html">Commercial</a></p>
+    <p><a href="/commercial-contracts.html">Maintenance Contracts</a></p>
+   <p><a href="/office-fit-outs.html">Office Fit-Outs</a></p>
+    <p><a href="/data-networking.html">Data Networking &amp; Wi-Fi</a></p>
+    <p><a href="/fibre-optic.html">Fibre Optic</a></p>
+    <p><a href="/fire-alarms.html">Fire Alarms</a></p>
+    <p><a href="/lighting.html">Emergency Lighting</a></p>
+    <p><a href="/24-hour-callouts.html">24-Hour Callouts</a></p>
+   </div>
+  <div>
+   <h3>Areas</h3>
+   <p>Wells</p><p>Shepton Mallet</p><p>Bath</p><p>Frome</p><p>Midsomer Norton</p><p>Street</p>
+  </div>
+  <div>
+   <h3>Trust</h3>
+   <p>NAPIT Approved</p><p>CHAS Accredited</p><p>TrustMark Endorsed</p><p>Part P Registered</p>
+   <p style="margin-top:.6rem;padding-top:.6rem;border-top:1px solid rgba(255,255,255,.08)"><a href="/network.html" style="color:#d4a44a">24/7 Callout Network →</a></p>
+   <p style="margin-top:.5rem"><a href="#reviews">5.0 Google Rating</a></p>
+  </div>
+ </div>
+ <div class="footer-bottom">
+  <span>&copy; 2026 DS Electrical Installations (SW) Ltd &middot; Reg. in England No. 13972348 &middot; VAT Reg. No. GB 429 0409 05 &middot; ICO 00013889257 &middot; NAPIT 66245 &middot; CHAS 158368</span>
+  <span><a href="/privacy.html">Privacy</a> &middot; <a href="/terms.html">Terms</a></span>
+ </div>
+</footer>
+
+<!-- WHATSAPP -->
+<a href="https://wa.me/447889334849" class="wa" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.611.611l4.458-1.495A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.344 0-4.508-.8-6.227-2.141l-.435-.344-3.208 1.076 1.076-3.208-.344-.435A9.956 9.956 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg></a>
+
+
+<!-- MOBILE CALL BAR -->
+<div class="mcb" aria-label="Quick contact">
+ <div class="mcb-grid">
+  <a href="tel:07889334849" class="mcb-call" aria-label="Call 07889 334849">
+   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.1-.04-.21-.05-.31-.05-.26 0-.51.1-.71.29l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.58l2.2-2.21c.28-.27.36-.66.25-1.01C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/></svg>
+   <span>Call Dan</span><small>07889 334849</small>
+  </a>
+  <a href="https://wa.me/447889334849" class="mcb-wa" aria-label="WhatsApp">
+   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.611.611l4.458-1.495A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+   <span>WhatsApp</span>
+  </a>
+  <a href="mailto:info@dselectricalsw.co.uk" class="mcb-mail" aria-label="Email">
+   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+   <span>Email</span>
+  </a>
+ </div>
+</div>
+
+
+<!-- DESKTOP QUOTE CTA -->
+<a href="tel:07889334849" class="dq-btn" aria-label="Call Dan 07889 334849">
+ <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.1-.04-.21-.05-.31-.05-.26 0-.51.1-.71.29l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.58l2.2-2.21c.28-.27.36-.66.25-1.01C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/></svg>
+ Call Dan &mdash; 07889 334849
+</a>
+
+<script src="/email-popup.js" defer></script>
+<script src="/track.js" defer></script>
+<script src="/chat-widget.js" defer></script>
+</body>
+</html>

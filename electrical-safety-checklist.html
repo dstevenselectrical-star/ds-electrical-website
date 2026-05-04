@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0f172a">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<style id="shared-inline">
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+ --dark:#0a0908;--dark2:#131110;--dark3:#1c1915;
+ --light:#f8f5f0;--light2:#eee9e0;--light3:#e2dbd0;
+ --brass:#b8944f;--gold:#d4a44a;
+ --text-dark:#1a1714;--text-muted:#6b6560;
+ --text-light:#f0e8da;--text-light-muted:#8c7d6a;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',sans-serif;background:var(--light);color:var(--text-dark);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none;transition:.2s}
+img{display:block;max-width:100%}
+
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1.5rem,5vw,4rem);background:rgba(10,9,8,.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.04)}
+.nav-logo img{height:70px;width:auto}
+.nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+.nav-links a{font-size:.78rem;font-weight:600;color:rgba(240,232,218,.6);letter-spacing:.08em;text-transform:uppercase}
+.nav-links a:hover{color:#fff}
+.nav-links a.active{color:var(--gold)}
+.nav-cta{background:var(--gold);color:var(--dark);padding:.5rem 1.3rem;border-radius:6px;font-weight:700;font-size:.78rem}
+.nav-cta:hover{background:var(--brass)}
+.nav-menu{display:none;background:none;border:none;color:#fff;font-size:1.5rem;cursor:pointer}
+
+.section-tag{font-size:.65rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--brass);margin-bottom:1rem}
+.section-heading{font-size:clamp(2.2rem,4.5vw,3.5rem);font-weight:900;line-height:1.05;letter-spacing:-.02em;margin-bottom:.75rem}
+.section-desc{color:var(--text-muted);font-size:1.05rem;line-height:1.7;max-width:600px;margin-bottom:2rem}
+.btn{padding:.8rem 2rem;border-radius:6px;font-weight:700;font-size:.85rem;letter-spacing:.02em;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:.5rem;transition:.25s}
+.btn-gold{background:var(--gold);color:var(--dark)}
+.btn-gold:hover{background:var(--brass);transform:translateY(-2px);box-shadow:0 8px 30px rgba(212,164,74,.3)}
+.btn-white{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.12)}
+.btn-white:hover{background:rgba(255,255,255,.14)}
+
+.breadcrumb{background:var(--light);padding:1rem clamp(1.5rem,5vw,4rem);font-size:.78rem;border-bottom:1px solid var(--light3)}
+.breadcrumb-inner{max-width:1200px;margin:0 auto;display:flex;gap:.5rem;align-items:center;color:var(--text-muted);font-weight:500}
+.breadcrumb-inner a{color:var(--text-muted);text-decoration:none;transition:.2s}
+.breadcrumb-inner a:hover{color:var(--brass)}
+.breadcrumb-inner .sep{color:var(--light3)}
+.breadcrumb-inner .current{color:var(--text-dark);font-weight:700}
+
+.tstrip{background:var(--light2);padding:2.5rem clamp(1.5rem,5vw,4rem);border-top:1px solid var(--light3);border-bottom:1px solid var(--light3)}
+.tstrip-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(6,1fr);gap:1.5rem;text-align:center}
+.tstrip-inner img{height:46px;width:auto;margin:0 auto;filter:grayscale(.15) contrast(1.05)}
+.tstrip-inner .tlbl{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.18em;color:var(--text-muted);margin-top:.5rem}
+
+.cta{background:var(--dark);padding:clamp(5rem,10vw,8rem) clamp(1.5rem,5vw,4rem);text-align:center}
+.cta .section-heading{color:#fff}
+.cta .section-desc{color:rgba(240,232,218,.5);margin:0 auto 1.5rem;text-align:center}
+.cta-phone-label{font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(240,232,218,.4);display:block;margin-bottom:.6rem}
+.cta-phone{font-family:'JetBrains Mono',monospace;font-size:clamp(1.4rem,3vw,2.2rem);font-weight:700;color:rgba(240,232,218,.5);display:block;margin-bottom:.2rem}
+.cta-phone:hover{color:var(--gold)}
+.cta-phone-2{font-family:'JetBrains Mono',monospace;font-size:clamp(1.4rem,3vw,2.2rem);color:rgba(240,232,218,.35);display:block;margin-bottom:2rem}
+.cta-phone-2:hover{color:var(--gold)}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+
+.footer{background:var(--dark);padding:3rem clamp(1.5rem,5vw,4rem) 1.5rem;border-top:1px solid rgba(255,255,255,.04)}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+.footer h3, .footer h4{font-size:.68rem;text-transform:uppercase;letter-spacing:.2em;color:var(--gold);margin-bottom:1rem;font-weight:700}
+.footer p,.footer a{font-size:.8rem;color:rgba(240,232,218,.4);line-height:2}
+.footer a:hover{color:var(--gold)}
+.footer-bottom{padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.03);display:flex;justify-content:space-between;font-size:.65rem;color:rgba(255,255,255,.2)}
+
+.wa{position:fixed;bottom:1.5rem;left:1.5rem;width:56px;height:56px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:99;box-shadow:0 4px 24px rgba(37,211,102,.3);transition:.2s}
+.wa:hover{transform:scale(1.1)}
+.wa svg{width:28px;height:28px;fill:#fff}
+
+.mcb{display:none;position:fixed;bottom:0;left:0;right:0;z-index:98;background:#0a0908;border-top:1px solid rgba(212,164,74,.3);padding:.6rem .6rem calc(.6rem + env(safe-area-inset-bottom));box-shadow:0 -6px 24px rgba(0,0,0,.4)}
+.mcb-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:.5rem}
+.mcb a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.15rem;padding:.6rem .4rem;border-radius:8px;font-family:'Outfit',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.04em;text-decoration:none;transition:.2s}
+.mcb a svg{width:18px;height:18px}
+.mcb .mcb-call{background:#d4a44a;color:#0a0908}
+.mcb .mcb-call:hover{background:#b8944f}
+.mcb .mcb-wa{background:#25d366;color:#fff}
+.mcb .mcb-mail{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.14)}
+.mcb small{font-size:.62rem;font-weight:500;opacity:.75;letter-spacing:.02em;text-transform:none}
+
+.dq-btn{position:fixed;right:1.25rem;bottom:1.25rem;z-index:99;display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 1.35rem;background:#d4a44a;color:#0a0908;border-radius:100px;font-family:'Outfit',sans-serif;font-weight:800;font-size:.8rem;letter-spacing:.04em;text-decoration:none;box-shadow:0 8px 32px rgba(212,164,74,.4);transition:.25s}
+.dq-btn:hover{background:#b8944f;transform:translateY(-2px);box-shadow:0 12px 40px rgba(212,164,74,.5)}
+.dq-btn svg{width:16px;height:16px}
+
+@media(max-width:1024px){.tstrip-inner{grid-template-columns:repeat(3,1fr);gap:1.5rem}}
+@media(max-width:768px){
+ .nav-links{display:none;position:fixed;top:72px;left:0;right:0;background:rgba(10,9,8,.98);backdrop-filter:blur(20px);flex-direction:column;padding:2rem;gap:1.5rem;border-bottom:1px solid rgba(255,255,255,.06)}
+ .nav-links.open{display:flex}
+ .nav-menu{display:block}
+ .mcb{display:block}
+ body{padding-bottom:72px}
+ .wa{bottom:6rem !important}
+ .dq-btn{display:none}
+ .footer-grid{grid-template-columns:1fr 1fr}
+ .tstrip-inner{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:480px){.footer-grid{grid-template-columns:1fr}}
+</style>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Electrical Safety Checklist UK | Home &amp; Landlord 2026 | DS Electrical SW</title>
+<meta name="description" content="Free 10-minute electrical safety self-check for UK homes &amp; rentals. Smoke alarms, RCD test, fuse board, sockets, bathroom, outdoor, EV charger, EICR due date. NAPIT 66245 Somerset electricians. Call 07889 334849.">
+<link rel="canonical" href="https://www.dselectricalsw.co.uk/electrical-safety-checklist.html">
+<meta property="og:title" content="Electrical Safety Checklist - UK Homes & Rentals 2026">
+<meta property="og:description" content="10-minute electrical safety self-check for landlords and homeowners. If anything fails, book an EICR. NAPIT 66245 Somerset.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://www.dselectricalsw.co.uk/electrical-safety-checklist.html">
+<meta property="og:image" content="https://www.dselectricalsw.co.uk/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="DS Electrical safety checklist for UK homes and rentals">
+<meta name="twitter:title" content="Electrical Safety Checklist - UK Homes & Rentals 2026">
+<meta name="twitter:description" content="10-minute electrical self-check for landlords &amp; homeowners. Free from DS Electrical SW.">
+<meta name="twitter:image" content="https://www.dselectricalsw.co.uk/og-image.jpg">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="robots" content="index, follow">
+<link rel="manifest" href="/manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://fonts.googleapis.com">
+<link rel="dns-prefetch" href="https://fonts.gstatic.com">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap"></noscript>
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"WebPage",
+ "@id":"https://www.dselectricalsw.co.uk/electrical-safety-checklist.html#webpage",
+ "url":"https://www.dselectricalsw.co.uk/electrical-safety-checklist.html",
+ "name":"Electrical Safety Checklist UK | Home & Landlord 2026",
+ "description":"Free 10-minute electrical safety self-check for UK homes and rentals.",
+ "inLanguage":"en-GB",
+ "isPartOf":{"@type":"WebSite","name":"DS Electrical SW","url":"https://www.dselectricalsw.co.uk/"},
+ "primaryImageOfPage":{"@type":"ImageObject","url":"https://www.dselectricalsw.co.uk/og-image.jpg"},
+ "datePublished":"2026-05-04","dateModified":"2026-05-04"
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"BreadcrumbList",
+ "itemListElement":[
+  {"@type":"ListItem","position":1,"name":"Home","item":"https://www.dselectricalsw.co.uk/"},
+  {"@type":"ListItem","position":2,"name":"Resources","item":"https://www.dselectricalsw.co.uk/sitemap.html"},
+  {"@type":"ListItem","position":3,"name":"Electrical Safety Checklist","item":"https://www.dselectricalsw.co.uk/electrical-safety-checklist.html"}
+ ]
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"HowTo",
+ "name":"Electrical Safety Checklist for UK Homes and Rentals",
+ "description":"A 10-minute self-check covering smoke alarms, RCDs, fuse board, sockets, bathroom, outdoor, EV charger, and EICR due date.",
+ "totalTime":"PT10M",
+ "tool":[
+  {"@type":"HowToTool","name":"Mobile phone (for photos)"},
+  {"@type":"HowToTool","name":"Meter cupboard key"}
+ ],
+ "step":[
+  {"@type":"HowToStep","position":1,"name":"Smoke alarms (BS 5839-6)","text":"Press the test button on every alarm. Replace any 10-year sealed unit beeping on low battery. Minimum 1 mains-interlinked alarm per floor (mandatory Scotland 2022; recommended England and Wales)."},
+  {"@type":"HowToStep","position":2,"name":"RCD test","text":"At your consumer unit, press the T or TEST button on each RCD. The switch should trip immediately. If it does not trip, call an electrician - a failed RCD means no shock protection."},
+  {"@type":"HowToStep","position":3,"name":"Visible fuse board check","text":"Modern boards have RCBOs (white switches with TEST buttons) and meet the 18th edition. Old plastic-bodied boards (pre-2018) need upgrading to a metal-cased board. Rewireable fuses (BS 3036) need urgent upgrade."},
+  {"@type":"HowToStep","position":4,"name":"Sockets and switches","text":"Look for cracks, scorch marks, loose face-plates and hot-to-touch sockets. Any scorch marks - stop using and call an electrician."},
+  {"@type":"HowToStep","position":5,"name":"Bathroom (BS 7671 Section 701)","text":"No standard sockets in zone 1 or 2. Pull-cord switches only inside the bathroom. Shaver socket only with isolating transformer. Light fittings IP44 minimum in zones."},
+  {"@type":"HowToStep","position":6,"name":"Outdoor and garden","text":"RCD-protected outdoor sockets only. Buried cables must be SWA (steel-wire armoured). Outside lights IP44 or higher. Hot-tub circuits require Type A RCBO (BS 7671 18th edition Amd 2)."},
+  {"@type":"HowToStep","position":7,"name":"EV charger","text":"Must use Type A RCBO (or equivalent) with DC fault detection. Pre-2020 chargers may be non-compliant - have it checked."},
+  {"@type":"HowToStep","position":8,"name":"EICR due date","text":"Domestic owner-occupied: every 10 years or on change of occupancy. Rental: every 5 years (landlord legal duty since 2020). Check your EICR certificate date - if expired, book a new one."}
+ ]
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"Organization",
+ "name":"DS Electrical Installations (SW) Ltd",
+ "url":"https://www.dselectricalsw.co.uk/",
+ "logo":"https://www.dselectricalsw.co.uk/logo-full.png",
+ "telephone":"+447889334849",
+ "email":"info@dselectricalsw.co.uk",
+ "vatID":"GB429040905",
+ "address":{"@type":"PostalAddress","addressLocality":"Glastonbury","addressRegion":"Somerset","postalCode":"BA6","addressCountry":"GB"}
+}
+</script>
+<style>
+.hero{background:var(--dark);padding:clamp(7rem,9vw,9rem) clamp(1.5rem,5vw,4rem) clamp(4rem,6vw,5rem);text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(212,164,74,.08),transparent 60%);pointer-events:none}
+.hero-inner{max-width:900px;margin:0 auto;position:relative;z-index:1}
+.hero-tag{font-size:.65rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:2rem}
+.hero h1{font-size:clamp(2.3rem,5.5vw,4.5rem);font-weight:900;line-height:1.05;color:#fff;letter-spacing:-.03em;margin-bottom:1.5rem}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero-desc{font-size:1.15rem;color:rgba(240,232,218,.65);line-height:1.7;max-width:680px;margin:0 auto 2rem}
+
+.intro{padding:clamp(4rem,7vw,5rem) clamp(1.5rem,5vw,4rem);background:var(--light)}
+.intro-inner{max-width:880px;margin:0 auto}
+.intro p{font-size:1.05rem;color:var(--text-muted);line-height:1.8;margin-bottom:1rem}
+.intro p strong{color:var(--text-dark)}
+.intro h2{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;letter-spacing:-.02em;margin:2rem 0 .75rem;color:var(--text-dark)}
+
+.chk{padding:clamp(2rem,4vw,3rem) clamp(1.5rem,5vw,4rem);background:var(--light)}
+.chk.alt{background:var(--light2)}
+.chk-inner{max-width:880px;margin:0 auto}
+.chk h2{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;line-height:1.1;letter-spacing:-.02em;margin-bottom:.4rem;color:var(--text-dark)}
+.chk .chk-tag{font-size:.65rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--brass);margin-bottom:.5rem}
+.chk p{font-size:1rem;color:var(--text-muted);line-height:1.8;margin-bottom:1rem}
+.chk p strong{color:var(--text-dark);font-weight:700}
+.chk ul{list-style:none;margin:1rem 0;padding:0}
+.chk ul li{font-size:.98rem;color:var(--text-muted);line-height:1.7;padding-left:2rem;position:relative;margin-bottom:.6rem}
+.chk ul li::before{content:'';position:absolute;left:0;top:.45rem;width:14px;height:14px;border:2px solid var(--gold);border-radius:3px;background:#fff}
+.chk .alert{background:rgba(212,164,74,.08);border-left:4px solid var(--gold);padding:1rem 1.2rem;border-radius:0 6px 6px 0;font-size:.95rem;color:var(--text-dark);margin:1rem 0}
+.chk .alert strong{color:var(--text-dark)}
+
+.failed{padding:clamp(3rem,5vw,4rem) clamp(1.5rem,5vw,4rem);background:var(--dark);color:#fff;text-align:center}
+.failed-inner{max-width:780px;margin:0 auto}
+.failed h2{font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:900;letter-spacing:-.02em;color:#fff;margin-bottom:1rem}
+.failed p{font-size:1.05rem;color:rgba(240,232,218,.7);line-height:1.7;margin-bottom:1rem}
+.failed p strong{color:var(--gold)}
+
+.disclaimer{max-width:880px;margin:2rem auto;padding:1.25rem 1.5rem;background:#fff;border:2px solid var(--gold);border-radius:10px;font-size:.92rem;color:var(--text-muted);line-height:1.7}
+.disclaimer strong{color:var(--text-dark);display:block;margin-bottom:.4rem;font-size:.95rem}
+
+.print-tip{max-width:880px;margin:2rem auto;padding:1rem 1.4rem;background:var(--light2);border-left:3px solid var(--brass);border-radius:0 6px 6px 0;font-size:.92rem;color:var(--text-muted)}
+.print-tip strong{color:var(--text-dark)}
+
+@media print{
+ .nav,.breadcrumb,.tstrip,.cta,.failed,.wa,.mcb,.dq-btn,.footer{display:none !important}
+ body{background:#fff;color:#000}
+ .chk,.intro,.hero{background:#fff;color:#000;padding:1rem 0}
+ .hero h1,.chk h2,.intro h2{color:#000}
+ .hero-desc,.intro p,.chk p,.chk ul li{color:#222}
+}
+</style>
+<script src="/analytics.js" defer></script>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+ <a href="/" class="nav-logo"><img src="logo-full.png" alt="DS Electrical Installations (SW) Ltd" decoding="async"></a>
+ <ul class="nav-links" id="navLinks">
+  <li><a href="/commercial-electrical.html">Commercial</a></li>
+  <li><a href="/domestic.html">Domestic</a></li>
+  <li><a href="/rewires.html">Rewires</a></li>
+  <li><a href="/eicr.html">EICR</a></li>
+  <li><a href="/ev-chargers.html">EV Chargers</a></li>
+  <li><a href="/cctv.html">CCTV</a></li>
+  <li><a href="/network-infrastructure.html">Network Infrastructure</a></li>
+  <li><a href="/24-hour-callouts.html">24hr Callouts</a></li>
+  <li><a href="/gallery.html">Gallery</a></li>
+  <li><a href="/blog.html">Blog</a></li>
+  <li><a href="/contact.html">Contact</a></li>
+  <li><a href="tel:07889334849" class="nav-cta">07889 334849</a></li>
+ </ul>
+ <button class="nav-menu" onclick="document.getElementById('navLinks').classList.toggle('open')">&#9776;</button>
+</nav>
+
+<nav class="breadcrumb" aria-label="Breadcrumb"><div class="breadcrumb-inner"><a href="/">Home</a><span class="sep">/</span><a href="/sitemap.html">Resources</a><span class="sep">/</span><span class="current" aria-current="page">Electrical Safety Checklist</span></div></nav>
+
+<!-- HERO -->
+<section class="hero">
+ <div class="hero-inner">
+  <div class="hero-tag">Free 10-Minute Self-Check</div>
+  <h1>Electrical Safety Checklist &mdash;<br><em>UK Homes &amp; Rentals.</em></h1>
+  <p class="hero-desc">10-minute self-check. If anything fails, book an EICR before your next renewal.</p>
+ </div>
+</section>
+
+<!-- TRUST STRIP - 6 BADGES -->
+<section class="tstrip" aria-label="Accreditations">
+ <div class="tstrip-inner">
+  <div><img src="assets/accreditations/napit-official.png" alt="NAPIT 66245 registered competent electrician scheme badge" loading="lazy"><div class="tlbl">NAPIT 66245</div></div>
+  <div><img src="assets/accreditations/chas-official.png" alt="CHAS accredited contractor 158368 health and safety badge" loading="lazy"><div class="tlbl">CHAS 158368</div></div>
+  <div><img src="assets/accreditations/city-guilds-logo.png" alt="City and Guilds 2391" loading="lazy"><div class="tlbl">C&amp;G 2391</div></div>
+  <div><img src="assets/accreditations/trustmark.svg" alt="TrustMark government-endorsed quality scheme logo for DS Electrical" loading="lazy"><div class="tlbl">TrustMark</div></div>
+  <div><img src="assets/accreditations/part-p.svg" alt="Part P Building Regulations registered electrician logo" loading="lazy"><div class="tlbl">Part P</div></div>
+  <div><img src="assets/accreditations/bs7671.svg" alt="BS 7671 18th Edition Wiring Regulations compliant electrician badge" loading="lazy"><div class="tlbl">BS 7671</div></div>
+ </div>
+</section>
+
+<!-- INTRO -->
+<section class="intro">
+ <div class="intro-inner">
+  <div class="section-tag">Who this is for</div>
+  <h2>Landlords, homeowners, anyone overdue an EICR.</h2>
+  <p>This page is a free 10-minute walk-round you can do yourself before booking a professional inspection. It is for:</p>
+  <ul style="list-style:none;padding:0;margin:1rem 0">
+   <li style="padding-left:1.6rem;position:relative;margin-bottom:.5rem;font-size:1rem;color:var(--text-muted);line-height:1.7"><span style="position:absolute;left:0;top:.6rem;width:8px;height:8px;background:var(--gold);border-radius:2px;display:block"></span><strong style="color:var(--text-dark)">Landlords with an active tenancy</strong> &mdash; legal duty since 2020 to hold a current EICR every 5 years.</li>
+   <li style="padding-left:1.6rem;position:relative;margin-bottom:.5rem;font-size:1rem;color:var(--text-muted);line-height:1.7"><span style="position:absolute;left:0;top:.6rem;width:8px;height:8px;background:var(--gold);border-radius:2px;display:block"></span><strong style="color:var(--text-dark)">Homeowners pre-purchase</strong> &mdash; quick triage before instructing a survey or paying for an EICR.</li>
+   <li style="padding-left:1.6rem;position:relative;margin-bottom:.5rem;font-size:1rem;color:var(--text-muted);line-height:1.7"><span style="position:absolute;left:0;top:.6rem;width:8px;height:8px;background:var(--gold);border-radius:2px;display:block"></span><strong style="color:var(--text-dark)">Anyone with a property over 10 years since their last EICR</strong> &mdash; standards have moved on; your installation may not have.</li>
+  </ul>
+  <h2>What you&rsquo;ll need</h2>
+  <p>Five free minutes, a phone for photos of anything that looks wrong, and your meter cupboard key. That&rsquo;s it.</p>
+  <p><strong>Important:</strong> this checklist is a <em>visual self-check</em>, not a formal inspection. If anything below fails, do not attempt to fix it yourself &mdash; book an EICR with a 2391-qualified electrician.</p>
+ </div>
+</section>
+
+<!-- A. SMOKE ALARMS -->
+<section class="chk" id="smoke">
+ <div class="chk-inner">
+  <div class="chk-tag">A / Smoke Alarms (BS 5839-6)</div>
+  <h2>Test every alarm.</h2>
+  <p>Press the test button on every smoke and heat alarm in the property. The alarm should sound loudly and consistently.</p>
+  <ul>
+   <li>Every alarm sounds when you press TEST.</li>
+   <li>No alarm is intermittently beeping (low battery on a 10-year sealed unit means the whole unit is end-of-life and must be replaced &mdash; you cannot replace the battery).</li>
+   <li>At least one mains-powered, interlinked smoke alarm per floor.</li>
+  </ul>
+  <div class="alert"><strong>Standard:</strong> Scotland made interlinked alarms mandatory in February 2022 (Tolerable Standard). England and Wales: strongly recommended; mandatory in rental housing under the Smoke and Carbon Monoxide Alarm (England) Regulations 2022.</div>
+ </div>
+</section>
+
+<!-- B. RCD TEST -->
+<section class="chk alt" id="rcd">
+ <div class="chk-inner">
+  <div class="chk-tag">B / RCD Test (do this every 6 months)</div>
+  <h2>Press T on every RCD.</h2>
+  <p>Find your consumer unit (the &ldquo;fuse board&rdquo; &mdash; usually under the stairs, in the meter cupboard, or in the garage). On each RCD or RCBO, press the small button marked <strong>T</strong> or <strong>TEST</strong>.</p>
+  <ul>
+   <li>Every RCD trips immediately when tested.</li>
+   <li>You can reset each RCD by switching it back up.</li>
+   <li>No RCD requires more than one push to trip.</li>
+  </ul>
+  <div class="alert"><strong>Failed?</strong> A non-tripping RCD means you have no shock protection on that circuit. Stop using it and call an electrician the same day.</div>
+ </div>
+</section>
+
+<!-- C. FUSE BOARD -->
+<section class="chk" id="board">
+ <div class="chk-inner">
+  <div class="chk-tag">C / Visible Fuse Board Check</div>
+  <h2>Modern board, or upgrade?</h2>
+  <p>Look at your consumer unit (do not open it). Ask yourself:</p>
+  <ul>
+   <li><strong>Modern (good):</strong> metal-cased enclosure, individual white RCBO switches, each with its own TEST button. Compliant with BS 7671 18th edition.</li>
+   <li><strong>Old plastic body (pre-2018):</strong> all-plastic enclosure &mdash; needs upgrading to a metal board for fire-containment compliance.</li>
+   <li><strong>Rewireable fuses (BS 3036):</strong> screw-in porcelain holders with fuse wire &mdash; <strong>upgrade urgent</strong>. No RCD protection means no shock protection.</li>
+  </ul>
+  <div class="alert"><strong>Useful:</strong> see our <a href="/fuse-board.html" style="color:var(--brass);text-decoration:underline">consumer-unit upgrade page</a> for fixed pricing on metal-cased boards (RCBO per circuit, full Part P certification).</div>
+ </div>
+</section>
+
+<!-- D. SOCKETS & SWITCHES -->
+<section class="chk alt" id="sockets">
+ <div class="chk-inner">
+  <div class="chk-tag">D / Sockets &amp; Switches</div>
+  <h2>Walk the property. Look closely.</h2>
+  <p>Every socket and switch in the property gets a quick visual check.</p>
+  <ul>
+   <li>No cracks across the face-plate or surround.</li>
+   <li>No black scorch marks above or around any socket.</li>
+   <li>No socket feels warm or hot to the back of your hand (a working socket should be ambient temperature, even with a kettle plugged in).</li>
+   <li>No loose face-plates that move when you plug something in.</li>
+   <li>No socket has visible burning smell when in use.</li>
+  </ul>
+  <div class="alert"><strong>Any scorch marks?</strong> Stop using that socket immediately. Scorching is evidence of arcing &mdash; the next stage is fire. Photograph it and call an electrician today.</div>
+ </div>
+</section>
+
+<!-- E. BATHROOM -->
+<section class="chk" id="bathroom">
+ <div class="chk-inner">
+  <div class="chk-tag">E / Bathroom (BS 7671 Section 701)</div>
+  <h2>Special-location rules apply.</h2>
+  <p>Bathrooms have their own zoned wiring rules because water and electricity do not mix. Check the following:</p>
+  <ul>
+   <li>No standard 13A sockets inside zone 1 or zone 2 (anywhere within 0.6m of bath or shower).</li>
+   <li>Light switches inside the bathroom are pull-cord type only. Wall switches must be mounted outside.</li>
+   <li>Shaver socket only acceptable if it has an isolating transformer (the unit will be marked).</li>
+   <li>Light fittings and extractor fans inside the zones are IP44 minimum (sealed against water spray).</li>
+   <li>If a heated mirror, towel rail, or underfloor heating is fitted &mdash; certificate should exist.</li>
+  </ul>
+ </div>
+</section>
+
+<!-- F. OUTDOOR -->
+<section class="chk alt" id="outdoor">
+ <div class="chk-inner">
+  <div class="chk-tag">F / Outdoor &amp; Garden</div>
+  <h2>Outside circuits get tougher rules.</h2>
+  <ul>
+   <li>Every outdoor socket is RCD-protected (check the consumer unit or look for a TEST button on the socket itself).</li>
+   <li>Buried cables are <strong>SWA (steel-wire armoured)</strong> &mdash; never standard twin-and-earth.</li>
+   <li>External light fittings are IP44 or higher (IP65 recommended for fully exposed).</li>
+   <li>Hot tubs, swim-spas, and outdoor kitchens are on a dedicated circuit with <strong>Type A RCBO</strong> (mandatory under BS 7671 18th edition Amendment 2).</li>
+   <li>No extension leads buried, run through walls, or used outside in wet conditions.</li>
+  </ul>
+ </div>
+</section>
+
+<!-- G. EV CHARGER -->
+<section class="chk" id="ev">
+ <div class="chk-inner">
+  <div class="chk-tag">G / EV Charger (if installed)</div>
+  <h2>Type A RCBO with DC fault detection.</h2>
+  <p>EV chargers fitted from 2020 onwards must use a Type A RCBO with DC fault detection (or equivalent inverter-side protection). DS Electrical fits Type A on every install.</p>
+  <ul>
+   <li>Charger fitted by a certified installer (you should have an Electrical Installation Certificate).</li>
+   <li>Charger has its own dedicated circuit from the consumer unit.</li>
+   <li>RCBO is Type A, never Type AC (Type AC misses DC fault current and is non-compliant for EV).</li>
+   <li>Earthing arrangement was specified at install (PME-isolation device or earth rod).</li>
+  </ul>
+  <div class="alert"><strong>Pre-2020 charger?</strong> May not be 18th edition compliant. <a href="/ev-chargers.html" style="color:var(--brass);text-decoration:underline">Have it checked</a> &mdash; we can certify or upgrade existing units.</div>
+ </div>
+</section>
+
+<!-- H. EICR DUE DATE -->
+<section class="chk alt" id="eicr-date">
+ <div class="chk-inner">
+  <div class="chk-tag">H / EICR Due Date</div>
+  <h2>When is your next inspection due?</h2>
+  <p>Find your last EICR certificate. Look at the <strong>&ldquo;recommended date for next inspection&rdquo;</strong> field. Compare it with today.</p>
+  <ul>
+   <li><strong>Domestic owner-occupied:</strong> every 10 years, or at change of occupancy &mdash; whichever is sooner.</li>
+   <li><strong>Rental property:</strong> every 5 years (landlord legal duty under the Electrical Safety Standards in the Private Rented Sector Regulations 2020). Must be supplied to every new tenant.</li>
+   <li><strong>Commercial/industrial:</strong> typically every 5 years; some heavy-use sites (commercial kitchens, workshops) every 3 years.</li>
+   <li><strong>No EICR on file?</strong> Book one. Default position is overdue.</li>
+  </ul>
+  <div class="alert"><strong>EICR expired?</strong> For rentals this is a legal breach with civil penalties up to &pound;30,000. Book the new inspection now.</div>
+ </div>
+</section>
+
+<!-- ANYTHING FAILED? -->
+<section class="failed">
+ <div class="failed-inner">
+  <div class="section-tag" style="color:var(--gold)">Anything failed?</div>
+  <h2>Book an EICR.</h2>
+  <p>If you ticked any concern above, the next step is a full Electrical Installation Condition Report from a 2391-qualified electrician.</p>
+  <p>We&rsquo;re <strong>NAPIT 66245 in Somerset</strong>. EICRs from <strong>&pound;30 per circuit single-phase, &pound;40 per circuit three-phase + VAT @ 20%</strong>. Free advice if you call before booking.</p>
+  <div class="cta-btns" style="margin-top:1.5rem">
+   <a href="tel:07889334849" class="btn btn-gold">Call 07889 334849</a>
+   <a href="https://wa.me/447889334849" class="btn btn-white">WhatsApp</a>
+   <a href="/quote" class="btn btn-white">Get a quote</a>
+  </div>
+ </div>
+</section>
+
+<!-- INDICATIVE PRICING DISCLAIMER -->
+<aside class="disclaimer">
+ <strong>All prices indicative</strong>
+ EICR pricing on this page is &ldquo;from&rdquo; per-circuit and assumes safe access, an existing consumer unit in serviceable condition, and standard domestic configuration. Final price is confirmed in writing after a free site visit. Heritage properties, three-phase commercial sites, fault-finding extensions, and remedial work are quoted separately. VAT @ 20% applies to all work.
+</aside>
+
+<!-- PRINT TIP -->
+<aside class="print-tip">
+ <strong>Print or save this checklist.</strong> Press <strong>Cmd+P</strong> (Mac) or <strong>Ctrl+P</strong> (Windows) and choose &ldquo;Save as PDF&rdquo; in the destination dropdown. The print version strips the navigation and keeps the eight checklist sections only &mdash; tick each box on paper, photograph any concerns, then book your EICR.
+</aside>
+
+<!-- CTA -->
+<section class="cta" id="contact">
+ <div class="section-tag" style="color:var(--gold)">Verify Then Book</div>
+ <h2 class="section-heading">Free Advice<br>Before You Book.</h2>
+ <p class="section-desc">Talk to Dan before booking the EICR. Five-minute call, honest answer, no pressure.</p>
+ <span class="cta-phone-label">Direct</span>
+ <a href="tel:07889334849" class="cta-phone">Dan Stevens, Director: 07889 334849</a>
+ <a href="tel:07983106928" class="cta-phone-2">Dan Street, Director: 07983 106928</a>
+ <div class="cta-btns">
+  <a href="mailto:info@dselectricalsw.co.uk" class="btn btn-gold">Email Us</a>
+  <a href="https://wa.me/447889334849" class="btn btn-white">WhatsApp</a>
+ </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+ <div class="footer-grid">
+  <div>
+   <h3>DS Electrical Installations (SW) Ltd</h3>
+   <p>Glastonbury, Somerset</p>
+   <p><a href="tel:07889334849">07889 334849 (Dan Stevens)</a></p>
+   <p><a href="tel:07983106928">07983 106928 (Dan Street)</a></p>
+   <p><a href="mailto:info@dselectricalsw.co.uk">info@dselectricalsw.co.uk</a></p>
+  </div>
+  <div>
+   <h3>Services</h3>
+   <p><a href="/eicr.html">Rewires &amp; EICR</a></p>
+   <p><a href="/ev-chargers.html">EV Chargers</a></p>
+   <p><a href="/cctv.html">CCTV &amp; Security</a></p>
+   <p><a href="/commercial-electrical.html">Commercial</a></p>
+   <p><a href="/fuse-board.html">Fuse Board</a></p>
+   <p><a href="/fire-alarms.html">Fire Alarms</a></p>
+   <p><a href="/emergency-lighting.html">Emergency Lighting</a></p>
+  </div>
+  <div>
+   <h3>Areas</h3>
+   <p>Wells</p><p>Shepton Mallet</p><p>Bath</p><p>Frome</p><p>Midsomer Norton</p><p>Street</p>
+  </div>
+  <div>
+   <h3>Trust</h3>
+   <p><a href="/accreditations.html">NAPIT Approved</a></p>
+   <p><a href="/accreditations.html">CHAS Accredited</a></p>
+   <p><a href="/accreditations.html">TrustMark Endorsed</a></p>
+   <p><a href="/accreditations.html">Part P Registered</a></p>
+   <p><a href="/electrical-safety-checklist.html">Safety checklist</a></p>
+   <p style="margin-top:.5rem">5.0 Google Rating</p>
+  </div>
+ </div>
+ <div class="footer-bottom">
+  <span>&copy; 2026 DS Electrical Installations (SW) Ltd &middot; Reg. in England No. 13972348 &middot; VAT Reg. No. GB 429 0409 05 &middot; ICO 00013889257 &middot; NAPIT 66245 &middot; CHAS 158368</span>
+  <span><a href="/privacy.html">Privacy</a> &middot; <a href="/terms.html">Terms</a></span>
+ </div>
+</footer>
+
+<a href="https://wa.me/447889334849" class="wa" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.611.611l4.458-1.495A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.344 0-4.508-.8-6.227-2.141l-.435-.344-3.208 1.076 1.076-3.208-.344-.435A9.956 9.956 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg></a>
+
+<div class="mcb" aria-label="Quick contact">
+ <div class="mcb-grid">
+  <a href="tel:07889334849" class="mcb-call" aria-label="Call 07889 334849">
+   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.1-.04-.21-.05-.31-.05-.26 0-.51.1-.71.29l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.58l2.2-2.21c.28-.27.36-.66.25-1.01C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/></svg>
+   <span>Call Dan</span><small>07889 334849</small>
+  </a>
+  <a href="https://wa.me/447889334849" class="mcb-wa" aria-label="WhatsApp">
+   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.611.611l4.458-1.495A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+   <span>WhatsApp</span>
+  </a>
+  <a href="mailto:info@dselectricalsw.co.uk" class="mcb-mail" aria-label="Email">
+   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+   <span>Email</span>
+  </a>
+ </div>
+</div>
+
+<a href="tel:07889334849" class="dq-btn" aria-label="Call Dan for a quote">
+ <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.1-.04-.21-.05-.31-.05-.26 0-.51.1-.71.29l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.58l2.2-2.21c.28-.27.36-.66.25-1.01C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/></svg>
+ Call Dan &mdash; 07889 334849
+</a>
+
+<script src="/track.js" defer></script>
+<script src="/chat-widget.js" defer></script>
+</body>
+</html>

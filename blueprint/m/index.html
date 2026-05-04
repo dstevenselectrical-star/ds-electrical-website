@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#0a0a0a">
+<title>Blueprint · Mobile Kanban</title>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{background:#0a0a0a;color:#e8e8e8;font:14.5px/1.55 -apple-system,BlinkMacSystemFont,'Inter','SF Pro Text','Segoe UI',sans-serif;min-height:100vh;overscroll-behavior:none}
+  body{
+    padding-top:env(safe-area-inset-top);
+    padding-bottom:env(safe-area-inset-bottom);
+    background:
+      radial-gradient(circle at 20% 0%, rgba(250,204,21,.06) 0%, transparent 40%),
+      radial-gradient(circle at 80% 100%, rgba(120,180,220,.04) 0%, transparent 40%),
+      radial-gradient(circle at 1px 1px, rgba(255,255,255,.04) 1px, transparent 0) 0 0/22px 22px,
+      #0a0a0a;
+  }
+  a{color:#facc15;text-decoration:none}
+
+  /* TOP BAR */
+  .bar{position:sticky;top:0;background:rgba(8,8,8,.94);backdrop-filter:blur(16px) saturate(1.4);-webkit-backdrop-filter:blur(16px) saturate(1.4);border-bottom:1px solid rgba(255,255,255,.06);padding:11px 12px calc(11px + env(safe-area-inset-top));z-index:100;display:flex;align-items:center;gap:8px}
+  .bar h1{font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#fff;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:flex;align-items:center;gap:6px;min-width:0}
+  .bar h1 .tag{display:inline-block;background:#facc15;color:#000;font-size:9px;font-weight:800;padding:2px 5px;border-radius:3px;letter-spacing:.1em;flex-shrink:0}
+  .bar select{background:rgba(255,255,255,.06);color:#fff;border:1px solid rgba(255,255,255,.12);padding:7px 9px;border-radius:8px;font-size:11.5px;font-weight:700;font-family:inherit;-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 7px center;padding-right:22px;max-width:120px;text-overflow:ellipsis}
+  .bar a.dt,.bar button.dt{font-size:10px;color:#aaa;background:transparent;border:1px solid rgba(255,255,255,.1);padding:7px 8px;border-radius:8px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;flex-shrink:0;font-family:inherit;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;min-width:36px;min-height:34px}
+  .bar a.dt:active,.bar button.dt:active{background:rgba(255,255,255,.06);transform:scale(.94)}
+  .bar button.reload{font-size:14px;font-weight:900;color:#facc15;border-color:rgba(250,204,21,.32)}
+  .bar button.reload.spinning{animation:spin .9s linear infinite;border-color:rgba(250,204,21,.6)}
+
+  /* HERO compact */
+  .hero{padding:18px 14px 12px;max-width:680px;margin:0 auto}
+  .hero .eyebrow{font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:9.5px;font-weight:800;letter-spacing:.34em;color:#facc15;text-transform:uppercase;margin-bottom:10px}
+  .hero h2{font-size:28px;font-weight:800;line-height:1.05;letter-spacing:-.02em;color:#fff;margin-bottom:8px}
+  .hero .tagline{font-size:13px;color:#a0a0a0;line-height:1.5;margin-bottom:14px}
+  .hero .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+  .hero .stat{padding:10px 10px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.06);border-radius:9px;position:relative;overflow:hidden}
+  .hero .stat::after{content:'';position:absolute;left:0;top:0;width:3px;height:100%;background:#facc15;opacity:.45}
+  .hero .stat .num{font-family:ui-monospace,monospace;font-size:18px;font-weight:800;color:#fff;line-height:1}
+  .hero .stat:first-child .num{color:#facc15}
+  .hero .stat .lbl{font-family:ui-monospace,monospace;font-size:8.5px;font-weight:700;letter-spacing:.16em;color:#888;text-transform:uppercase;margin-top:4px}
+
+  /* SEARCH BAR — sticky under top bar */
+  .searchbar{position:sticky;top:calc(54px + env(safe-area-inset-top));background:rgba(8,8,8,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.05);z-index:95;padding:8px 12px}
+  .searchbar-inner{position:relative;display:flex;align-items:center}
+  .searchbar input{flex:1;width:100%;padding:9px 36px 9px 36px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:10px;color:#fff;font:600 13px/1 inherit;outline:none;letter-spacing:-.005em}
+  .searchbar input:focus{border-color:#facc15;background:rgba(255,255,255,.09);box-shadow:0 0 0 3px rgba(250,204,21,.15)}
+  .searchbar input::placeholder{color:#666;font-weight:500}
+  .searchbar .icon{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:#666;font-size:13px;pointer-events:none;font-weight:900;font-family:ui-monospace,monospace}
+  .searchbar .clear{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.08);border:none;color:#aaa;width:22px;height:22px;border-radius:50%;font-size:13px;font-weight:900;cursor:pointer;display:none;align-items:center;justify-content:center;line-height:1;font-family:inherit;padding:0}
+  .searchbar.has-query .clear{display:inline-flex}
+  .searchbar .count{position:absolute;right:36px;top:50%;transform:translateY(-50%);font-family:ui-monospace,monospace;font-size:9.5px;color:#facc15;letter-spacing:.06em;font-weight:800;text-transform:uppercase;display:none}
+  .searchbar.has-query .count{display:inline-block}
+
+  /* Filtered states — hide non-matching cards/lanes/frames */
+  .card.hidden,.lane.hidden,.frame.hidden,.add-form.hidden{display:none !important}
+  .card.match{box-shadow:0 0 0 1px rgba(250,204,21,.4),0 4px 14px rgba(250,204,21,.08)}
+
+  /* Stagger entry animation for cards/frames */
+  @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .frame{animation:fadeUp .32s cubic-bezier(.2,.85,.3,1) both}
+  .frame:nth-child(2){animation-delay:.04s}
+  .frame:nth-child(3){animation-delay:.08s}
+  .frame:nth-child(4){animation-delay:.12s}
+  .frame:nth-child(n+5){animation-delay:.16s}
+  @media(prefers-reduced-motion:reduce){.frame,.ai-card,.card{animation:none !important}}
+
+  /* PHASE STICKY NAV — pushed below search */
+  .phasenav{position:sticky;top:calc(54px + env(safe-area-inset-top) + 50px);background:rgba(8,8,8,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.05);z-index:90;padding:8px 0}
+  .phasescroll{display:flex;gap:6px;overflow-x:auto;padding:0 12px;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch}
+  .phasescroll::-webkit-scrollbar{display:none}
+  .phasechip{flex:0 0 auto;scroll-snap-align:start;display:inline-flex;align-items:center;gap:6px;padding:7px 11px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);font-family:ui-monospace,monospace;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#aaa;white-space:nowrap;cursor:pointer;transition:.15s;min-height:32px}
+  .phasechip .dot{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,.08);color:#aaa;font-size:9.5px;font-weight:800}
+  .phasechip:active{transform:scale(.96)}
+  .phasechip.active{background:rgba(250,204,21,.14);border-color:rgba(250,204,21,.4);color:#facc15}
+  .phasechip.active .dot{background:#facc15;color:#000}
+
+  /* AI SUGGESTIONS RIBBON */
+  .ai-ribbon{padding:6px 0 10px;max-width:680px;margin:0 auto}
+  .ai-head{display:flex;align-items:center;gap:8px;padding:8px 14px 8px;font-size:10.5px;font-weight:800;color:#facc15;letter-spacing:.16em;text-transform:uppercase}
+  .ai-head .pulse{width:7px;height:7px;background:#facc15;border-radius:50%;animation:pulse 1.5s ease-in-out infinite;flex-shrink:0}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.3)}}
+  .ai-scroll{display:flex;gap:8px;overflow-x:auto;padding:0 14px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;touch-action:pan-x;scroll-padding:14px}
+  .ai-scroll::-webkit-scrollbar{display:none}
+  .ai-card{flex:0 0 84%;scroll-snap-align:start;padding:14px;background:linear-gradient(180deg,rgba(250,204,21,.12),rgba(250,204,21,.03));border:1px solid rgba(250,204,21,.32);border-left:3px solid #facc15;border-radius:11px;display:flex;flex-direction:column;gap:8px;min-height:160px;box-shadow:0 8px 24px rgba(0,0,0,.28),inset 0 1px 0 rgba(250,204,21,.18);transition:transform .25s cubic-bezier(.2,.85,.3,1),box-shadow .25s ease}
+  .ai-card:active{transform:scale(.985)}
+  .ai-card-t{font-weight:800;color:#fff;font-size:14.5px;line-height:1.3;letter-spacing:-.005em}
+  .ai-card-b{font-size:12.5px;color:#bbb;line-height:1.5;flex:1}
+  .ai-card-meta{font-size:9.5px;color:#888;text-transform:uppercase;letter-spacing:.1em;font-family:ui-monospace,monospace;font-weight:700}
+  .ai-actions{display:flex;gap:6px;margin-top:auto}
+  .ai-actions button{flex:1;padding:10px;border-radius:8px;border:none;font-weight:800;font-size:11.5px;letter-spacing:.04em;cursor:pointer;font-family:inherit;min-height:44px;text-transform:uppercase}
+  .ai-actions .accept{background:#facc15;color:#000}
+  .ai-actions .accept:active{transform:scale(.96)}
+  .ai-actions .dismiss{background:rgba(255,255,255,.06);color:#999;border:1px solid rgba(255,255,255,.1)}
+
+  /* WRAP for frames */
+  .wrap{max-width:680px;margin:0 auto;padding:0 0 80px}
+
+  .section-h{font-family:ui-monospace,monospace;font-size:10px;font-weight:800;letter-spacing:.26em;color:#888;text-transform:uppercase;margin:18px 14px 10px;display:flex;align-items:center;gap:10px}
+  .section-h::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(255,255,255,.1),transparent)}
+
+  /* FRAME — Kanban-per-frame */
+  .frame{margin:14px 12px;border:1px solid rgba(255,255,255,.07);border-radius:14px;background:rgba(255,255,255,.018);overflow:hidden;position:relative;scroll-margin-top:120px;box-shadow:0 6px 18px rgba(0,0,0,.32);transition:border-color .25s ease,box-shadow .25s ease,transform .25s ease}
+  .frame:hover{border-color:rgba(255,255,255,.12);box-shadow:0 8px 26px rgba(0,0,0,.42)}
+  .frame.phase1{border-left:4px solid rgba(120,180,220,.55)}
+  .frame.phase2{border-left:4px solid rgba(250,204,21,.55)}
+  .frame.phase3{border-left:4px solid rgba(168,196,126,.55)}
+  .frame.phase4{border-left:4px solid rgba(220,138,180,.55)}
+  .frame.phase5{border-left:4px solid rgba(180,140,220,.55)}
+  .frame.phase6{border-left:4px solid rgba(220,140,90,.55)}
+  .frame.phase7{border-left:4px solid rgba(100,200,180,.55)}
+  .frame.phase8{border-left:4px solid rgba(220,180,100,.55)}
+
+  .frame-h{padding:14px 14px 12px;display:flex;align-items:center;gap:10px;background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.012));border-bottom:1px solid rgba(255,255,255,.05);position:sticky;left:0}
+  .frame-h .num{font-family:ui-monospace,monospace;font-size:10px;font-weight:800;letter-spacing:.1em;color:#facc15;background:rgba(250,204,21,.14);padding:4px 8px;border-radius:5px;flex-shrink:0}
+  .frame.phase1 .frame-h .num{color:#9cc4e6;background:rgba(120,180,220,.16)}
+  .frame.phase3 .frame-h .num{color:#a8c47e;background:rgba(168,196,126,.16)}
+  .frame.phase4 .frame-h .num{color:#dc8ab4;background:rgba(220,138,180,.16)}
+  .frame.phase5 .frame-h .num{color:#b48cdc;background:rgba(180,140,220,.16)}
+  .frame.phase6 .frame-h .num{color:#dc8c5a;background:rgba(220,140,90,.16)}
+  .frame.phase7 .frame-h .num{color:#64c8b4;background:rgba(100,200,180,.16)}
+  .frame.phase8 .frame-h .num{color:#dcb464;background:rgba(220,180,100,.16)}
+  .frame-h .t{flex:1;font-weight:800;color:#fff;font-size:16.5px;letter-spacing:-.01em;line-height:1.2;min-width:0}
+  .frame-h .meta{font-size:10px;color:#888;font-family:ui-monospace,monospace;font-weight:700;letter-spacing:.06em;flex-shrink:0;display:flex;align-items:center;gap:8px}
+
+  /* LANES — horizontal kanban */
+  .lanes-wrap{position:relative}
+  .lanes{display:flex;gap:10px;overflow-x:auto;padding:14px 14px 18px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;touch-action:pan-x pan-y;scrollbar-width:none}
+  .lanes::-webkit-scrollbar{display:none}
+  .lanes::before,.lanes::after{content:'';flex:0 0 1px}
+  .lanes-wrap::after{content:'';position:absolute;top:14px;bottom:18px;right:0;width:28px;background:linear-gradient(90deg,transparent,rgba(10,10,10,.92));pointer-events:none;border-radius:0 14px 14px 0;z-index:2}
+  .lanes-wrap::before{content:'';position:absolute;top:14px;bottom:18px;left:0;width:14px;background:linear-gradient(270deg,transparent,rgba(10,10,10,.55));pointer-events:none;border-radius:14px 0 0 14px;z-index:2}
+
+  .lane{flex:0 0 78%;scroll-snap-align:start;background:rgba(0,0,0,.24);border:1px solid rgba(255,255,255,.05);border-radius:11px;padding:12px;display:flex;flex-direction:column;gap:8px;min-height:140px;transition:border-color .2s ease,background .2s ease}
+  .lane:focus-within{border-color:rgba(250,204,21,.28);background:rgba(0,0,0,.32)}
+  .lane-h{display:flex;align-items:center;gap:8px;padding-left:8px;border-left:2px solid #facc15;margin-bottom:4px}
+  .lane.b .lane-h{border-left-color:#9cc4e6}
+  .lane.g .lane-h{border-left-color:#a8c47e}
+  .lane.r .lane-h{border-left-color:#e08070}
+  .lane-h .name{font-family:ui-monospace,monospace;font-size:10px;color:#ddd;text-transform:uppercase;letter-spacing:.16em;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1}
+  .lane.b .lane-h .name{color:#bcd5e9}
+  .lane.g .lane-h .name{color:#c4d6a8}
+  .lane.r .lane-h .name{color:#e5a89e}
+  .lane-h .count{margin-left:auto;background:rgba(255,255,255,.07);color:#bbb;padding:2px 7px;border-radius:10px;font-size:9px;letter-spacing:.06em;font-weight:700;font-family:ui-monospace,monospace;flex-shrink:0}
+  .lane-h .add{margin-left:6px;background:rgba(250,204,21,.15);color:#facc15;border:1px solid rgba(250,204,21,.32);width:24px;height:24px;border-radius:6px;font-size:14px;font-weight:900;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-family:inherit;line-height:1;flex-shrink:0;padding:0}
+  .lane-h .add:active{transform:scale(.9);background:rgba(250,204,21,.28)}
+
+  /* INLINE ADD-CARD FORM */
+  .add-form{padding:12px;background:rgba(250,204,21,.08);border:1px dashed rgba(250,204,21,.4);border-radius:9px;display:flex;flex-direction:column;gap:8px;margin-bottom:6px;animation:slideIn .2s ease}
+  @keyframes slideIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+  .add-form input,.add-form textarea{width:100%;padding:9px 10px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.1);border-radius:6px;color:#fff;font-family:inherit;font-size:13px;outline:none}
+  .add-form input:focus,.add-form textarea:focus{border-color:#facc15;background:rgba(0,0,0,.55)}
+  .add-form input::placeholder,.add-form textarea::placeholder{color:#666}
+  .add-form textarea{min-height:60px;resize:vertical;font-size:12.5px;line-height:1.45}
+  .add-form .add-actions{display:flex;gap:6px}
+  .add-form .add-actions button{flex:1;padding:9px;border:none;border-radius:6px;font-weight:800;font-size:11px;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;font-family:inherit;min-height:38px}
+  .add-form .add-actions .save{background:#facc15;color:#000}
+  .add-form .add-actions .save:active{transform:scale(.96)}
+  .add-form .add-actions .cancel{background:rgba(255,255,255,.06);color:#999;border:1px solid rgba(255,255,255,.1)}
+
+  .card.user-added{border-left:3px solid #5a9e6f;background:rgba(90,158,111,.07)}
+  .card.user-added .kpi{color:#5a9e6f;background:rgba(90,158,111,.16)}
+  .card.user-added .del{margin-left:auto;background:transparent;color:#666;border:none;font-size:14px;cursor:pointer;padding:0 2px;line-height:1;font-family:inherit}
+  .card.user-added .del:active{color:#e08070}
+
+  .card{padding:11px 12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:9px;display:flex;flex-direction:column;gap:5px;transition:transform .25s cubic-bezier(.2,.85,.3,1),border-color .25s ease,background .25s ease,box-shadow .25s ease;will-change:transform}
+  .card:active{transform:scale(.985)}
+  @media(hover:hover){.card:hover{border-color:rgba(250,204,21,.32);background:rgba(255,255,255,.055);transform:translateY(-1px);box-shadow:0 4px 14px rgba(0,0,0,.32)}}
+  .card.has-ai{border-left:3px solid #facc15;background:rgba(250,204,21,.07)}
+  .card .row{display:flex;align-items:flex-start;gap:7px}
+  .card .ct{flex:1;font-size:13.5px;font-weight:700;color:#fff;line-height:1.3;min-width:0;letter-spacing:-.005em;word-wrap:break-word}
+  .card .kpi{font-family:ui-monospace,monospace;font-size:9px;color:#facc15;background:rgba(250,204,21,.16);padding:3px 6px;border-radius:4px;letter-spacing:.06em;font-weight:800;flex-shrink:0;text-transform:uppercase;white-space:nowrap}
+  .card .cb{font-size:12px;color:#a0a0a0;line-height:1.5}
+  .card .clink{font-size:10px;color:#facc15;font-weight:800;letter-spacing:.06em;text-transform:uppercase;font-family:ui-monospace,monospace;display:inline-flex;align-items:center;gap:4px}
+  .card .clink::after{content:'→'}
+
+  .swipe-hint{font-family:ui-monospace,monospace;font-size:9px;color:#666;text-transform:uppercase;letter-spacing:.12em;text-align:center;padding:0 14px 12px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px}
+  .swipe-hint::before,.swipe-hint::after{content:'';width:14px;height:1px;background:rgba(255,255,255,.1)}
+
+  /* STATES */
+  .empty{padding:50px 20px;text-align:center;color:#666;font-size:13px}
+  .lane-empty{padding:14px 8px;text-align:center;color:#555;font-size:11px;font-family:ui-monospace,monospace;letter-spacing:.12em;text-transform:uppercase;font-weight:700;border:1px dashed rgba(255,255,255,.06);border-radius:8px;margin-top:auto;margin-bottom:auto}
+  .err{padding:24px;background:rgba(192,84,66,.12);border:1px solid rgba(192,84,66,.4);border-radius:10px;margin:20px 12px;color:#e08070;font-size:13px;line-height:1.5}
+  .toast{position:fixed;bottom:max(20px,env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);background:#facc15;color:#000;padding:13px 22px;border-radius:999px;font-weight:800;font-size:13px;z-index:200;box-shadow:0 10px 30px rgba(0,0,0,.6);animation:tIn .25s cubic-bezier(.2,.9,.3,1.2);max-width:90vw;text-align:center;letter-spacing:.02em}
+  @keyframes tIn{from{transform:translate(-50%,30px) scale(.9);opacity:0}to{transform:translate(-50%,0) scale(1);opacity:1}}
+  .skel{padding:60px 24px;display:flex;flex-direction:column;gap:14px;align-items:center}
+  .skel .ring{width:34px;height:34px;border:2.5px solid rgba(250,204,21,.18);border-top-color:#facc15;border-radius:50%;animation:spin .9s linear infinite}
+  .skel .label{font-size:11px;color:#888;letter-spacing:.18em;text-transform:uppercase;font-family:ui-monospace,monospace;font-weight:700}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  /* JUMP-TO-TOP */
+  .jumptop{position:fixed;right:14px;bottom:max(20px,env(safe-area-inset-bottom));width:46px;height:46px;border-radius:50%;background:rgba(250,204,21,.92);color:#000;display:none;align-items:center;justify-content:center;font-size:20px;font-weight:900;border:none;box-shadow:0 8px 24px rgba(0,0,0,.5);cursor:pointer;z-index:50;transition:.2s}
+  .jumptop.show{display:flex}
+  .jumptop:active{transform:scale(.9)}
+
+  @media(min-width:560px){
+   .lane{flex:0 0 48%}
+  }
+  @media(min-width:768px){
+   .lane{flex:0 0 32%}
+  }
+</style>
+  <meta property="og:image" content="https://www.dselectricalsw.co.uk/og-image.jpg">
+</head>
+<body>
+
+<div class="bar">
+  <h1 id="bizName"><span class="tag">M</span><span id="bizText">Blueprint</span></h1>
+  <select id="bizSwitch" aria-label="Switch business">
+    <option value="ds-electrical">DS Electrical</option>
+    <option value="aimaxops">AimaxOps</option>
+    <option value="reel-iq">reel iQ</option>
+    <option value="forge">Forge</option>
+    <option value="agentos">AgentOS</option>
+    <option value="capitalforge">CapitalForge</option>
+    <option value="fieldops">FieldOps</option>
+    <option value="ukpowerpros">UK Power Pros</option>
+    <option value="workdrone">WorkDrone</option>
+    <option value="techdrone">TechDrone</option>
+    <option value="buildmyapp">BuildMyApp</option>
+    <option value="listpilot">ListPilot</option>
+    <option value="betvault">BetVault</option>
+  </select>
+  <button class="dt reload" id="reloadBtn" type="button" aria-label="Force reload — clears cache">↻</button>
+  <a class="dt" id="desktopLink" href="">DT</a>
+</div>
+
+<div class="searchbar" id="searchbar">
+  <div class="searchbar-inner">
+    <span class="icon" aria-hidden="true">⌕</span>
+    <input id="searchInput" type="search" placeholder="Search cards across all frames…" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+    <span class="count" id="searchCount"></span>
+    <button class="clear" id="searchClear" type="button" aria-label="Clear search">×</button>
+  </div>
+</div>
+
+<div id="root">
+  <div class="skel"><div class="ring"></div><div class="label">Loading</div></div>
+</div>
+
+<button class="jumptop" id="jumptop" aria-label="Jump to top">↑</button>
+
+<script>
+(function(){
+  const params = new URLSearchParams(location.search);
+  const biz = params.get('biz') || 'ds-electrical';
+  const root = document.getElementById('root');
+  const switcher = document.getElementById('bizSwitch');
+  if ([...switcher.options].some(o => o.value === biz)) switcher.value = biz;
+  switcher.addEventListener('change', () => { location.search = '?biz=' + switcher.value; });
+  document.getElementById('desktopLink').href = '/blueprint/template.html?biz=' + biz + '&desktop=1';
+
+  document.getElementById('reloadBtn').addEventListener('click', async () => {
+    const btn = document.getElementById('reloadBtn');
+    btn.classList.add('spinning');
+    btn.disabled = true;
+    try {
+      if ('caches' in window) {
+        const names = await caches.keys();
+        await Promise.all(names.map(n => caches.delete(n)));
+      }
+      if ('serviceWorker' in navigator) {
+        const regs = await navigator.serviceWorker.getRegistrations();
+        await Promise.all(regs.map(r => r.unregister()));
+      }
+    } catch(e) {}
+    const u = new URL(location.href);
+    u.searchParams.set('v', Date.now());
+    location.replace(u.toString());
+  });
+
+  const LANE_COLOR_CLASS = c => ({blue:'b', green:'g', red:'r', yellow:''}[c] ?? '');
+
+  function clear(node) { while (node.firstChild) node.removeChild(node.firstChild); }
+  function el(tag, attrs, children) {
+    const e = document.createElement(tag);
+    if (attrs) for (const k in attrs) {
+      if (k === 'cls') e.className = attrs[k];
+      else if (k === 'text') e.textContent = attrs[k];
+      else if (k === 'on') for (const ev in attrs[k]) e.addEventListener(ev, attrs[k][ev]);
+      else e.setAttribute(k, attrs[k]);
+    }
+    if (children) children.forEach(c => c && e.appendChild(c));
+    return e;
+  }
+  function toast(msg) {
+    const t = el('div', {cls:'toast', text: msg});
+    document.body.appendChild(t);
+    setTimeout(() => t.remove(), 2200);
+  }
+  const acceptedKey = () => 'bp-m-accepted-' + biz;
+  const dismissedKey = () => 'bp-m-dismissed-' + biz;
+  const userCardsKey = () => 'bp-m-user-cards-' + biz;
+  const getJSON = k => { try { return JSON.parse(localStorage.getItem(k) || '[]'); } catch(e) { return []; } };
+  const setJSON = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch(e){} };
+  const userCardsFor = (frameIdx, laneIdx) => getJSON(userCardsKey()).filter(c => c.frameIdx === frameIdx && c.laneIdx === laneIdx);
+
+  function buildHero(data) {
+    const eyebrow = data.eyebrow || ((data.name || biz).toUpperCase() + ' OPERATING SYSTEM');
+    const title = data.topbarTitle || data.name || biz;
+    const totalFrames = (data.frames || []).length;
+    const totalLanes = (data.frames || []).reduce((s, f) => s + (f.lanes || []).length, 0);
+    const totalCards = (data.frames || []).reduce((s, f) => s + (f.lanes || []).reduce((ss, l) => ss + (l.cards || []).length, 0), 0);
+
+    const hero = el('div', {cls:'hero'});
+    hero.appendChild(el('div', {cls:'eyebrow', text: eyebrow}));
+    hero.appendChild(el('h2', {text: title}));
+    if (data.tagline) hero.appendChild(el('p', {cls:'tagline', text: data.tagline}));
+    hero.appendChild(el('div', {cls:'stats'}, [
+      el('div', {cls:'stat'}, [el('div', {cls:'num', text: String(totalCards)}), el('div', {cls:'lbl', text:'Cards'})]),
+      el('div', {cls:'stat'}, [el('div', {cls:'num', text: String(totalFrames)}), el('div', {cls:'lbl', text:'Frames'})]),
+      el('div', {cls:'stat'}, [el('div', {cls:'num', text: String(totalLanes)}), el('div', {cls:'lbl', text:'Lanes'})]),
+    ]));
+    return hero;
+  }
+
+  function buildPhaseNav(data) {
+    const phases = data.phases || [];
+    const frames = data.frames || [];
+    if (!frames.length) return null;
+    const nav = el('div', {cls:'phasenav'});
+    const scroll = el('div', {cls:'phasescroll'});
+
+    frames.forEach((f, i) => {
+      const phase = Number(f.phase) || (i + 1);
+      const phaseName = phases[phase - 1] || ('Phase ' + phase);
+      const chip = el('div', {cls:'phasechip', 'data-target': 'frame-' + i}, [
+        el('span', {cls:'dot', text: String(phase)}),
+        el('span', {text: (f.title || phaseName).slice(0, 20)}),
+      ]);
+      chip.addEventListener('click', () => {
+        const t = document.getElementById('frame-' + i);
+        if (t) {
+          t.scrollIntoView({behavior:'smooth', block:'start'});
+          [...scroll.querySelectorAll('.phasechip')].forEach(c => c.classList.remove('active'));
+          chip.classList.add('active');
+        }
+      });
+      if (i === 0) chip.classList.add('active');
+      scroll.appendChild(chip);
+    });
+    nav.appendChild(scroll);
+    return nav;
+  }
+
+  function buildAIRibbon(suggestions) {
+    if (!suggestions || !suggestions.length) return null;
+    const dismissed = getJSON(dismissedKey());
+    const filtered = suggestions.filter(s => !dismissed.includes(s.title));
+    if (!filtered.length) return null;
+
+    const wrap = el('div', {cls:'ai-ribbon'});
+    wrap.appendChild(el('div', {cls:'ai-head'}, [
+      el('span', {cls:'pulse'}),
+      el('span', {text: 'AI suggestions · ' + filtered.length + ' to review · swipe →'}),
+    ]));
+    const scroll = el('div', {cls:'ai-scroll'});
+
+    filtered.forEach(s => {
+      const card = el('div', {cls:'ai-card'});
+      card.appendChild(el('div', {cls:'ai-card-t', text: s.title || 'Suggestion'}));
+      if (s.body) card.appendChild(el('div', {cls:'ai-card-b', text: s.body}));
+      if (s.lane_hint) card.appendChild(el('div', {cls:'ai-card-meta', text: '→ ' + s.lane_hint}));
+      const actions = el('div', {cls:'ai-actions'}, [
+        el('button', {cls:'accept', text:'Accept', on:{click: () => {
+          const accepted = getJSON(acceptedKey());
+          accepted.push({title: s.title, body: s.body || '', kpi:'AI', acceptedAt: Date.now()});
+          setJSON(acceptedKey(), accepted);
+          const d = getJSON(dismissedKey());
+          if (!d.includes(s.title)) d.push(s.title);
+          setJSON(dismissedKey(), d);
+          toast('Accepted · ' + s.title.slice(0, 28));
+          load();
+        }}}),
+        el('button', {cls:'dismiss', text:'Dismiss', on:{click: () => {
+          const d = getJSON(dismissedKey());
+          if (!d.includes(s.title)) d.push(s.title);
+          setJSON(dismissedKey(), d);
+          card.style.transition = 'opacity .2s, transform .2s';
+          card.style.opacity = '0';
+          card.style.transform = 'scale(.92)';
+          setTimeout(() => {
+            card.remove();
+            if (!scroll.querySelector('.ai-card')) wrap.remove();
+          }, 200);
+        }}}),
+      ]);
+      card.appendChild(actions);
+      scroll.appendChild(card);
+    });
+    wrap.appendChild(scroll);
+    return wrap;
+  }
+
+  function buildFrame(frame, idx) {
+    const phase = Number(frame.phase) || (idx + 1);
+    const cardCount = (frame.lanes || []).reduce((s, l) => s + (l.cards || []).length, 0);
+    const laneCount = (frame.lanes || []).length;
+    const frameEl = el('div', {cls: 'frame phase' + phase, id: 'frame-' + idx});
+    frameEl.appendChild(el('div', {cls:'frame-h'}, [
+      el('span', {cls:'num', text: 'F' + String(idx + 1).padStart(2, '0')}),
+      el('span', {cls:'t', text: frame.title || 'Frame ' + (idx + 1)}),
+      el('span', {cls:'meta'}, [
+        el('span', {text: laneCount + 'L'}),
+        el('span', {text: cardCount + 'C'}),
+      ]),
+    ]));
+
+    const lanesWrap = el('div', {cls:'lanes-wrap'});
+    const lanesScroll = el('div', {cls:'lanes'});
+    (frame.lanes || []).forEach((lane, laneIdx) => {
+      const laneCardCount = (lane.cards || []).length + userCardsFor(idx, laneIdx).length;
+      const addBtn = el('button', {cls:'add', type:'button', 'aria-label':'Add card to ' + (lane.header || 'lane')}, [document.createTextNode('+')]);
+      const laneEl = el('div', {cls: 'lane ' + LANE_COLOR_CLASS(lane.color)}, [
+        el('div', {cls:'lane-h'}, [
+          el('span', {cls:'name', text: lane.header || 'Lane'}),
+          el('span', {cls:'count', text: String(laneCardCount)}),
+          addBtn,
+        ]),
+      ]);
+
+      addBtn.addEventListener('click', () => {
+        if (laneEl.querySelector('.add-form')) return;
+        const titleInput = el('input', {type:'text', placeholder:'Card title (required)', maxlength:'80'});
+        const bodyInput = el('textarea', {placeholder:'Body / notes (optional)', maxlength:'300'});
+        const saveBtn = el('button', {cls:'save', type:'button', text:'Save card'});
+        const cancelBtn = el('button', {cls:'cancel', type:'button', text:'Cancel'});
+        const form = el('div', {cls:'add-form'}, [
+          titleInput, bodyInput,
+          el('div', {cls:'add-actions'}, [saveBtn, cancelBtn]),
+        ]);
+        laneEl.insertBefore(form, laneEl.children[1] || null);
+        setTimeout(() => titleInput.focus(), 30);
+        cancelBtn.addEventListener('click', () => form.remove());
+        saveBtn.addEventListener('click', () => {
+          const title = titleInput.value.trim();
+          if (!title) { titleInput.focus(); return; }
+          const list = getJSON(userCardsKey());
+          list.push({frameIdx: idx, laneIdx, title, body: bodyInput.value.trim(), kpi:'NEW', addedAt: Date.now()});
+          setJSON(userCardsKey(), list);
+          toast('Added · ' + title.slice(0, 28));
+          load();
+        });
+      });
+
+      (lane.cards || []).forEach(card => {
+        const cardEl = el('div', {cls: 'card' + (card.kpi === 'AI' ? ' has-ai' : '')});
+        const row = el('div', {cls:'row'}, [el('span', {cls:'ct', text: card.title || 'Untitled'})]);
+        if (card.kpi) row.appendChild(el('span', {cls:'kpi', text: card.kpi}));
+        cardEl.appendChild(row);
+        if (card.body) cardEl.appendChild(el('div', {cls:'cb', text: card.body}));
+        if (card.link) cardEl.appendChild(el('a', {cls:'clink', href: card.link, target:'_blank', rel:'noopener', text:'Open'}));
+        laneEl.appendChild(cardEl);
+      });
+
+      const userCardsHere = userCardsFor(idx, laneIdx);
+      userCardsHere.forEach(uc => {
+        const cardEl = el('div', {cls:'card user-added'});
+        const delBtn = el('button', {cls:'del', type:'button', 'aria-label':'Delete card', text:'×'});
+        const row = el('div', {cls:'row'}, [
+          el('span', {cls:'ct', text: uc.title}),
+          el('span', {cls:'kpi', text: uc.kpi || 'NEW'}),
+          delBtn,
+        ]);
+        cardEl.appendChild(row);
+        if (uc.body) cardEl.appendChild(el('div', {cls:'cb', text: uc.body}));
+        delBtn.addEventListener('click', () => {
+          const list = getJSON(userCardsKey()).filter(c => c.addedAt !== uc.addedAt);
+          setJSON(userCardsKey(), list);
+          toast('Removed');
+          load();
+        });
+        laneEl.appendChild(cardEl);
+      });
+
+      if (!(lane.cards || []).length && !userCardsHere.length) {
+        laneEl.appendChild(el('div', {cls:'lane-empty', text:'No cards · tap +'}));
+      }
+
+      lanesScroll.appendChild(laneEl);
+    });
+    lanesWrap.appendChild(lanesScroll);
+    frameEl.appendChild(lanesWrap);
+
+    if (laneCount > 1) {
+      frameEl.appendChild(el('div', {cls:'swipe-hint', text: 'Swipe lanes ←→'}));
+    }
+    return frameEl;
+  }
+
+  function buildAcceptedFrame() {
+    const accepted = getJSON(acceptedKey());
+    if (!accepted.length) return null;
+    const frameEl = el('div', {cls:'frame phase2', id:'frame-accepted'});
+    frameEl.appendChild(el('div', {cls:'frame-h'}, [
+      el('span', {cls:'num', text:'AI'}),
+      el('span', {cls:'t', text:'Accepted suggestions'}),
+      el('span', {cls:'meta'}, [el('span', {text: accepted.length + 'C'})]),
+    ]));
+    const lanesWrap = el('div', {cls:'lanes-wrap'});
+    const lanesScroll = el('div', {cls:'lanes'});
+    const lane = el('div', {cls:'lane'}, [
+      el('div', {cls:'lane-h'}, [
+        el('span', {cls:'name', text:'Saved cards'}),
+        el('span', {cls:'count', text: String(accepted.length)}),
+      ]),
+    ]);
+    accepted.forEach(card => {
+      const cardEl = el('div', {cls:'card has-ai'});
+      cardEl.appendChild(el('div', {cls:'row'}, [
+        el('span', {cls:'ct', text: card.title}),
+        el('span', {cls:'kpi', text:'AI'}),
+      ]));
+      if (card.body) cardEl.appendChild(el('div', {cls:'cb', text: card.body}));
+      lane.appendChild(cardEl);
+    });
+    lanesScroll.appendChild(lane);
+    lanesWrap.appendChild(lanesScroll);
+    frameEl.appendChild(lanesWrap);
+    return frameEl;
+  }
+
+  function setupSearch() {
+    const input = document.getElementById('searchInput');
+    const clear = document.getElementById('searchClear');
+    const count = document.getElementById('searchCount');
+    const bar = document.getElementById('searchbar');
+
+    function applyFilter(raw) {
+      const q = (raw || '').trim().toLowerCase();
+      const cards = document.querySelectorAll('#root .card');
+      const lanes = document.querySelectorAll('#root .lane');
+      const frames = document.querySelectorAll('#root .frame');
+
+      if (!q) {
+        cards.forEach(c => { c.classList.remove('hidden', 'match'); });
+        lanes.forEach(l => l.classList.remove('hidden'));
+        frames.forEach(f => f.classList.remove('hidden'));
+        bar.classList.remove('has-query');
+        count.textContent = '';
+        return;
+      }
+      bar.classList.add('has-query');
+
+      let matchCount = 0;
+      cards.forEach(c => {
+        const title = (c.querySelector('.ct')?.textContent || '').toLowerCase();
+        const body = (c.querySelector('.cb')?.textContent || '').toLowerCase();
+        const hit = title.includes(q) || body.includes(q);
+        c.classList.toggle('hidden', !hit);
+        c.classList.toggle('match', hit);
+        if (hit) matchCount++;
+      });
+      lanes.forEach(l => {
+        const anyVisible = l.querySelector('.card:not(.hidden)');
+        l.classList.toggle('hidden', !anyVisible);
+      });
+      frames.forEach(f => {
+        const anyVisible = f.querySelector('.lane:not(.hidden)');
+        f.classList.toggle('hidden', !anyVisible);
+      });
+      count.textContent = matchCount + ' hit' + (matchCount === 1 ? '' : 's');
+    }
+
+    let timer;
+    input.addEventListener('input', () => {
+      clearTimeout(timer);
+      timer = setTimeout(() => applyFilter(input.value), 80);
+    });
+    clear.addEventListener('click', () => {
+      input.value = '';
+      applyFilter('');
+      input.focus();
+    });
+    input.addEventListener('keydown', e => {
+      if (e.key === 'Escape') { input.value = ''; applyFilter(''); input.blur(); }
+    });
+    // Re-apply on every load() so fresh DOM stays filtered if there's still a query
+    window.__bpReapplyFilter = () => applyFilter(input.value);
+  }
+
+  function setupScrollSpy() {
+    const frames = [...document.querySelectorAll('.frame[id^="frame-"]')];
+    const chips = [...document.querySelectorAll('.phasechip')];
+    if (!frames.length || !chips.length) return;
+
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const idx = frames.indexOf(entry.target);
+          if (idx >= 0 && chips[idx]) {
+            chips.forEach(c => c.classList.remove('active'));
+            chips[idx].classList.add('active');
+            chips[idx].scrollIntoView({behavior:'smooth', block:'nearest', inline:'center'});
+          }
+        }
+      });
+    }, {rootMargin: '-30% 0px -60% 0px', threshold: 0});
+    frames.forEach(f => obs.observe(f));
+
+    const jt = document.getElementById('jumptop');
+    let lastScroll = 0;
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      jt.classList.toggle('show', y > 600);
+      lastScroll = y;
+    }, {passive: true});
+    jt.addEventListener('click', () => window.scrollTo({top: 0, behavior: 'smooth'}));
+  }
+
+  async function load() {
+    clear(root);
+    root.appendChild(el('div', {cls:'skel'}, [
+      el('div', {cls:'ring'}),
+      el('div', {cls:'label', text:'Loading ' + biz}),
+    ]));
+    try {
+      const [dataRes, suggRes] = await Promise.all([
+        fetch('/blueprint/data/' + biz + '.json', {cache:'no-store'}),
+        fetch('/api/blueprint-suggestions/' + biz, {cache:'no-store'}).catch(() => null),
+      ]);
+      if (!dataRes.ok) throw new Error('data HTTP ' + dataRes.status);
+      const data = await dataRes.json();
+      const sugg = suggRes && suggRes.ok ? await suggRes.json() : {suggestions: []};
+
+      clear(root);
+      document.getElementById('bizText').textContent = data.name || biz;
+      document.title = (data.name || biz) + ' · Blueprint';
+
+      root.appendChild(buildHero(data));
+
+      const phaseNav = buildPhaseNav(data);
+      if (phaseNav) root.appendChild(phaseNav);
+
+      const wrap = el('div', {cls:'wrap'});
+      const aiRibbon = buildAIRibbon(sugg.suggestions || []);
+      if (aiRibbon) wrap.appendChild(aiRibbon);
+
+      const acceptedFrame = buildAcceptedFrame();
+      if (acceptedFrame) {
+        wrap.appendChild(el('div', {cls:'section-h', text: 'Saved'}));
+        wrap.appendChild(acceptedFrame);
+      }
+
+      wrap.appendChild(el('div', {cls:'section-h', text: 'Frames · ' + (data.frames || []).length}));
+      (data.frames || []).forEach((f, i) => wrap.appendChild(buildFrame(f, i)));
+
+      if (!(data.frames || []).length) {
+        wrap.appendChild(el('div', {cls:'empty', text:'No frames in this blueprint yet.'}));
+      }
+      root.appendChild(wrap);
+
+      requestAnimationFrame(() => {
+        setupScrollSpy();
+        if (window.__bpReapplyFilter) window.__bpReapplyFilter();
+      });
+    } catch (e) {
+      clear(root);
+      root.appendChild(el('div', {cls:'err', text:'Failed to load blueprint: ' + e.message + ' — pull to refresh or use the DT desktop link.'}));
+    }
+  }
+
+  setupSearch();
+  load();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0a0908">
+<meta name="description" content="Free quote builder for trades — line items, VAT, print to PDF. By DS Electrical.">
+<title>Quote Builder — DS Electrical</title>
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  :root{
+    --dark:#0a0908; --dark2:#131110; --dark3:#1c1915;
+    --gold:#d4a44a; --brass:#b8944f;
+    --text:#f0e8da; --text-2:#b3a988; --text-3:#7e7858;
+    --line:rgba(214,196,143,.10); --line-2:rgba(214,196,143,.25);
+    --green:#7d9156; --rust:#c05442;
+  }
+  html,body{height:100%;background:var(--dark);color:var(--text);font-family:'Outfit',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  body{padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom);font-size:16px;line-height:1.45}
+  a{color:inherit;text-decoration:none}
+  button,input,select,textarea{font:inherit;color:inherit;background:none;border:none;outline:none}
+
+  .app{max-width:760px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column}
+
+  header{padding:1.6rem 1.4rem 1rem;display:flex;align-items:baseline;justify-content:space-between;border-bottom:1px solid var(--line)}
+  .brand{font-family:'JetBrains Mono',ui-monospace,monospace;font-weight:700;font-size:.8rem;letter-spacing:.32em;color:var(--gold);text-transform:uppercase}
+  .brand .dot{display:inline-block;width:6px;height:6px;background:var(--gold);border-radius:50%;margin-right:.5rem;vertical-align:middle}
+  .by{font-size:.62rem;color:var(--text-3);letter-spacing:.2em;text-transform:uppercase}
+  .by a{color:var(--text-3);border-bottom:1px dotted var(--text-3);padding-bottom:1px}
+  .by a:hover{color:var(--text)}
+
+  .title-row{padding:1.6rem 1.4rem .4rem}
+  h1{font-size:1.7rem;font-weight:800;letter-spacing:-.015em;line-height:1.05;margin-bottom:.4rem}
+  .sub{font-size:.92rem;color:var(--text-3);line-height:1.5;max-width:480px}
+
+  main{flex:1;padding:1.5rem 1.4rem 7rem}
+
+  .section{margin-bottom:2rem}
+  .s-h{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.65rem;font-weight:700;letter-spacing:.32em;color:var(--gold);text-transform:uppercase;margin-bottom:.9rem}
+
+  .field{margin-bottom:1rem}
+  .field label{display:block;font-size:.65rem;font-weight:700;letter-spacing:.18em;color:var(--text-3);text-transform:uppercase;margin-bottom:.45rem}
+  .field input,.field select,.field textarea{width:100%;padding:.85rem 1rem;background:var(--dark2);border:1px solid var(--line);border-radius:8px;font-size:1rem;color:var(--text)}
+  .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold)}
+  .field textarea{min-height:60px;resize:vertical}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+  @media(max-width:520px){.grid2{grid-template-columns:1fr}}
+
+  /* Items */
+  .items{border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  .items .row{display:grid;grid-template-columns:1fr 70px 110px 36px;gap:.5rem;padding:.7rem .9rem;border-bottom:1px solid var(--line);align-items:center}
+  .items .row:last-child{border-bottom:none}
+  .items .row.head{background:var(--dark2);font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text-3);font-weight:700}
+  .items input{padding:.55rem .65rem;background:var(--dark);border:1px solid var(--line);border-radius:6px;font-size:.92rem;color:var(--text);width:100%}
+  .items input.qty,.items input.unit{text-align:right;font-family:'JetBrains Mono',ui-monospace,monospace}
+  .items .del{background:transparent;color:var(--text-3);cursor:pointer;font-size:1.2rem;width:36px;height:36px;border-radius:6px;display:flex;align-items:center;justify-content:center}
+  .items .del:hover{color:var(--rust);background:rgba(192,84,66,.08)}
+  .items-empty{padding:1.5rem;text-align:center;color:var(--text-3);font-size:.9rem}
+
+  .add-line{margin-top:.7rem;display:inline-flex;align-items:center;gap:.4rem;padding:.55rem 1rem;border:1px dashed var(--line-2);border-radius:8px;color:var(--text-2);font-size:.85rem;font-weight:600;cursor:pointer}
+  .add-line:hover{color:var(--gold);border-color:var(--gold)}
+
+  /* Totals */
+  .totals{margin-top:1.5rem;background:var(--dark2);border:1px solid var(--line);border-radius:10px;padding:1.1rem 1.2rem}
+  .t-row{display:flex;justify-content:space-between;font-size:.95rem;padding:.4rem 0;border-bottom:1px dashed var(--line)}
+  .t-row:last-child{border:none;padding-top:.7rem;font-weight:700;font-size:1.1rem}
+  .t-row .lbl{color:var(--text-2)}
+  .t-row .val{font-family:'JetBrains Mono',ui-monospace,monospace}
+  .t-row.total .val{color:var(--gold);font-size:1.3rem}
+
+  /* Action bar */
+  .action-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(10,9,8,.95);backdrop-filter:blur(20px);border-top:1px solid var(--line);padding:.85rem 1.4rem calc(.85rem + env(safe-area-inset-bottom));z-index:50}
+  .action-bar-inner{max-width:760px;margin:0 auto;display:flex;gap:.7rem}
+  .btn{flex:1;height:50px;border-radius:10px;font-weight:700;font-size:.95rem;letter-spacing:.04em;cursor:pointer;display:flex;align-items:center;justify-content:center;text-transform:uppercase}
+  .btn-primary{background:var(--gold);color:var(--dark);box-shadow:0 8px 24px rgba(212,164,74,.25)}
+  .btn-primary:active{background:var(--brass)}
+  .btn-primary:disabled{opacity:.4;cursor:not-allowed;box-shadow:none}
+  .btn-ghost{flex:0 0 auto;padding:0 1.2rem;background:transparent;color:var(--text-2);border:1px solid var(--line-2)}
+
+  .toast{position:fixed;top:calc(1rem + env(safe-area-inset-top));left:50%;transform:translateX(-50%) translateY(-150%);background:var(--gold);color:var(--dark);padding:.8rem 1.3rem;border-radius:8px;font-weight:700;font-size:.85rem;letter-spacing:.04em;text-transform:uppercase;box-shadow:0 8px 24px rgba(0,0,0,.4);z-index:200;transition:transform .25s ease}
+  .toast.show{transform:translateX(-50%) translateY(0)}
+
+  .qno{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.78rem;color:var(--text-3);letter-spacing:.1em;margin-top:.3rem}
+
+  /* Print stylesheet — clean A4 quote */
+  @media print {
+    @page { size: A4; margin: 18mm 16mm; }
+    body { background: #fff !important; color: #111 !important; font-size: 11pt; }
+    .no-print, header, .action-bar, .add-line, .items .del, .toast { display: none !important; }
+    .app { max-width: none !important; padding: 0 !important; }
+    main { padding: 0 !important; }
+    h1 { color: #111 !important; font-size: 22pt; margin-bottom: 4pt; }
+    .sub, .qno { color: #555 !important; }
+    .field input, .field select, .field textarea, .items input { background: transparent !important; border: none !important; color: #111 !important; padding: 0 !important; font-size: 11pt; }
+    .field label { color: #777 !important; font-size: 8pt; }
+    .s-h { color: #111 !important; }
+    .items { border: 1px solid #ddd !important; border-radius: 0 !important; }
+    .items .row { border-bottom-color: #ddd !important; grid-template-columns: 1fr 70px 110px !important; }
+    .items .row.head { background: #f7f5f0 !important; color: #111 !important; }
+    .items .row input { color: #111 !important; }
+    .totals { background: transparent !important; border-color: #ddd !important; color: #111 !important; }
+    .t-row { color: #111 !important; }
+    .t-row .lbl, .t-row .val { color: #111 !important; }
+    .t-row.total .val { color: #b8944f !important; }
+    .print-footer { display: block !important; margin-top: 24pt; padding-top: 12pt; border-top: 1px solid #ddd; font-size: 9pt; color: #777; line-height: 1.5; }
+  }
+  .print-footer { display: none; }
+</style>
+  <meta property="og:image" content="https://www.dselectricalsw.co.uk/og-image.jpg">  <link rel="alternate" hreflang="en-GB" href="https://www.dselectricalsw.co.uk/quote/">
+  <link rel="alternate" hreflang="x-default" href="https://www.dselectricalsw.co.uk/quote/">
+
+</head>
+<body>
+<div class="app">
+
+  <header class="no-print">
+    <div class="brand"><span class="dot"></span>Quote Builder</div>
+    <div class="by">By <a href="/">DS Electrical</a></div>
+  </header>
+
+  <div class="title-row">
+    <h1 id="quote-title">New quote.</h1>
+    <p class="sub no-print">Fill the lines, hit print. Saves locally so you can come back to it.</p>
+    <div class="qno" id="qno"></div>
+  </div>
+
+  <main>
+
+    <div class="section">
+      <div class="s-h">Customer</div>
+      <div class="grid2">
+        <div class="field"><label>Name / company</label><input type="text" id="f-cust" autocomplete="off" placeholder="Mr Smith"></div>
+        <div class="field"><label>Email or phone</label><input type="text" id="f-contact" autocomplete="off" placeholder="07000 000 000"></div>
+      </div>
+      <div class="field"><label>Job address</label><input type="text" id="f-addr" autocomplete="off" placeholder="1 Example St, BA6 9AB"></div>
+    </div>
+
+    <div class="section">
+      <div class="s-h">Trade</div>
+      <div class="field">
+        <select id="f-trade">
+          <option value="electrical">Electrical</option>
+          <option value="plumbing">Plumbing</option>
+          <option value="heating">Heating &amp; gas</option>
+          <option value="decorating">Decorating</option>
+          <option value="general">General building</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="s-h">Line items</div>
+      <div class="items" id="items">
+        <div class="row head">
+          <div>Description</div>
+          <div style="text-align:right">Qty</div>
+          <div style="text-align:right">Unit £</div>
+          <div></div>
+        </div>
+      </div>
+      <button class="add-line no-print" id="add-line">+ Add line</button>
+    </div>
+
+    <div class="totals">
+      <div class="t-row"><span class="lbl">Net</span><span class="val" id="t-net">£0</span></div>
+      <div class="t-row"><span class="lbl">VAT @ 20%</span><span class="val" id="t-vat">£0</span></div>
+      <div class="t-row total"><span class="lbl">Total inc VAT</span><span class="val" id="t-tot">£0</span></div>
+    </div>
+
+    <div class="section" style="margin-top:1.6rem">
+      <div class="s-h">Notes (optional)</div>
+      <div class="field"><textarea id="f-notes" placeholder="Anything the customer should know — payment terms, what's included, exclusions..."></textarea></div>
+    </div>
+
+    <div class="print-footer">
+      Quote prepared by DS Electrical Installation SW Ltd &middot; 07889 334849 &middot; info@dselectricalsw.co.uk &middot; NAPIT approved.<br>
+      Valid 30 days from issue. Payment terms: 50% deposit on booking, balance on completion. BACS only.
+    </div>
+  </main>
+
+</div>
+
+<div class="action-bar no-print">
+  <div class="action-bar-inner">
+    <button class="btn btn-ghost" id="btn-clear">Clear</button>
+    <button class="btn btn-primary" id="btn-print">Print quote &rarr;</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(() => {
+  const STORE = 'ds-quote-draft-v1';
+  const QNO_KEY = 'ds-quote-qno-v1';
+
+  const $ = id => document.getElementById(id);
+  const itemsEl = $('items');
+
+  function fmtGBP(n){ return '£' + (Math.round((Number(n)||0)*100)/100).toLocaleString('en-GB', {minimumFractionDigits:0,maximumFractionDigits:2}); }
+  function randQno(){
+    // QUO-NNN where NNN is 3 random digits 100-999, per feedback_quote_numbers.md (random, not sequential)
+    return 'QUO-' + Math.floor(100 + Math.random() * 900);
+  }
+  function getQno(){
+    let q = localStorage.getItem(QNO_KEY);
+    if (!q) { q = randQno(); localStorage.setItem(QNO_KEY, q); }
+    return q;
+  }
+
+  function makeRow(item){
+    const row = document.createElement('div');
+    row.className = 'row';
+
+    const desc = document.createElement('input');
+    desc.type = 'text'; desc.className = 'desc'; desc.placeholder = 'e.g. Install consumer unit';
+    desc.value = item?.desc || '';
+    row.appendChild(desc);
+
+    const qty = document.createElement('input');
+    qty.type = 'number'; qty.className = 'qty'; qty.min = '0'; qty.step = '0.5';
+    qty.value = item?.qty || 1;
+    row.appendChild(qty);
+
+    const unit = document.createElement('input');
+    unit.type = 'number'; unit.className = 'unit'; unit.min = '0'; unit.step = '1';
+    unit.value = item?.unit || 0;
+    row.appendChild(unit);
+
+    const del = document.createElement('button');
+    del.className = 'del no-print'; del.textContent = '×'; del.title = 'Remove';
+    del.addEventListener('click', () => { row.remove(); recalc(); save(); });
+    row.appendChild(del);
+
+    [desc, qty, unit].forEach(el => el.addEventListener('input', () => { recalc(); save(); }));
+
+    return row;
+  }
+
+  function addLine(item){
+    itemsEl.appendChild(makeRow(item));
+  }
+
+  function recalc(){
+    const rows = Array.from(itemsEl.querySelectorAll('.row:not(.head)'));
+    const net = rows.reduce((s,r) => {
+      const q = Number(r.querySelector('.qty').value) || 0;
+      const u = Number(r.querySelector('.unit').value) || 0;
+      return s + (q * u);
+    }, 0);
+    const vat = net * 0.20;
+    $('t-net').textContent = fmtGBP(net);
+    $('t-vat').textContent = fmtGBP(vat);
+    $('t-tot').textContent = fmtGBP(net + vat);
+  }
+
+  function readState(){
+    const items = Array.from(itemsEl.querySelectorAll('.row:not(.head)')).map(r => ({
+      desc: r.querySelector('.desc').value,
+      qty: Number(r.querySelector('.qty').value) || 0,
+      unit: Number(r.querySelector('.unit').value) || 0
+    }));
+    return {
+      cust: $('f-cust').value,
+      contact: $('f-contact').value,
+      addr: $('f-addr').value,
+      trade: $('f-trade').value,
+      notes: $('f-notes').value,
+      items
+    };
+  }
+
+  function save(){
+    localStorage.setItem(STORE, JSON.stringify(readState()));
+  }
+
+  function load(){
+    const raw = localStorage.getItem(STORE);
+    if (!raw) {
+      addLine();  // start with one empty row
+      return;
+    }
+    try {
+      const d = JSON.parse(raw);
+      $('f-cust').value = d.cust || '';
+      $('f-contact').value = d.contact || '';
+      $('f-addr').value = d.addr || '';
+      $('f-trade').value = d.trade || 'electrical';
+      $('f-notes').value = d.notes || '';
+      (d.items || []).forEach(it => addLine(it));
+      if ((d.items || []).length === 0) addLine();
+    } catch (e) {
+      addLine();
+    }
+  }
+
+  function clearAll(){
+    if (!confirm('Clear this quote and start a new one? The customer + lines will be lost.')) return;
+    localStorage.removeItem(STORE);
+    localStorage.removeItem(QNO_KEY);  // new quote = new random number
+    location.reload();
+  }
+
+  function printQuote(){
+    const s = readState();
+    if (!s.cust.trim()) { toast('Customer name needed'); $('f-cust').focus(); return; }
+    if (s.items.every(i => !i.desc.trim() || !i.unit)) { toast('Add at least one line with a price'); return; }
+    save();
+    window.print();
+  }
+
+  let toastT = null;
+  function toast(msg){
+    const t = $('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(toastT);
+    toastT = setTimeout(() => t.classList.remove('show'), 1800);
+  }
+
+  // Wire up
+  $('add-line').addEventListener('click', () => { addLine(); });
+  $('btn-clear').addEventListener('click', clearAll);
+  $('btn-print').addEventListener('click', printQuote);
+  ['f-cust','f-contact','f-addr','f-trade','f-notes'].forEach(id => $(id).addEventListener('input', save));
+
+  // Initial
+  $('qno').textContent = getQno();
+  load();
+  recalc();
+})();
+</script>
+</body>
+</html>

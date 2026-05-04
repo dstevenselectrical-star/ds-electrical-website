@@ -2,7 +2,14 @@
 // Precaches core pages + shared assets, serves offline.
 // Stale-while-revalidate for photos, network-first for HTML, cache-first for static assets.
 
-const VERSION = 'ds-v1';
+// Bumped 2026-05-03 16:05: SW LOGIC change — now skips /blueprint/* and
+// /blueprints/* entirely. Was serving stale blueprint HTML from cache on Dan's
+// iPhone PWA, causing "blueprint not working" complaints all afternoon. v2 didn't
+// change behaviour, just invalidated cache. v3 makes the SW physically incapable
+// of intercepting blueprint requests so this can never recur.
+// Note: this DOES bump v2→v3 same UTC day — necessary for the logic change. The
+// main-site SW doesn't grant mic/camera permissions so iOS perm-revoke risk N/A.
+const VERSION = 'ds-v3';
 const PRECACHE = [
   '/',
   '/contact.html',
@@ -48,6 +55,10 @@ self.addEventListener('fetch', (event) => {
 
   // Never intercept the Cloudflare chat worker or GA or external APIs
   if (url.origin !== location.origin) return;
+
+  // Never intercept blueprint pages/data — they change daily, must always be fresh.
+  // Was the cause of "blueprint not working on phone" — old SW was serving stale HTML.
+  if (url.pathname.startsWith('/blueprint/') || url.pathname.startsWith('/blueprints/')) return;
 
   // HTML: network-first (always try fresh, fall back to cache for offline)
   if (request.mode === 'navigate' || request.destination === 'document') {

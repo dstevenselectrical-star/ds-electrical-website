@@ -1,10 +1,10 @@
-Contact: mailto:info@dselectricalinstallations.co.uk
+Contact: mailto:info@dselectricalsw.co.uk
 Contact: tel:+447889334849
-Expires: 2027-04-23T00:00:00.000Z
+Expires: 2027-05-04T23:59:59.000Z
 Preferred-Languages: en
 Canonical: https://www.dselectricalsw.co.uk/.well-known/security.txt
 
 # If you've found a security issue with this website or our booking/quote flows,
-# please email info@dselectricalinstallations.co.uk or call 07889 334849.
+# please email info@dselectricalsw.co.uk or call 07889 334849.
 # We treat web/data security issues the same as any other fault on a live installation:
 # tell us, we'll fix it. Responsible disclosure appreciated.

@@ -40,9 +40,9 @@ function notifyTelegram(text) {
 function sendBrevoEmail(to, name, service, when) {
  if (!BREVO_KEY) return;
  const body = JSON.stringify({
-  sender: { name: 'DS Electrical', email: 'info@dselectricalinstallations.co.uk' },
+  sender: { name: 'DS Electrical', email: 'info@dselectricalsw.co.uk' },
   to: [{ email: to, name }],
-  replyTo: { email: 'dstevenselectrical@gmail.com', name: 'Dan Stevens' },
+  replyTo: { email: 'info@dselectricalsw.co.uk', name: 'Dan Stevens' },
   subject: `DS Electrical — booking received (${service})`,
   htmlContent: `<div style="font-family:system-ui,sans-serif;color:#222;max-width:560px"><h2 style="color:#0f0d0a;border-bottom:2px solid #d4a44a;padding-bottom:8px">Booking received</h2><p>Hi ${name},</p><p>Thanks for booking <strong>${service}</strong>${when ? ' for <strong>' + when + '</strong>' : ''} with DS Electrical Installations (SW) Ltd.</p><p>Dan will be in touch shortly to confirm the date and any access details.</p><p style="margin-top:24px">If anything's urgent in the meantime: <strong>07889 334849</strong>.</p><p style="color:#666;font-size:13px;margin-top:32px">DS Electrical Installations (SW) Ltd · NAPIT Approved · Glastonbury, Somerset · <a href="https://www.dselectricalsw.co.uk">dselectricalsw.co.uk</a></p></div>`
  });

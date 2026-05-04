@@ -1,0 +1,268 @@
+{
+  "id": "forge",
+  "name": "Forge — Trade Business Toolkit",
+  "topbarTitle": "Forge · Operating System",
+  "version": "v1",
+  "date": "2026-05-03",
+  "tagline": "All-in-one PWA for trade businesses · cheaper than CertSuite · team dev nobody else builds",
+  "eyebrow": "Operating System · the whole product",
+  "description": "Trade-business SaaS · 4 module phases · only Phase 1 (Team Development) shipped. Sub-blueprints embedded: 4-phase roadmap, pricing tier ladder, competitive positioning. Yellow rules split shipped from planned.",
+  "meta": [
+    ["Stack", "React 19 + Vite 7 + Tailwind 4"],
+    ["Path", "~/forge"],
+    ["Phase 1", "shipped (10 tools)"],
+    ["Phases 2-4", "planned (30 tools)"],
+    ["Pricing", "Free / £19 / £49"],
+    ["Sister", "Forge Energy Designer"]
+  ],
+  "stats": [
+    {"label": "Frames",      "num": "8",     "sub": "Departments",   "gold": true},
+    {"label": "Phase 1 tools","num": "10",   "sub": "Shipped"},
+    {"label": "Tools planned","num": "30",   "sub": "Phases 2-4"},
+    {"label": "Pricing tiers","num": "3",    "sub": "Free/Pro/Biz"},
+    {"label": "Phase",       "num": "1→4",   "sub": "Of 4 planned"},
+    {"label": "Sub-bprs",    "num": "3",     "sub": "Mini-canvases"}
+  ],
+  "phases": ["Discover", "Trial", "Convert", "Activate", "Retain", "Expand"],
+  "accents": [
+    {"top": 530,  "label": "Phase 1 · Shipped · Team Development"},
+    {"top": 2380, "label": "Phase 2 · Planned · Business Ops + Compliance + Sales"}
+  ],
+  "frames": [
+    {
+      "title": "Phase 1 · Team Dev · SHIPPED", "phase": 1, "top": 570, "left": 60, "width": 780, "height": 1750,
+      "lanes": [
+        {"header": "Skills + competency", "icon": "i-people", "color": "g", "count": "Core",
+         "cards": [
+           {"title": "Skills Matrix",        "kpi": "16 cat", "body": "Levels 0-5 grid · auto-updates from assessments."},
+           {"title": "Competency Assessments","body": "Auto-update matrix on pass ≥ 80%."},
+           {"title": "Skills Gap Analysis",  "body": "Business needs vs capability · gap report."},
+           {"title": "Team Performance",     "body": "KPIs · skills profiles per person."}
+         ], "miniAfter": "phase-stack"},
+        {"header": "CPD + training", "icon": "i-doc", "color": "g", "count": "Compliance",
+         "cards": [
+           {"title": "CPD Tracker",          "body": "Per-person progress bars + cost tracking."},
+           {"title": "Training Plans",       "body": "6 templates · milestone pipeline."},
+           {"title": "Toolbox Talks",        "kpi": "30+", "body": "Topic library · auto-logs 0.25h CPD per attendee."}
+         ]},
+        {"header": "Cards + cert", "icon": "i-shield", "color": "g", "count": "Expiry",
+         "cards": [
+           {"title": "ECS Card Tracker",     "body": "Expiry dashboard · printable compliance summary."},
+           {"title": "BS7671 Tracker",       "body": "Amendment compliance grid."},
+           {"title": "Cert Expiry alerts",   "body": "Auto-alerts via forgeAgent."}
+         ]},
+        {"header": "Apprentice", "icon": "i-people", "color": "g", "count": "AM2 prep",
+         "cards": [
+           {"title": "Apprentice Tracker",   "kpi": "3700h", "body": "Progress + AM2 prep checklist."},
+           {"title": "Hours logging",        "body": "Per-week + per-job breakdown."},
+           {"title": "Mentor sign-off",      "body": "Per-task · time-stamped."}
+         ]},
+        {"header": "Auto-intelligence", "icon": "i-bolt", "color": "g", "count": "forgeAgent.js",
+         "cards": [
+           {"title": "Auto-actions",         "body": "Generates alerts + actions from data."},
+           {"title": "agentRef dedup",       "body": "Same alert never created twice."},
+           {"title": "BS7671 amendment sync","body": "Polls + flags amendment changes."}
+         ]}
+      ],
+      "minis": [
+        {"id": "phase-stack", "type": "stack", "icon": "i-stack", "title": "4-phase roadmap", "rows": [
+          {"label": "Phase 1: Team Development (10 tools)", "layer": "shipped"},
+          {"label": "Phase 2: Business Ops (10 tools)",     "layer": "planned"},
+          {"label": "Phase 3: Compliance + Safety (10)",    "layer": "planned"},
+          {"label": "Phase 4: Sales + Marketing (10)",      "layer": "planned"}
+        ]}
+      ]
+    },
+    {
+      "title": "Phase 2 · Business Ops · planned", "phase": 2, "top": 570, "left": 890, "width": 780, "height": 1750,
+      "lanes": [
+        {"header": "Quoting + invoicing", "icon": "i-pound", "count": "Money flow",
+         "cards": [
+           {"title": "QuoteCalculator",      "body": "Per-trade pricing engine · saves to localStorage."},
+           {"title": "InvoiceGenerator",    "body": "PDF · auto VAT · sequence per-tenant."},
+           {"title": "ExpenseTracker",      "body": "Receipt photo → categorise."},
+           {"title": "FinancialDashboard",  "body": "Cash flow · P&L · per-job profitability."}
+         ]},
+        {"header": "Job + scheduling", "icon": "i-clock", "count": "Operations",
+         "cards": [
+           {"title": "JobScheduler",        "body": "Calendar view · drag-drop · multi-team."},
+           {"title": "ClientCRM",           "body": "Customer history · tagging · re-engagement."},
+           {"title": "FleetTracker",        "body": "Van location · service due · MOT alerts."}
+         ]},
+        {"header": "Stock + suppliers", "icon": "i-bag", "count": "Materials",
+         "cards": [
+           {"title": "StockManager",        "body": "Van stock · reorder threshold · SKU lookup."},
+           {"title": "SupplierManager",     "body": "Trade counters · account terms · price compare."},
+           {"title": "DocumentLibrary",     "body": "Datasheets · cert templates · SOPs."}
+         ]}
+      ]
+    },
+    {
+      "title": "Phase 3 · Compliance · planned", "phase": 2, "top": 570, "left": 1720, "width": 780, "height": 1750,
+      "lanes": [
+        {"header": "Site safety", "icon": "i-shield", "color": "r", "count": "Required",
+         "cards": [
+           {"title": "RAMSGenerator",       "body": "Site-specific from templates · BS 5839 etc."},
+           {"title": "SafetyAudit",         "body": "Periodic walks · photo evidence."},
+           {"title": "IncidentReporting",   "body": "RIDDOR-aligned · auto-NAPIT notify."},
+           {"title": "PPETracker",          "body": "Per-person issue log + replacement."},
+           {"title": "COSHHAssessments",    "body": "Substance + control measures · printable."}
+         ]},
+        {"header": "Certificates", "icon": "i-doc", "color": "r", "count": "Per-job",
+         "cards": [
+           {"title": "CertificateGenerator","body": "EIC · MWC · EICR · NAPIT-format."},
+           {"title": "PATRecords",          "body": "Per-asset · annual cycle · expiry alerts."},
+           {"title": "PartPTracker",        "body": "Notification log · building control refs."},
+           {"title": "CertExpiryDashboard", "body": "All certs across all clients · sortable."}
+         ]},
+        {"header": "Compliance", "icon": "i-check", "color": "r", "count": "Always-on",
+         "cards": [
+           {"title": "ComplianceChecklist", "body": "Pre-job · per-job-type · sign-off required."}
+         ]}
+      ]
+    },
+    {
+      "title": "Phase 4 · Sales · planned", "phase": 2, "top": 570, "left": 2550, "width": 780, "height": 1750,
+      "lanes": [
+        {"header": "Lead pipeline", "icon": "i-funnel", "color": "b", "count": "Acquisition",
+         "cards": [
+           {"title": "LeadPipeline",        "body": "Stages · auto-progression · stale alerts."},
+           {"title": "ProposalBuilder",     "body": "Drag-drop · cover photo · branded."},
+           {"title": "FollowUpAutomation",  "body": "Sequenced · merge fields · stop-on-reply."}
+         ]},
+        {"header": "Marketing", "icon": "i-megaphone", "color": "b", "count": "Outbound",
+         "cards": [
+           {"title": "EmailCampaigns",      "body": "Brevo / Mailchimp · template library."},
+           {"title": "SocialScheduler",     "body": "Multi-platform · approval flow."},
+           {"title": "ReviewManager",       "body": "Post-job request · Google + Trustpilot."}
+         ]}
+      ],
+      "minis": [
+        {"id": "tier", "type": "stack", "icon": "i-pound", "title": "Pricing tiers", "rows": [
+          {"label": "Free · 5 team · Team Dev only",    "layer": "£0"},
+          {"label": "Pro · unlimited + Biz Ops + Comp", "layer": "£19/mo"},
+          {"label": "Business · everything + Sales",    "layer": "£49/mo"}
+        ]}
+      ]
+    },
+    {
+      "title": "Tech Stack", "phase": 2, "top": 2420, "left": 60, "width": 780, "height": 1320,
+      "lanes": [
+        {"header": "Stack", "icon": "i-stack", "color": "b", "count": "PWA",
+         "cards": [
+           {"title": "React 19 + Vite 7",   "body": "No TypeScript · no react-router."},
+           {"title": "Tailwind 4",          "body": "Utility CSS · no separate stylesheet."},
+           {"title": "PAGES + useState",    "body": "Routing pattern · same as DS Electrical app."},
+           {"title": "localStorage",        "body": "All data per-tenant · forge_ prefix."}
+         ]},
+        {"header": "Storage keys", "icon": "i-stack", "color": "b", "count": "forge_*",
+         "cards": [
+           {"title": "forge_team",          "body": "Team members · skills · CPD."},
+           {"title": "forge_cpd · _training_plans", "body": "Training records · plans."},
+           {"title": "forge_assessments",   "body": "Pass/fail · auto-update matrix."},
+           {"title": "forge_apprentices",   "body": "Hours · AM2 prep state."},
+           {"title": "forge_toolbox",       "body": "Talks delivered · attendees."},
+           {"title": "forge_settings",      "body": "Per-tenant config."}
+         ]},
+        {"header": "Theme", "icon": "i-palette", "count": "Ultra 2050",
+         "cards": [
+           {"title": "Cyan + orange",       "body": "On void black · trade-tech aesthetic."},
+           {"title": "HUB / TEAM / SOON",   "body": "Section headers in nav."}
+         ]}
+      ]
+    },
+    {
+      "title": "Sister Product · Forge Energy", "phase": 2, "top": 2420, "left": 890, "width": 780, "height": 1320,
+      "lanes": [
+        {"header": "Forge Energy Designer", "icon": "i-bolt", "color": "g", "count": "All-in-one",
+         "cards": [
+           {"title": "Path: ~/forge-energy/","body": "React 19 + Vite 8 + Tailwind 4."},
+           {"title": "Status",               "body": "Scaffolded · not yet deployed."},
+           {"title": "Market gap",           "body": "PV*SOL EUR845/yr is closest · no mobile · no MCS · no BS 7671."}
+         ]},
+        {"header": "Pages", "icon": "i-doc", "color": "g", "count": "10 built",
+         "cards": [
+           {"title": "Landing",             "body": "Marketing entry."},
+           {"title": "PropertyInput",       "body": "Property data · EPC lookup."},
+           {"title": "SolarDesigner",       "body": "Roof orientation · shading · yield."},
+           {"title": "BatterySizer",        "body": "Self-consumption optimisation."},
+           {"title": "EVCharger",           "body": "Load assessment · cable sizing."},
+           {"title": "HeatPump",            "body": "Heat loss · emitter design."},
+           {"title": "BoardDesigner",       "body": "Distribution board redesign."},
+           {"title": "Proposal",            "body": "Customer proposal + payback calcs."},
+           {"title": "EnergyAnalytics",     "body": "Dashboard · per-system insights."},
+           {"title": "AdvancedRD",          "body": "R&D + advanced calcs."}
+         ]},
+        {"header": "Engine", "icon": "i-bolt", "color": "g", "count": "Utils",
+         "cards": [
+           {"title": "calculations.js",     "body": "Core engineering math."},
+           {"title": "engineering-engine.js","body": "Rules · BS 7671 · MCS."},
+           {"title": "pvgis.js",            "body": "EU PVGIS API · solar yield."},
+           {"title": "postcode.js",         "body": "UK postcode lookup."}
+         ]}
+      ]
+    },
+    {
+      "title": "Competitive landscape", "phase": 2, "top": 2420, "left": 1720, "width": 780, "height": 1320,
+      "lanes": [
+        {"header": "Direct competitors", "icon": "i-target", "color": "r", "count": "PWA SaaS",
+         "cards": [
+           {"title": "CertSuite",           "body": "UK · EICR + cert · no team dev."},
+           {"title": "Tradify",             "body": "Job mgmt · invoicing · NZ origin."},
+           {"title": "Fluke Connect",       "body": "Test data sync · hardware-tied."}
+         ]},
+        {"header": "Forge gap-filling", "icon": "i-check", "color": "g", "count": "Why win",
+         "cards": [
+           {"title": "Team Dev module",     "body": "NOBODY else builds CPD/skills/AM2 prep."},
+           {"title": "Cheaper",             "body": "Free + £19 vs £30-80 for competitors."},
+           {"title": "PWA · works offline", "body": "On the bank · no signal."},
+           {"title": "Single-app vision",   "body": "All 4 phases unified · not 4 logins."}
+         ]},
+        {"header": "Forge Energy competitors", "icon": "i-target", "color": "r", "count": "Energy",
+         "cards": [
+           {"title": "OpenSolar",           "body": "Free · solar-only."},
+           {"title": "Aurora",              "body": "$300/mo · solar-only."},
+           {"title": "PV*SOL Premium",      "body": "EUR 845/yr · desktop-only · no mobile."},
+           {"title": "PVsyst",              "body": "Engineering-grade · steep learning curve."},
+           {"title": "EasySolar",           "body": "Mobile · solar-only · no other systems."}
+         ]}
+      ]
+    },
+    {
+      "title": "Go-to-market", "phase": 2, "top": 2420, "left": 2550, "width": 780, "height": 1320,
+      "lanes": [
+        {"header": "Acquisition", "icon": "i-megaphone", "color": "b", "count": "Trade-led",
+         "cards": [
+           {"title": "Sparky communities",  "body": "ElectriciansForums · NAPIT mailing list."},
+           {"title": "TikTok demos",        "body": "10-tool tour · Phase 1 walkthroughs."},
+           {"title": "YouTube long-form",   "body": "EICR walkthrough · CPD how-to."},
+           {"title": "DS Electrical sister","body": "Cross-promo from main DS site."}
+         ]},
+        {"header": "Activation", "icon": "i-target", "color": "b", "count": "Free-tier",
+         "cards": [
+           {"title": "Free · 5 team",       "body": "Skills matrix + Toolbox talks · forever."},
+           {"title": "Onboarding video",    "body": "5-min walkthrough · in-app modal."},
+           {"title": "Sample data",         "body": "Pre-loaded so empty state shows value."}
+         ]},
+        {"header": "Conversion to Pro", "icon": "i-pound", "color": "b", "count": "£19/mo",
+         "cards": [
+           {"title": "5-team limit hit",    "body": "Upgrade prompt at create-6th."},
+           {"title": "Business Ops unlock", "body": "Quoting + invoicing + scheduling."},
+           {"title": "Compliance unlock",   "body": "Cert generators + RAMS."}
+         ]},
+        {"header": "Conversion to Business", "icon": "i-pound", "color": "b", "count": "£49/mo",
+         "cards": [
+           {"title": "Sales pipeline",      "body": "Lead tracking + email campaigns."},
+           {"title": "Marketing tools",     "body": "Reviews + social scheduler."}
+         ]}
+      ]
+    }
+  ],
+  "edges": [
+    {"d": "M 840 700 L 865 700 L 865 700 L 890 700", "arrow": "default"},
+    {"d": "M 1670 700 L 1695 700 L 1695 700 L 1720 700", "arrow": "default"},
+    {"d": "M 2500 700 L 2525 700 L 2525 700 L 2550 700", "arrow": "default"},
+    {"d": "M 60 2600 L 40 2600 L 40 700 L 60 700", "cls": "dim"},
+    {"d": "M 1720 2600 L 1695 2600 L 1695 700 L 1720 700", "cls": "gold", "arrow": "gold"}
+  ]
+}

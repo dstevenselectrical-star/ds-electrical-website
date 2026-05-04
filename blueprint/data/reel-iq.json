@@ -1,0 +1,325 @@
+{
+  "id": "reel-iq",
+  "name": "reel iQ",
+  "topbarTitle": "reel iQ · Operating System",
+  "version": "v1",
+  "date": "2026-05-03",
+  "tagline": "Field intelligence for anglers · log → learn → predict",
+  "eyebrow": "Operating System · the whole app",
+  "description": "Catch logging PWA + bite predictor for anglers. Sub-blueprints embedded: catch capture flow, AI species pipeline, retention loop. Yellow rules split capture from intelligence.",
+  "meta": [
+    ["Domain", "fish.aimaxops.com"],
+    ["Stack", "Python aiohttp + SQLite + PWA"],
+    ["Hosting", "PM2 reeliq · port 7684"],
+    ["Catches DB", "10 logged"],
+    ["Species seeded", "25"],
+    ["Multi-agent", "AGENTS.md contract"]
+  ],
+  "stats": [
+    {"label": "Frames",       "num": "7",    "sub": "Departments",   "gold": true},
+    {"label": "Endpoints",    "num": "20+",  "sub": "API surface"},
+    {"label": "Catches",      "num": "10",   "sub": "Real logged"},
+    {"label": "Species",      "num": "25",   "sub": "Seeded"},
+    {"label": "Phase",        "num": "1→5",  "sub": "Catch to predict"},
+    {"label": "Sub-bprs",     "num": "3",    "sub": "Mini-canvases"}
+  ],
+  "phases": ["Snap", "Tag", "Log", "Trip", "Predict"],
+  "accents": [
+    {"top": 530,  "label": "Phase 1 · Capture"},
+    {"top": 2380, "label": "Phase 2 · Intelligence + Brand"}
+  ],
+  "frames": [
+    {
+      "title": "Capture · in-field", "phase": 1, "top": 570, "left": 60, "width": 780, "height": 1750,
+      "lanes": [
+        {"header": "Catch entry", "icon": "i-fish", "color": "b", "count": "8 sec to log",
+         "cards": [
+           {"title": "Snap photo",        "body": "Native camera · EXIF preserved."},
+           {"title": "Auto species ID",   "body": "AI vision · top-3 with confidence."},
+           {"title": "Manual override",   "body": "Tap correct species from list."},
+           {"title": "Weight + length",   "body": "lb/oz + cm · per-circuit recall."},
+           {"title": "Bait + setup",      "body": "Last used · one-tap repeat."},
+           {"title": "Notes (optional)",  "body": "Free text · voice dictation works."}
+         ], "miniAfter": "capture-flow"},
+        {"header": "EXIF auto-fill", "icon": "i-pin", "color": "b", "count": "Phone owns truth",
+         "cards": [
+           {"title": "DateTime original", "body": "Real catch time · not save time."},
+           {"title": "GPS lat/lon",       "body": "Auto-locate · matches known waters ≤0.5km."},
+           {"title": "Altitude",          "body": "For lake-vs-river inference."},
+           {"title": "Camera info",       "body": "iPhone model · for image meta."}
+         ]},
+        {"header": "Photo handling", "icon": "i-camera", "color": "b", "count": "On-device first",
+         "cards": [
+           {"title": "Original on device","body": "Phone keeps full-res original."},
+           {"title": "Server gets copy",  "body": "Upload to /api/photos/"},
+           {"title": "EXIF preserved",    "body": "Don't re-encode (Canvas strips EXIF)."},
+           {"title": "Thumb cached",      "body": "300px square for grid view."}
+         ]},
+        {"header": "Offline-first", "icon": "i-stack", "color": "b", "count": "On the bank",
+         "cards": [
+           {"title": "Service worker",    "body": "Caches static assets · offline shell."},
+           {"title": "IndexedDB queue",   "body": "POST /api/catches queued on offline."},
+           {"title": "Sync on online",    "body": "Background Sync API · iOS fallback."},
+           {"title": "202 Queued response","body": "UI shows \"Saved offline\" toast."}
+         ]},
+        {"header": "Trip auto-detect", "icon": "i-link", "color": "b", "count": "Server side",
+         "cards": [
+           {"title": "Time gap rule",     "kpi": "6h", "body": "Catches within 6h = same trip."},
+           {"title": "GPS proximity",     "kpi": "1km", "body": "+ within 1km of each other."},
+           {"title": "Idempotent",        "body": "POST again = no double-trip."},
+           {"title": "Water match",       "body": "Auto-link to known water within 0.5km."}
+         ]}
+      ],
+      "minis": [
+        {"id": "capture-flow", "type": "stack", "icon": "i-camera", "title": "Catch capture · 8 seconds", "rows": [
+          {"label": "1. Snap (camera)", "layer": "1s"},
+          {"label": "2. AI species (auto)", "layer": "2s"},
+          {"label": "3. Confirm species (tap)", "layer": "1s"},
+          {"label": "4. Weight + bait (recall)", "layer": "3s"},
+          {"label": "5. Save (offline-OK)", "layer": "1s"}
+        ]}
+      ]
+    },
+    {
+      "title": "Intelligence · learn", "phase": 2, "top": 570, "left": 890, "width": 780, "height": 1750,
+      "lanes": [
+        {"header": "AI species ID", "icon": "i-bolt", "count": "/api/ai/identify",
+         "cards": [
+           {"title": "Vision model",     "body": "Claude Haiku · multimodal · cheap."},
+           {"title": "Top-3 with conf",  "body": "JSON · {species, confidence}[3]"},
+           {"title": "Fallback gracefully","body": "AI unavailable → manual select."},
+           {"title": "Cost guard",       "body": "1 call per catch · cached on retry."}
+         ]},
+        {"header": "Pattern engine", "icon": "i-target", "count": "/api/patterns + insights",
+         "cards": [
+           {"title": "Feeding window",   "body": "Time-of-day clusters by species."},
+           {"title": "Bait combos",      "body": "Hit-rate per bait+setup combination."},
+           {"title": "Hot streaks",      "body": "Consecutive catches in window."},
+           {"title": "Dry spells",       "body": "Gaps · helps decide next session."},
+           {"title": "PB chase",         "body": "Personal best per species."},
+           {"title": "Confidence-gated", "body": "Only surfaces patterns with N≥threshold."}
+         ]},
+        {"header": "Bite predictor", "icon": "i-funnel", "count": "/api/bite-predict",
+         "cards": [
+           {"title": "Reads conditions","body": "Weather · pressure · moon · temp."},
+           {"title": "vs your history", "body": "Your catches in similar conditions."},
+           {"title": "Score 0-100",     "body": "+ rationale string."},
+           {"title": "v1 heuristic",    "body": "Rules-based · v2 trained when N enough."}
+         ], "miniAfter": "intel-stack"},
+        {"header": "Recommend", "icon": "i-target", "count": "/api/recommend",
+         "cards": [
+           {"title": "Best bait now",    "body": "Per species + conditions."},
+           {"title": "Best water",       "body": "Where you've had most luck."},
+           {"title": "Best time window", "body": "Tomorrow's best 3-hour slot."}
+         ]},
+        {"header": "Sharecard", "icon": "i-camera", "count": "PB highlight",
+         "cards": [
+           {"title": "1080×1350 PNG",    "body": "Insta-friendly aspect."},
+           {"title": "PB banner",        "body": "Yellow ribbon if new personal best."},
+           {"title": "X-PB-Status hdr",  "body": "Response header indicates status."},
+           {"title": "Auto-share btn",   "body": "Native share API on supported devices."}
+         ]}
+      ],
+      "minis": [
+        {"id": "intel-stack", "type": "stack", "icon": "i-bolt", "title": "Intelligence stack", "rows": [
+          {"label": "Layer 1: Catch log (raw events)", "layer": "Data"},
+          {"label": "Layer 2: Trip groups + water match", "layer": "Group"},
+          {"label": "Layer 3: Patterns (window/bait/streak)", "layer": "Mine"},
+          {"label": "Layer 4: Bite predict (your hist + cond)", "layer": "Predict"},
+          {"label": "Layer 5: Recommend (action: go/wait)", "layer": "Act"}
+        ]}
+      ]
+    },
+    {
+      "title": "App UI · PWA", "phase": 1, "top": 570, "left": 1720, "width": 780, "height": 1750,
+      "lanes": [
+        {"header": "Tabs", "icon": "i-stack", "color": "g", "count": "4", "cols": 4,
+         "cards": [
+           {"title": "Home"}, {"title": "Catches"}, {"title": "Trips"}, {"title": "Stats"}
+         ]},
+        {"header": "Home tab", "icon": "i-target", "color": "g", "count": "Today",
+         "cards": [
+           {"title": "Conditions banner","body": "Weather · pressure · today's bite score."},
+           {"title": "Recent catches",   "body": "Last 5 with photo thumbs."},
+           {"title": "Bite predictor",   "body": "Tomorrow's best window."},
+           {"title": "Quick log FAB",    "body": "+ button → camera + entry."}
+         ]},
+        {"header": "Catches tab", "icon": "i-fish", "color": "g", "count": "All-time log",
+         "cards": [
+           {"title": "Grid view",        "body": "Photo thumb · species · weight · date."},
+           {"title": "Filter by species","body": "Quick chips · single tap."},
+           {"title": "Filter by water",  "body": "Pre-loaded list of fished waters."},
+           {"title": "Tap → detail",     "body": "Full photo + edit + sharecard."}
+         ]},
+        {"header": "Trips tab", "icon": "i-pin", "color": "g", "count": "Sessions",
+         "cards": [
+           {"title": "Auto-grouped",     "body": "From server trip-detect."},
+           {"title": "Pills · count",    "body": "X catches · target · water type."},
+           {"title": "Manual create",    "body": "Override grouping if needed."}
+         ]},
+        {"header": "Stats tab", "icon": "i-stack", "color": "g", "count": "Lifetime",
+         "cards": [
+           {"title": "Personal bests",   "body": "Per species · weight + photo."},
+           {"title": "Last 30 days",     "body": "Catches · trips · top species."},
+           {"title": "Heatmap",          "body": "Time-of-day x species."}
+         ]},
+        {"header": "Brand", "icon": "i-palette", "color": "g", "count": "Camo",
+         "cards": [
+           {"title": "DPM olive palette","body": "#0e1308 bg · #facc15 PB tackle yellow."},
+           {"title": "Special Elite",    "body": "Brand wordmark · field journal."},
+           {"title": "Oswald · body",    "body": "Workhorse for body."}
+         ]}
+      ]
+    },
+    {
+      "title": "Operations · server", "phase": 2, "top": 2420, "left": 60, "width": 780, "height": 1320,
+      "lanes": [
+        {"header": "Server", "icon": "i-stack", "count": "Python",
+         "cards": [
+           {"title": "aiohttp",          "body": "Async HTTP framework · single Python process."},
+           {"title": "PM2 supervised",   "body": "ID 28 · auto-restart · 10 max-restarts."},
+           {"title": "ecosystem.config", "body": "ENV · logs · cwd · Python venv."}
+         ]},
+        {"header": "Storage", "icon": "i-stack", "count": "SQLite",
+         "cards": [
+           {"title": "reeliq.db",        "body": "Single SQLite file · WAL mode."},
+           {"title": "Schema",           "body": "catches · trips · species · waters · setups."},
+           {"title": "Migrations",       "body": "scripts/migrate_*.py · idempotent."},
+           {"title": "Backups",          "body": "Nightly to Samsung 2TB SSD."}
+         ]},
+        {"header": "Endpoints", "icon": "i-link", "count": "20+",
+         "cards": [
+           {"title": "/healthz",         "body": "JSON · ok + totals · 95th pct < 50ms."},
+           {"title": "/selftest",        "body": "End-to-end · ~16s · all_passed:true."},
+           {"title": "/api/catches",     "body": "GET list · POST create."},
+           {"title": "/api/patterns",    "body": "Mine catch DB for patterns."},
+           {"title": "/api/insights",    "body": "Confidence-gated structured output."}
+         ]},
+        {"header": "Quality bar", "icon": "i-shield", "color": "r", "count": "AGENTS.md",
+         "cards": [
+           {"title": "Slop ban",         "titlePill": "rule", "titlePillColor": "red", "body": "No deco emoji in JSON · no fake testimonials."},
+           {"title": "Real-value only",  "body": "Insights surface NON-OBVIOUS only."},
+           {"title": "Null-safe SQL",    "body": "Aggregates handle empty groups."},
+           {"title": "Honest errors",    "body": "5xx body has cause · not blank."}
+         ]},
+        {"header": "Multi-agent contract", "icon": "i-people", "count": "AGENTS.md",
+         "cards": [
+           {"title": "Read live-activity","body": "Before any edit."},
+           {"title": "Append after",     "body": "Every meaningful action."},
+           {"title": "PWA mobile-first", "body": "Test on iPhone Safari."}
+         ]}
+      ]
+    },
+    {
+      "title": "Brand + Marketing", "phase": 2, "top": 2420, "left": 890, "width": 780, "height": 1320,
+      "lanes": [
+        {"header": "Brand identity", "icon": "i-palette", "color": "g", "count": "Heritage",
+         "cards": [
+           {"title": "Heritage carp art","body": "Sepia hand-drawn · brand spot illustration."},
+           {"title": "Cinzel wordmark", "body": "REEL iQ · classical serif · brand mark."},
+           {"title": "DPM camo BG",     "body": "App background · field-journal feel."},
+           {"title": "Boilie orange",   "body": "Single CTA color · #ff7a00."},
+           {"title": "Tackle yellow",   "body": "PB highlight · #facc15."}
+         ]},
+        {"header": "Public surfaces", "icon": "i-globe", "color": "g", "count": "2 pages",
+         "cards": [
+           {"title": "fish.aimaxops.com/", "body": "PWA app shell."},
+           {"title": "fish.aimaxops.com/landing", "body": "Mr.Notion-style marketing landing."}
+         ]},
+        {"header": "Channels", "icon": "i-megaphone", "color": "b", "count": "Niche",
+         "cards": [
+           {"title": "TikTok carp",      "body": "Catch reels · POV · gear."},
+           {"title": "Insta tag",        "body": "#carpfishing · #commonscarp · UGC."},
+           {"title": "FB groups",        "body": "Local syndicates · Somerset waters."},
+           {"title": "Word of bank",     "body": "Anglers see app on bank · ask."}
+         ]},
+        {"header": "Acquisition", "icon": "i-target", "color": "b", "count": "Free first",
+         "cards": [
+           {"title": "Free tier",        "body": "Log unlimited · all features · no paywall yet."},
+           {"title": "PWA install",      "body": "Add to home screen · iOS + Android."},
+           {"title": "Sharecard viral",  "body": "Posted PB photos drive installs."}
+         ]},
+        {"header": "Future monetisation", "icon": "i-pound", "count": "Planned",
+         "cards": [
+           {"title": "Premium tier",     "body": "Multi-water · cloud sync · v2 predict."},
+           {"title": "Tackle affiliate", "body": "Curated bait/rig recs · Amazon link."},
+           {"title": "Sponsored waters", "body": "Featured commercial fisheries."}
+         ]}
+      ]
+    },
+    {
+      "title": "Tech Stack", "phase": 2, "top": 2420, "left": 1720, "width": 780, "height": 1320,
+      "lanes": [
+        {"header": "App layer", "icon": "i-stack", "color": "b", "count": "Vanilla JS PWA",
+         "cards": [
+           {"title": "static/index.html","body": "App shell · single-page · 22KB."},
+           {"title": "static/app.js",    "body": "Tab routing · render · 33KB."},
+           {"title": "static/sw.js",     "body": "Service worker · IndexedDB queue."},
+           {"title": "static/landing",   "body": "Marketing landing · Mr.Notion polish."}
+         ]},
+        {"header": "Server layer", "icon": "i-stack", "color": "b", "count": "Python",
+         "cards": [
+           {"title": "server.py",        "body": "1800+ lines · aiohttp + SQLite."},
+           {"title": "scripts/",         "body": "Migrations · backfills · admin."},
+           {"title": "AGENTS.md",        "body": "Multi-agent coord contract."}
+         ]},
+        {"header": "Infra", "icon": "i-globe", "color": "b", "count": "Self-hosted",
+         "cards": [
+           {"title": "PM2 reeliq · 7684","body": "Auto-restart · ecosystem config."},
+           {"title": "Cloudflare tunnel","body": "fish.aimaxops.com → :7684."},
+           {"title": "Mac mini host",    "body": "24/7 · self-hosted · DS infra."}
+         ]},
+        {"header": "Photos", "icon": "i-camera", "color": "b", "count": "On-disk",
+         "cards": [
+           {"title": "~/reeliq/photos/", "body": "JPEGs · originals · EXIF preserved."},
+           {"title": "URL: /api/photos/{f}","body": "Served by aiohttp."},
+           {"title": "Backups",          "body": "Nightly to Samsung 2TB SSD."}
+         ]}
+      ]
+    },
+    {
+      "title": "Roadmap + Outstanding", "phase": 2, "top": 2420, "left": 2550, "width": 780, "height": 1320,
+      "lanes": [
+        {"header": "Shipped", "icon": "i-check", "color": "g", "count": "v1",
+         "cards": [
+           {"title": "Catch log",        "body": "10 catches in DB · live."},
+           {"title": "Trip auto-detect", "body": "1 trip detected · GPS+time logic."},
+           {"title": "EXIF backfill",    "body": "Server reads EXIF on upload."},
+           {"title": "Sharecard PB",     "body": "Yellow PB ribbon · verified visually."},
+           {"title": "Service worker queue","body": "Offline catches · syncs back."}
+         ]},
+        {"header": "Outstanding", "icon": "i-clock", "color": "r", "count": "Pre-launch",
+         "cards": [
+           {"title": "Bite predict v2",  "body": "Train on N≥enough catches · DEFERRED."},
+           {"title": "iPhone thumb test","body": "Real airplane-mode → online cycle."},
+           {"title": "Kapture Chrome ext","body": "Browser pairing · install pending."}
+         ]},
+        {"header": "v2 features", "icon": "i-bolt", "count": "Planned",
+         "cards": [
+           {"title": "Multi-user accounts","body": "Cloud sync · share with mates."},
+           {"title": "Weather correlation","body": "Pull forecast + correlate to hits."},
+           {"title": "Moon phase model", "body": "Many anglers swear by it · test it."},
+           {"title": "Voice catch entry","body": "say-claude bridge · hands-free."}
+         ]},
+        {"header": "Quality lessons", "icon": "i-shield", "color": "r", "count": "AGENTS.md",
+         "cards": [
+           {"title": "Slop is concrete", "body": "Decorative emoji in JSON · stub comments."},
+           {"title": "Two agents = contract","body": "Without AGENTS.md they trample."},
+           {"title": "Server crash ≠ agent crash","body": "Differentiate failure mode."}
+         ]},
+        {"header": "Upstream issues", "icon": "i-link", "count": "Tracked",
+         "cards": [
+           {"title": "obsidian-mcp >5KB", "body": "Crashes on large markdown payloads."},
+           {"title": "Workaround: Bash write","body": "Direct to vault folder."}
+         ]}
+      ]
+    }
+  ],
+  "edges": [
+    {"d": "M 840 700 L 865 700 L 865 800 L 890 800", "arrow": "default"},
+    {"d": "M 840 1300 L 865 1300 L 865 1300 L 890 1300", "arrow": "default"},
+    {"d": "M 1670 700 L 1695 700 L 1695 700 L 1720 700", "cls": "gold", "arrow": "gold"},
+    {"d": "M 1720 2600 L 1695 2600 L 1695 1700 L 890 1700", "cls": "dim"},
+    {"d": "M 60 2600 L 40 2600 L 40 700 L 60 700", "cls": "dim"}
+  ]
+}

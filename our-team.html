@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0f172a">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<style id="shared-inline">
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+ --dark:#0a0908;--dark2:#131110;--dark3:#1c1915;
+ --light:#f8f5f0;--light2:#eee9e0;--light3:#e2dbd0;
+ --brass:#b8944f;--gold:#d4a44a;
+ --text-dark:#1a1714;--text-muted:#6b6560;
+ --text-light:#f0e8da;--text-light-muted:#8c7d6a;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',sans-serif;background:var(--light);color:var(--text-dark);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none;transition:.2s}
+img{display:block;max-width:100%}
+
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1.5rem,5vw,4rem);background:rgba(10,9,8,.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.04)}
+.nav-logo img{height:70px;width:auto}
+.nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+.nav-links a{font-size:.78rem;font-weight:600;color:rgba(240,232,218,.6);letter-spacing:.08em;text-transform:uppercase}
+.nav-links a:hover{color:#fff}
+.nav-links a.active{color:var(--gold)}
+.nav-cta{background:var(--gold);color:var(--dark);padding:.5rem 1.3rem;border-radius:6px;font-weight:700;font-size:.78rem}
+.nav-cta:hover{background:var(--brass)}
+.nav-menu{display:none;background:none;border:none;color:#fff;font-size:1.5rem;cursor:pointer}
+
+.section-tag{font-size:.65rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--brass);margin-bottom:1rem}
+.section-heading{font-size:clamp(2.2rem,4.5vw,3.5rem);font-weight:900;line-height:1.05;letter-spacing:-.02em;margin-bottom:.75rem}
+.section-desc{color:var(--text-muted);font-size:1.05rem;line-height:1.7;max-width:600px;margin-bottom:2rem}
+.btn{padding:.8rem 2rem;border-radius:6px;font-weight:700;font-size:.85rem;letter-spacing:.02em;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:.5rem;transition:.25s}
+.btn-gold{background:var(--gold);color:var(--dark)}
+.btn-gold:hover{background:var(--brass);transform:translateY(-2px);box-shadow:0 8px 30px rgba(212,164,74,.3)}
+.btn-white{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.12)}
+.btn-white:hover{background:rgba(255,255,255,.14)}
+
+.breadcrumb{background:var(--light);padding:1rem clamp(1.5rem,5vw,4rem);font-size:.78rem;border-bottom:1px solid var(--light3)}
+.breadcrumb-inner{max-width:1200px;margin:0 auto;display:flex;gap:.5rem;align-items:center;color:var(--text-muted);font-weight:500}
+.breadcrumb-inner a{color:var(--text-muted);text-decoration:none;transition:.2s}
+.breadcrumb-inner a:hover{color:var(--brass)}
+.breadcrumb-inner .sep{color:var(--light3)}
+.breadcrumb-inner .current{color:var(--text-dark);font-weight:700}
+
+.tstrip{background:var(--light2);padding:2.5rem clamp(1.5rem,5vw,4rem);border-top:1px solid var(--light3);border-bottom:1px solid var(--light3)}
+.tstrip-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(6,1fr);gap:1.25rem;text-align:center}
+.tstrip-item{display:flex;flex-direction:column;align-items:center;gap:.5rem}
+.tstrip-item img{height:42px;width:auto;filter:grayscale(.15) contrast(1.1)}
+.tstrip-item span{font-size:.65rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.12em;font-weight:700}
+
+.cta{background:var(--dark);padding:clamp(5rem,10vw,8rem) clamp(1.5rem,5vw,4rem);text-align:center}
+.cta .section-heading{color:#fff}
+.cta .section-desc{color:rgba(240,232,218,.5);margin:0 auto 1.5rem;text-align:center}
+.cta-phone-label{font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(240,232,218,.4);display:block;margin-bottom:.6rem}
+.cta-phone{font-family:'JetBrains Mono',monospace;font-size:clamp(1.4rem,3vw,2.2rem);font-weight:700;color:rgba(240,232,218,.5);display:block;margin-bottom:2rem}
+.cta-phone:hover{color:var(--gold)}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+
+.footer{background:var(--dark);padding:3rem clamp(1.5rem,5vw,4rem) 1.5rem;border-top:1px solid rgba(255,255,255,.04)}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+.footer h3, .footer h4{font-size:.68rem;text-transform:uppercase;letter-spacing:.2em;color:var(--gold);margin-bottom:1rem;font-weight:700}
+.footer p,.footer a{font-size:.8rem;color:rgba(240,232,218,.4);line-height:2}
+.footer a:hover{color:var(--gold)}
+.footer-bottom{padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.03);display:flex;justify-content:space-between;font-size:.65rem;color:rgba(255,255,255,.2)}
+
+.wa{position:fixed;bottom:1.5rem;left:1.5rem;width:56px;height:56px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:99;box-shadow:0 4px 24px rgba(37,211,102,.3);transition:.2s}
+.wa:hover{transform:scale(1.1)}
+.wa svg{width:28px;height:28px;fill:#fff}
+
+.mcb{display:none;position:fixed;bottom:0;left:0;right:0;z-index:98;background:#0a0908;border-top:1px solid rgba(212,164,74,.3);padding:.6rem .6rem calc(.6rem + env(safe-area-inset-bottom));box-shadow:0 -6px 24px rgba(0,0,0,.4)}
+.mcb-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:.5rem}
+.mcb a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.15rem;padding:.6rem .4rem;border-radius:8px;font-family:'Outfit',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.04em;text-decoration:none;transition:.2s}
+.mcb a svg{width:18px;height:18px}
+.mcb .mcb-call{background:#d4a44a;color:#0a0908}
+.mcb .mcb-call:hover{background:#b8944f}
+.mcb .mcb-wa{background:#25d366;color:#fff}
+.mcb .mcb-mail{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.14)}
+.mcb small{font-size:.62rem;font-weight:500;opacity:.75;letter-spacing:.02em;text-transform:none}
+
+.dq-btn{position:fixed;right:1.25rem;bottom:1.25rem;z-index:99;display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 1.35rem;background:#d4a44a;color:#0a0908;border-radius:100px;font-family:'Outfit',sans-serif;font-weight:800;font-size:.8rem;letter-spacing:.04em;text-decoration:none;box-shadow:0 8px 32px rgba(212,164,74,.4);transition:.25s}
+.dq-btn:hover{background:#b8944f;transform:translateY(-2px);box-shadow:0 12px 40px rgba(212,164,74,.5)}
+.dq-btn svg{width:16px;height:16px}
+
+.related-svc{background:var(--dark);padding:clamp(4rem,7vw,5rem) clamp(1.5rem,5vw,4rem);color:#fff}
+.related-svc-inner{max-width:1200px;margin:0 auto}
+.related-svc .section-tag{color:#d4a44a}
+.related-svc h2{font-size:clamp(1.8rem,3.2vw,2.6rem);font-weight:900;line-height:1.1;color:#fff;margin-bottom:2.5rem;letter-spacing:-.02em}
+.related-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.related-card{display:block;padding:1.5rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:12px;text-decoration:none;transition:.25s}
+.related-card:hover{background:rgba(212,164,74,.08);border-color:rgba(212,164,74,.3);transform:translateY(-3px)}
+.related-card h3{font-size:.95rem;font-weight:800;color:#fff;margin-bottom:.4rem}
+.related-card p{font-size:.78rem;color:rgba(240,232,218,.5);line-height:1.5}
+.related-card .arrow{display:inline-block;margin-top:.8rem;color:#d4a44a;font-size:.8rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
+
+@media(max-width:1024px){.related-grid{grid-template-columns:repeat(2,1fr)}.tstrip-inner{grid-template-columns:repeat(3,1fr);gap:1.25rem}}
+@media(max-width:768px){
+ .nav-links{display:none;position:fixed;top:72px;left:0;right:0;background:rgba(10,9,8,.98);backdrop-filter:blur(20px);flex-direction:column;padding:2rem;gap:1.5rem;border-bottom:1px solid rgba(255,255,255,.06)}
+ .nav-links.open{display:flex}
+ .nav-menu{display:block}
+ .mcb{display:block}
+ body{padding-bottom:72px}
+ .wa{bottom:6rem !important}
+ .dq-btn{display:none}
+ .footer-grid{grid-template-columns:1fr 1fr}
+ .related-grid{grid-template-columns:1fr}
+ .tstrip-inner{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:480px){.footer-grid{grid-template-columns:1fr}}
+</style>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Meet the Team | Dan Stevens | DS Electrical SW Somerset</title>
+<meta name="description" content="Meet Dan Stevens, Director and Lead Electrician at DS Electrical Installations (SW) Ltd. 30 years' experience, NAPIT 66245, City and Guilds 2391, Part P, TrustMark, CHAS. Glastonbury, Somerset. Call 07889 334849.">
+<link rel="canonical" href="https://www.dselectricalsw.co.uk/our-team.html">
+<link rel="alternate" hreflang="en-GB" href="https://www.dselectricalsw.co.uk/our-team.html">
+<link rel="alternate" hreflang="x-default" href="https://www.dselectricalsw.co.uk/our-team.html">
+<meta property="og:title" content="Meet the Team - Dan Stevens, Director - DS Electrical SW">
+<meta property="og:description" content="Meet Dan Stevens, Director and Lead Electrician at DS Electrical. 30 years experience. NAPIT 66245, 2391 Inspection and Testing, Part P, TrustMark, CHAS.">
+<meta property="og:type" content="profile">
+<meta property="og:url" content="https://www.dselectricalsw.co.uk/our-team.html">
+<meta property="og:image" content="https://www.dselectricalsw.co.uk/photos/dan-portrait-og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Dan Stevens, Director and Lead Electrician at DS Electrical SW">
+<meta name="twitter:title" content="Meet the Team - Dan Stevens, Director - DS Electrical SW">
+<meta name="twitter:description" content="Meet Dan Stevens, Director and Lead Electrician at DS Electrical. 30 years experience.">
+<meta name="twitter:image" content="https://www.dselectricalsw.co.uk/photos/dan-portrait-og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:locale" content="en_GB">
+<meta name="robots" content="index, follow">
+<link rel="manifest" href="/manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://fonts.googleapis.com">
+<link rel="dns-prefetch" href="https://fonts.gstatic.com">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap"></noscript>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "Person",
+ "@id": "https://www.dselectricalsw.co.uk/our-team.html#dan-stevens",
+ "name": "Dan Stevens",
+ "jobTitle": "Director & Lead Electrician",
+ "telephone": "+447889334849",
+ "email": "dstevenselectrical@gmail.com",
+ "image": "https://www.dselectricalsw.co.uk/photos/dan-portrait.jpg",
+ "url": "https://www.dselectricalsw.co.uk/our-team.html",
+ "description": "Director and Lead Electrician at DS Electrical Installations (SW) Ltd. 30 years' experience across industrial, commercial and domestic. Specialist in heritage rewires, EICR, EV charging and fire alarms. Glastonbury, Somerset.",
+ "worksFor": {
+  "@type": "Organization",
+  "@id": "https://www.dselectricalsw.co.uk/#organization",
+  "name": "DS Electrical Installations (SW) Ltd",
+  "url": "https://www.dselectricalsw.co.uk/",
+  "logo": "https://www.dselectricalsw.co.uk/logo-full.png",
+  "telephone": "+447889334849",
+  "email": "info@dselectricalsw.co.uk",
+  "vatID": "GB429040905",
+  "address": {"@type":"PostalAddress","addressLocality":"Glastonbury","addressRegion":"Somerset","postalCode":"BA6","addressCountry":"GB"},
+  "founder": {"@id": "https://www.dselectricalsw.co.uk/our-team.html#dan-stevens"}
+ },
+ "hasCredential": [
+  {"@type": "EducationalOccupationalCredential", "name": "NAPIT Approved Contractor 66245", "credentialCategory": "Competent Person Scheme", "recognizedBy": {"@type": "Organization", "name": "NAPIT", "url": "https://napit.org.uk"}},
+  {"@type": "EducationalOccupationalCredential", "name": "City and Guilds 2391 Inspection and Testing", "credentialCategory": "Vocational Qualification", "recognizedBy": {"@type": "Organization", "name": "City and Guilds", "url": "https://cityandguilds.com"}},
+  {"@type": "EducationalOccupationalCredential", "name": "City and Guilds 2382 BS 7671 18th Edition Amendment 2", "credentialCategory": "Vocational Qualification", "recognizedBy": {"@type": "Organization", "name": "City and Guilds", "url": "https://cityandguilds.com"}},
+  {"@type": "EducationalOccupationalCredential", "name": "City and Guilds 2365 Level 3 Electrical Installation", "credentialCategory": "Vocational Qualification", "recognizedBy": {"@type": "Organization", "name": "City and Guilds", "url": "https://cityandguilds.com"}},
+  {"@type": "EducationalOccupationalCredential", "name": "Part P Registered", "credentialCategory": "Building Regulations Part P", "recognizedBy": {"@type": "Organization", "name": "NAPIT", "url": "https://napit.org.uk"}},
+  {"@type": "EducationalOccupationalCredential", "name": "TrustMark Government Endorsed", "credentialCategory": "Government Endorsed Quality Scheme", "recognizedBy": {"@type": "Organization", "name": "TrustMark", "url": "https://trustmark.org.uk"}},
+  {"@type": "EducationalOccupationalCredential", "name": "CHAS Accredited 158368", "credentialCategory": "Health and Safety Assessment", "recognizedBy": {"@type": "Organization", "name": "CHAS", "url": "https://chas.co.uk"}},
+  {"@type": "EducationalOccupationalCredential", "name": "BS 7671 18th Edition Compliant", "credentialCategory": "IET Wiring Regulations", "recognizedBy": {"@type": "Organization", "name": "Institution of Engineering and Technology", "url": "https://electrical.theiet.org"}}
+ ],
+ "knowsAbout": [
+  "Heritage Rewires",
+  "Listed Building Wiring",
+  "Electrical Installation Condition Reports (EICR)",
+  "EV Charger Installation",
+  "Fire Alarm Installation BS 5839-1",
+  "Emergency Lighting BS 5266",
+  "Part P Notification",
+  "Consumer Unit Replacement",
+  "Three-Phase Power",
+  "Commercial Electrical Installation",
+  "Kitchen and Bathroom Electrics",
+  "BS 7671 18th Edition Inspection and Testing"
+ ]
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "Organization",
+ "@id": "https://www.dselectricalsw.co.uk/#organization",
+ "name": "DS Electrical Installations (SW) Ltd",
+ "url": "https://www.dselectricalsw.co.uk/",
+ "logo": "https://www.dselectricalsw.co.uk/logo-full.png",
+ "telephone": "+447889334849",
+ "email": "info@dselectricalsw.co.uk",
+ "vatID": "GB429040905",
+ "address": {"@type":"PostalAddress","addressLocality":"Glastonbury","addressRegion":"Somerset","postalCode":"BA6","addressCountry":"GB"},
+ "founder": {
+  "@type": "Person",
+  "@id": "https://www.dselectricalsw.co.uk/our-team.html#dan-stevens",
+  "name": "Dan Stevens",
+  "jobTitle": "Director & Lead Electrician"
+ }
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement": [
+  {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.dselectricalsw.co.uk/"},
+  {"@type": "ListItem", "position": 2, "name": "About", "item": "https://www.dselectricalsw.co.uk/about.html"},
+  {"@type": "ListItem", "position": 3, "name": "Our Team", "item": "https://www.dselectricalsw.co.uk/our-team.html"}
+ ]
+}
+</script>
+<style>
+.hero{background:var(--dark);padding:clamp(7rem,9vw,9rem) clamp(1.5rem,5vw,4rem) clamp(4rem,6vw,5rem);text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(212,164,74,.08),transparent 60%);pointer-events:none}
+.hero-inner{max-width:900px;margin:0 auto;position:relative;z-index:1}
+.hero-tag{font-size:.65rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:2rem}
+.hero h1{font-size:clamp(2.5rem,6vw,5rem);font-weight:900;line-height:1;color:#fff;letter-spacing:-.03em;margin-bottom:1.5rem}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero-desc{font-size:1.15rem;color:rgba(240,232,218,.6);line-height:1.7;max-width:680px;margin:0 auto 2rem}
+
+.profile-section{padding:clamp(4rem,7vw,5.5rem) clamp(1.5rem,5vw,4rem);background:var(--light)}
+.profile-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:340px 1fr;gap:3rem;align-items:start}
+.profile-photo{background:#fff;border:1px solid var(--light3);border-radius:14px;overflow:hidden;position:sticky;top:90px;aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-size:.78rem;text-align:center;padding:1rem}
+.profile-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.profile-content .profile-tag{font-size:.65rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--brass);margin-bottom:.5rem}
+.profile-content h2{font-size:clamp(2rem,4vw,3rem);font-weight:900;line-height:1.05;letter-spacing:-.02em;margin-bottom:.4rem;color:var(--text-dark)}
+.profile-content .profile-role{font-family:'JetBrains Mono',monospace;font-size:.95rem;font-weight:700;color:var(--gold);background:rgba(212,164,74,.1);padding:.4rem .9rem;border-radius:6px;display:inline-block;margin-bottom:1.5rem}
+.profile-content p{font-size:1rem;color:var(--text-muted);line-height:1.8;margin-bottom:1.1rem}
+.profile-content p strong{color:var(--text-dark);font-weight:700}
+.profile-quote{font-size:1.1rem;line-height:1.7;color:var(--text-dark);font-style:italic;border-left:3px solid var(--gold);padding:.5rem 0 .5rem 1.2rem;margin:1.5rem 0}
+.profile-meta{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.5rem 0;padding:1.25rem;background:var(--light2);border:1px solid var(--light3);border-radius:10px}
+.profile-meta-item .label{font-size:.62rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.3rem}
+.profile-meta-item .value{font-size:.95rem;font-weight:600;color:var(--text-dark)}
+.cred-list{list-style:none;margin:1rem 0 1.5rem;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:.4rem .9rem}
+.cred-list li{font-size:.9rem;color:var(--text-muted);line-height:1.55;padding-left:1.4rem;position:relative}
+.cred-list li::before{content:'';position:absolute;left:0;top:.55rem;width:8px;height:8px;background:var(--gold);border-radius:2px}
+
+@media(max-width:768px){
+ .profile-inner{grid-template-columns:1fr;gap:1.5rem}
+ .profile-photo{position:relative;top:0;max-width:320px;margin:0 auto;aspect-ratio:4/5}
+ .cred-list{grid-template-columns:1fr}
+ .profile-meta{grid-template-columns:1fr}
+}
+
+.value-section{background:var(--light2);padding:clamp(4rem,7vw,5rem) clamp(1.5rem,5vw,4rem);border-top:1px solid var(--light3);border-bottom:1px solid var(--light3)}
+.value-inner{max-width:1100px;margin:0 auto}
+.value-head{text-align:center;margin-bottom:3rem}
+.value-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.value-card{background:#fff;border:1px solid var(--light3);border-radius:12px;padding:1.75rem}
+.value-card .vnum{font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:700;color:var(--brass);letter-spacing:.18em;margin-bottom:.6rem}
+.value-card h3{font-size:1.05rem;font-weight:800;color:var(--text-dark);margin-bottom:.5rem;line-height:1.3}
+.value-card p{font-size:.88rem;color:var(--text-muted);line-height:1.65}
+
+@media(max-width:900px){.value-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.value-grid{grid-template-columns:1fr}}
+
+.philosophy{padding:clamp(4rem,7vw,5rem) clamp(1.5rem,5vw,4rem);background:var(--dark);text-align:center;color:#fff}
+.philosophy-inner{max-width:780px;margin:0 auto}
+.philosophy .section-tag{color:var(--gold)}
+.philosophy blockquote{font-size:clamp(1.4rem,2.6vw,1.9rem);font-weight:600;line-height:1.4;color:#fff;letter-spacing:-.01em;margin-top:.5rem}
+.philosophy blockquote em{font-style:normal;color:var(--gold)}
+.philosophy cite{display:block;margin-top:1.5rem;font-style:normal;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(240,232,218,.45)}
+</style>
+<script src="/analytics.js" defer></script>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+ <a href="/" class="nav-logo"><img src="logo-full.png" alt="DS Electrical Installations (SW) Ltd" decoding="async"></a>
+ <ul class="nav-links" id="navLinks">
+  <li><a href="/commercial-electrical.html">Commercial</a></li>
+  <li><a href="/domestic.html">Domestic</a></li>
+  <li><a href="/rewires.html">Rewires</a></li>
+  <li><a href="/eicr.html">EICR</a></li>
+  <li><a href="/ev-chargers.html">EV Chargers</a></li>
+  <li><a href="/cctv.html">CCTV</a></li>
+  <li><a href="/network-infrastructure.html">Network Infrastructure</a></li>
+  <li><a href="/24-hour-callouts.html">24hr Callouts</a></li>
+  <li><a href="/our-team.html" class="active">Team</a></li>
+  <li><a href="/gallery.html">Gallery</a></li>
+  <li><a href="/blog.html">Blog</a></li>
+  <li><a href="/contact.html">Contact</a></li>
+  <li><a href="tel:07889334849" class="nav-cta">07889 334849</a></li>
+ </ul>
+ <button class="nav-menu" onclick="document.getElementById('navLinks').classList.toggle('open')">&#9776;</button>
+</nav>
+
+<nav class="breadcrumb" aria-label="Breadcrumb"><div class="breadcrumb-inner"><a href="/">Home</a><span class="sep">/</span><a href="/about.html">About</a><span class="sep">/</span><span class="current" aria-current="page">Our Team</span></div></nav>
+
+<!-- HERO -->
+<section class="hero">
+ <div class="hero-inner">
+  <div class="hero-tag">The People Who Do The Work</div>
+  <h1>Meet <em>the team</em>.</h1>
+  <p class="hero-desc">Honest sparkies, real credentials, no call-centre handoffs. The person who quotes the work is the person who does the work and signs the cert.</p>
+ </div>
+</section>
+
+<!-- TRUST STRIP — 6 BADGES -->
+<section class="tstrip" aria-label="Accreditations">
+ <div class="tstrip-inner">
+  <a href="/accreditations.html#napit" class="tstrip-item"><img loading="lazy" src="assets/accreditations/napit-official.png" alt="NAPIT 66245 registered competent electrician scheme badge"><span>NAPIT 66245</span></a>
+  <a href="/accreditations.html#chas" class="tstrip-item"><img loading="lazy" src="assets/accreditations/chas-official.png" alt="CHAS accredited contractor 158368 health and safety badge"><span>CHAS 158368</span></a>
+  <a href="/accreditations.html#city-guilds-2391" class="tstrip-item"><img loading="lazy" src="assets/accreditations/city-guilds-logo.png" alt="City and Guilds 2391"><span>City &amp; Guilds 2391</span></a>
+  <a href="/accreditations.html#trustmark" class="tstrip-item"><img loading="lazy" src="assets/accreditations/trustmark.svg" alt="TrustMark government-endorsed quality scheme logo for DS Electrical"><span>TrustMark</span></a>
+  <a href="/accreditations.html#part-p" class="tstrip-item"><img loading="lazy" src="assets/accreditations/part-p.svg" alt="Part P Building Regulations registered electrician logo"><span>Part P</span></a>
+  <a href="/accreditations.html#bs7671" class="tstrip-item"><img loading="lazy" src="assets/accreditations/bs7671.svg" alt="BS 7671 18th Edition"><span>BS 7671</span></a>
+ </div>
+</section>
+
+<!-- DAN STEVENS PROFILE -->
+<section class="profile-section">
+ <div class="profile-inner h-card">
+  <a class="u-url" href="https://www.dselectricalsw.co.uk/" hidden aria-hidden="true"></a>
+  <span class="p-org" hidden aria-hidden="true">DS Electrical Installations (SW) Ltd</span>
+  <div class="profile-photo">
+   <picture>
+    <source type="image/webp" srcset="/photos/dan-portrait.webp">
+    <img class="u-photo" src="/photos/dan-portrait.jpg" alt="Dan Stevens, Director and Lead Electrician at DS Electrical SW" width="600" height="750" loading="eager" fetchpriority="high">
+   </picture>
+  </div>
+  <div class="profile-content">
+   <div class="profile-tag">Profile / Director</div>
+   <h2 class="p-name">Dan Stevens</h2>
+   <div class="profile-role p-job-title">Director &amp; Lead Electrician</div>
+
+   <p class="profile-quote p-note">"I started on industrial sites in the 90s. Now I run DS Electrical from Glastonbury covering Bath, Wells, Shepton, Frome, Bruton and the surrounding villages. Every job I price personally. Every cert I sign. No call-centres."</p>
+
+   <p>Three decades on the tools across <strong>industrial, commercial and domestic</strong>. The early years were heavy industry &mdash; three-phase distribution, motor circuits, factory maintenance &mdash; the kind of work that teaches you to test before you trust. The last decade has been a mix of <strong>heritage rewires on listed Somerset cottages</strong>, EV charging installs, BS 5839-1 fire alarm systems, and the EICRs that keep landlords compliant under MEES regulations.</p>
+
+   <p>I run the company. I price the work. I do most of it myself, and the rest goes through engineers I&rsquo;ve worked with for years. <strong>You will never get handed off to a call-centre or a subcontractor you didn&rsquo;t agree to.</strong></p>
+
+   <div class="profile-meta">
+    <div class="profile-meta-item">
+     <div class="label">Experience</div>
+     <div class="value">30 years on the tools</div>
+    </div>
+    <div class="profile-meta-item">
+     <div class="label">Based</div>
+     <div class="value">Glastonbury, Somerset</div>
+    </div>
+    <div class="profile-meta-item">
+     <div class="label">Direct line</div>
+     <div class="value"><a class="p-tel" href="tel:07889334849" style="color:var(--brass);font-weight:700">07889 334849</a></div>
+    </div>
+    <div class="profile-meta-item">
+     <div class="label">Email</div>
+     <div class="value"><a class="u-email" href="mailto:dstevenselectrical@gmail.com" style="color:var(--brass);font-weight:700;font-size:.85rem">dstevenselectrical@gmail.com</a></div>
+    </div>
+   </div>
+
+   <div class="section-tag" style="margin-top:1.5rem">Credentials</div>
+   <ul class="cred-list">
+    <li>NAPIT Approved Contractor &mdash; 66245</li>
+    <li>CHAS Accredited &mdash; 158368</li>
+    <li>City &amp; Guilds 2391 (Inspection &amp; Testing)</li>
+    <li>City &amp; Guilds 2382 (BS 7671 18th Ed Amd 2)</li>
+    <li>City &amp; Guilds 2365 Level 3</li>
+    <li>Part P Registered (via NAPIT)</li>
+    <li>TrustMark Government Endorsed</li>
+    <li>BS 7671 18th Edition Compliant</li>
+   </ul>
+
+   <div class="section-tag">Specialisms</div>
+   <ul class="cred-list">
+    <li>Heritage rewires &amp; listed buildings</li>
+    <li>EICRs (commercial &amp; landlord)</li>
+    <li>EV charging installation</li>
+    <li>Fire alarm systems (BS 5839-1)</li>
+    <li>Kitchen &amp; bathroom Part P</li>
+    <li>Consumer unit replacement</li>
+   </ul>
+
+   <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1rem">
+    <a href="tel:07889334849" class="btn btn-gold">Call Dan &mdash; 07889 334849</a>
+    <a href="https://wa.me/447889334849" class="btn btn-white" style="background:#25d366;color:#fff;border:none">WhatsApp</a>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- WHAT YOU GET -->
+<section class="value-section">
+ <div class="value-inner">
+  <div class="value-head">
+   <div class="section-tag" style="text-align:center">What you get</div>
+   <h2 class="section-heading">Hire DS Electrical, get this.</h2>
+   <p class="section-desc" style="margin:0 auto">No surprises. No upsell after the quote. No subcontractor stitch-ups.</p>
+  </div>
+  <div class="value-grid">
+   <div class="value-card">
+    <div class="vnum">01</div>
+    <h3>Same engineer, quote to cert</h3>
+    <p>The director who quotes the job is the engineer on site, and the same person signs the certificate at the end. No handoffs.</p>
+   </div>
+   <div class="value-card">
+    <div class="vnum">02</div>
+    <h3>Free survey before pricing</h3>
+    <p>We come out, look at it, and price it from what we&rsquo;ve actually seen &mdash; not a guess off a phone call. Survey costs you nothing.</p>
+   </div>
+   <div class="value-card">
+    <div class="vnum">03</div>
+    <h3>Plain-English itemised quote</h3>
+    <p>Every quote breaks down labour, materials, certification and VAT separately. You can see exactly where your money goes.</p>
+   </div>
+   <div class="value-card">
+    <div class="vnum">04</div>
+    <h3>Part P notified at no extra cost</h3>
+    <p>NAPIT 66245 means we self-certify. Building Regulations Compliance Certificate posted to you within 30 days &mdash; no Building Control fee.</p>
+   </div>
+   <div class="value-card">
+    <div class="vnum">05</div>
+    <h3>6-year workmanship warranty</h3>
+    <p>Backed by NAPIT&rsquo;s Insurance Backed Guarantee. If something we&rsquo;ve installed fails on workmanship, it&rsquo;s covered for six years.</p>
+   </div>
+   <div class="value-card">
+    <div class="vnum">06</div>
+    <h3>&pound;2m public liability</h3>
+    <p>Full insurance cover including employer&rsquo;s liability. CHAS-audited annually. Certificate available on request before any job starts.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="philosophy">
+ <div class="philosophy-inner">
+  <div class="section-tag">Working philosophy</div>
+  <blockquote>Honest pricing. Visible craftsmanship. Show up when promised. <em>The kind of sparky you&rsquo;d recommend to your mum.</em></blockquote>
+  <cite>&mdash; Dan Stevens, Director</cite>
+ </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+ <div class="section-tag" style="color:var(--gold)">Reach Dan Directly</div>
+ <h2 class="section-heading">Talk to the<br>person doing the job.</h2>
+ <p class="section-desc">No call-centres, no quote-bots. Phone, WhatsApp or email Dan direct.</p>
+ <span class="cta-phone-label">Direct line</span>
+ <a href="tel:07889334849" class="cta-phone">Dan Stevens: 07889 334849</a>
+ <div class="cta-btns">
+  <a href="https://wa.me/447889334849" class="btn btn-gold">WhatsApp</a>
+  <a href="mailto:dstevenselectrical@gmail.com" class="btn btn-white">Email Dan</a>
+  <a href="/quote/" class="btn btn-white">Request a quote</a>
+ </div>
+</section>
+
+<!-- RELATED -->
+<section class="related-svc" aria-label="Related pages">
+ <div class="related-svc-inner">
+  <div class="section-tag" style="font-size:.65rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;margin-bottom:1rem">Related</div>
+  <h2>More about how we work&hellip;</h2>
+  <div class="related-grid">
+   <a href="/about.html" class="related-card">
+    <h3>About DS Electrical</h3>
+    <p>The company, the story, the standards</p>
+    <span class="arrow">Read &rarr;</span>
+   </a>
+   <a href="/accreditations.html" class="related-card">
+    <h3>Accreditations</h3>
+    <p>All six credentials, verifiable numbers</p>
+    <span class="arrow">View &rarr;</span>
+   </a>
+   <a href="/our-process.html" class="related-card">
+    <h3>Our Process</h3>
+    <p>Quote, install, certificate &mdash; how it runs</p>
+    <span class="arrow">Read &rarr;</span>
+   </a>
+   <a href="/contact.html" class="related-card">
+    <h3>Contact</h3>
+    <p>Phone, WhatsApp, email, quote form</p>
+    <span class="arrow">Get in touch &rarr;</span>
+   </a>
+  </div>
+ </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+ <div class="footer-grid">
+  <div>
+   <h3>DS Electrical Installations (SW) Ltd</h3>
+   <p>Glastonbury, Somerset</p>
+   <p><a href="tel:07889334849">07889 334849 (Dan Stevens)</a></p>
+   <p><a href="tel:07983106928">07983 106928 (Dan Street)</a></p>
+   <p><a href="mailto:info@dselectricalsw.co.uk">info@dselectricalsw.co.uk</a></p>
+  </div>
+  <div>
+   <h3>Services</h3>
+   <p><a href="/eicr.html">Rewires &amp; EICR</a></p>
+   <p><a href="/ev-chargers.html">EV Chargers</a></p>
+   <p><a href="/cctv.html">CCTV &amp; Security</a></p>
+   <p><a href="/commercial-electrical.html">Commercial</a></p>
+   <p><a href="/fuse-board.html">Fuse Board</a></p>
+   <p><a href="/fire-alarms.html">Fire Alarms</a></p>
+   <p><a href="/emergency-lighting.html">Emergency Lighting</a></p>
+  </div>
+  <div>
+   <h3>Areas</h3>
+   <p>Wells</p><p>Shepton Mallet</p><p>Bath</p><p>Frome</p><p>Midsomer Norton</p><p>Street</p>
+  </div>
+  <div>
+   <h3>Trust</h3>
+   <p><a href="/our-team.html">Meet the team</a></p>
+   <p><a href="/accreditations.html">NAPIT Approved</a></p>
+   <p><a href="/accreditations.html">CHAS Accredited</a></p>
+   <p><a href="/accreditations.html">TrustMark Endorsed</a></p>
+   <p><a href="/accreditations.html">Part P Registered</a></p>
+   <p style="margin-top:.5rem">5.0 Google Rating</p>
+  </div>
+ </div>
+ <div class="footer-bottom">
+  <span>&copy; 2026 DS Electrical Installations (SW) Ltd &middot; Reg. in England No. 13972348 &middot; VAT Reg. No. GB 429 0409 05 &middot; ICO 00013889257 &middot; NAPIT 66245 &middot; CHAS 158368</span>
+  <span><a href="/privacy.html">Privacy</a> &middot; <a href="/terms.html">Terms</a></span>
+ </div>
+</footer>
+
+<a href="https://wa.me/447889334849" class="wa" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.611.611l4.458-1.495A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.344 0-4.508-.8-6.227-2.141l-.435-.344-3.208 1.076 1.076-3.208-.344-.435A9.956 9.956 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg></a>
+
+<div class="mcb" aria-label="Quick contact">
+ <div class="mcb-grid">
+  <a href="tel:07889334849" class="mcb-call" aria-label="Call 07889 334849">
+   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.1-.04-.21-.05-.31-.05-.26 0-.51.1-.71.29l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.58l2.2-2.21c.28-.27.36-.66.25-1.01C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/></svg>
+   <span>Call Dan</span><small>07889 334849</small>
+  </a>
+  <a href="https://wa.me/447889334849" class="mcb-wa" aria-label="WhatsApp">
+   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.611.611l4.458-1.495A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+   <span>WhatsApp</span>
+  </a>
+  <a href="mailto:info@dselectricalsw.co.uk" class="mcb-mail" aria-label="Email">
+   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+   <span>Email</span>
+  </a>
+ </div>
+</div>
+
+<a href="tel:07889334849" class="dq-btn" aria-label="Call Dan for a quote">
+ <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.1-.04-.21-.05-.31-.05-.26 0-.51.1-.71.29l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.58l2.2-2.21c.28-.27.36-.66.25-1.01C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/></svg>
+ Call Dan &mdash; 07889 334849
+</a>
+
+<script src="/track.js" defer></script>
+<script src="/chat-widget.js" defer></script>
+</body>
+</html>

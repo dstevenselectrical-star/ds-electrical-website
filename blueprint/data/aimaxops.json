@@ -1,0 +1,380 @@
+{
+  "id": "aimaxops",
+  "name": "AI MaxOps Tactical",
+  "topbarTitle": "AimaxOps · Operating System",
+  "version": "v1",
+  "date": "2026-05-03",
+  "tagline": "Industrial Heritage · built for work · built for the field",
+  "eyebrow": "Operating System · the whole brand",
+  "description": "Tactical heritage streetwear + outdoor gear. Sub-blueprints embedded: product pipeline (file → Printify), brand identity stack, drop launch funnel. Yellow rules split acquisition from fulfillment. Drag to pan.",
+  "meta": [
+    ["Brand", "Industrial Heritage"],
+    ["Domain", "aimaxops.com"],
+    ["Hosted", "self-hosted"],
+    ["Payments", "Stripe · Apple Pay"],
+    ["POD", "Printful · Printify · Prodigi"],
+    ["Divisions", "TechDrone · WorkDrone · BuildMyApp"]
+  ],
+  "stats": [
+    {"label": "Frames",     "num": "8",     "sub": "Departments",  "gold": true},
+    {"label": "Drops live", "num": "1",     "sub": "Drop-001"},
+    {"label": "Products",   "num": "111+",  "sub": "Designs"},
+    {"label": "POD partners","num": "3",    "sub": "Multi-source"},
+    {"label": "Phase",      "num": "1→6",   "sub": "Lead to repeat"},
+    {"label": "Sub-bprs",   "num": "3",     "sub": "Mini-canvases"}
+  ],
+  "phases": ["Discover", "Click", "Add", "Checkout", "Fulfil", "Repeat"],
+  "accents": [
+    {"top": 530,  "label": "Phase 1 · Discovery + Conversion"},
+    {"top": 2380, "label": "Phase 2 · Production + Brand + Tech"}
+  ],
+  "frames": [
+    {
+      "title": "Marketing", "phase": 1, "top": 570, "left": 60, "width": 780, "height": 1750,
+      "lanes": [
+        {"header": "Channels", "icon": "i-megaphone", "color": "b", "count": "Social-led",
+         "cards": [
+           {"title": "TikTok org",       "kpi": "primary",  "body": "Drop teasers · POV unboxing · workshop reels."},
+           {"title": "Instagram",        "body": "Reels + grid · UGC repost · ambassadors."},
+           {"title": "Facebook + IG ads","body": "Retargeting + lookalike + drop launch boost."},
+           {"title": "Google Shopping",  "body": "Product feed via Stripe → Merchant Center."},
+           {"title": "Email · Brevo",    "kpi": "≤ £15/mo", "body": "Drop alerts · re-engagement · cart recovery."},
+           {"title": "Sister sites",     "body": "TechDrone, WorkDrone, BuildMyApp cross-link."}
+         ], "miniAfter": "drop-funnel"},
+        {"header": "Product collections", "icon": "i-doc", "color": "b", "count": "8 launch · 100+ designs", "cols": 3,
+         "cards": [
+           {"title": "Tracksuit"},     {"title": "Hoodies"},      {"title": "Backpacks"},
+           {"title": "Camping chairs"},{"title": "Sleeping bags"},{"title": "Caps"},
+           {"title": "Tees"},          {"title": "Umbrellas"},    {"title": "Accessories"}
+         ]},
+        {"header": "Ambassadors", "icon": "i-people", "color": "b", "count": "UGC engine",
+         "cards": [
+           {"title": "Trade workers", "body": "Sparkies, plumbers, builders wearing hoodies on jobs."},
+           {"title": "Outdoor / camp", "body": "Backpack + chair + sleeping bag in field shots."},
+           {"title": "Gym",           "body": "Performance tee + cap on lifters."},
+           {"title": "Free product",  "body": "In exchange for monthly content drops."}
+         ]},
+        {"header": "Lead capture", "icon": "i-target", "color": "b", "count": "On-site",
+         "cards": [
+           {"title": "Email signup",     "body": "Footer + popup at 50% scroll · Drop-002 alert."},
+           {"title": "Drop countdown",   "body": "Top-bar live countdown to next drop."},
+           {"title": "WIN gear 99p",     "body": "Competition page · email-gated entry."},
+           {"title": "Cart abandoned",   "body": "Brevo follow-up sequence · 24h + 72h."}
+         ]},
+        {"header": "Trust signals", "icon": "i-shield", "color": "b", "count": "Conversion",
+         "cards": [
+           {"title": "Free UK delivery", "kpi": ">£30", "body": "Top trust strip + product pages."},
+           {"title": "Stripe secure",    "body": "Stripe + Apple Pay · PCI-compliant."},
+           {"title": "30-day returns",   "body": "No-questions return policy."},
+           {"title": "Limited drops",    "body": "Drop-NNN naming · scarcity drives action."}
+         ]}
+      ],
+      "minis": [
+        {"id": "drop-funnel", "type": "funnel", "icon": "i-funnel", "title": "Drop launch funnel · indicative", "stages": [
+          {"label": "Drop alert",       "pct": "100"},
+          {"label": "Page view",        "pct": "~52"},
+          {"label": "Product view",     "pct": "~38"},
+          {"label": "Add to cart",      "pct": "~14"},
+          {"label": "Checkout start",   "pct": "~8"},
+          {"label": "Order placed",     "pct": "~5"},
+          {"label": "Repeat (90d)",     "pct": "~1.4"}
+        ]}
+      ]
+    },
+    {
+      "title": "Sales · Drops + Tiers", "phase": 1, "top": 570, "left": 890, "width": 780, "height": 1750,
+      "lanes": [
+        {"header": "Drop strategy", "icon": "i-target", "count": "NNN naming",
+         "cards": [
+           {"title": "Drop-001",       "kpi": "live", "body": "Heritage launch collection · 8 SKUs."},
+           {"title": "Drop-002",       "body": "Planned · countdown live on homepage."},
+           {"title": "Limited runs",   "body": "Scarcity · exclusivity · drives FOMO."},
+           {"title": "Hero · support · entry", "body": "3-tier pricing per drop."}
+         ]},
+        {"header": "Hero products", "icon": "i-pound", "count": "££",
+         "cards": [
+           {"title": "Tracksuit Bundle", "kpi": "£79.99", "body": "Hoodie + joggers · launch hero."},
+           {"title": "Zip Hoodie",       "kpi": "£49.99", "body": "350gsm · full back · sleeve mark."},
+           {"title": "Tactical Backpack","kpi": "£69.99", "body": "40L · MOLLE system · field-built."}
+         ]},
+        {"header": "Support products", "icon": "i-pound", "count": "£",
+         "cards": [
+           {"title": "Camping Chair",  "kpi": "£49.99", "body": "Heavy-duty steel · 600D ripstop."},
+           {"title": "Sleeping Bag",   "kpi": "£59.99", "body": "4-season · water-resistant · packable."}
+         ]},
+        {"header": "Entry · upsell", "icon": "i-pound", "count": "£",
+         "cards": [
+           {"title": "Performance Cap","kpi": "£29.99", "body": "Embroidered · one size · finishing touch."},
+           {"title": "TechDrone Tee",  "kpi": "£27.99", "body": "Wings on back · daily wear."},
+           {"title": "Tactical Umbrella","kpi": "£34.99", "body": "Windproof · auto-open · branded."}
+         ]},
+        {"header": "Cart · checkout", "icon": "i-cart", "count": "On-site",
+         "cards": [
+           {"title": "Stripe checkout",   "body": "Hosted · cards + Apple Pay + Link."},
+           {"title": "Apple Pay",         "body": "Express checkout · iOS conversion lift."},
+           {"title": "Cart drawer",       "body": "Slide-out · live total · upsell zone."},
+           {"title": "Discount codes",    "body": "FIRST20 = 20% · email-acquired only."}
+         ]}
+      ]
+    },
+    {
+      "title": "Operations · POD", "phase": 1, "top": 570, "left": 1720, "width": 780, "height": 1750,
+      "lanes": [
+        {"header": "POD partners", "icon": "i-bag", "color": "g", "count": "3-source", "cols": 3,
+         "cards": [
+           {"title": "Printful"},  {"title": "Printify"},  {"title": "Prodigi"},
+           {"title": "Awin"},      {"title": "Wholesale"}, {"title": "Direct"}
+         ], "miniAfter": "pipeline"},
+        {"header": "Production pipeline", "icon": "i-stack", "color": "g", "count": "File → SKU",
+         "cards": [
+           {"title": "Print file",        "kpi": "300dpi", "body": "Vector source · PNG export · ICC-tagged."},
+           {"title": "Mockup",            "body": "Front + back + lifestyle · auto-generated."},
+           {"title": "Product create",    "body": "Pushed to Printify via API · 9 SKUs/file."},
+           {"title": "Listing sync",      "body": "Title · description · variants · prices."},
+           {"title": "Order routing",     "body": "Auto-routed by SKU to right POD."},
+           {"title": "Tracking webhook",  "body": "Status → Stripe → email customer."}
+         ]},
+        {"header": "Quality control", "icon": "i-check", "color": "g", "count": "No slop",
+         "cards": [
+           {"title": "Brand audit",       "body": "Every SKU passes brand-system check."},
+           {"title": "Print sample",      "body": "First-run sample before live."},
+           {"title": "Mockup vs print",   "body": "Print files are NOT mockups."},
+           {"title": "Approved grids",    "body": "Layout positions locked per garment."}
+         ]},
+        {"header": "Fulfilment SLA", "icon": "i-clock", "color": "g", "count": "Production + ship",
+         "cards": [
+           {"title": "POD print",         "kpi": "2-5d", "body": "Per partner SLA."},
+           {"title": "UK ship",           "kpi": "1-3d", "body": "Royal Mail · DPD · Evri."},
+           {"title": "EU ship",           "kpi": "5-10d","body": "Per partner."},
+           {"title": "Customs handling",  "body": "Within EU via NL/DE printers."}
+         ]},
+        {"header": "Returns", "icon": "i-truck", "color": "g", "count": "30-day",
+         "cards": [
+           {"title": "Return portal",     "body": "Self-serve link · pre-paid label for UK."},
+           {"title": "POD returns",       "body": "Print-on-demand → returns to partner."},
+           {"title": "Refund via Stripe", "body": "Auto refund on return scan."},
+           {"title": "Sale-or-return",    "body": "No held stock for POD lines."}
+         ]}
+      ],
+      "minis": [
+        {"id": "pipeline", "type": "stack", "icon": "i-stack", "title": "Product pipeline · 2 files → 9 SKUs", "rows": [
+          {"label": "Source: PNG/SVG · 300dpi · ICC tag", "layer": "1"},
+          {"label": "Mockup gen: Photoroom + JS overlay", "layer": "2"},
+          {"label": "API push: Printify createProduct", "layer": "3"},
+          {"label": "Sync: variants · price · published",  "layer": "4"},
+          {"label": "Live: aimaxops.com product page", "layer": "5"}
+        ]}
+      ]
+    },
+    {
+      "title": "Customer Success", "phase": 1, "top": 570, "left": 2550, "width": 780, "height": 1750,
+      "lanes": [
+        {"header": "Order journey", "icon": "i-cart", "color": "r", "count": "5 touches",
+         "cards": [
+           {"title": "Order confirmation","body": "Stripe receipt · Brevo confirmation."},
+           {"title": "In production",    "body": "POD partner status webhook."},
+           {"title": "Shipped",          "body": "Carrier + tracking + ETA."},
+           {"title": "Delivered",        "body": "Carrier confirmation."},
+           {"title": "Review request",   "body": "Trustpilot link 7 days post-delivery."}
+         ]},
+        {"header": "Support channels", "icon": "i-phone", "color": "r", "count": "Async-first",
+         "cards": [
+           {"title": "Email",            "body": "support@aimaxops.com → Gmail."},
+           {"title": "Site chat",        "body": "Brevo chat widget · biz hours."},
+           {"title": "Instagram DM",     "body": "Same-day reply window."},
+           {"title": "TikTok comments",  "body": "Pinned FAQ + product links in bio."}
+         ]},
+        {"header": "Reviews", "icon": "i-shield", "color": "r", "count": "Social proof",
+         "cards": [
+           {"title": "Trustpilot",       "body": "Verified-buyer reviews · drop-by-drop."},
+           {"title": "On-page reviews",  "body": "Verified badges · star rating per product."},
+           {"title": "UGC reposts",      "body": "Customer photos pulled into product pages."},
+           {"title": "Video reviews",    "body": "Long-form ambassador unboxing."}
+         ], "miniAfter": "loyalty"},
+        {"header": "Loyalty + repeat", "icon": "i-link", "color": "r", "count": "LTV",
+         "cards": [
+           {"title": "Drop alerts",      "body": "Email-list early access · 24h before public."},
+           {"title": "Bundle discount",  "body": "Buy hoodie + joggers = bundle saving."},
+           {"title": "Referral code",    "body": "£5 off you · £5 off them."},
+           {"title": "Ambassador status","body": "Top customers get free products to promo."}
+         ]},
+        {"header": "Returns experience", "icon": "i-truck", "color": "r", "count": "Frictionless",
+         "cards": [
+           {"title": "30-day window",    "body": "From delivery date · all SKUs."},
+           {"title": "Pre-paid label",   "body": "UK · self-print or in-app QR."},
+           {"title": "Refund in 7d",     "body": "Stripe refund auto on partner scan."},
+           {"title": "Exchange option",  "body": "Wrong size? Direct exchange · faster."}
+         ]}
+      ],
+      "minis": [
+        {"id": "loyalty", "type": "stack", "icon": "i-link", "title": "Loyalty loop", "rows": [
+          {"label": "Order → confirmation"}, {"label": "Delivered → review ask"},
+          {"label": "Review → refer code"}, {"label": "Repeat → drop early access"},
+          {"label": "5+ orders → ambassador"}
+        ]}
+      ]
+    },
+    {
+      "title": "Finance", "phase": 2, "top": 2420, "left": 60, "width": 780, "height": 1320,
+      "lanes": [
+        {"header": "Payments", "icon": "i-pound", "count": "Online",
+         "cards": [
+           {"title": "Stripe + Apple Pay","kpi": "1.5%+20p", "body": "Hosted checkout · Link enabled."},
+           {"title": "Currency · GBP",   "body": "GBP-only at launch · multi later."},
+           {"title": "Webhook events",   "body": "Order paid · refunded · disputed."},
+           {"title": "Apple Pay express","body": "iOS conversion lift on mobile."}
+         ]},
+        {"header": "Margin model", "icon": "i-pound", "count": "Per SKU",
+         "cards": [
+           {"title": "POD cost",         "kpi": "30-50%", "body": "Garment + print + ship."},
+           {"title": "Stripe fee",       "kpi": "~2.5%",  "body": "On gross AOV."},
+           {"title": "Ad cost",          "kpi": "10-25%", "body": "Variable per drop."},
+           {"title": "Net margin",       "kpi": "20-40%", "body": "Higher on hero, lower on entry."}
+         ]},
+        {"header": "VAT", "icon": "i-pound", "count": "Threshold",
+         "cards": [
+           {"title": "Threshold £85K",   "body": "Pre-VAT · monitor monthly."},
+           {"title": "Trade in EU",      "body": "OSS scheme planned · single MS reg."},
+           {"title": "VAT-inclusive",    "body": "All prices inc VAT on site (consumer)."}
+         ]},
+        {"header": "Reporting", "icon": "i-stack", "count": "Stripe + sheets",
+         "cards": [
+           {"title": "Stripe Dashboard", "body": "Daily revenue · payouts · disputes."},
+           {"title": "Per-drop P&L",     "body": "Tracked in sheets · units sold + ad spend."},
+           {"title": "Cohort retention", "body": "30/60/90 day repeat."}
+         ]},
+        {"header": "Cash flow", "icon": "i-pound", "count": "POD = no inventory cash",
+         "cards": [
+           {"title": "Stripe payout",    "kpi": "T+2",   "body": "Daily payout to bank."},
+           {"title": "POD pay-on-order", "body": "No inventory cost · ordered after sale."},
+           {"title": "Ad spend up-front","body": "Funded from prior payouts."}
+         ]}
+      ]
+    },
+    {
+      "title": "Brand · Industrial Heritage", "phase": 2, "top": 2420, "left": 890, "width": 780, "height": 1320,
+      "lanes": [
+        {"header": "Colour palette", "icon": "i-palette", "color": "g", "count": "3-role",
+         "cards": [
+           {"title": "Soot",       "kpi": "#0F0D0A", "body": "Background · always (never #000)."},
+           {"title": "Leather",    "kpi": "#211C15", "body": "Surface · cards · raised."},
+           {"title": "Aged Brass", "kpi": "#D4A44A", "body": "Accent · CTAs · price."},
+           {"title": "Bone",       "kpi": "#F0E8DA", "body": "Body text · headlines."}
+         ], "miniAfter": "brand-stack"},
+        {"header": "Typography", "icon": "i-doc", "color": "g", "count": "3-face",
+         "cards": [
+           {"title": "Playfair Display","body": "Serif · headlines · brand voice."},
+           {"title": "DM Sans",        "body": "Sans · body copy · UI."},
+           {"title": "JetBrains Mono", "body": "Mono · prices · codes · labels."}
+         ]},
+        {"header": "Voice", "icon": "i-mic", "color": "g", "count": "3 rules",
+         "cards": [
+           {"title": "Plain. Tight.",   "body": "Trade-floor blunt · short sentences."},
+           {"title": "Specs not adj.",  "body": "\"350gsm\" beats \"premium\". Numbers do work."},
+           {"title": "One CTA",         "body": "Per surface · never two fighting."}
+         ]},
+        {"header": "Don't", "icon": "i-shield", "color": "r", "count": "Hard rules",
+         "cards": [
+           {"title": "No pure black",   "titlePill": "no", "titlePillColor": "red", "body": "#0F0D0A · always."},
+           {"title": "No deco emoji",   "titlePill": "no", "titlePillColor": "red", "body": "Numbers + mono labels."},
+           {"title": "No stock photos", "titlePill": "no", "titlePillColor": "red", "body": "Real model · real setting."}
+         ]},
+        {"header": "Brand surface", "icon": "i-globe", "count": "Live",
+         "cards": [
+           {"title": "aimaxops.com/brand",  "body": "Single-page brand blueprint · public."},
+           {"title": "Product pages",      "body": "Brand tokens applied uniformly."},
+           {"title": "Email templates",    "body": "Brevo · same tokens · same voice."}
+         ]}
+      ],
+      "minis": [
+        {"id": "brand-stack", "type": "stack", "icon": "i-palette", "title": "Industrial Heritage stack", "rows": [
+          {"label": "Colour: Soot · Leather · Brass · Bone", "layer": "1"},
+          {"label": "Type: Playfair · DM Sans · JetBrains",  "layer": "2"},
+          {"label": "Voice: plain · tight · specs",          "layer": "3"},
+          {"label": "Imagery: real product · real model",    "layer": "4"}
+        ]}
+      ]
+    },
+    {
+      "title": "Tech Stack", "phase": 2, "top": 2420, "left": 1720, "width": 780, "height": 1320,
+      "lanes": [
+        {"header": "Site infra", "icon": "i-stack", "color": "b", "count": "Self-hosted",
+         "cards": [
+           {"title": "aimaxops.com",   "body": "Caddy + PM2 aimaxops-web · cf-tunnel."},
+           {"title": "API service",    "body": "PM2 aimaxops-api · order webhooks."},
+           {"title": "No Netlify",     "titlePill": "banned", "titlePillColor": "red", "body": "Self-hosted across all DS sites."}
+         ]},
+        {"header": "Storefront", "icon": "i-globe", "color": "b", "count": "Static + JS",
+         "cards": [
+           {"title": "Static HTML",      "body": "Per-page hydrated cart drawer."},
+           {"title": "Stripe Hosted",    "body": "Checkout offsite · webhook returns."},
+           {"title": "Cart in localStorage", "body": "Persists across page loads."},
+           {"title": "Drop countdown JS","body": "Live timer · no server roundtrip."}
+         ]},
+        {"header": "Image gen", "icon": "i-camera", "color": "b", "count": "AI + manual",
+         "cards": [
+           {"title": "Higgsfield",       "body": "AI brand imagery · approved-grid only."},
+           {"title": "Photoroom",        "body": "Background + mockup gen."},
+           {"title": "21st Magic",       "body": "UI component generation."},
+           {"title": "Manual photo",     "body": "Real product on real model · final layer."}
+         ]},
+        {"header": "Email · automation", "icon": "i-mic", "color": "b", "count": "Brevo",
+         "cards": [
+           {"title": "Brevo API",        "kpi": "≤£15/mo", "body": "Drop alerts · cart recovery · receipts."},
+           {"title": "Templates",        "body": "Brand-tokenised · responsive."},
+           {"title": "Lists + segments", "body": "By drop · by repeat · by inactive."}
+         ]},
+        {"header": "Comms", "icon": "i-mic", "count": "Voice + email",
+         "cards": [
+           {"title": "Telegram bot",     "body": "Drop launch alerts · admin only."},
+           {"title": "say-claude bridge","body": "Voice on phone for ops review."}
+         ]}
+      ]
+    },
+    {
+      "title": "Partners + Divisions", "phase": 2, "top": 2420, "left": 2550, "width": 780, "height": 1320,
+      "lanes": [
+        {"header": "Sub-divisions", "icon": "i-stack", "color": "g", "count": "3 brands", "cols": 3,
+         "cards": [
+           {"title": "TechDrone",   "body": "Tech reviews · affiliate · downloads."},
+           {"title": "WorkDrone",   "body": "AI agent marketplace SaaS."},
+           {"title": "BuildMyApp",  "body": "AI website builder · 6 templates."}
+         ]},
+        {"header": "POD suppliers", "icon": "i-bag", "count": "Trade",
+         "cards": [
+           {"title": "Printful",         "body": "Premium garments · slower SLA."},
+           {"title": "Printify",         "body": "Volume · cheaper · 9 products/file."},
+           {"title": "Prodigi",          "body": "Print + frame · UK fulfilment."}
+         ]},
+        {"header": "Image partners", "icon": "i-palette", "color": "b", "count": "Generation",
+         "cards": [
+           {"title": "Higgsfield",       "body": "Cinema Studio 2.5 · brand video."},
+           {"title": "Photoroom",        "body": "Mockup gen · BG removal."},
+           {"title": "Nano Banana",      "body": "Continue-editing · Gemini-backed."}
+         ]},
+        {"header": "Affiliate / wholesale", "icon": "i-link", "count": "Distribution",
+         "cards": [
+           {"title": "Awin network",     "body": "Affiliate program planned."},
+           {"title": "Wholesale enquiries","body": "B2B form · pricing on request."},
+           {"title": "Reseller license", "body": "For ambassadors at scale."}
+         ]},
+        {"header": "Ambassadors", "icon": "i-people", "color": "r", "count": "UGC",
+         "cards": [
+           {"title": "Trade workers",    "body": "Wear hoodie on jobs · post weekly."},
+           {"title": "Outdoor crew",     "body": "Camp / hike / van life shots."},
+           {"title": "Free product",     "body": "In exchange for monthly content."},
+           {"title": "Top tier · 10%",   "body": "Affiliate commission for top performers."}
+         ]}
+      ]
+    }
+  ],
+  "edges": [
+    {"d": "M 840 1380 L 865 1380 L 865 700 L 890 700", "arrow": "default"},
+    {"d": "M 1670 900 L 1695 900 L 1695 1280 L 1720 1280", "cls": "gold", "arrow": "gold"},
+    {"d": "M 2500 1500 L 2525 1500 L 2525 1100 L 2550 1100", "arrow": "default"},
+    {"d": "M 2550 1700 C 2700 1700, 2700 3700, 60 3700 L 60 2050", "cls": "dim"},
+    {"d": "M 1670 1500 L 1695 1500 L 1695 2870 L 890 2870", "cls": "gold", "arrow": "gold"},
+    {"d": "M 1720 2600 L 1695 2600 L 1695 1700 L 2500 1700", "arrow": "default"},
+    {"d": "M 2550 3050 L 2525 3050 L 2525 720 L 840 720"}
+  ]
+}

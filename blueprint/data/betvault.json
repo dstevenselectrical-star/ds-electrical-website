@@ -1,0 +1,146 @@
+{
+  "id": "betvault",
+  "name": "BetVault — Virtual Casino",
+  "topbarTitle": "BetVault · Operating System",
+  "version": "v1", "date": "2026-05-03",
+  "tagline": "Subscription-based virtual casino · 6 games · NO real money · NO UKGC license needed",
+  "eyebrow": "Operating System · the whole product",
+  "description": "Subscription virtual casino with 6 games. No real-money gambling = no UKGC license. Path to real gambling: subscription revenue funds £50-150K UKGC application later.",
+  "meta": [["Stack", "React 19 + Vite 7 + Tailwind 4"], ["Path", "~/betvault"], ["Live", "betvault-app.netlify.app"], ["Bundle", "267KB · 0 errors"], ["License", "NONE needed (no real money)"], ["Theme", "Ultra 2050"]],
+  "stats": [
+    {"label": "Frames", "num": "5", "sub": "Departments", "gold": true},
+    {"label": "Games", "num": "6", "sub": "Total"},
+    {"label": "Free games", "num": "3", "sub": "Free tier"},
+    {"label": "Premium games", "num": "3", "sub": "Paid tier"},
+    {"label": "Tiers", "num": "3", "sub": "Free/Prem/VIP"},
+    {"label": "Sub-bprs", "num": "1", "sub": "Mini-canvas"}
+  ],
+  "phases": ["Sign up", "Free play", "Coin spend", "Upgrade", "VIP"],
+  "accents": [{"top": 530, "label": "Phase 1 · Games + monetisation"}, {"top": 2380, "label": "Phase 2 · Stack + roadmap"}],
+  "frames": [
+    {"title": "Games (6)", "phase": 1, "top": 570, "left": 60, "width": 780, "height": 1750,
+     "lanes": [
+      {"header": "Free tier (3)", "icon": "i-bolt", "color": "g", "count": "All users",
+       "cards": [
+         {"title": "Mega Slots", "body": "5x3 reels · 8 symbols · wilds · auto-spin · paytable."},
+         {"title": "Crash", "body": "Exponential multiplier · cash out before crash · ~3% house edge."},
+         {"title": "Scratch Cards", "body": "3x3 grid · match 3 · prizes up to 100x · reveal-all option."}
+       ]},
+      {"header": "Premium tier (3)", "icon": "i-bolt", "color": "r", "count": "Paid",
+       "cards": [
+         {"title": "Roulette", "body": "European 0-36 · outside bets · straight 36x."},
+         {"title": "Blackjack", "body": "Hit/stand/double · dealer to 17 · BJ pays 2.5x · push."},
+         {"title": "Mines", "body": "5x5 grid · configurable mines · escalating multiplier · cashout."}
+       ]},
+      {"header": "Coin economy", "icon": "i-pound", "color": "g", "count": "Daily",
+       "cards": [
+         {"title": "Free coins/day", "kpi": "1,000", "body": "Refilled every 24h."},
+         {"title": "Premium coins/day", "kpi": "5,000", "body": "5x more · for paid users."},
+         {"title": "VIP coins/day", "kpi": "15,000", "body": "15x · top tier."},
+         {"title": "Coin pack purchase", "body": "One-time IAP for instant top-up."}
+       ]}
+     ]},
+    {"title": "Pricing + tiers", "phase": 1, "top": 570, "left": 890, "width": 780, "height": 1750,
+     "lanes": [
+      {"header": "3 tiers", "icon": "i-pound", "color": "g", "count": "Subscription",
+       "cards": [
+         {"title": "Free", "kpi": "£0", "body": "3 games · 1K coins/day · ads shown."},
+         {"title": "Premium", "kpi": "£4.99/mo", "body": "All 6 games · 5K coins · no ads · VIP tables."},
+         {"title": "VIP", "kpi": "£9.99/mo", "body": "Everything · 15K coins · custom avatar · early access · tournaments."}
+       ], "miniAfter": "tier-funnel"},
+      {"header": "Conversion levers", "icon": "i-target", "color": "g", "count": "Tested",
+       "cards": [
+         {"title": "Coin-out moment", "body": "Hit 0 coins · upgrade prompt."},
+         {"title": "Premium game lock", "body": "Try Roulette → upgrade gate."},
+         {"title": "Ads removal", "body": "Most-cited reason to upgrade."},
+         {"title": "VIP avatar", "body": "Status flex · drives top-tier."}
+       ]},
+      {"header": "Future revenue", "icon": "i-pound", "color": "b", "count": "Planned",
+       "cards": [
+         {"title": "Coin packs IAP", "body": "Instant top-up · Stripe payment."},
+         {"title": "Affiliate links", "body": "Real-money casinos · click-through."},
+         {"title": "Tournament fees", "body": "Entry to bigger pools · VIP-only."},
+         {"title": "Real gambling (planned)", "body": "After UKGC license · funded by sub revenue."}
+       ]}
+     ],
+     "minis": [{"id": "tier-funnel", "type": "funnel", "icon": "i-funnel", "title": "Tier conversion · indicative", "stages": [
+       {"label": "Sign up", "pct": "100"}, {"label": "Play 3+ games", "pct": "~52"},
+       {"label": "Out of coins", "pct": "~38"}, {"label": "See premium", "pct": "~28"},
+       {"label": "Upgrade Premium", "pct": "~7"}, {"label": "Upgrade VIP", "pct": "~1.4"}
+     ]}]},
+    {"title": "Customer Success", "phase": 1, "top": 570, "left": 1720, "width": 780, "height": 1750,
+     "lanes": [
+      {"header": "Onboarding", "icon": "i-target", "color": "r", "count": "First-spin",
+       "cards": [
+         {"title": "Welcome bonus", "body": "Extra 500 coins on first day."},
+         {"title": "Tutorial spin", "body": "Guided first slots spin."},
+         {"title": "Daily login bonus", "body": "Streaks reward · 7-day cycle."}
+       ]},
+      {"header": "Engagement", "icon": "i-clock", "color": "r", "count": "Retention",
+       "cards": [
+         {"title": "Daily missions", "body": "Win N times · earn bonus coins."},
+         {"title": "Achievement system", "body": "Unlocks per-game · profile flex."},
+         {"title": "Leaderboards", "body": "Weekly · per-game · social proof."}
+       ]},
+      {"header": "Support", "icon": "i-phone", "color": "r", "count": "Async",
+       "cards": [
+         {"title": "Email", "body": "support@betvault.app."},
+         {"title": "FAQ", "body": "Per-game rules · payment questions."},
+         {"title": "No real-money disclaimer", "body": "Prominent · regulatory clarity."}
+       ]}
+     ]},
+    {"title": "Stack + Compliance", "phase": 2, "top": 2420, "left": 60, "width": 780, "height": 1320,
+     "lanes": [
+      {"header": "Stack", "icon": "i-stack", "color": "b", "count": "React 19",
+       "cards": [
+         {"title": "React 19 + Vite 7", "body": "Same pattern."},
+         {"title": "Bundle 267KB", "body": "0 errors · production build."},
+         {"title": "Theme: Ultra 2050", "body": "Cyan · orange · void."}
+       ]},
+      {"header": "Audio + RNG", "icon": "i-bolt", "color": "b", "count": "Hooks",
+       "cards": [
+         {"title": "useSound() Web Audio API", "body": "Spin · win · lose · button SFX."},
+         {"title": "useRNG()", "body": "Crypto-strong · per-game seed."},
+         {"title": "Fair odds tested", "body": "House edge per game declared."}
+       ]},
+      {"header": "Compliance", "icon": "i-shield", "color": "g", "count": "No license needed",
+       "cards": [
+         {"title": "No real money", "titlePill": "key", "titlePillColor": "gold", "body": "Zero cash withdrawal · zero UKGC requirement."},
+         {"title": "Subscription only", "body": "Stripe · clearly NOT a wager."},
+         {"title": "Age gate", "body": "18+ confirmation on signup."},
+         {"title": "Self-exclusion", "body": "Self-imposed cooling-off available."}
+       ]}
+     ]},
+    {"title": "Roadmap", "phase": 2, "top": 2420, "left": 890, "width": 780, "height": 1320,
+     "lanes": [
+      {"header": "Shipped", "icon": "i-check", "color": "g", "count": "v1",
+       "cards": [
+         {"title": "6 games live", "body": "All playable · all tested."},
+         {"title": "3-tier subs", "body": "Stripe wired."},
+         {"title": "Daily login", "body": "Streak system live."}
+       ]},
+      {"header": "Quick wins", "icon": "i-bolt", "color": "b", "count": "Next",
+       "cards": [
+         {"title": "Tournaments (VIP)", "body": "Weekly winner bonus."},
+         {"title": "Coin pack IAP", "body": "Instant top-up · Stripe."},
+         {"title": "Custom avatars", "body": "VIP-only · profile flex."}
+       ]},
+      {"header": "v2 features", "icon": "i-bolt", "count": "Bigger bets",
+       "cards": [
+         {"title": "More games", "body": "Poker · baccarat · keno."},
+         {"title": "Multiplayer rooms", "body": "Real-time tables."},
+         {"title": "UKGC license app", "body": "Funded by sub revenue · £50-150K."}
+       ]},
+      {"header": "Real-money pivot", "icon": "i-target", "color": "r", "count": "Far future",
+       "cards": [
+         {"title": "License first", "body": "Cannot do real money without."},
+         {"title": "AML compliance", "body": "KYC · transaction monitoring · GamCare."},
+         {"title": "Separate brand?", "body": "Or pivot BetVault · TBD."}
+       ]}
+     ]}
+  ],
+  "edges": [
+    {"d": "M 840 1100 L 865 1100 L 865 1100 L 890 1100", "arrow": "default"},
+    {"d": "M 1670 1100 L 1695 1100 L 1695 1100 L 1720 1100", "arrow": "default"}
+  ]
+}

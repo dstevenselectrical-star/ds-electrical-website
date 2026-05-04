@@ -2,6 +2,27 @@
     root * /Users/danstevens/Documents/ds-electrical-website
     encode gzip
 
+    # Defense-in-depth: block all dotfile/dotfolder access at the origin.
+    # Cloudflare also blocks these with 403 at the edge, but if CF is bypassed
+    # (origin IP discovery, local-network) Caddy must still refuse .git, .archive,
+    # .claude, .wrangler, .pre-crop, etc. Allow .well-known for ACME/security.txt.
+    @hidden {
+        path */.*
+        not path */.well-known/*
+    }
+    respond @hidden 404
+
+    # Force-fresh on every blueprint response — no SW or browser cache survives.
+    header /blueprint/* {
+        Cache-Control "no-cache, no-store, must-revalidate, max-age=0"
+        Pragma "no-cache"
+        Expires "0"
+    }
+
+    # NOTE: solar.html and battery-storage.html are already meta-refresh stub pages
+    # redirecting to /ev-chargers.html — no Caddy redirect needed. DS Electrical does not
+    # offer solar/battery; the redirect captures any external links to those URLs.
+
     # Short URL redirects for Heritage sub-brand
     redir /heritage /heritage-installations.html 301
     redir /heritage.html /heritage-installations.html 301

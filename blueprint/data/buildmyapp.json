@@ -1,0 +1,142 @@
+{
+  "id": "buildmyapp",
+  "name": "BuildMyApp — AI Website Builder",
+  "topbarTitle": "BuildMyApp · Operating System",
+  "version": "v1", "date": "2026-05-03",
+  "tagline": "Build a deployable website from 6 templates · GitHub Pages auto-deploy · Stripe billing live",
+  "eyebrow": "Operating System · the whole product",
+  "description": "AI website builder SaaS · 6 templates · live preview · GitHub Pages auto-deploy via API token. Live at aimaxops.com/buildmyapp/. Stripe live mode wired for £9.99 launch + £4.99/mo Pro.",
+  "meta": [["Stack", "React 19 + Vite"], ["Path", "~/buildmyapp"], ["Live", "aimaxops.com/buildmyapp/"], ["API", "workdrone/api on 8091"], ["Deploy engine", "GitHub Pages WORKING"], ["Stripe", "LIVE mode"]],
+  "stats": [
+    {"label": "Frames", "num": "5", "sub": "Departments", "gold": true},
+    {"label": "Templates", "num": "6", "sub": "Starter sites"},
+    {"label": "Pricing", "num": "£9.99", "sub": "Launch one-time"},
+    {"label": "Pro", "num": "£4.99/mo", "sub": "Subscription"},
+    {"label": "Phase", "num": "1→5", "sub": "Pick to deploy"},
+    {"label": "Sub-bprs", "num": "1", "sub": "Mini-canvas"}
+  ],
+  "phases": ["Pick template", "Customise", "Preview", "Pay", "Deploy"],
+  "accents": [{"top": 530, "label": "Phase 1 · Builder + checkout"}, {"top": 2380, "label": "Phase 2 · Deploy engine + stack"}],
+  "frames": [
+    {"title": "Builder UX", "phase": 1, "top": 570, "left": 60, "width": 780, "height": 1750,
+     "lanes": [
+      {"header": "6 templates", "icon": "i-doc", "color": "b", "count": "Starter sites", "cols": 3,
+       "cards": [
+         {"title": "Trade business"}, {"title": "Restaurant"}, {"title": "Portfolio"},
+         {"title": "SaaS landing"}, {"title": "Personal blog"}, {"title": "Event page"}
+       ], "miniAfter": "deploy-flow"},
+      {"header": "Customisation", "icon": "i-palette", "color": "b", "count": "Live preview",
+       "cards": [
+         {"title": "Edit text inline", "body": "Click → type · live preview."},
+         {"title": "Swap colours", "body": "Per-section · brand presets."},
+         {"title": "Upload logo", "body": "Photo or generated."},
+         {"title": "Add sections", "body": "From library · drag to position."}
+       ]},
+      {"header": "Preview", "icon": "i-globe", "color": "b", "count": "Multi-device",
+       "cards": [
+         {"title": "Mobile preview", "body": "iPhone frame · responsive check."},
+         {"title": "Desktop preview", "body": "Full width · realistic."},
+         {"title": "Share preview", "body": "Temp URL · 24h life."}
+       ]}
+     ],
+     "minis": [{"id": "deploy-flow", "type": "stack", "icon": "i-stack", "title": "Deploy flow", "rows": [
+       {"label": "1. Pick template", "layer": "10s"},
+       {"label": "2. Customise content", "layer": "5min"},
+       {"label": "3. Preview live", "layer": "instant"},
+       {"label": "4. Pay £9.99 · Stripe", "layer": "30s"},
+       {"label": "5. Deploy to GitHub Pages", "layer": "2min"},
+       {"label": "6. Custom domain (Pro)", "layer": "DNS"}
+     ]}]},
+    {"title": "Pricing + checkout", "phase": 1, "top": 570, "left": 890, "width": 780, "height": 1750,
+     "lanes": [
+      {"header": "2 plans", "icon": "i-pound", "color": "g", "count": "Stripe LIVE",
+       "cards": [
+         {"title": "Launch", "kpi": "£9.99 once", "body": "Single site · GitHub Pages domain · forever."},
+         {"title": "Pro", "kpi": "£4.99/mo", "body": "Unlimited sites · custom domains · removal of 'Built with' badge."}
+       ]},
+      {"header": "Stripe", "icon": "i-pound", "color": "g", "count": "Live mode",
+       "cards": [
+         {"title": "Launch price ID", "kpi": "1THkdJ...", "body": "Stripe live price."},
+         {"title": "Pro price ID", "kpi": "1THkdK...", "body": "Stripe live recurring."},
+         {"title": "Checkout endpoint", "body": "POST /wdapi/products/buildmyapp/checkout."},
+         {"title": "Webhook handler", "body": "Triggers GitHub deploy on success."}
+       ]},
+      {"header": "Conversion", "icon": "i-target", "color": "g", "count": "Optimised",
+       "cards": [
+         {"title": "Free preview unlimited", "body": "No paywall on customise."},
+         {"title": "Pay only to deploy", "body": "See result first · pay to publish."},
+         {"title": "Refund window", "body": "7-day · easy refund."}
+       ]}
+     ]},
+    {"title": "Customer Success", "phase": 1, "top": 570, "left": 1720, "width": 780, "height": 1750,
+     "lanes": [
+      {"header": "Onboarding", "icon": "i-target", "color": "r", "count": "First-deploy",
+       "cards": [
+         {"title": "Pick template", "body": "Curated · top-3 recommended."},
+         {"title": "5-min tutorial", "body": "Edit text · swap colours · preview."},
+         {"title": "First deploy success", "body": "Confetti · share link."}
+       ]},
+      {"header": "Support", "icon": "i-phone", "color": "r", "count": "Async",
+       "cards": [
+         {"title": "Email", "body": "support@buildmyapp.app."},
+         {"title": "Chat", "body": "Brevo widget · biz hours."},
+         {"title": "Help docs", "body": "Per-template walkthroughs."}
+       ]},
+      {"header": "Retention", "icon": "i-shield", "color": "r", "count": "Repeat",
+       "cards": [
+         {"title": "Easy re-edit", "body": "Site stays editable forever."},
+         {"title": "Pro upgrade prompt", "body": "Want second site? £4.99/mo unlocks."},
+         {"title": "Custom domain", "body": "Pro feature · DNS walkthrough."}
+       ]}
+     ]},
+    {"title": "Deploy engine", "phase": 2, "top": 2420, "left": 60, "width": 780, "height": 1320,
+     "lanes": [
+      {"header": "GitHub Pages", "icon": "i-stack", "color": "b", "count": "WORKING 2026-04-03",
+       "cards": [
+         {"title": "GitHub token", "body": "Classic PAT · repo scope · in workdrone/.env."},
+         {"title": "Auto-create repo", "body": "Per-deploy · username/sitename pattern."},
+         {"title": "Push files", "body": "All /sites/{id}/ files via Git API."},
+         {"title": "Enable Pages", "body": "Auto-set source · gh-pages branch."},
+         {"title": "Wait + verify", "body": "Poll deploy status · ~2min."}
+       ]},
+      {"header": "Storage", "icon": "i-stack", "color": "b", "count": "Per-site",
+       "cards": [
+         {"title": "/sites/{id}/", "body": "Customer's site files."},
+         {"title": "Manifest.json", "body": "Customer config + Stripe ref."},
+         {"title": "Backup to S3", "body": "Planned · disaster recovery."}
+       ]},
+      {"header": "Custom domain (Pro)", "icon": "i-globe", "count": "DNS",
+       "cards": [
+         {"title": "DNS walkthrough", "body": "CNAME instructions per provider."},
+         {"title": "SSL via GitHub", "body": "Auto Let's Encrypt."},
+         {"title": "Verify connection", "body": "Auto-poll · success badge."}
+       ]}
+     ]},
+    {"title": "Stack + roadmap", "phase": 2, "top": 2420, "left": 890, "width": 780, "height": 1320,
+     "lanes": [
+      {"header": "Stack", "icon": "i-stack", "color": "b", "count": "React 19",
+       "cards": [
+         {"title": "React 19 + Vite", "body": "Built · dist served by Caddy."},
+         {"title": "Vite base /buildmyapp/", "body": "CRITICAL · sub-route."},
+         {"title": "API: workdrone shared", "body": "Same FastAPI on 8091."}
+       ]},
+      {"header": "Caddy routes", "icon": "i-link", "color": "b", "count": "Sub-routes",
+       "cards": [
+         {"title": "/buildmyapp/*", "body": "→ ~/buildmyapp/dist/"},
+         {"title": "/wdapi/*", "body": "→ localhost:8091 (strips prefix)."},
+         {"title": "/sites/*", "body": "→ localhost:8091 (full path)."}
+       ]},
+      {"header": "Roadmap", "icon": "i-bolt", "count": "v2",
+       "cards": [
+         {"title": "21st.dev component upgrades", "body": "Better UX components."},
+         {"title": "AI content fill", "body": "Generate copy from prompt."},
+         {"title": "Image generation", "body": "Hero photos via Higgsfield."},
+         {"title": "Multi-page sites", "body": "Currently single-page only."}
+       ]}
+     ]}
+  ],
+  "edges": [
+    {"d": "M 840 1100 L 865 1100 L 865 1100 L 890 1100", "arrow": "default"},
+    {"d": "M 1670 1100 L 1695 1100 L 1695 1100 L 1720 1100", "arrow": "default"}
+  ]
+}

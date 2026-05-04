@@ -1,13 +1,16 @@
 {
   "name": "DS Electrical Installations (SW) Ltd",
   "short_name": "DS Electrical",
-  "description": "NAPIT Approved electrical contractors in Somerset. Full rewires, consumer units, EV chargers, EICR testing, commercial installations.",
+  "description": "NAPIT-certified electrician covering Somerset and Bath. EICR, EV chargers, fuse boards, kitchen + bathroom electrics, heritage rewires.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "theme_color": "#0f172a",
-  "background_color": "#000508",
-  "orientation": "any",
+  "orientation": "portrait",
+  "theme_color": "#facc15",
+  "background_color": "#0f172a",
+  "lang": "en-GB",
+  "dir": "ltr",
+  "categories": ["business", "productivity"],
   "icons": [
     {
       "src": "favicon-32.png",
@@ -18,6 +21,24 @@
       "src": "apple-touch-icon.png",
       "sizes": "180x180",
       "type": "image/png"
+    },
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ]
 }

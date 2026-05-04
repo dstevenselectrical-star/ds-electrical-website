@@ -8,7 +8,7 @@
   if (!form) return;
 
   const PRIMARY_ENDPOINT  = 'https://www.dselectricalsw.co.uk/api/booking';
-  const FALLBACK_ENDPOINT = 'https://formsubmit.co/ajax/info@dselectricalinstallations.co.uk';
+  const FALLBACK_ENDPOINT = 'https://formsubmit.co/ajax/info@dselectricalsw.co.uk';
 
   form.addEventListener('submit', async function (e) {
     e.preventDefault();
@@ -85,7 +85,7 @@
       `Notes: ${data.notes || ''}\n\n` +
       `— Sent from ${location.href}`
     );
-    window.location.href = `mailto:info@dselectricalinstallations.co.uk?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:info@dselectricalsw.co.uk?subject=${subject}&body=${body}`;
     showSuccess(data, true);
   });
 

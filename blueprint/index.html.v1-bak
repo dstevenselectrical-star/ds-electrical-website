@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0a0a0a">
+<meta name="description" content="DS Electrical Blueprint — the whole business mapped on one canvas.">
+<title>DS Electrical — Blueprint v1</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{height:100%;background:#000;color:#e8e8e8;font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;overflow:hidden}
+
+  /* App chrome */
+  .topbar{position:fixed;top:0;left:0;right:0;height:56px;background:rgba(8,8,8,.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:space-between;padding:0 18px;z-index:100;font-size:12px;color:#ccc}
+  .tb-l{display:flex;align-items:center;gap:14px}
+  .tb-l b{font-weight:700;color:#fff;font-size:13px;letter-spacing:.04em;text-transform:uppercase}
+  .tb-l .div{width:1px;height:18px;background:rgba(255,255,255,.12)}
+  .tb-l .v{font-family:ui-monospace,monospace;color:#7a7a7a;font-size:11px;letter-spacing:.06em}
+  .tb-r{display:flex;align-items:center;gap:8px}
+  .tb-btn{padding:6px 12px;border-radius:6px;background:rgba(255,255,255,.05);color:#ccc;border:1px solid rgba(255,255,255,.08);cursor:pointer;font-size:12px;font-weight:600}
+  .tb-btn:hover{background:rgba(255,255,255,.1);color:#fff}
+  .tb-btn.gold{background:#facc15;color:#000;border-color:#facc15}
+  .tb-btn.gold:hover{background:#eab308}
+  .tb-r a{color:inherit;text-decoration:none}
+
+  /* Canvas viewport */
+  .viewport{position:fixed;top:56px;left:0;right:0;bottom:0;overflow:auto;background:#0a0a0a;cursor:grab}
+  .viewport:active{cursor:grabbing}
+  .viewport::-webkit-scrollbar{width:10px;height:10px}
+  .viewport::-webkit-scrollbar-track{background:#0a0a0a}
+  .viewport::-webkit-scrollbar-thumb{background:rgba(255,255,255,.08);border-radius:6px}
+  .viewport::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,.16)}
+
+  /* Big canvas */
+  .canvas{position:relative;width:3400px;height:2200px;background:
+    radial-gradient(circle at 1px 1px, rgba(255,255,255,.04) 1px, transparent 0);
+    background-size: 28px 28px;
+  }
+
+  /* Edges layer */
+  svg.edges{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1}
+  svg.edges path{fill:none;stroke:rgba(180,180,180,.18);stroke-width:1.2}
+  svg.edges path.gold{stroke:rgba(250,204,21,.55);stroke-width:1.5}
+
+  /* Top section: title + phase strip */
+  .title-block{position:absolute;top:40px;left:60px;width:560px;z-index:5}
+  .title-block .eyebrow{font-family:ui-monospace,monospace;font-size:11px;font-weight:600;letter-spacing:.32em;color:#facc15;text-transform:uppercase;margin-bottom:14px}
+  .title-block h1{font-size:54px;font-weight:800;line-height:1.05;letter-spacing:-.02em;color:#fff;margin-bottom:12px}
+  .title-block .sub{font-size:14px;color:#888;line-height:1.55;max-width:480px}
+  .title-block .meta{margin-top:18px;display:flex;gap:18px;font-family:ui-monospace,monospace;font-size:10px;color:#666;letter-spacing:.12em;text-transform:uppercase}
+  .title-block .meta b{color:#fff;font-weight:700;margin-left:6px}
+
+  /* Phase strip top */
+  .phases{position:absolute;top:60px;left:680px;right:60px;z-index:5;display:flex;align-items:center;gap:18px;padding:14px 22px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:10px}
+  .phase{display:flex;align-items:center;gap:10px;font-size:12px;color:#aaa;font-family:ui-monospace,monospace;letter-spacing:.08em;text-transform:uppercase}
+  .phase .num{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:rgba(250,204,21,.12);color:#facc15;font-weight:700;font-size:11px}
+  .phase .arr{color:#444;font-size:14px}
+
+  /* Yellow horizontal accent strip — runs through middle */
+  .accent{position:absolute;left:0;right:0;top:1100px;height:2px;background:linear-gradient(90deg,transparent 0%,#facc15 8%,#facc15 92%,transparent 100%);z-index:2;opacity:.7}
+  .accent-label{position:absolute;left:60px;top:1066px;z-index:6;font-family:ui-monospace,monospace;font-size:10px;font-weight:600;letter-spacing:.32em;color:#facc15;text-transform:uppercase;background:#0a0a0a;padding:0 8px}
+
+  /* Column header */
+  .col-h{position:absolute;z-index:5;font-family:ui-monospace,monospace;font-size:11px;font-weight:700;letter-spacing:.22em;color:#fff;text-transform:uppercase;padding:9px 16px;border:1px solid rgba(255,255,255,.18);border-radius:4px;background:rgba(255,255,255,.04);text-align:center}
+  .col-h.marketing{top:240px;left:60px;width:240px}
+  .col-h.sales{top:240px;left:380px;width:240px}
+  .col-h.ops{top:240px;left:700px;width:240px}
+  .col-h.cs{top:240px;left:1020px;width:240px}
+  .col-h.finance{top:240px;left:1340px;width:240px}
+  .col-h.tech{top:240px;left:1660px;width:240px}
+  .col-h.brand{top:240px;left:1980px;width:240px}
+  .col-h.team{top:240px;left:2300px;width:240px}
+  .col-h.compliance{top:240px;left:2620px;width:240px}
+  .col-h.partners{top:240px;left:2940px;width:240px}
+
+  /* Phase 2 group label below accent */
+  .group-label{position:absolute;font-family:ui-monospace,monospace;font-size:10px;font-weight:700;letter-spacing:.32em;color:#facc15;text-transform:uppercase;padding:6px 10px;border:1px dashed rgba(250,204,21,.3);border-radius:4px;z-index:5}
+
+  /* Cards */
+  .card{position:absolute;width:240px;background:#141414;border:1px solid rgba(255,255,255,.10);border-radius:6px;padding:10px 12px;font-size:12px;line-height:1.42;color:#d8d8d8;z-index:3;transition:border-color .15s ease, transform .15s ease}
+  .card:hover{border-color:rgba(250,204,21,.55);transform:translateY(-1px)}
+  .card .ct{font-family:ui-monospace,monospace;font-size:9.5px;font-weight:700;letter-spacing:.16em;color:#facc15;text-transform:uppercase;margin-bottom:5px}
+  .card .ch{font-size:13px;font-weight:700;color:#fff;margin-bottom:3px;letter-spacing:-.005em;line-height:1.25}
+  .card .cb{font-size:11.5px;color:#9a9a9a;line-height:1.45}
+  .card .pill{display:inline-block;font-family:ui-monospace,monospace;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:2px 6px;border-radius:3px;margin-top:6px;margin-right:4px}
+  .card .pill.green{background:rgba(125,145,86,.15);color:#a8c47e}
+  .card .pill.gold{background:rgba(250,204,21,.15);color:#facc15}
+  .card .pill.blue{background:rgba(120,180,220,.15);color:#9cc4e6}
+  .card .pill.red{background:rgba(192,84,66,.15);color:#e08070}
+
+  /* Card sizes */
+  .card.tall{padding:12px 14px}
+  .card.small{width:200px;padding:8px 10px}
+  .card.small .ch{font-size:12px}
+  .card.small .cb{font-size:10.5px}
+
+  /* Mini funnel block */
+  .funnel{position:absolute;width:240px;background:#0e0e0e;border:1px dashed rgba(255,255,255,.16);border-radius:6px;padding:14px 14px 12px;z-index:3}
+  .funnel .fh{font-family:ui-monospace,monospace;font-size:9.5px;font-weight:700;letter-spacing:.18em;color:#888;text-transform:uppercase;margin-bottom:10px;text-align:center}
+  .funnel .stage{height:24px;display:flex;align-items:center;justify-content:center;font-family:ui-monospace,monospace;font-size:10px;font-weight:700;letter-spacing:.06em;color:#fff;background:rgba(250,204,21,.85);clip-path:polygon(0 0, 100% 0, 90% 100%, 10% 100%);margin-bottom:3px}
+  .funnel .stage:nth-child(2){background:rgba(250,204,21,.7);clip-path:polygon(5% 0, 95% 0, 87% 100%, 13% 100%)}
+  .funnel .stage:nth-child(3){background:rgba(250,204,21,.55);clip-path:polygon(10% 0, 90% 0, 84% 100%, 16% 100%)}
+  .funnel .stage:nth-child(4){background:rgba(250,204,21,.4);clip-path:polygon(15% 0, 85% 0, 81% 100%, 19% 100%)}
+  .funnel .stage:nth-child(5){background:rgba(250,204,21,.28);clip-path:polygon(20% 0, 80% 0, 78% 100%, 22% 100%)}
+  .funnel .stage:nth-child(6){background:rgba(250,204,21,.18);clip-path:polygon(25% 0, 75% 0, 75% 100%, 25% 100%)}
+
+  /* Section divider line within column */
+  .col-div{position:absolute;width:240px;height:1px;background:rgba(255,255,255,.06);z-index:2}
+
+  /* Hint at bottom */
+  .hint{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);font-family:ui-monospace,monospace;font-size:10px;color:#555;letter-spacing:.16em;text-transform:uppercase;z-index:50;background:rgba(0,0,0,.7);padding:6px 12px;border-radius:4px;border:1px solid rgba(255,255,255,.06);pointer-events:none}
+
+  /* Mobile — show full but smaller */
+  @media(max-width:780px){
+    .topbar{padding:0 12px;font-size:11px}
+    .tb-l b{font-size:11px}
+    .tb-r .tb-btn{padding:5px 9px;font-size:10px}
+    .hint{font-size:9px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="tb-l">
+    <b>DS Electrical Blueprint</b>
+    <span class="div"></span>
+    <span class="v">v1 · 2026-05-03</span>
+    <span class="div"></span>
+    <span class="v">10 columns · 50+ nodes</span>
+  </div>
+  <div class="tb-r">
+    <a href="/" class="tb-btn">← Back</a>
+    <a href="tel:07889334849" class="tb-btn gold">Call Dan</a>
+  </div>
+</div>
+
+<div class="viewport" id="viewport">
+  <div class="canvas">
+
+    <!-- TITLE BLOCK -->
+    <div class="title-block">
+      <div class="eyebrow">Blueprint · v1 · the whole business</div>
+      <h1>DS Electrical Installation SW Ltd</h1>
+      <div class="sub">Every department, every channel, every system mapped on one canvas. The yellow line splits Phase 1 (acquisition) from Phase 2 (delivery + finance + retention).</div>
+      <div class="meta">
+        <span>Directors <b>2</b></span>
+        <span>Coverage <b>Mid Somerset</b></span>
+        <span>VAT <b>Registered</b></span>
+        <span>Accred <b>NAPIT · CHAS · TrustMark</b></span>
+      </div>
+    </div>
+
+    <!-- PHASE STRIP -->
+    <div class="phases">
+      <div class="phase"><span class="num">1</span><span>Lead</span></div><span class="arr">→</span>
+      <div class="phase"><span class="num">2</span><span>Quote</span></div><span class="arr">→</span>
+      <div class="phase"><span class="num">3</span><span>Book</span></div><span class="arr">→</span>
+      <div class="phase"><span class="num">4</span><span>Job</span></div><span class="arr">→</span>
+      <div class="phase"><span class="num">5</span><span>Cert</span></div><span class="arr">→</span>
+      <div class="phase"><span class="num">6</span><span>Invoice</span></div><span class="arr">→</span>
+      <div class="phase"><span class="num">7</span><span>Review</span></div>
+    </div>
+
+    <!-- YELLOW ACCENT STRIP -->
+    <div class="accent"></div>
+    <div class="accent-label">Phase 1 — Acquisition · Phase 2 — Delivery</div>
+
+    <!-- COLUMN HEADERS -->
+    <div class="col-h marketing">Marketing Blueprint</div>
+    <div class="col-h sales">Sales Blueprint</div>
+    <div class="col-h ops">Operations Blueprint</div>
+    <div class="col-h cs">Customer Success</div>
+    <div class="col-h finance">Finance Blueprint</div>
+    <div class="col-h tech">Tech Stack</div>
+    <div class="col-h brand">Brand &amp; Content</div>
+    <div class="col-h team">Team &amp; Capacity</div>
+    <div class="col-h compliance">Compliance</div>
+    <div class="col-h partners">Partners &amp; Suppliers</div>
+
+    <!-- ============================================ -->
+    <!-- MARKETING COLUMN (left=60) -->
+    <!-- ============================================ -->
+    <div class="card" id="m-channels" style="top:300px;left:60px"><div class="ct">Channels</div><div class="ch">Lead sources</div><div class="cb">Google Pack, organic SEO, Checkatrade, WhatsApp share, word of mouth, sparky247.* sister sites.</div></div>
+    <div class="card" id="m-content" style="top:430px;left:60px"><div class="ct">Content</div><div class="ch">Service pages</div><div class="cb">25+ pages on dselectricalsw.co.uk: EICR, EV, CCTV, rewires, heritage, commercial, fire alarms.</div></div>
+    <div class="card" id="m-blog" style="top:560px;left:60px"><div class="ct">Content</div><div class="ch">Blog articles</div><div class="cb">EICR explained, CCTV cost guide, 3-phase upgrade, BS5839 landlord fire alarms, EV charger cost.</div></div>
+    <div class="card" id="m-areas" style="top:680px;left:60px"><div class="ct">SEO</div><div class="ch">11 area pages</div><div class="cb">Wells, Shepton Mallet, Bath, Frome, Glastonbury, Street, Bruton, Castle Cary, Radstock, Wedmore, Midsomer Norton.</div></div>
+    <div class="card" id="m-social" style="top:800px;left:60px"><div class="ct">Social</div><div class="ch">Job photos</div><div class="cb">Real before/after of every notable job. No stock photos. Hero kitchen, barn conversion, church.</div></div>
+    <div class="card" id="m-rating" style="top:920px;left:60px"><div class="ct">Trust</div><div class="ch">5.0 Google</div><div class="cb">11+ reviews. Checkatrade verified. Reviews section on every key landing page.</div></div>
+
+    <div class="card" style="top:1180px;left:60px"><div class="ct">Capture</div><div class="ch">Contact form</div><div class="cb">Direct to info@dselectricalsw.co.uk. Same working day reply guaranteed.</div></div>
+    <div class="card" id="m-quotebuilder" style="top:1310px;left:60px"><div class="ct">Tool</div><div class="ch">/quote/ PWA</div><div class="cb">Self-serve multi-trade quote builder. Random QUO-NNN. Print-to-PDF.</div></div>
+
+    <!-- SALES COLUMN (left=380) -->
+    <div class="card" id="s-funnel-anchor" style="top:300px;left:380px"><div class="ct">Pipeline</div><div class="ch">7-stage funnel</div><div class="cb">Lead → Quote → Book → Job → Cert → Invoice → Review.</div></div>
+
+    <div class="funnel" id="s-funnel" style="top:430px;left:380px">
+      <div class="fh">Pipeline conversion</div>
+      <div class="stage">Lead</div>
+      <div class="stage">Quote</div>
+      <div class="stage">Book</div>
+      <div class="stage">Job</div>
+      <div class="stage">Invoice</div>
+      <div class="stage">Review</div>
+    </div>
+
+    <div class="card" id="s-eicr" style="top:680px;left:380px"><div class="ct">Product</div><div class="ch">EICR per circuit</div><div class="cb">£30/circuit single-phase. £40/circuit three-phase. Typical 3-bed = 6–10 circuits.</div></div>
+    <div class="card" id="s-fuse" style="top:810px;left:380px"><div class="ct">Product</div><div class="ch">Fuse board check</div><div class="cb">£99 fixed. Written report + RCD test. Credited if upgrade booked.</div></div>
+    <div class="card" id="s-ev" style="top:920px;left:380px"><div class="ct">Product</div><div class="ch">EV charger fitted</div><div class="cb">£495 fixed. All Type A RCBO. Hypervolt/Zappi/Ohme/Andersen. OZEV grant handled.</div></div>
+    <div class="card" id="s-rewire" style="top:1030px;left:380px"><div class="ct">Product</div><div class="ch">Full rewire</div><div class="cb">From £3,500. Price by circuit count + access. Heritage variants from £15K.</div></div>
+
+    <div class="card" id="s-quote" style="top:1180px;left:380px"><div class="ct">Process</div><div class="ch">Written quote &lt; 48h</div><div class="cb">Free site survey. Fixed price. No "while we're here" surprises. Valid 30 days.</div></div>
+    <div class="card" id="s-deposit" style="top:1310px;left:380px"><div class="ct">Terms</div><div class="ch">50/50 BACS</div><div class="cb">50% on booking, 50% on completion. <span class="pill red">No Stripe</span></div></div>
+
+    <!-- OPS COLUMN (left=700) -->
+    <div class="card" id="o-services" style="top:300px;left:700px"><div class="ct">Services</div><div class="ch">7 categories</div><div class="cb">Domestic & Rewires · Heritage · Commercial · CCTV · Data/Fibre · EV · Lighting.</div></div>
+    <div class="card" id="o-tools" style="top:430px;left:700px"><div class="ct">Tooling</div><div class="ch">Megger 1741</div><div class="cb">Insulation, RCD, loop, earth fault loop. Calibrated annually for 2391 standard.</div></div>
+    <div class="card" id="o-pwa" style="top:550px;left:700px"><div class="ct">In-job</div><div class="ch">Sparky's Pad PWA</div><div class="cb">/sparky/ — job tracker on the bank. Offline. Auto-quote helper bakes in pricing rules.</div></div>
+    <div class="card" id="o-saycc" style="top:670px;left:700px"><div class="ct">In-job</div><div class="ch">say-claude bridge</div><div class="cb">phone.aimaxops.com — voice-to-Claude on site. Time clock, push reminders.</div></div>
+    <div class="card" id="o-vans" style="top:790px;left:700px"><div class="ct">Fleet</div><div class="ch">Van + Tesla MY (planned)</div><div class="cb">Tesla Model Y company car for site visits. Decision pack done, broker shortlist.</div></div>
+    <div class="card" id="o-finish" style="top:910px;left:700px"><div class="ct">Standards</div><div class="ch">Clean finish</div><div class="cb">Cordless extraction on every drill, dust sheets every surface, chases filled, end-of-day clean.</div></div>
+
+    <div class="card" id="o-trips" style="top:1180px;left:700px"><div class="ct">Coverage</div><div class="ch">Somerset only</div><div class="cb">Wells, Shepton, Bath/BANES, Glastonbury, Frome. 40-min drive max. <span class="pill gold">No further</span></div></div>
+    <div class="card" id="o-emergency" style="top:1310px;left:700px"><div class="ct">SLA</div><div class="ch">2-hour callout</div><div class="cb">Emergency response inside 2h across coverage area. Contract clients = guaranteed line.</div></div>
+
+    <!-- CUSTOMER SUCCESS (left=1020) -->
+    <div class="card" id="c-phone" style="top:300px;left:1020px"><div class="ct">Contact</div><div class="ch">Two direct lines</div><div class="cb">Dan Stevens 07889 334849 · Dan Street 07983 106928. No call centre, no gatekeepers.</div></div>
+    <div class="card" id="c-whatsapp" style="top:430px;left:1020px"><div class="ct">Contact</div><div class="ch">WhatsApp</div><div class="cb">wa.me/447889334849. Photos, quotes, instant replies on the bank.</div></div>
+    <div class="card" id="c-email" style="top:550px;left:1020px"><div class="ct">Contact</div><div class="ch">Email</div><div class="cb">info@dselectricalsw.co.uk → forwards to Gmail via CF Email Routing.</div></div>
+    <div class="card" id="c-sla" style="top:670px;left:1020px"><div class="ct">Promise</div><div class="ch">Same-day reply</div><div class="cb">Every enquiry answered the same working day. No exceptions.</div></div>
+    <div class="card" id="c-guarantee" style="top:790px;left:1020px"><div class="ct">Promise</div><div class="ch">All work guaranteed</div><div class="cb">Plus £2M public liability insurance.</div></div>
+
+    <div class="card" id="c-nps" style="top:1180px;left:1020px"><div class="ct">Aftercare</div><div class="ch">Review request</div><div class="cb">Google review link sent on completion + Checkatrade follow-up. No chasing per Dan's rule.</div></div>
+    <div class="card" id="c-reorder" style="top:1310px;left:1020px"><div class="ct">Lifetime</div><div class="ch">Repeat work</div><div class="cb">Existing client = priority queue. Contract clients get 24h emergency line.</div></div>
+
+    <!-- FINANCE (left=1340) -->
+    <div class="card" id="f-invoice" style="top:300px;left:1340px"><div class="ct">Numbering</div><div class="ch">SI-NNN sequence</div><div class="cb">Continuing Sage. Last = SI-532 (15-Apr-2026). Next = SI-533. Never restart, never duplicate.</div></div>
+    <div class="card" id="f-bacs" style="top:430px;left:1340px"><div class="ct">Channel</div><div class="ch">BACS only</div><div class="cb"><span class="pill red">Stripe banned</span> on customer invoices. Bank refs page on website.</div></div>
+    <div class="card" id="f-vat" style="top:570px;left:1340px"><div class="ct">VAT</div><div class="ch">Registered · 20%</div><div class="cb">Every quote/invoice/report shows net + VAT + total. Quarterly returns.</div></div>
+    <div class="card" id="f-quotenum" style="top:690px;left:1340px"><div class="ct">Numbering</div><div class="ch">QUO-NNN random</div><div class="cb">Random 3-digit per quote. Never sequential. Per <i>feedback_quote_numbers.md</i>.</div></div>
+    <div class="card" id="f-accounting" style="top:810px;left:1340px"><div class="ct">Accounting</div><div class="ch">Sage → QuickBooks</div><div class="cb">Migration planned. Dext for receipts. £50/mo Sage saving.</div></div>
+    <div class="card" id="f-insurance" style="top:930px;left:1340px"><div class="ct">Cover</div><div class="ch">£2M PL insurance</div><div class="cb">Plus tools, van, professional indemnity. NAPIT-required minimum.</div></div>
+
+    <div class="card" id="f-margin" style="top:1180px;left:1340px"><div class="ct">Pricing</div><div class="ch">Fixed > hourly</div><div class="cb">No day rates. No open-ended bills. Margin baked into per-circuit + fixed prices.</div></div>
+    <div class="card" id="f-deposits" style="top:1310px;left:1340px"><div class="ct">Cash flow</div><div class="ch">50% on booking</div><div class="cb">Funds materials. Final 50% on completion. No 30-day payment terms.</div></div>
+
+    <!-- TECH STACK (left=1660) -->
+    <div class="card" id="t-site" style="top:300px;left:1660px"><div class="ct">Web</div><div class="ch">dselectricalsw.co.uk</div><div class="cb">Static HTML + Caddy:3004 + PM2 ds-electrical-web + Cloudflare tunnel. Edit = live.</div></div>
+    <div class="card" id="t-pwas" style="top:430px;left:1660px"><div class="ct">PWAs</div><div class="ch">/sparky · /quote · /blueprints</div><div class="cb">Vanilla HTML + JS + localStorage + service worker. Offline-first.</div></div>
+    <div class="card" id="t-hosting" style="top:560px;left:1660px"><div class="ct">Infra</div><div class="ch">Self-hosted</div><div class="cb">PM2 + Caddy + cf-tunnel. <span class="pill red">No Netlify</span> · No vendor lock-in.</div></div>
+    <div class="card" id="t-saycc" style="top:680px;left:1660px"><div class="ct">Voice</div><div class="ch">say-claude bridge</div><div class="cb">say.aimaxops.com → Claude SDK. Voice → text → action on phone.</div></div>
+    <div class="card" id="t-email" style="top:800px;left:1660px"><div class="ct">Email</div><div class="ch">Gmail + CF routing</div><div class="cb">info@ → dstevenselectrical@gmail.com. OAuth refreshed weekly.</div></div>
+    <div class="card" id="t-domain" style="top:920px;left:1660px"><div class="ct">Domain</div><div class="ch">Canonical: dselectricalsw.co.uk</div><div class="cb">Old dselectricalinstallations.co.uk retired 2026-04-25. Expires 2026-07-06.</div></div>
+
+    <div class="card" id="t-mindmap" style="top:1180px;left:1660px"><div class="ct">Internal</div><div class="ch">DS Agents Mind Map</div><div class="cb">React Flow · 193 nodes · 114 agents · 39 teams · ~/ds-agents-mindmap</div></div>
+    <div class="card" id="t-vault" style="top:1310px;left:1660px"><div class="ct">Knowledge</div><div class="ch">Obsidian vault</div><div class="cb">~/Documents/DS-Operations-Vault — single source of truth for ops.</div></div>
+
+    <!-- BRAND (left=1980) -->
+    <div class="card" id="b-colors" style="top:300px;left:1980px"><div class="ct">Visual</div><div class="ch">#facc15 + #0f172a</div><div class="cb">Yellow on dark. Used on website only — not on print/cards (per feedback rule).</div></div>
+    <div class="card" id="b-fonts" style="top:430px;left:1980px"><div class="ct">Type</div><div class="ch">Outfit + JetBrains Mono</div><div class="cb">Outfit body, JetBrains Mono for prices/labels/codes.</div></div>
+    <div class="card" id="b-voice" style="top:560px;left:1980px"><div class="ct">Voice</div><div class="ch">"Run by electricians"</div><div class="cb">Plain. Specific. Trade-floor blunt. No buzzword stack. Specs not adjectives.</div></div>
+    <div class="card" id="b-photos" style="top:680px;left:1980px"><div class="ct">Imagery</div><div class="ch">Real work only</div><div class="cb"><span class="pill red">No stock photos</span> · <span class="pill red">No AI slop</span> · 100+ real client photos in gallery.</div></div>
+
+    <div class="card" id="b-blueprint" style="top:1180px;left:1980px"><div class="ct">Self-doc</div><div class="ch">This blueprint</div><div class="cb">/blueprint/ — the whole business on one canvas. v1, will deepen.</div></div>
+    <div class="card" id="b-portfolio" style="top:1310px;left:1980px"><div class="ct">Showcase</div><div class="ch">/blueprints/</div><div class="cb">Tile-grid landing showing all single-purpose tools shipped.</div></div>
+
+    <!-- TEAM (left=2300) -->
+    <div class="card" id="te-stevens" style="top:300px;left:2300px"><div class="ct">Director</div><div class="ch">Dan Stevens</div><div class="cb">07889 334849 · Director · 15+ years on the tools · NAPIT lead.</div></div>
+    <div class="card" id="te-street" style="top:430px;left:2300px"><div class="ct">Director</div><div class="ch">Dan Street</div><div class="cb">07983 106928 · Co-director · runs commercial side.</div></div>
+    <div class="card" id="te-base" style="top:560px;left:2300px"><div class="ct">Base</div><div class="ch">Glastonbury</div><div class="cb">Somerset, BA6. 40-min radius defines coverage area.</div></div>
+    <div class="card" id="te-cap" style="top:680px;left:2300px"><div class="ct">Capacity</div><div class="ch">2 directors on tools</div><div class="cb">No subbies in chain. Person quoting = person doing the work.</div></div>
+
+    <div class="card" id="te-onboard" style="top:1180px;left:2300px"><div class="ct">Future</div><div class="ch">Apprentice slot</div><div class="cb">Open when commercial contracts justify. 2391 path mapped.</div></div>
+    <div class="card" id="te-2391" style="top:1310px;left:2300px"><div class="ct">CPD</div><div class="ch">2391 prep</div><div class="cb">160 MCQs · 14 topics · 3 mock papers in Obsidian vault.</div></div>
+
+    <!-- COMPLIANCE (left=2620) -->
+    <div class="card" id="cp-napit" style="top:300px;left:2620px"><div class="ct">Master accred</div><div class="ch">NAPIT</div><div class="cb">Part P notification on every domestic job. NAPIT issues every cert.</div></div>
+    <div class="card" id="cp-bs7671" style="top:430px;left:2620px"><div class="ct">Standard</div><div class="ch">BS 7671:2018+A2</div><div class="cb">Every install + EICR worked to 18th edition + amendment 2.</div></div>
+    <div class="card" id="cp-chas" style="top:560px;left:2620px"><div class="ct">Commercial</div><div class="ch">CHAS accredited</div><div class="cb">Required for most contractor framework work. Annual review.</div></div>
+    <div class="card" id="cp-trustmark" style="top:680px;left:2620px"><div class="ct">Trust</div><div class="ch">TrustMark endorsed</div><div class="cb">Government-backed quality scheme. Insurance-backed warranty available.</div></div>
+    <div class="card" id="cp-ev" style="top:800px;left:2620px"><div class="ct">EV rule</div><div class="ch">Type A RCBO only</div><div class="cb"><span class="pill gold">Hard rule</span> · Never Type B on EV chargers. Every install.</div></div>
+    <div class="card" id="cp-eicr-pricing" style="top:920px;left:2620px"><div class="ct">EICR rule</div><div class="ch">Per-circuit</div><div class="cb">£30 single-phase, £40 three-phase. Heritage = walk-round survey first.</div></div>
+
+    <div class="card" id="cp-dbs" style="top:1180px;left:2620px"><div class="ct">DBS</div><div class="ch">Enhanced (in progress)</div><div class="cb">uCheck/Personnel Checks portal route. Required for housing-association work.</div></div>
+    <div class="card" id="cp-safeguarding" style="top:1310px;left:2620px"><div class="ct">Safeguarding</div><div class="ch">LGA learning pool</div><div class="cb">Required before procurement sends to social-housing clients.</div></div>
+
+    <!-- PARTNERS (left=2940) -->
+    <div class="card" id="pa-edmundsons" style="top:300px;left:2940px"><div class="ct">Wholesale</div><div class="ch">Edmundsons</div><div class="cb">Local trade counter. Account terms. Bulk cable, accessories.</div></div>
+    <div class="card" id="pa-cef" style="top:430px;left:2940px"><div class="ct">Wholesale</div><div class="ch">CEF</div><div class="cb">Backup trade account. EICR consumables, Megger leads.</div></div>
+    <div class="card" id="pa-hypervolt" style="top:560px;left:2940px"><div class="ct">EV</div><div class="ch">Hypervolt</div><div class="cb">Approved installer. Hypervolt 3 stocked. Direct supplier rebate.</div></div>
+    <div class="card" id="pa-zappi" style="top:680px;left:2940px"><div class="ct">EV</div><div class="ch">Zappi / Myenergi</div><div class="cb">Approved installer. Solar-diversion eco mode for clients with PV.</div></div>
+    <div class="card" id="pa-hikvision" style="top:800px;left:2940px"><div class="ct">CCTV</div><div class="ch">Hikvision</div><div class="cb">4K AcuSense + ColorVu. AX PRO alarms. Hik-Connect remote viewing.</div></div>
+
+    <div class="card" id="pa-letting" style="top:1180px;left:2940px"><div class="ct">Lead source</div><div class="ch">Letting agents</div><div class="cb">19+ Somerset agents tracked. Cooper &amp; Tanner standout. EICRs at scale.</div></div>
+    <div class="card" id="pa-procurement" style="top:1310px;left:2940px"><div class="ct">Procurement</div><div class="ch">Curo · Aster · Somerset Council</div><div class="cb">Procurement packs built. Awaiting DBS + safeguarding before send.</div></div>
+
+    <!-- ============================================ -->
+    <!-- EDGES (drawn last so cards know positions) -->
+    <!-- ============================================ -->
+    <svg class="edges" viewBox="0 0 3400 2200" preserveAspectRatio="none">
+      <!-- Marketing → Sales: lead capture flows to pipeline -->
+      <path d="M 300 322 C 340 322, 340 322, 380 322" />
+      <path d="M 300 452 C 340 452, 340 452, 380 322" />
+      <path d="M 300 1202 C 340 1202, 340 1202, 380 322" />
+      <path d="M 300 1332 C 340 1332, 340 1332, 380 322" />
+
+      <!-- Sales products → Compliance EICR rule -->
+      <path class="gold" d="M 620 702 C 1640 702, 1640 942, 2620 942" />
+      <!-- Sales EV → Compliance Type A -->
+      <path class="gold" d="M 620 942 C 1640 822, 1640 822, 2620 822" />
+
+      <!-- Sales pipeline → Ops PWA -->
+      <path d="M 620 322 C 660 322, 660 572, 700 572" />
+      <!-- Quote → Quote builder -->
+      <path d="M 300 1332 C 340 1332, 340 1332, 380 1202" />
+
+      <!-- Ops Sparky's Pad → Tech PWAs cluster -->
+      <path d="M 940 572 C 1300 572, 1300 452, 1660 452" />
+      <!-- Ops say-claude → Tech say-claude -->
+      <path d="M 940 692 C 1300 692, 1300 702, 1660 702" />
+
+      <!-- Sales → Finance: deposit → cashflow -->
+      <path d="M 620 1332 C 980 1332, 980 1332, 1340 1332" />
+      <path class="gold" d="M 620 1332 C 980 1332, 980 452, 1340 452" />
+
+      <!-- Sales pipeline → Customer Success -->
+      <path d="M 620 322 C 820 322, 820 322, 1020 322" />
+      <!-- Customer Success → Marketing rating -->
+      <path d="M 1020 1202 C 660 1202, 660 942, 300 942" />
+
+      <!-- Brand voice → Marketing content -->
+      <path d="M 1980 582 C 1140 582, 1140 452, 300 452" />
+
+      <!-- Compliance NAPIT → Brand trust -->
+      <path d="M 2620 322 C 2300 322, 2300 322, 1980 322" />
+
+      <!-- Partners → Sales/Ops -->
+      <path d="M 2940 322 C 2300 322, 2300 442, 1660 442" />
+      <path d="M 2940 582 C 1640 582, 1640 942, 620 942" />
+
+      <!-- Team → Customer Success direct lines -->
+      <path d="M 2300 322 C 1660 322, 1660 322, 1260 322" />
+      <path d="M 2300 452 C 1660 452, 1660 322, 1260 322" />
+    </svg>
+
+  </div>
+</div>
+
+<div class="hint">Scroll / drag to pan · pinch to zoom on trackpad · 10 columns · 50+ nodes</div>
+
+<script>
+  // Click-and-drag pan on the viewport
+  const v = document.getElementById('viewport');
+  let dragging = false, startX = 0, startY = 0, scrollX = 0, scrollY = 0;
+  v.addEventListener('mousedown', e => {
+    if (e.target.closest('.card, .tb-btn, a')) return;
+    dragging = true; startX = e.clientX; startY = e.clientY;
+    scrollX = v.scrollLeft; scrollY = v.scrollTop;
+  });
+  v.addEventListener('mousemove', e => {
+    if (!dragging) return;
+    v.scrollLeft = scrollX - (e.clientX - startX);
+    v.scrollTop  = scrollY - (e.clientY - startY);
+  });
+  ['mouseup','mouseleave'].forEach(ev => v.addEventListener(ev, () => { dragging = false; }));
+
+  // Centre on title block on load
+  setTimeout(() => { v.scrollTo({left: 0, top: 0}); }, 50);
+</script>
+</body>
+</html>

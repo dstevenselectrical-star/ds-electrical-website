@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0f172a">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<style id="shared-inline">
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+ --dark:#0a0908;--dark2:#131110;--dark3:#1c1915;
+ --light:#f8f5f0;--light2:#eee9e0;--light3:#e2dbd0;
+ --brass:#b8944f;--gold:#d4a44a;
+ --text-dark:#1a1714;--text-muted:#6b6560;
+ --text-light:#f0e8da;--text-light-muted:#8c7d6a;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',sans-serif;background:var(--light);color:var(--text-dark);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none;transition:.2s}
+img{display:block;max-width:100%}
+
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1.5rem,5vw,4rem);background:rgba(10,9,8,.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.04)}
+.nav-logo img{height:70px;width:auto}
+.nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+.nav-links a{font-size:.78rem;font-weight:600;color:rgba(240,232,218,.6);letter-spacing:.08em;text-transform:uppercase}
+.nav-links a:hover{color:#fff}
+.nav-links a.active{color:var(--gold)}
+.nav-cta{background:var(--gold);color:var(--dark);padding:.5rem 1.3rem;border-radius:6px;font-weight:700;font-size:.78rem}
+.nav-cta:hover{background:var(--brass)}
+.nav-menu{display:none;background:none;border:none;color:#fff;font-size:1.5rem;cursor:pointer}
+
+.section-tag{font-size:.65rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--brass);margin-bottom:1rem}
+.section-heading{font-size:clamp(2.2rem,4.5vw,3.5rem);font-weight:900;line-height:1.05;letter-spacing:-.02em;margin-bottom:.75rem}
+.section-desc{color:var(--text-muted);font-size:1.05rem;line-height:1.7;max-width:600px;margin-bottom:2rem}
+.btn{padding:.8rem 2rem;border-radius:6px;font-weight:700;font-size:.85rem;letter-spacing:.02em;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:.5rem;transition:.25s}
+.btn-gold{background:var(--gold);color:var(--dark)}
+.btn-gold:hover{background:var(--brass);transform:translateY(-2px);box-shadow:0 8px 30px rgba(212,164,74,.3)}
+.btn-white{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.12)}
+.btn-white:hover{background:rgba(255,255,255,.14)}
+
+.breadcrumb{background:var(--light);padding:1rem clamp(1.5rem,5vw,4rem);font-size:.78rem;border-bottom:1px solid var(--light3)}
+.breadcrumb-inner{max-width:1200px;margin:0 auto;display:flex;gap:.5rem;align-items:center;color:var(--text-muted);font-weight:500}
+.breadcrumb-inner a{color:var(--text-muted);text-decoration:none;transition:.2s}
+.breadcrumb-inner a:hover{color:var(--brass)}
+.breadcrumb-inner .sep{color:var(--light3)}
+.breadcrumb-inner .current{color:var(--text-dark);font-weight:700}
+
+.tstrip{background:var(--light2);padding:2.5rem clamp(1.5rem,5vw,4rem);border-top:1px solid var(--light3);border-bottom:1px solid var(--light3)}
+.tstrip-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:center}
+.tstat-num{font-size:1.9rem;font-weight:900;color:var(--text-dark);font-family:'JetBrains Mono',monospace;line-height:1}
+.tstat-lbl{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.18em;color:var(--text-muted);margin-top:.5rem}
+
+.cta{background:var(--dark);padding:clamp(5rem,10vw,8rem) clamp(1.5rem,5vw,4rem);text-align:center}
+.cta .section-heading{color:#fff}
+.cta .section-desc{color:rgba(240,232,218,.5);margin:0 auto 1.5rem;text-align:center}
+.cta-phone-label{font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(240,232,218,.4);display:block;margin-bottom:.6rem}
+.cta-phone{font-family:'JetBrains Mono',monospace;font-size:clamp(1.4rem,3vw,2.2rem);font-weight:700;color:rgba(240,232,218,.5);display:block;margin-bottom:.2rem}
+.cta-phone:hover{color:var(--gold)}
+.cta-phone-2{font-family:'JetBrains Mono',monospace;font-size:clamp(1.4rem,3vw,2.2rem);color:rgba(240,232,218,.35);display:block;margin-bottom:2rem}
+.cta-phone-2:hover{color:var(--gold)}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+
+.footer{background:var(--dark);padding:3rem clamp(1.5rem,5vw,4rem) 1.5rem;border-top:1px solid rgba(255,255,255,.04)}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+.footer h3, .footer h4{font-size:.68rem;text-transform:uppercase;letter-spacing:.2em;color:var(--gold);margin-bottom:1rem;font-weight:700}
+.footer p,.footer a{font-size:.8rem;color:rgba(240,232,218,.4);line-height:2}
+.footer a:hover{color:var(--gold)}
+.footer-bottom{padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.03);display:flex;justify-content:space-between;font-size:.65rem;color:rgba(255,255,255,.2)}
+
+.wa{position:fixed;bottom:1.5rem;left:1.5rem;width:56px;height:56px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:99;box-shadow:0 4px 24px rgba(37,211,102,.3);transition:.2s}
+.wa:hover{transform:scale(1.1)}
+.wa svg{width:28px;height:28px;fill:#fff}
+
+.mcb{display:none;position:fixed;bottom:0;left:0;right:0;z-index:98;background:#0a0908;border-top:1px solid rgba(212,164,74,.3);padding:.6rem .6rem calc(.6rem + env(safe-area-inset-bottom));box-shadow:0 -6px 24px rgba(0,0,0,.4)}
+.mcb-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:.5rem}
+.mcb a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.15rem;padding:.6rem .4rem;border-radius:8px;font-family:'Outfit',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.04em;text-decoration:none;transition:.2s}
+.mcb a svg{width:18px;height:18px}
+.mcb .mcb-call{background:#d4a44a;color:#0a0908}
+.mcb .mcb-call:hover{background:#b8944f}
+.mcb .mcb-wa{background:#25d366;color:#fff}
+.mcb .mcb-mail{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.14)}
+.mcb small{font-size:.62rem;font-weight:500;opacity:.75;letter-spacing:.02em;text-transform:none}
+
+.dq-btn{position:fixed;right:1.25rem;bottom:1.25rem;z-index:99;display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 1.35rem;background:#d4a44a;color:#0a0908;border-radius:100px;font-family:'Outfit',sans-serif;font-weight:800;font-size:.8rem;letter-spacing:.04em;text-decoration:none;box-shadow:0 8px 32px rgba(212,164,74,.4);transition:.25s}
+.dq-btn:hover{background:#b8944f;transform:translateY(-2px);box-shadow:0 12px 40px rgba(212,164,74,.5)}
+.dq-btn svg{width:16px;height:16px}
+
+.related-svc{background:var(--dark);padding:clamp(4rem,7vw,5rem) clamp(1.5rem,5vw,4rem);color:#fff}
+.related-svc-inner{max-width:1200px;margin:0 auto}
+.related-svc .section-tag{color:#d4a44a}
+.related-svc h2{font-size:clamp(1.8rem,3.2vw,2.6rem);font-weight:900;line-height:1.1;color:#fff;margin-bottom:2.5rem;letter-spacing:-.02em}
+.related-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.related-card{display:block;padding:1.5rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:12px;text-decoration:none;transition:.25s}
+.related-card:hover{background:rgba(212,164,74,.08);border-color:rgba(212,164,74,.3);transform:translateY(-3px)}
+.related-card h3{font-size:.95rem;font-weight:800;color:#fff;margin-bottom:.4rem}
+.related-card p{font-size:.78rem;color:rgba(240,232,218,.5);line-height:1.5}
+.related-card .arrow{display:inline-block;margin-top:.8rem;color:#d4a44a;font-size:.8rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
+
+@media(max-width:1024px){.related-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:900px){.related-grid{grid-template-columns:repeat(2,1fr)}.tstrip-inner{grid-template-columns:repeat(2,1fr);gap:1.5rem}}
+@media(max-width:768px){
+ .nav-links{display:none;position:fixed;top:72px;left:0;right:0;background:rgba(10,9,8,.98);backdrop-filter:blur(20px);flex-direction:column;padding:2rem;gap:1.5rem;border-bottom:1px solid rgba(255,255,255,.06)}
+ .nav-links.open{display:flex}
+ .nav-menu{display:block}
+ .mcb{display:block}
+ body{padding-bottom:72px}
+ .wa{bottom:6rem !important}
+ .dq-btn{display:none}
+ .footer-grid{grid-template-columns:1fr 1fr}
+ .related-grid{grid-template-columns:1fr}
+}
+@media(max-width:480px){.footer-grid{grid-template-columns:1fr}}
+</style>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Accreditations | NAPIT, CHAS, TrustMark | DS Electrical SW</title>
+<meta name="description" content="DS Electrical accreditations explained: NAPIT 66245, CHAS 158368, City and Guilds 2391, TrustMark, Part P, BS 7671 18th Edition. Verifiable membership numbers. Call 07889 334849.">
+<link rel="canonical" href="https://www.dselectricalsw.co.uk/accreditations.html">
+<link rel="alternate" hreflang="en-GB" href="https://www.dselectricalsw.co.uk/accreditations.html">
+<link rel="alternate" hreflang="x-default" href="https://www.dselectricalsw.co.uk/accreditations.html">
+<meta property="og:title" content="Our Accreditations - Real Schemes, Verifiable Numbers">
+<meta property="og:description" content="DS Electrical accreditations explained: NAPIT 66245, CHAS 158368, City and Guilds 2391, TrustMark, Part P, BS 7671 18th Edition.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.dselectricalsw.co.uk/accreditations.html">
+<meta property="og:image" content="https://www.dselectricalsw.co.uk/photos/accreditations-og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="DS Electrical accreditations - NAPIT, CHAS, TrustMark, Part P, BS 7671">
+<meta name="twitter:title" content="Our Accreditations - Real Schemes, Verifiable Numbers">
+<meta name="twitter:description" content="DS Electrical accreditations explained: NAPIT 66245, CHAS 158368, City and Guilds 2391, TrustMark, Part P, BS 7671.">
+<meta name="twitter:image" content="https://www.dselectricalsw.co.uk/photos/accreditations-og.jpg">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="robots" content="index, follow">
+<link rel="manifest" href="/manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://fonts.googleapis.com">
+<link rel="dns-prefetch" href="https://fonts.gstatic.com">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap"></noscript>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "ProfessionalService",
+ "@id": "https://www.dselectricalsw.co.uk/accreditations.html#service",
+ "name": "DS Electrical Installation SW Ltd",
+ "description": "NAPIT approved electrical contractors with full scheme accreditations: NAPIT 66245, CHAS 158368, City and Guilds 2391, TrustMark, Part P, BS 7671 18th Edition.",
+ "url": "https://www.dselectricalsw.co.uk/accreditations.html",
+ "image": "https://www.dselectricalsw.co.uk/photos/accreditations-og.jpg",
+ "logo": "https://www.dselectricalsw.co.uk/logo-full.png",
+ "telephone": "+447889334849",
+ "email": "info@dselectricalsw.co.uk",
+ "vatID": "GB429040905",
+ "address": {"@type":"PostalAddress","addressLocality":"Glastonbury","addressRegion":"Somerset","postalCode":"BA6","addressCountry":"GB"},
+ "hasCredential": [
+  {"@type": "EducationalOccupationalCredential", "name": "NAPIT Approved Contractor 66245", "credentialCategory": "Competent Person Scheme", "recognizedBy": {"@type": "Organization", "name": "NAPIT", "url": "https://napit.org.uk"}},
+  {"@type": "EducationalOccupationalCredential", "name": "CHAS Accredited 158368", "credentialCategory": "Health and Safety Assessment", "recognizedBy": {"@type": "Organization", "name": "CHAS", "url": "https://chas.co.uk"}},
+  {"@type": "EducationalOccupationalCredential", "name": "City and Guilds 2391 Inspection and Testing", "credentialCategory": "Vocational Qualification", "recognizedBy": {"@type": "Organization", "name": "City and Guilds", "url": "https://cityandguilds.com"}},
+  {"@type": "EducationalOccupationalCredential", "name": "TrustMark Government Endorsed", "credentialCategory": "Government Endorsed Quality Scheme", "recognizedBy": {"@type": "Organization", "name": "TrustMark", "url": "https://trustmark.org.uk"}},
+  {"@type": "EducationalOccupationalCredential", "name": "Part P Registered", "credentialCategory": "Building Regulations Part P", "recognizedBy": {"@type": "Organization", "name": "NAPIT", "url": "https://napit.org.uk"}},
+  {"@type": "EducationalOccupationalCredential", "name": "BS 7671 18th Edition Compliant", "credentialCategory": "IET Wiring Regulations", "recognizedBy": {"@type": "Organization", "name": "Institution of Engineering and Technology", "url": "https://electrical.theiet.org"}}
+ ]
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement": [
+  {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.dselectricalsw.co.uk/"},
+  {"@type": "ListItem", "position": 2, "name": "Accreditations", "item": "https://www.dselectricalsw.co.uk/accreditations.html"}
+ ]
+}
+</script>
+<style>
+.hero{background:var(--dark);padding:clamp(7rem,9vw,9rem) clamp(1.5rem,5vw,4rem) clamp(4rem,6vw,5rem);text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(212,164,74,.08),transparent 60%);pointer-events:none}
+.hero-inner{max-width:900px;margin:0 auto;position:relative;z-index:1}
+.hero-tag{font-size:.65rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:2rem}
+.hero h1{font-size:clamp(2.5rem,6vw,5rem);font-weight:900;line-height:1;color:#fff;letter-spacing:-.03em;margin-bottom:1.5rem}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero-desc{font-size:1.15rem;color:rgba(240,232,218,.6);line-height:1.7;max-width:680px;margin:0 auto 2rem}
+
+.intro{padding:clamp(4rem,7vw,5rem) clamp(1.5rem,5vw,4rem);background:var(--light)}
+.intro-inner{max-width:780px;margin:0 auto;text-align:center}
+.intro p{font-size:1.05rem;color:var(--text-muted);line-height:1.8;margin-bottom:1rem}
+.intro p strong{color:var(--text-dark)}
+
+.acc-section{padding:clamp(2rem,4vw,3rem) clamp(1.5rem,5vw,4rem);background:var(--light)}
+.acc-section.alt{background:var(--light2)}
+.acc-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:200px 1fr;gap:3rem;align-items:start}
+.acc-badge{background:#fff;border:1px solid var(--light3);border-radius:14px;padding:1.5rem;display:flex;align-items:center;justify-content:center;min-height:180px;position:sticky;top:90px}
+.acc-badge img{max-width:100%;max-height:140px;height:auto;width:auto}
+.acc-content .acc-tag{font-size:.65rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--brass);margin-bottom:.5rem}
+.acc-content h2{font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:900;line-height:1.05;letter-spacing:-.02em;margin-bottom:.5rem;color:var(--text-dark)}
+.acc-content .acc-num{font-family:'JetBrains Mono',monospace;font-size:1rem;font-weight:700;color:var(--gold);background:rgba(212,164,74,.1);padding:.4rem .9rem;border-radius:6px;display:inline-block;margin-bottom:1.5rem}
+.acc-content p{font-size:1rem;color:var(--text-muted);line-height:1.8;margin-bottom:1rem}
+.acc-content p strong{color:var(--text-dark);font-weight:700}
+.acc-content ul{list-style:none;margin:1rem 0 1.5rem;padding:0}
+.acc-content ul li{font-size:.95rem;color:var(--text-muted);line-height:1.7;padding-left:1.6rem;position:relative;margin-bottom:.5rem}
+.acc-content ul li::before{content:'';position:absolute;left:0;top:.6rem;width:8px;height:8px;background:var(--gold);border-radius:2px}
+.acc-verify{display:inline-flex;align-items:center;gap:.5rem;padding:.7rem 1.3rem;background:var(--dark);color:#fff;border-radius:6px;font-weight:700;font-size:.8rem;letter-spacing:.05em;text-transform:uppercase;transition:.25s;margin-top:.5rem}
+.acc-verify:hover{background:var(--brass);transform:translateY(-2px)}
+.acc-verify svg{width:14px;height:14px;fill:currentColor}
+
+@media(max-width:768px){
+ .acc-inner{grid-template-columns:1fr;gap:1.5rem}
+ .acc-badge{position:relative;top:0;min-height:140px;padding:1rem}
+ .acc-badge img{max-height:100px}
+}
+
+.summary-strip{background:var(--dark);padding:3rem clamp(1.5rem,5vw,4rem);border-top:1px solid rgba(255,255,255,.06)}
+.summary-strip-inner{max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:2.5rem}
+.summary-item{display:flex;flex-direction:column;align-items:center;gap:.4rem;text-align:center;min-width:120px}
+.summary-item img{height:48px;width:auto;filter:grayscale(.2) contrast(1.1)}
+.summary-item span{font-size:.7rem;color:rgba(240,232,218,.6);text-transform:uppercase;letter-spacing:.1em;font-weight:600}
+</style>
+<script src="/analytics.js" defer></script>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+ <a href="/" class="nav-logo"><img src="logo-full.png" alt="DS Electrical Installations (SW) Ltd" decoding="async"></a>
+ <ul class="nav-links" id="navLinks">
+  <li><a href="/commercial-electrical.html">Commercial</a></li>
+  <li><a href="/domestic.html">Domestic</a></li>
+  <li><a href="/rewires.html">Rewires</a></li>
+  <li><a href="/eicr.html">EICR</a></li>
+  <li><a href="/ev-chargers.html">EV Chargers</a></li>
+  <li><a href="/cctv.html">CCTV</a></li>
+  <li><a href="/network-infrastructure.html">Network Infrastructure</a></li>
+  <li><a href="/24-hour-callouts.html">24hr Callouts</a></li>
+  <li><a href="/gallery.html">Gallery</a></li>
+  <li><a href="/blog.html">Blog</a></li>
+  <li><a href="/contact.html">Contact</a></li>
+  <li><a href="tel:07889334849" class="nav-cta">07889 334849</a></li>
+ </ul>
+ <button class="nav-menu" onclick="document.getElementById('navLinks').classList.toggle('open')">&#9776;</button>
+</nav>
+
+<nav class="breadcrumb" aria-label="Breadcrumb"><div class="breadcrumb-inner"><a href="/">Home</a><span class="sep">/</span><a href="/about.html">About</a><span class="sep">/</span><span class="current" aria-current="page">Accreditations</span></div></nav>
+
+<!-- HERO -->
+<section class="hero">
+ <div class="hero-inner">
+  <div class="hero-tag">Verifiable Credentials</div>
+  <h1>Our Accreditations &mdash;<br><em>Real Schemes, Verifiable Numbers.</em></h1>
+  <p class="hero-desc">Six independent credentials covering competent-person registration, health &amp; safety assessment, technical qualifications, government quality endorsement, building-regulations compliance, and the current wiring standard. Every membership number below is real and can be verified directly with the issuing body.</p>
+ </div>
+</section>
+
+<!-- TRUST STRIP -->
+<section class="tstrip" aria-label="Trust signals">
+ <div class="tstrip-inner">
+  <div><div class="tstat-num">6</div><div class="tstat-lbl">Independent Accreditations</div></div>
+  <div><div class="tstat-num">15+</div><div class="tstat-lbl">Years in the Trade</div></div>
+  <div><div class="tstat-num">&pound;2M</div><div class="tstat-lbl">Public Liability</div></div>
+  <div><div class="tstat-num">5.0</div><div class="tstat-lbl">Google Rating</div></div>
+ </div>
+</section>
+
+<!-- INTRO -->
+<section class="intro">
+ <div class="intro-inner">
+  <div class="section-tag" style="text-align:center">Why this page exists</div>
+  <p>Electrical work is one of the few trades where membership claims really matter &mdash; bad work can kill, and you should know who you&rsquo;re letting into your property. Anyone can stick a logo in a footer; not everyone can produce a current scheme number. This page explains what each badge in our trust strip actually means, what it covers, and where you can verify it.</p>
+  <p><strong>If you ever want to check us before booking, every link below goes straight to the issuing body&rsquo;s public register.</strong></p>
+  <p style="margin-top:1rem"><a href="/qualifications-explained.html" style="color:var(--brass);font-weight:700;border-bottom:1px solid rgba(184,148,79,.4);padding-bottom:2px">Plain-English explanation &rarr;</a></p>
+ </div>
+</section>
+
+<!-- 1. NAPIT -->
+<section class="acc-section" id="napit">
+ <div class="acc-inner">
+  <div class="acc-badge"><img loading="eager" fetchpriority="high" src="assets/accreditations/napit-official.png" alt="NAPIT approved electrical contractor logo"></div>
+  <div class="acc-content">
+   <div class="acc-tag">01 / Competent Person Scheme</div>
+   <h2>NAPIT</h2>
+   <div class="acc-num">Membership No. 66245</div>
+   <p>NAPIT (the National Association of Professional Inspectors and Testers) is a UK government-authorised <strong>Competent Person Scheme</strong> for the electrical trade, registered with the Department for Levelling Up, Housing and Communities (now part of MHCLG). Members are independently audited every year against a strict technical, insurance, and procedural standard.</p>
+   <p>Being a NAPIT-approved contractor means we can <strong>self-certify notifiable electrical work</strong> in dwellings under Building Regulations &mdash; we issue the Electrical Installation Certificate, NAPIT lodges the Building Regulations Compliance Certificate with your local authority, and you receive a six-year Insurance Backed Guarantee on the work.</p>
+   <p>NAPIT membership also covers our scope to issue <strong>EICRs (Electrical Installation Condition Reports)</strong>, Minor Works Certificates, and certification on full rewires and consumer-unit replacements.</p>
+   <ul>
+    <li>Annual on-site technical assessment</li>
+    <li>Self-certification of Part P notifiable work</li>
+    <li>Insurance Backed Guarantee on every certified job</li>
+    <li>Public consumer protection through NAPIT&rsquo;s complaints procedure</li>
+   </ul>
+   <a href="https://napit.org.uk/find-an-installer/" class="acc-verify" target="_blank" rel="noopener">Verify on NAPIT register <svg viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7z"/></svg></a>
+   <a href="/why-napit.html" class="acc-verify" style="background:var(--gold);color:var(--dark);margin-left:.5rem">Why NAPIT matters &rarr;</a>
+  </div>
+ </div>
+</section>
+
+<!-- 2. CHAS -->
+<section class="acc-section alt" id="chas">
+ <div class="acc-inner">
+  <div class="acc-badge"><img loading="lazy" src="assets/accreditations/chas-official.png" alt="CHAS accredited contractor logo"></div>
+  <div class="acc-content">
+   <div class="acc-tag">02 / Health &amp; Safety Assessment</div>
+   <h2>CHAS</h2>
+   <div class="acc-num">Membership No. 158368</div>
+   <p>CHAS (the <strong>Contractors Health and Safety Assessment Scheme</strong>) is the UK&rsquo;s founding SSIP (Safety Schemes in Procurement) member. CHAS accreditation is the standard pre-qualification for working on commercial sites, public-sector contracts, housing-association frameworks, schools, healthcare, and most multi-trade construction projects.</p>
+   <p>The CHAS audit assesses our written <strong>Health &amp; Safety policy</strong>, risk-assessment and method-statement (RAMS) procedures, training records, insurance cover (&pound;2m public liability, employer&rsquo;s liability), accident reporting, and competence management. We renew it annually.</p>
+   <p>If a contracts manager or principal contractor asks for our SSIP certificate before issuing a purchase order, this is the one they&rsquo;re asking for. Our certificate can be downloaded direct from the CHAS portal &mdash; just request it and we&rsquo;ll forward a current PDF.</p>
+   <ul>
+    <li>Annual independent H&amp;S management audit</li>
+    <li>SSIP-recognised across UK procurement</li>
+    <li>Required for housing associations, councils, schools, healthcare</li>
+    <li>RAMS, training records, insurance all verified</li>
+   </ul>
+   <a href="https://www.chas.co.uk/find-a-contractor/" class="acc-verify" target="_blank" rel="noopener">Verify on CHAS directory <svg viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7z"/></svg></a>
+  </div>
+ </div>
+</section>
+
+<!-- 3. CITY & GUILDS 2391 -->
+<section class="acc-section" id="city-guilds-2391">
+ <div class="acc-inner">
+  <div class="acc-badge"><img loading="lazy" src="assets/accreditations/city-guilds-logo.png" alt="City and Guilds qualified electrician logo"></div>
+  <div class="acc-content">
+   <div class="acc-tag">03 / Vocational Qualification</div>
+   <h2>City &amp; Guilds 2391</h2>
+   <div class="acc-num">Inspect &amp; Test &middot; Held by Director</div>
+   <p>City &amp; Guilds <strong>2391 &mdash; Inspection and Testing of Electrical Installations</strong> is the recognised UK qualification for electricians who carry out periodic inspection, testing, and certification of electrical installations. It&rsquo;s the qualification you&rsquo;ll see on every credible EICR provider&rsquo;s credentials list, and it&rsquo;s assessed by closed-book exam plus practical observation.</p>
+   <p>Holding 2391 means our director is qualified to design test sequences, interpret continuity, insulation-resistance, polarity, earth-fault-loop and RCD readings, classify defects (C1, C2, C3, FI), and produce a legally-defensible Electrical Installation Condition Report. We use a calibrated <strong>Megger MFT multifunction tester</strong> on every inspection.</p>
+   <p>Without 2391 (or its predecessor 2394/2395), an electrician cannot competently issue an EICR. If anyone is offering you a cheap EICR without listing this qualification on their paperwork, ask why.</p>
+   <ul>
+    <li>Closed-book theory exam plus practical assessment</li>
+    <li>Required competence for issuing EICRs</li>
+    <li>Covers BS 7671 inspection schedule and test sequence</li>
+    <li>Director also holds City &amp; Guilds 2382 (18th Edition) and 2365 (Electrical Installation)</li>
+   </ul>
+   <a href="https://www.cityandguilds.com/qualifications-and-apprenticeships/building-services-industry/electrical/2391-inspection-and-testing" class="acc-verify" target="_blank" rel="noopener">About 2391 at City &amp; Guilds <svg viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7z"/></svg></a>
+  </div>
+ </div>
+</section>
+
+<!-- 4. TRUSTMARK -->
+<section class="acc-section alt" id="trustmark">
+ <div class="acc-inner">
+  <div class="acc-badge"><img loading="lazy" src="assets/accreditations/trustmark.svg" alt="TrustMark government endorsed quality scheme logo"></div>
+  <div class="acc-content">
+   <div class="acc-tag">04 / Government-Endorsed Quality</div>
+   <h2>TrustMark</h2>
+   <div class="acc-num">Government Endorsed via NAPIT</div>
+   <p>TrustMark is the only <strong>government-endorsed quality scheme</strong> for trades operating in or around UK homes. It&rsquo;s licensed by the Department for Energy Security and Net Zero, and a contractor can only be listed if they meet defined standards on technical competence, customer service, and trading practice.</p>
+   <p>Our TrustMark listing is held through our NAPIT scheme operator and renewed annually. As a TrustMark-registered business we agree to the <strong>TrustMark Customer Charter</strong> &mdash; a published code of conduct covering quotations, contracts, deposits, work standards, dispute resolution, and after-sales service.</p>
+   <p>If something ever goes wrong on a TrustMark-listed job, the homeowner has a defined route to <strong>independent dispute resolution</strong> &mdash; we don&rsquo;t mark our own homework. Most cowboys can&rsquo;t accept that level of accountability, which is why most aren&rsquo;t listed.</p>
+   <ul>
+    <li>Government-endorsed (Department for Energy Security and Net Zero)</li>
+    <li>Customer Charter and code of conduct</li>
+    <li>Independent dispute resolution route</li>
+    <li>Required for many Green Homes Grant / ECO scheme works</li>
+   </ul>
+   <a href="https://www.trustmark.org.uk/find-a-tradesman" class="acc-verify" target="_blank" rel="noopener">Search TrustMark <svg viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7z"/></svg></a>
+  </div>
+ </div>
+</section>
+
+<!-- 5. PART P -->
+<section class="acc-section" id="part-p">
+ <div class="acc-inner">
+  <div class="acc-badge"><img loading="lazy" src="assets/accreditations/part-p.svg" alt="Part P registered electrician logo"></div>
+  <div class="acc-content">
+   <div class="acc-tag">05 / Building Regulations</div>
+   <h2>Part P</h2>
+   <div class="acc-num">Self-Certification via NAPIT 66245</div>
+   <p>Part P of the Building Regulations (Schedule 1, Part P &mdash; Electrical Safety) is the <strong>legal framework covering domestic electrical work in dwellings in England and Wales</strong>. It applies to fixed wiring &mdash; new circuits, consumer-unit replacements, work in special locations like bathrooms and kitchens, and outbuildings.</p>
+   <p>Notifiable Part P work has to be registered with the local authority Building Control. Homeowners can do this manually (slow, expensive), or use a Competent Person Scheme installer who self-certifies through their scheme. Because we&rsquo;re NAPIT-approved (66245), <strong>we self-certify all notifiable work</strong> &mdash; you receive a Building Regulations Compliance Certificate within 30 days, posted by NAPIT.</p>
+   <p>If your fuse board has been changed without a compliance certificate on the paperwork, that&rsquo;s a Part P breach &mdash; and a problem at conveyancing time. Every consumer-unit replacement we do is notified, certified, and lodged.</p>
+   <ul>
+    <li>Self-certification of all notifiable domestic work</li>
+    <li>Building Regulations Compliance Certificate within 30 days</li>
+    <li>Required for new circuits, fuse-board changes, bathroom/kitchen work</li>
+    <li>Avoids manual Building Control notification fees</li>
+   </ul>
+   <a href="https://www.gov.uk/guidance/electrical-installations-approved-document-p" class="acc-verify" target="_blank" rel="noopener">Read Part P at GOV.UK <svg viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7z"/></svg></a>
+  </div>
+ </div>
+</section>
+
+<!-- 6. BS 7671 -->
+<section class="acc-section alt" id="bs7671">
+ <div class="acc-inner">
+  <div class="acc-badge"><img loading="lazy" src="assets/accreditations/bs7671.svg" alt="BS 7671 18th Edition wiring regulations logo"></div>
+  <div class="acc-content">
+   <div class="acc-tag">06 / Wiring Standard</div>
+   <h2>BS 7671 18th Edition</h2>
+   <div class="acc-num">BS 7671:2018 + Amendment 2:2022</div>
+   <p>BS 7671 &mdash; the <strong>IET Wiring Regulations</strong> &mdash; is the British Standard that defines safe electrical installation in the UK. The current edition is the 18th, BS 7671:2018, incorporating <strong>Amendment 2:2022</strong> (effective March 2022 with a transition period to September 2022). Every installation we design, install, test, and certify is BS 7671 compliant.</p>
+   <p>Amendment 2 introduced significant changes including <strong>Surge Protection Devices (SPDs)</strong> on most domestic consumer units, <strong>AFDDs (Arc Fault Detection Devices)</strong> recommended for higher-risk circuits, updated rules on EV charging point installations (Type A or Type F RCBO required &mdash; we always use Type A on EV chargers), and revised guidance on metallic consumer units. We work to the current standard, not the one our director qualified on.</p>
+   <p>Our certificates and EICRs reference the current BS 7671 clause numbers. If you compare a recent DS Electrical EICR with one issued five years ago by another firm, you&rsquo;ll see different defect codes and updated test ranges &mdash; that&rsquo;s the standard moving forward, and us moving with it.</p>
+   <ul>
+    <li>BS 7671:2018 + Amendment 2:2022 current</li>
+    <li>SPD fitted on all new consumer units (Reg 443)</li>
+    <li>Type A RCBO on every EV charger installation</li>
+    <li>Director holds City &amp; Guilds 2382 to current edition</li>
+   </ul>
+   <a href="https://electrical.theiet.org/bs-7671/" class="acc-verify" target="_blank" rel="noopener">BS 7671 at the IET <svg viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7z"/></svg></a>
+  </div>
+ </div>
+</section>
+
+<!-- SUMMARY STRIP — all six -->
+<section class="summary-strip" aria-label="All six accreditations">
+ <div class="summary-strip-inner">
+  <a href="#napit" class="summary-item"><img loading="lazy" src="assets/accreditations/napit-official.png" alt="NAPIT 66245 registered competent electrician scheme badge"><span>NAPIT 66245</span></a>
+  <a href="#chas" class="summary-item"><img loading="lazy" src="assets/accreditations/chas-official.png" alt="CHAS accredited contractor health and safety badge for DS Electrical"><span>CHAS 158368</span></a>
+  <a href="#city-guilds-2391" class="summary-item"><img loading="lazy" src="assets/accreditations/city-guilds-logo.png" alt="City and Guilds qualified electrician 2382 2391 2365 logo"><span>City &amp; Guilds 2391</span></a>
+  <a href="#trustmark" class="summary-item"><img loading="lazy" src="assets/accreditations/trustmark.svg" alt="TrustMark government-endorsed quality scheme logo for DS Electrical"><span>TrustMark</span></a>
+  <a href="#part-p" class="summary-item"><img loading="lazy" src="assets/accreditations/part-p.svg" alt="Part P Building Regulations registered electrician logo"><span>Part P</span></a>
+  <a href="#bs7671" class="summary-item"><img loading="lazy" src="assets/accreditations/bs7671.svg" alt="BS 7671 18th Edition Wiring Regulations compliant electrician badge"><span>BS 7671</span></a>
+ </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="contact">
+ <div class="section-tag" style="color:var(--gold)">Verify Then Book</div>
+ <h2 class="section-heading">All Credentials<br>Verifiable.</h2>
+ <p class="section-desc">Check our profiles directly with each issuing body using the links above. Then call Dan and book the job.</p>
+ <span class="cta-phone-label">Direct</span>
+ <a href="tel:07889334849" class="cta-phone">Dan Stevens, Director: 07889 334849</a>
+ <a href="tel:07983106928" class="cta-phone-2">Dan Street, Director: 07983 106928</a>
+ <div class="cta-btns">
+  <a href="mailto:info@dselectricalsw.co.uk" class="btn btn-gold">Email Us</a>
+  <a href="https://wa.me/447889334849" class="btn btn-white">WhatsApp</a>
+ </div>
+</section>
+
+<!-- RELATED -->
+<section class="related-svc" aria-label="Related pages">
+ <div class="related-svc-inner">
+  <div class="section-tag" style="font-size:.65rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;margin-bottom:1rem">Related</div>
+  <h2>Read more about us&hellip;</h2>
+  <div class="related-grid">
+   <a href="/about.html" class="related-card">
+    <h3>About DS Electrical</h3>
+    <p>Who we are and how we work</p>
+    <span class="arrow">Explore &rarr;</span>
+   </a>
+   <a href="/eicr.html" class="related-card">
+    <h3>EICR Inspections</h3>
+    <p>2391 qualified, every report</p>
+    <span class="arrow">Explore &rarr;</span>
+   </a>
+   <a href="/sustainability.html" class="related-card">
+    <h3>ESG &amp; sustainability</h3>
+    <p>Net zero pathway, recycling, honest disclosures</p>
+    <span class="arrow">Explore &rarr;</span>
+   </a>
+   <a href="/contact.html" class="related-card">
+    <h3>Contact</h3>
+    <p>Phone, email, WhatsApp</p>
+    <span class="arrow">Explore &rarr;</span>
+   </a>
+  </div>
+ </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+ <div class="footer-grid">
+  <div>
+   <h3>DS Electrical Installations (SW) Ltd</h3>
+   <p>Glastonbury, Somerset</p>
+   <p><a href="tel:07889334849">07889 334849 (Dan Stevens)</a></p>
+   <p><a href="tel:07983106928">07983 106928 (Dan Street)</a></p>
+   <p><a href="mailto:info@dselectricalsw.co.uk">info@dselectricalsw.co.uk</a></p>
+  </div>
+  <div>
+   <h3>Services</h3>
+   <p><a href="/eicr.html">Rewires &amp; EICR</a></p>
+   <p><a href="/ev-chargers.html">EV Chargers</a></p>
+   <p><a href="/cctv.html">CCTV &amp; Security</a></p>
+   <p><a href="/commercial-electrical.html">Commercial</a></p>
+   <p><a href="/fuse-board.html">Fuse Board</a></p>
+   <p><a href="/fire-alarms.html">Fire Alarms</a></p>
+   <p><a href="/emergency-lighting.html">Emergency Lighting</a></p>
+  </div>
+  <div>
+   <h3>Areas</h3>
+   <p>Wells</p><p>Shepton Mallet</p><p>Bath</p><p>Frome</p><p>Midsomer Norton</p><p>Street</p>
+  </div>
+  <div>
+   <h3>Trust</h3>
+   <p><a href="/accreditations.html">NAPIT Approved</a></p>
+   <p><a href="/accreditations.html">CHAS Accredited</a></p>
+   <p><a href="/accreditations.html">TrustMark Endorsed</a></p>
+   <p><a href="/accreditations.html">Part P Registered</a></p>
+   <p style="margin-top:.5rem">5.0 Google Rating</p>
+  </div>
+ </div>
+ <div class="footer-bottom">
+  <span>&copy; 2026 DS Electrical Installations (SW) Ltd &middot; Reg. in England No. 13972348 &middot; VAT Reg. No. GB 429 0409 05 &middot; ICO 00013889257 &middot; NAPIT 66245 &middot; CHAS 158368</span>
+  <span><a href="/privacy.html">Privacy</a> &middot; <a href="/terms.html">Terms</a></span>
+ </div>
+</footer>
+
+<a href="https://wa.me/447889334849" class="wa" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.611.611l4.458-1.495A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.344 0-4.508-.8-6.227-2.141l-.435-.344-3.208 1.076 1.076-3.208-.344-.435A9.956 9.956 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg></a>
+
+<div class="mcb" aria-label="Quick contact">
+ <div class="mcb-grid">
+  <a href="tel:07889334849" class="mcb-call" aria-label="Call 07889 334849">
+   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.1-.04-.21-.05-.31-.05-.26 0-.51.1-.71.29l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.58l2.2-2.21c.28-.27.36-.66.25-1.01C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/></svg>
+   <span>Call Dan</span><small>07889 334849</small>
+  </a>
+  <a href="https://wa.me/447889334849" class="mcb-wa" aria-label="WhatsApp">
+   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.611.611l4.458-1.495A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+   <span>WhatsApp</span>
+  </a>
+  <a href="mailto:info@dselectricalsw.co.uk" class="mcb-mail" aria-label="Email">
+   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+   <span>Email</span>
+  </a>
+ </div>
+</div>
+
+<a href="tel:07889334849" class="dq-btn" aria-label="Call Dan for a quote">
+ <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.1-.04-.21-.05-.31-.05-.26 0-.51.1-.71.29l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.58l2.2-2.21c.28-.27.36-.66.25-1.01C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/></svg>
+ Call Dan &mdash; 07889 334849
+</a>
+
+<script src="/track.js" defer></script>
+<script src="/chat-widget.js" defer></script>
+</body>
+</html>

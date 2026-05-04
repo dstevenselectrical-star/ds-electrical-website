@@ -1,0 +1,188 @@
+{
+  "id": "capitalforge",
+  "name": "CapitalForge — Property Finance Intelligence",
+  "topbarTitle": "CapitalForge · Operating System",
+  "version": "v3.1.0", "date": "2026-05-03",
+  "tagline": "10 autonomous agents · 49 API endpoints · 26 lenders · 25 investors · 46 contacts",
+  "eyebrow": "Operating System · the whole platform",
+  "description": "Property finance intelligence platform. 10 autonomous agents running 24/7 surface bridging rates, dev finance lenders, investors, and prospects. 14 pages, FastAPI + APScheduler backend.",
+  "meta": [["Stack", "React 19 + FastAPI + APScheduler"], ["Path", "~/capitalforge"], ["Frontend", "5210"], ["API", "8099"], ["Docker", "in commercial-machine"], ["Version", "v3.1.0"]],
+  "stats": [
+    {"label": "Frames", "num": "6", "sub": "Departments", "gold": true},
+    {"label": "Agents", "num": "10", "sub": "24/7 autonomous"},
+    {"label": "API endpoints", "num": "49", "sub": "FastAPI"},
+    {"label": "Pages", "num": "14", "sub": "React 19"},
+    {"label": "Lenders", "num": "42", "sub": "Bridging + dev"},
+    {"label": "Sub-bprs", "num": "2", "sub": "Mini-canvases"}
+  ],
+  "phases": ["Discover", "Match", "Reach out", "Track", "Close", "Renew"],
+  "accents": [{"top": 530, "label": "Phase 1 · Intelligence + outreach"}, {"top": 2380, "label": "Phase 2 · Backend + data"}],
+  "frames": [
+    {"title": "Intelligence agents", "phase": 1, "top": 570, "left": 60, "width": 780, "height": 1750,
+     "lanes": [
+      {"header": "Lender intelligence", "icon": "i-bolt", "color": "g", "count": "Auto-rates",
+       "cards": [
+         {"title": "Bridging Radar", "kpi": "26 lenders", "body": "Polls bridging rates · ranks best."},
+         {"title": "Lender Match", "kpi": "16 dev", "body": "Dev finance lender matching by deal size."},
+         {"title": "Rate alerts", "body": "Threshold change · email + dashboard."},
+         {"title": "LTV calculator", "body": "Per-lender · per-asset-type."}
+       ], "miniAfter": "agent-stack"},
+      {"header": "Investor intelligence", "icon": "i-target", "color": "g", "count": "25 investors",
+       "cards": [
+         {"title": "Investor Scout", "body": "25 investors · structure · region · amount."},
+         {"title": "Match score", "body": "Deal vs investor criteria · 0-100."},
+         {"title": "Outreach status", "body": "Cross-ref active outreach · dedup."}
+       ]},
+      {"header": "Market intelligence", "icon": "i-stack", "color": "g", "count": "20 metrics",
+       "cards": [
+         {"title": "Market Pulse", "kpi": "11 cat", "body": "20 metrics · auto-update."},
+         {"title": "Region trends", "body": "Per-postcode area · time series."},
+         {"title": "Yield comparisons", "body": "Asset-type · region · time."}
+       ]},
+      {"header": "Prospect engine", "icon": "i-people", "color": "g", "count": "33 seed",
+       "cards": [
+         {"title": "SW property cos", "body": "33 seeded · auto-add new ones."},
+         {"title": "Director research", "body": "Companies House + LinkedIn cross-ref."},
+         {"title": "Recent activity", "body": "Planning · acquisitions · disposals."}
+       ]},
+      {"header": "Advisor index", "icon": "i-people", "color": "g", "count": "12 advisors",
+       "cards": [
+         {"title": "Solicitors", "body": "Property finance specialists."},
+         {"title": "Accountants", "body": "Property structures · SDLT."},
+         {"title": "Brokers", "body": "Bridge + dev finance brokers."}
+       ]}
+     ],
+     "minis": [{"id": "agent-stack", "type": "stack", "icon": "i-bolt", "title": "10 autonomous agents", "rows": [
+       {"label": "1. Bridging Radar (rates)", "layer": "lender"},
+       {"label": "2. Lender Match (dev finance)", "layer": "lender"},
+       {"label": "3. Investor Scout (capital)", "layer": "capital"},
+       {"label": "4. Market Pulse (metrics)", "layer": "market"},
+       {"label": "5. Prospect Engine (companies)", "layer": "prospect"},
+       {"label": "6. Advisor Index (network)", "layer": "advisor"},
+       {"label": "7. Outreach Sender", "layer": "outreach"},
+       {"label": "8. Pipeline Tracker", "layer": "pipeline"},
+       {"label": "9. Renewal Watcher", "layer": "renewal"},
+       {"label": "10. AI Prospect Scorer", "layer": "AI"}
+     ]}]},
+    {"title": "Customer pages", "phase": 1, "top": 570, "left": 890, "width": 780, "height": 1750,
+     "lanes": [
+      {"header": "Discovery", "icon": "i-globe", "count": "Top-of-funnel",
+       "cards": [
+         {"title": "Dashboard /", "body": "Stats · alerts · agent status · pipeline."},
+         {"title": "InvestorFinder", "body": "Filter 25 by type · structure · region."},
+         {"title": "BridgingRadar", "body": "Top rates table · per-lender."},
+         {"title": "DevFinance", "body": "Dev lenders · LTV · timeframes."}
+       ]},
+      {"header": "Action", "icon": "i-target", "count": "Outreach",
+       "cards": [
+         {"title": "Outreach", "body": "Compose + send · email + LinkedIn."},
+         {"title": "Pipeline", "body": "Per-deal stage · drag-drop kanban."},
+         {"title": "Templates", "body": "Per-deal-type · personalised merge."}
+       ]},
+      {"header": "Intelligence", "icon": "i-stack", "count": "Insight",
+       "cards": [
+         {"title": "MarketPulse", "body": "20 metrics · trend lines."},
+         {"title": "ProspectEngine", "body": "33 cos + new auto-discovered."},
+         {"title": "AdvisorIndex", "body": "Network · direct contact details."}
+       ]},
+      {"header": "Admin", "icon": "i-stack", "count": "Settings",
+       "cards": [
+         {"title": "Profile + brand", "body": "Per-firm logo · email signature."},
+         {"title": "API keys", "body": "External integrations."},
+         {"title": "Billing", "body": "Stripe · plan management."}
+       ]}
+     ]},
+    {"title": "Outreach engine", "phase": 1, "top": 570, "left": 1720, "width": 780, "height": 1750,
+     "lanes": [
+      {"header": "Channels", "icon": "i-megaphone", "color": "b", "count": "Multi",
+       "cards": [
+         {"title": "Email · Brevo", "body": "Templated + merge fields · stop-on-reply."},
+         {"title": "LinkedIn (manual)", "body": "Generated message · paste flow."},
+         {"title": "Phone scripts", "body": "Discovery + warm-pitch templates."}
+       ]},
+      {"header": "Sequences", "icon": "i-link", "color": "b", "count": "Auto",
+       "cards": [
+         {"title": "Cold intro", "body": "3-touch · 0d / 4d / 11d."},
+         {"title": "Warm follow-up", "body": "Post-meeting · within 24h."},
+         {"title": "Renewal nudge", "body": "Pre-expiry · 60d / 30d / 7d."}
+       ]},
+      {"header": "Reporting", "icon": "i-funnel", "color": "b", "count": "Analytics",
+       "cards": [
+         {"title": "Open + click", "body": "Per-template · per-recipient."},
+         {"title": "Reply rate", "body": "Goal: positive reply within 7d."},
+         {"title": "Conversion", "body": "Reply → meeting → deal."}
+       ]}
+     ]},
+    {"title": "Backend · FastAPI", "phase": 2, "top": 2420, "left": 60, "width": 780, "height": 1320,
+     "lanes": [
+      {"header": "Stack", "icon": "i-stack", "color": "b", "count": "Python",
+       "cards": [
+         {"title": "FastAPI", "body": "49 endpoints · async."},
+         {"title": "APScheduler", "body": "Cron + interval triggers · 10 agents."},
+         {"title": "Port 8099", "body": "PM2 supervised."}
+       ]},
+      {"header": "Storage", "icon": "i-stack", "color": "b", "count": "JSON + DB",
+       "cards": [
+         {"title": "Seed data files", "body": "LENDERS · INVESTORS · ADVISORS in py."},
+         {"title": "cf_data volume", "body": "Docker volume · runtime data."},
+         {"title": "Outreach DB", "body": "Per-recipient · per-template state."}
+       ]},
+      {"header": "Agents", "icon": "i-bolt", "color": "g", "count": "24/7",
+       "cards": [
+         {"title": "APScheduler triggers", "body": "Per-agent cron schedule."},
+         {"title": "Idempotent runs", "body": "Same deal not re-processed."},
+         {"title": "Error capture", "body": "Per-agent log · alert on failure."}
+       ]}
+     ]},
+    {"title": "Frontend · React 19", "phase": 2, "top": 2420, "left": 890, "width": 780, "height": 1320,
+     "lanes": [
+      {"header": "Stack", "icon": "i-stack", "color": "b", "count": "Vite 7",
+       "cards": [
+         {"title": "React 19 + Vite 7", "body": "Hot-reload · fast dev."},
+         {"title": "Tailwind 4", "body": "Utility CSS."},
+         {"title": "PAGES + useState", "body": "Same routing pattern as DS Electrical."},
+         {"title": "Theme: Ultra 2050", "body": "Cyan · orange · void black."}
+       ]},
+      {"header": "Pages (14)", "icon": "i-doc", "color": "b", "count": "All routes", "cols": 3,
+       "cards": [
+         {"title": "Dashboard"}, {"title": "InvestorFinder"}, {"title": "BridgingRadar"},
+         {"title": "DevFinance"}, {"title": "Outreach"}, {"title": "Pipeline"},
+         {"title": "MarketPulse"}, {"title": "ProspectEngine"}, {"title": "AdvisorIndex"},
+         {"title": "Templates"}, {"title": "Reports"}, {"title": "Settings"}
+       ]},
+      {"header": "Components", "icon": "i-stack", "color": "b", "count": "Reusable",
+       "cards": [
+         {"title": "Stats grid", "body": "4-up · live from /api/stats."},
+         {"title": "Filter bar", "body": "Multi-select · search · clear."},
+         {"title": "Pipeline kanban", "body": "Drag-drop · stage progress."}
+       ]}
+     ]},
+    {"title": "Deployment + roadmap", "phase": 2, "top": 2420, "left": 1720, "width": 780, "height": 1320,
+     "lanes": [
+      {"header": "Docker stack", "icon": "i-stack", "count": "In commercial-machine",
+       "cards": [
+         {"title": "app-capitalforge", "body": "Frontend service · static dist."},
+         {"title": "capitalforge-api", "body": "FastAPI · port 8099."},
+         {"title": "cf_data volume", "body": "Persistent runtime data."},
+         {"title": "Nginx routes", "body": "/capitalforge/ · /api/capitalforge/"}
+       ]},
+      {"header": "Shipped (v3.1.0)", "icon": "i-check", "color": "g", "count": "Live",
+       "cards": [
+         {"title": "10 agents 24/7", "body": "All running · APScheduler."},
+         {"title": "49 endpoints", "body": "FastAPI · documented."},
+         {"title": "14 pages", "body": "All routes implemented."}
+       ]},
+      {"header": "Roadmap", "icon": "i-bolt", "count": "v4",
+       "cards": [
+         {"title": "Companies House API", "body": "Auto-discover new prospects."},
+         {"title": "Stripe billing", "body": "Per-firm subscription."},
+         {"title": "Multi-tenant", "body": "Firm-level data isolation."}
+       ]}
+     ]}
+  ],
+  "edges": [
+    {"d": "M 840 1100 L 865 1100 L 865 1100 L 890 1100", "arrow": "default"},
+    {"d": "M 1670 1100 L 1695 1100 L 1695 1100 L 1720 1100", "arrow": "default"},
+    {"d": "M 60 2600 L 40 2600 L 40 1100 L 60 1100", "cls": "dim"}
+  ]
+}

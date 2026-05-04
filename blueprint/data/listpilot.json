@@ -1,0 +1,191 @@
+{
+  "id": "listpilot",
+  "name": "ListPilot — AI Listing Automation SaaS",
+  "topbarTitle": "ListPilot · Operating System",
+  "version": "v1", "date": "2026-05-03",
+  "tagline": "Photos in · listings on eBay + Facebook · profit tracked",
+  "eyebrow": "Operating System · the whole product",
+  "description": "AI-powered product listing automation. Users add photos + details, AI writes copy, posts to eBay (Inventory API OAuth) + Facebook (manual). Tracks sales + profit. SaaS-ready with subscription tiers.",
+  "meta": [["Stack", "React 19 + FastAPI + PostgreSQL"], ["Path", "~/listpilot"], ["Frontend", "port 5198"], ["API", "port 8081"], ["DB tables", "8"], ["Theme", "Ultra 2050"]],
+  "stats": [
+    {"label": "Frames", "num": "6", "sub": "Departments", "gold": true},
+    {"label": "DB tables", "num": "8", "sub": "PostgreSQL"},
+    {"label": "Marketplaces", "num": "2", "sub": "eBay + FB"},
+    {"label": "AI model", "num": "Haiku 4.5", "sub": "Description gen"},
+    {"label": "Phase", "num": "1→5", "sub": "List to repeat"},
+    {"label": "Sub-bprs", "num": "2", "sub": "Mini-canvases"}
+  ],
+  "phases": ["Photo upload", "AI describe", "Publish", "Sell", "Track"],
+  "accents": [{"top": 530, "label": "Phase 1 · Listing flow"}, {"top": 2380, "label": "Phase 2 · Backend + Stack"}],
+  "frames": [
+    {"title": "Listing flow", "phase": 1, "top": 570, "left": 60, "width": 780, "height": 1750,
+     "lanes": [
+      {"header": "Photo upload", "icon": "i-camera", "color": "b", "count": "Source",
+       "cards": [
+         {"title": "Multi-photo upload", "body": "Drag-drop · primary + alts."},
+         {"title": "Pillow compress", "body": "Server-side · max 1600px · WebP fallback."},
+         {"title": "Background removal", "body": "Photoroom API · auto on upload."},
+         {"title": "Thumbnail gen", "body": "300px square for grid view."}
+       ]},
+      {"header": "AI description", "icon": "i-bolt", "color": "b", "count": "Claude Haiku",
+       "cards": [
+         {"title": "Title gen", "kpi": "≤80 chars", "body": "eBay-optimised title with keywords."},
+         {"title": "Description gen", "body": "Long-form · features · condition · shipping."},
+         {"title": "Tag suggestions", "body": "Categories + search-tags from photo + brief."},
+         {"title": "Cost guard", "body": "Cached per product · 1 generation per item."}
+       ]},
+      {"header": "eBay publish", "icon": "i-link", "color": "b", "count": "OAuth + Inventory API",
+       "cards": [
+         {"title": "OAuth 2.0", "body": "Per-user token · refresh + scope mgmt."},
+         {"title": "4-step API", "body": "Item → Offer → Publish → Active listing."},
+         {"title": "Category mapping", "body": "AI-suggested · user confirms."},
+         {"title": "Pricing rules", "body": "Suggested + buy-now or auction."}
+       ]},
+      {"header": "Facebook flow", "icon": "i-megaphone", "color": "b", "count": "Copy/paste v1",
+       "cards": [
+         {"title": "Generated post", "body": "Photo + copy ready to paste."},
+         {"title": "Marketplace format", "body": "Title + price + location + description."},
+         {"title": "Group posts", "body": "Variant copy per local group."},
+         {"title": "API later", "body": "Manual now · automation when API access granted."}
+       ]},
+      {"header": "Sales tracking", "icon": "i-pound", "color": "b", "count": "Profit",
+       "cards": [
+         {"title": "Sale recorded", "body": "Sold price + fees + shipping."},
+         {"title": "Profit calc", "body": "Cost in - fees - shipping = net profit."},
+         {"title": "ROI per item", "body": "Sortable by margin · keep best categories."},
+         {"title": "Top sellers report", "body": "Monthly · drives reorder."}
+       ]}
+     ],
+     "minis": [{"id": "list-funnel", "type": "funnel", "icon": "i-funnel", "title": "Listing → Sale funnel",
+       "stages": [
+         {"label": "Photo uploaded", "pct": "100"}, {"label": "AI generated", "pct": "~95"},
+         {"label": "Listed on eBay", "pct": "~88"}, {"label": "Viewed", "pct": "~70"},
+         {"label": "Watched", "pct": "~22"}, {"label": "Sold", "pct": "~12"}, {"label": "Repeat list", "pct": "~5"}
+       ]}]},
+    {"title": "Subscription tiers", "phase": 1, "top": 570, "left": 890, "width": 780, "height": 1750,
+     "lanes": [
+      {"header": "Free tier", "icon": "i-pound", "count": "Trial",
+       "cards": [
+         {"title": "5 listings/mo", "body": "Hard cap · upgrade to lift."},
+         {"title": "AI gen included", "body": "Haiku-only · no Sonnet quality option."},
+         {"title": "eBay OAuth", "body": "Connected · publishing free."},
+         {"title": "Sales tracking", "body": "Last 30 days only."}
+       ]},
+      {"header": "Pro · £19/mo", "icon": "i-pound", "color": "g", "count": "Power user",
+       "cards": [
+         {"title": "100 listings/mo", "body": "Sufficient for one-person reseller."},
+         {"title": "Sonnet AI option", "body": "Better titles · higher conversion."},
+         {"title": "Photo BG removal", "body": "Automatic · powered by Photoroom."},
+         {"title": "Profit reports", "body": "Lifetime · CSV export."}
+       ]},
+      {"header": "Business · £49/mo", "icon": "i-pound", "color": "g", "count": "Multi-user",
+       "cards": [
+         {"title": "Unlimited listings", "body": "No cap · API rate-limited only."},
+         {"title": "Multi-user team", "body": "5 seats · per-user listings tracking."},
+         {"title": "API access", "body": "Build your own integrations."},
+         {"title": "Priority support", "body": "Same-day response · WhatsApp line."}
+       ]},
+      {"header": "Conversion levers", "icon": "i-target", "count": "Tested",
+       "cards": [
+         {"title": "Listing-cap upgrade", "body": "Hit free cap → upgrade prompt."},
+         {"title": "Sonnet preview", "body": "1 free Sonnet listing per signup."},
+         {"title": "Profit-tracking lure", "body": "Show what they're leaving on table."}
+       ]}
+     ]},
+    {"title": "Customer Success", "phase": 1, "top": 570, "left": 1720, "width": 780, "height": 1750,
+     "lanes": [
+      {"header": "Onboarding", "icon": "i-target", "color": "r", "count": "First-listing",
+       "cards": [
+         {"title": "Connect eBay", "body": "OAuth flow · sample item walkthrough."},
+         {"title": "Upload photo", "body": "First listing in 60 seconds."},
+         {"title": "Confirm AI copy", "body": "Edit before publish · learn user style."},
+         {"title": "First sale notification", "body": "Email + in-app confetti."}
+       ]},
+      {"header": "Support channels", "icon": "i-phone", "color": "r", "count": "Async",
+       "cards": [
+         {"title": "Email", "body": "support@listpilot.app."},
+         {"title": "In-app chat", "body": "Brevo widget · biz hours."},
+         {"title": "Help docs", "body": "Per-feature with screenshots."}
+       ]},
+      {"header": "Reviews + retention", "icon": "i-shield", "color": "r", "count": "Repeat",
+       "cards": [
+         {"title": "30-day check-in", "body": "Auto email · how's it going?"},
+         {"title": "NPS survey", "body": "After 10 listings · 5/5 → review request."},
+         {"title": "Profit milestone email", "body": "First £100 · £1K · £10K profit hit."}
+       ]}
+     ]},
+    {"title": "Tech Stack", "phase": 2, "top": 2420, "left": 60, "width": 780, "height": 1320,
+     "lanes": [
+      {"header": "Frontend", "icon": "i-stack", "color": "b", "count": "React 19",
+       "cards": [
+         {"title": "React 19 + Vite 7", "body": "PAGES + useState routing."},
+         {"title": "Tailwind 4", "body": "Utility CSS · Ultra 2050 theme."},
+         {"title": "Port 5198 (dev)", "body": "Hot-reload · proxies to API."}
+       ]},
+      {"header": "Backend", "icon": "i-stack", "color": "b", "count": "FastAPI",
+       "cards": [
+         {"title": "Python FastAPI", "body": "Single main.py · ~400 lines."},
+         {"title": "PostgreSQL", "body": "8 tables · Alembic migrations."},
+         {"title": "Redis cache", "body": "AI generation cache · OAuth state."},
+         {"title": "Docker Compose", "body": "Postgres + Redis + API · single up."}
+       ]},
+      {"header": "Auth + integrations", "icon": "i-shield", "count": "JWT",
+       "cards": [
+         {"title": "JWT auth", "body": "Bcrypt passwords · Bearer tokens."},
+         {"title": "eBay OAuth 2.0", "body": "Per-user token store + refresh."},
+         {"title": "Claude API", "body": "Haiku 4.5 · cost-controlled."},
+         {"title": "Photo serving", "body": "/api/photos/{filename} via FastAPI."}
+       ]}
+     ]},
+    {"title": "Database", "phase": 2, "top": 2420, "left": 890, "width": 780, "height": 1320,
+     "lanes": [
+      {"header": "Tables (8)", "icon": "i-stack", "count": "Schema", "cols": 3,
+       "cards": [
+         {"title": "users"}, {"title": "ebay_tokens"}, {"title": "products"},
+         {"title": "product_photos"}, {"title": "ebay_listings"}, {"title": "sales"},
+         {"title": "ai_generations"}, {"title": "facebook_posts"}
+       ]},
+      {"header": "Key relations", "icon": "i-link", "count": "Foreign keys",
+       "cards": [
+         {"title": "user → products", "body": "Per-user product catalog."},
+         {"title": "product → photos", "body": "1-to-many · primary marker."},
+         {"title": "product → ebay_listing", "body": "1-to-1 active per item."},
+         {"title": "listing → sales", "body": "1-to-many over lifetime."}
+       ]},
+      {"header": "Reporting queries", "icon": "i-pound", "count": "Aggregates",
+       "cards": [
+         {"title": "Profit by category", "body": "Group by product.category."},
+         {"title": "Active vs sold", "body": "Status filter · time series."},
+         {"title": "AI cost tracking", "body": "Sum of ai_generations.cost."}
+       ]}
+     ]},
+    {"title": "Roadmap", "phase": 2, "top": 2420, "left": 1720, "width": 780, "height": 1320,
+     "lanes": [
+      {"header": "Shipped", "icon": "i-check", "color": "g", "count": "v1",
+       "cards": [
+         {"title": "eBay publish", "body": "End-to-end via Inventory API."},
+         {"title": "AI description", "body": "Haiku · cached · cost-controlled."},
+         {"title": "Sales tracking", "body": "Manual record · profit calc."},
+         {"title": "JWT auth", "body": "Multi-user · per-user data isolation."}
+       ]},
+      {"header": "Next", "icon": "i-bolt", "color": "b", "count": "Planned",
+       "cards": [
+         {"title": "Facebook API", "body": "When app review approved."},
+         {"title": "Etsy integration", "body": "Banned per memory · NOT shipping."},
+         {"title": "Vinted integration", "body": "Big UK reseller market."},
+         {"title": "Auto-sale import", "body": "Pull eBay sales via API · no manual."}
+       ]},
+      {"header": "v2 features", "icon": "i-bolt", "count": "Bigger bets",
+       "cards": [
+         {"title": "Multi-shop", "body": "Manage 5+ eBay accounts from one UI."},
+         {"title": "Cross-listing", "body": "Same item to all marketplaces · price sync."},
+         {"title": "Stripe payments", "body": "For Pro/Business · auto-renew."}
+       ]}
+     ]}
+  ],
+  "edges": [
+    {"d": "M 840 700 L 865 700 L 865 700 L 890 700", "arrow": "default"},
+    {"d": "M 1670 700 L 1695 700 L 1695 700 L 1720 700", "arrow": "default"},
+    {"d": "M 60 2600 L 40 2600 L 40 700 L 60 700", "cls": "dim"}
+  ]
+}

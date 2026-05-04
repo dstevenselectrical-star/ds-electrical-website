@@ -1,0 +1,142 @@
+{
+  "id": "ukpowerpros",
+  "name": "UK Power Pros — Digital Products Sales",
+  "topbarTitle": "UK Power Pros · Operating System",
+  "version": "v1", "date": "2026-05-03",
+  "tagline": "Digital products for trade pros · 8 SKUs · one-time + subscription · Stripe live",
+  "eyebrow": "Operating System · the whole product",
+  "description": "Digital products platform selling templates, guides, RAMS packs, and SaaS bundles to UK electricians. 8 products spanning one-time downloads (£19-£49) and subscriptions (Forge / FieldOps £29/mo).",
+  "meta": [["Stack", "React 19 + Vite 7 + Tailwind 4"], ["Path", "~/ukpowerpros"], ["Live", "ukpowerpros.netlify.app"], ["Domain", "ukpowerpros.co.uk (DNS pending)"], ["Bundle", "221KB · 0 errors"], ["Theme", "Ultra 2050"]],
+  "stats": [
+    {"label": "Frames", "num": "5", "sub": "Departments", "gold": true},
+    {"label": "Products", "num": "8", "sub": "Catalog"},
+    {"label": "One-time", "num": "6", "sub": "£19-£49"},
+    {"label": "Subscriptions", "num": "2", "sub": "£29/mo"},
+    {"label": "Phase", "num": "1→5", "sub": "Browse to repeat"},
+    {"label": "Sub-bprs", "num": "1", "sub": "Mini-canvas"}
+  ],
+  "phases": ["Discover", "Add to cart", "Checkout", "Download", "Use"],
+  "accents": [{"top": 530, "label": "Phase 1 · Catalog + sales"}, {"top": 2380, "label": "Phase 2 · Stack + roadmap"}],
+  "frames": [
+    {"title": "Catalog", "phase": 1, "top": 570, "left": 60, "width": 780, "height": 1750,
+     "lanes": [
+      {"header": "One-time products (6)", "icon": "i-pound", "color": "g", "count": "Templates + guides",
+       "cards": [
+         {"title": "EICR Master Pack", "kpi": "£29", "body": "Full EICR template kit."},
+         {"title": "Electrician Business Starter", "kpi": "£49", "body": "Ops kit · invoices · contracts · rates."},
+         {"title": "RAMS Template Pack", "kpi": "£35", "body": "Risk + method statements per job type."},
+         {"title": "EV Charger Install Guide", "kpi": "£39", "body": "Step-by-step + Type A RCBO rules."},
+         {"title": "BS 7671 Quick Ref Cards", "kpi": "£19", "body": "Pocket cards · in-van laminated."},
+         {"title": "Trade Marketing Toolkit", "kpi": "£29", "body": "Logo + flyers + Google Pack guide."}
+       ], "miniAfter": "rev-mix"},
+      {"header": "Subscriptions (2)", "icon": "i-pound", "color": "g", "count": "SaaS",
+       "cards": [
+         {"title": "Forge Trade Toolkit", "kpi": "£29/mo", "body": "Or £249/yr · Phase 1 (10 team-dev tools)."},
+         {"title": "FieldOps Pro", "kpi": "£29/mo", "body": "Or £249/yr · job mgmt SaaS."}
+       ]},
+      {"header": "Bundle deal", "icon": "i-pound", "color": "g", "count": "Save",
+       "cards": [
+         {"title": "All 6 one-time", "kpi": "£199", "body": "Save £21 · all downloadable forever."},
+         {"title": "Sub bundle", "kpi": "£49/mo", "body": "Forge + FieldOps · save £9/mo."},
+         {"title": "Everything pack", "kpi": "£399 + £49/mo", "body": "All 8 · grand total saving."}
+       ]}
+     ]},
+    {"title": "Sales + checkout", "phase": 1, "top": 570, "left": 890, "width": 780, "height": 1750,
+     "lanes": [
+      {"header": "Stripe", "icon": "i-pound", "color": "g", "count": "Live",
+       "cards": [
+         {"title": "Hosted checkout", "body": "Cards · Apple Pay · Link."},
+         {"title": "Per-product price IDs", "body": "8 products · 2 with recurring."},
+         {"title": "Webhook delivery", "body": "On payment.success → email file."},
+         {"title": "Refunds policy", "body": "7-day · downloaded files revoked."}
+       ]},
+      {"header": "Conversion", "icon": "i-target", "color": "g", "count": "Tested",
+       "cards": [
+         {"title": "Sample preview", "body": "1-page sample of pack contents."},
+         {"title": "Bundle anchor", "body": "Show £199 saves vs individual."},
+         {"title": "Sub trial (planned)", "body": "Forge/FieldOps 14-day trial."},
+         {"title": "Email capture", "body": "Unlock free EICR cheat sheet."}
+       ]},
+      {"header": "Upsells", "icon": "i-pound", "color": "g", "count": "Cart-time",
+       "cards": [
+         {"title": "Cross-sell on view", "body": "EICR pack? Add RAMS pack at -20%."},
+         {"title": "Sub upsell at checkout", "body": "Add Forge for £29/mo · single click."},
+         {"title": "Post-purchase", "body": "Email · here's what to buy next."}
+       ]}
+     ],
+     "minis": [{"id": "rev-mix", "type": "pareto", "icon": "i-funnel", "title": "Revenue mix · target",
+       "rows": [
+         {"label": "Subscriptions", "width": "75%", "value": "~50%"},
+         {"label": "Bundles", "width": "55%", "value": "~30%"},
+         {"label": "Single products", "width": "30%", "value": "~15%"},
+         {"label": "Affiliate (planned)", "width": "10%", "value": "~5%"}
+       ]}]},
+    {"title": "Customer Success", "phase": 1, "top": 570, "left": 1720, "width": 780, "height": 1750,
+     "lanes": [
+      {"header": "Delivery", "icon": "i-doc", "color": "r", "count": "Auto",
+       "cards": [
+         {"title": "Email link", "body": "Stripe webhook → Brevo email."},
+         {"title": "Dashboard library", "body": "Account-gated · all purchases."},
+         {"title": "Re-download", "body": "Anytime · forever access."}
+       ]},
+      {"header": "Support", "icon": "i-phone", "color": "r", "count": "Async",
+       "cards": [
+         {"title": "Email", "body": "support@ukpowerpros.co.uk."},
+         {"title": "Help docs", "body": "Per-product · PDF readme."},
+         {"title": "Refunds", "body": "7-day · self-service via account."}
+       ]},
+      {"header": "Engagement", "icon": "i-link", "color": "r", "count": "Repeat",
+       "cards": [
+         {"title": "Update notifications", "body": "Pack updated → email + library."},
+         {"title": "New product alerts", "body": "Brevo segment · 'all-buyers'."},
+         {"title": "Sub renewal pre-email", "body": "7d before · pre-bill notice."}
+       ]}
+     ]},
+    {"title": "Stack + Deploy", "phase": 2, "top": 2420, "left": 60, "width": 780, "height": 1320,
+     "lanes": [
+      {"header": "Stack", "icon": "i-stack", "color": "b", "count": "React 19",
+       "cards": [
+         {"title": "React 19 + Vite 7", "body": "Standard pattern."},
+         {"title": "Tailwind 4", "body": "Ultra 2050 theme."},
+         {"title": "Bundle 221KB", "body": "0 errors."}
+       ]},
+      {"header": "Hosting (current)", "icon": "i-globe", "color": "r", "count": "Netlify",
+       "cards": [
+         {"title": "ukpowerpros.netlify.app", "body": "Live URL."},
+         {"title": "DNS pending", "body": "ukpowerpros.co.uk not yet pointed."},
+         {"title": "Site ID", "kpi": "4b07ad8b", "body": "Netlify project."}
+       ]},
+      {"header": "Future · self-hosted", "icon": "i-stack", "color": "b", "count": "Planned",
+       "cards": [
+         {"title": "Move off Netlify", "body": "Per memory · self-hosted only."},
+         {"title": "Caddy + cf-tunnel", "body": "Same pattern as DS Electrical."},
+         {"title": "ukpowerpros.co.uk live", "body": "After migration."}
+       ]}
+     ]},
+    {"title": "Roadmap", "phase": 2, "top": 2420, "left": 890, "width": 780, "height": 1320,
+     "lanes": [
+      {"header": "Shipped", "icon": "i-check", "color": "g", "count": "v1",
+       "cards": [
+         {"title": "8 products live", "body": "All on Stripe · all downloadable."},
+         {"title": "Bundle deals", "body": "Anchor pricing · drives larger orders."},
+         {"title": "Subscriptions", "body": "Forge + FieldOps connected."}
+       ]},
+      {"header": "Quick wins", "icon": "i-bolt", "color": "b", "count": "Next",
+       "cards": [
+         {"title": "DNS to .co.uk", "body": "Trust uplift · branded URL."},
+         {"title": "Sub trials", "body": "14-day Forge/FieldOps."},
+         {"title": "Email funnel", "body": "Free cheat sheet → upsell sequence."}
+       ]},
+      {"header": "v2 features", "icon": "i-bolt", "count": "Bigger",
+       "cards": [
+         {"title": "More products", "body": "Aim 20 SKUs · more verticals."},
+         {"title": "Affiliate program", "body": "20% to other tradies who promo."},
+         {"title": "Tradie community", "body": "Discord · members-only."}
+       ]}
+     ]}
+  ],
+  "edges": [
+    {"d": "M 840 1100 L 865 1100 L 865 1100 L 890 1100", "arrow": "default"},
+    {"d": "M 1670 1100 L 1695 1100 L 1695 1100 L 1720 1100", "arrow": "default"}
+  ]
+}

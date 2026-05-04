@@ -1,0 +1,10 @@
+name = "old-site-redirect"
+main = "old-site-redirect.js"
+compatibility_date = "2026-04-24"
+
+# Activates once dselectricalsw.co.uk nameservers flip to CF.
+# Until then the routes are inert — no traffic reaches the worker.
+routes = [
+  { pattern = "dselectricalsw.co.uk/*", zone_name = "dselectricalsw.co.uk" },
+  { pattern = "www.dselectricalsw.co.uk/*", zone_name = "dselectricalsw.co.uk" },
+]

@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0f172a">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<style id="shared-inline">
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+ --dark:#0a0908;--dark2:#131110;--dark3:#1c1915;
+ --light:#f8f5f0;--light2:#eee9e0;--light3:#e2dbd0;
+ --brass:#b8944f;--gold:#d4a44a;
+ --text-dark:#1a1714;--text-muted:#6b6560;
+ --text-light:#f0e8da;--text-light-muted:#8c7d6a;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',sans-serif;background:var(--light);color:var(--text-dark);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none;transition:.2s}
+img{display:block;max-width:100%}
+
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1.5rem,5vw,4rem);background:rgba(10,9,8,.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.04)}
+.nav-logo img{height:70px;width:auto}
+.nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+.nav-links a{font-size:.78rem;font-weight:600;color:rgba(240,232,218,.6);letter-spacing:.08em;text-transform:uppercase}
+.nav-links a:hover{color:#fff}
+.nav-links a.active{color:var(--gold)}
+.nav-cta{background:var(--gold);color:var(--dark);padding:.5rem 1.3rem;border-radius:6px;font-weight:700;font-size:.78rem}
+.nav-cta:hover{background:var(--brass)}
+.nav-menu{display:none;background:none;border:none;color:#fff;font-size:1.5rem;cursor:pointer}
+
+.section-tag{font-size:.65rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--brass);margin-bottom:1rem}
+.section-heading{font-size:clamp(2.2rem,4.5vw,3.5rem);font-weight:900;line-height:1.05;letter-spacing:-.02em;margin-bottom:.75rem}
+.section-desc{color:var(--text-muted);font-size:1.05rem;line-height:1.7;max-width:600px;margin-bottom:2rem}
+.btn{padding:.8rem 2rem;border-radius:6px;font-weight:700;font-size:.85rem;letter-spacing:.02em;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:.5rem;transition:.25s}
+.btn-gold{background:var(--gold);color:var(--dark)}
+.btn-gold:hover{background:var(--brass);transform:translateY(-2px);box-shadow:0 8px 30px rgba(212,164,74,.3)}
+.btn-white{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.12)}
+.btn-white:hover{background:rgba(255,255,255,.14)}
+
+.breadcrumb{background:var(--light);padding:1rem clamp(1.5rem,5vw,4rem);font-size:.78rem;border-bottom:1px solid var(--light3)}
+.breadcrumb-inner{max-width:1200px;margin:0 auto;display:flex;gap:.5rem;align-items:center;color:var(--text-muted);font-weight:500}
+.breadcrumb-inner a{color:var(--text-muted);text-decoration:none;transition:.2s}
+.breadcrumb-inner a:hover{color:var(--brass)}
+.breadcrumb-inner .sep{color:var(--light3)}
+.breadcrumb-inner .current{color:var(--text-dark);font-weight:700}
+
+.tstrip{background:var(--light2);padding:2.5rem clamp(1.5rem,5vw,4rem);border-top:1px solid var(--light3);border-bottom:1px solid var(--light3)}
+.tstrip-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(6,1fr);gap:1.5rem;text-align:center;align-items:center}
+.tstrip-item{display:flex;flex-direction:column;align-items:center;gap:.4rem}
+.tstrip-item img{height:48px;width:auto;filter:grayscale(.15) contrast(1.05)}
+.tstrip-item span{font-size:.65rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.12em;font-weight:700}
+
+.cta{background:var(--dark);padding:clamp(5rem,10vw,8rem) clamp(1.5rem,5vw,4rem);text-align:center}
+.cta .section-heading{color:#fff}
+.cta .section-desc{color:rgba(240,232,218,.5);margin:0 auto 1.5rem;text-align:center}
+.cta-phone-label{font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(240,232,218,.4);display:block;margin-bottom:.6rem}
+.cta-phone{font-family:'JetBrains Mono',monospace;font-size:clamp(1.4rem,3vw,2.2rem);font-weight:700;color:rgba(240,232,218,.5);display:block;margin-bottom:.2rem}
+.cta-phone:hover{color:var(--gold)}
+.cta-phone-2{font-family:'JetBrains Mono',monospace;font-size:clamp(1.4rem,3vw,2.2rem);color:rgba(240,232,218,.35);display:block;margin-bottom:2rem}
+.cta-phone-2:hover{color:var(--gold)}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+
+.footer{background:var(--dark);padding:3rem clamp(1.5rem,5vw,4rem) 1.5rem;border-top:1px solid rgba(255,255,255,.04)}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+.footer h3, .footer h4{font-size:.68rem;text-transform:uppercase;letter-spacing:.2em;color:var(--gold);margin-bottom:1rem;font-weight:700}
+.footer p,.footer a{font-size:.8rem;color:rgba(240,232,218,.4);line-height:2}
+.footer a:hover{color:var(--gold)}
+.footer-bottom{padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.03);display:flex;justify-content:space-between;font-size:.65rem;color:rgba(255,255,255,.2)}
+
+.wa{position:fixed;bottom:1.5rem;left:1.5rem;width:56px;height:56px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:99;box-shadow:0 4px 24px rgba(37,211,102,.3);transition:.2s}
+.wa:hover{transform:scale(1.1)}
+.wa svg{width:28px;height:28px;fill:#fff}
+
+.mcb{display:none;position:fixed;bottom:0;left:0;right:0;z-index:98;background:#0a0908;border-top:1px solid rgba(212,164,74,.3);padding:.6rem .6rem calc(.6rem + env(safe-area-inset-bottom));box-shadow:0 -6px 24px rgba(0,0,0,.4)}
+.mcb-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:.5rem}
+.mcb a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.15rem;padding:.6rem .4rem;border-radius:8px;font-family:'Outfit',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.04em;text-decoration:none;transition:.2s}
+.mcb a svg{width:18px;height:18px}
+.mcb .mcb-call{background:#d4a44a;color:#0a0908}
+.mcb .mcb-call:hover{background:#b8944f}
+.mcb .mcb-wa{background:#25d366;color:#fff}
+.mcb .mcb-mail{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.14)}
+.mcb small{font-size:.62rem;font-weight:500;opacity:.75;letter-spacing:.02em;text-transform:none}
+
+.dq-btn{position:fixed;right:1.25rem;bottom:1.25rem;z-index:99;display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 1.35rem;background:#d4a44a;color:#0a0908;border-radius:100px;font-family:'Outfit',sans-serif;font-weight:800;font-size:.8rem;letter-spacing:.04em;text-decoration:none;box-shadow:0 8px 32px rgba(212,164,74,.4);transition:.25s}
+.dq-btn:hover{background:#b8944f;transform:translateY(-2px);box-shadow:0 12px 40px rgba(212,164,74,.5)}
+.dq-btn svg{width:16px;height:16px}
+
+.related-svc{background:var(--dark);padding:clamp(4rem,7vw,5rem) clamp(1.5rem,5vw,4rem);color:#fff}
+.related-svc-inner{max-width:1200px;margin:0 auto}
+.related-svc .section-tag{color:#d4a44a}
+.related-svc h2{font-size:clamp(1.8rem,3.2vw,2.6rem);font-weight:900;line-height:1.1;color:#fff;margin-bottom:2.5rem;letter-spacing:-.02em}
+.related-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.related-card{display:block;padding:1.5rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:12px;text-decoration:none;transition:.25s}
+.related-card:hover{background:rgba(212,164,74,.08);border-color:rgba(212,164,74,.3);transform:translateY(-3px)}
+.related-card h3{font-size:.95rem;font-weight:800;color:#fff;margin-bottom:.4rem}
+.related-card p{font-size:.78rem;color:rgba(240,232,218,.5);line-height:1.5}
+.related-card .arrow{display:inline-block;margin-top:.8rem;color:#d4a44a;font-size:.8rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
+
+@media(max-width:1024px){.related-grid{grid-template-columns:repeat(2,1fr)}.tstrip-inner{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:768px){
+ .nav-links{display:none;position:fixed;top:72px;left:0;right:0;background:rgba(10,9,8,.98);backdrop-filter:blur(20px);flex-direction:column;padding:2rem;gap:1.5rem;border-bottom:1px solid rgba(255,255,255,.06)}
+ .nav-links.open{display:flex}
+ .nav-menu{display:block}
+ .mcb{display:block}
+ body{padding-bottom:72px}
+ .wa{bottom:6rem !important}
+ .dq-btn{display:none}
+ .footer-grid{grid-template-columns:1fr 1fr}
+ .related-grid{grid-template-columns:1fr}
+ .tstrip-inner{grid-template-columns:repeat(2,1fr);gap:1.25rem}
+}
+@media(max-width:480px){.footer-grid{grid-template-columns:1fr}}
+</style>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Landlord Electrical Compliance Guide 2026 UK | DS Electrical SW</title>
+<meta name="description" content="Complete UK landlord electrical compliance guide for 2026: EICR, smoke alarms, PAT testing, EV-ready properties, records keeping, penalties up to £30,000. NAPIT 66245, City &amp; Guilds 2391. Call 07889 334849.">
+<meta name="keywords" content="landlord electrical safety guide, landlord EICR rules, landlord electrical compliance UK, electrical safety standards 2020, BS 5839-6 landlord, landlord PAT testing, landlord EV charger, smoke alarm landlord rules">
+<link rel="canonical" href="https://www.dselectricalsw.co.uk/landlord-electrical-guide.html">
+<link rel="alternate" hreflang="en-GB" href="https://www.dselectricalsw.co.uk/landlord-electrical-guide.html">
+<link rel="alternate" hreflang="x-default" href="https://www.dselectricalsw.co.uk/landlord-electrical-guide.html">
+<meta property="og:title" content="Landlord Electrical Compliance Guide 2026 UK">
+<meta property="og:description" content="Everything UK landlords legally need: EICR, smoke alarms, PAT testing, EV-ready properties, records, penalties. NAPIT approved.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://www.dselectricalsw.co.uk/landlord-electrical-guide.html">
+<meta property="og:image" content="https://www.dselectricalsw.co.uk/photos/accreditations-og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="DS Electrical accreditations - NAPIT, CHAS, TrustMark, Part P, BS 7671">
+<meta name="twitter:title" content="Landlord Electrical Compliance Guide 2026 UK">
+<meta name="twitter:description" content="Everything UK landlords legally need: EICR, smoke alarms, PAT testing, EV-ready properties, records, penalties.">
+<meta name="twitter:image" content="https://www.dselectricalsw.co.uk/photos/accreditations-og.jpg">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="robots" content="index, follow">
+<link rel="manifest" href="/manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://fonts.googleapis.com">
+<link rel="dns-prefetch" href="https://fonts.gstatic.com">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap"></noscript>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "WebPage",
+ "@id": "https://www.dselectricalsw.co.uk/landlord-electrical-guide.html#webpage",
+ "url": "https://www.dselectricalsw.co.uk/landlord-electrical-guide.html",
+ "name": "Landlord Electrical Compliance Guide 2026 UK",
+ "description": "Comprehensive UK landlord electrical compliance guide covering EICR rules, smoke alarms, PAT testing, EV charging, records keeping and penalties.",
+ "inLanguage": "en-GB",
+ "isPartOf": {"@type": "WebSite", "url": "https://www.dselectricalsw.co.uk/", "name": "DS Electrical Installations (SW) Ltd"},
+ "about": {"@type": "Thing", "name": "Landlord electrical safety regulations"},
+ "publisher": {"@type": "Organization", "name": "DS Electrical Installations (SW) Ltd", "url": "https://www.dselectricalsw.co.uk/"},
+ "dateModified": "2026-05-04"
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement": [
+  {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.dselectricalsw.co.uk/"},
+  {"@type": "ListItem", "position": 2, "name": "Resources", "item": "https://www.dselectricalsw.co.uk/electrical-safety-checklist.html"},
+  {"@type": "ListItem", "position": 3, "name": "Landlord Electrical Guide", "item": "https://www.dselectricalsw.co.uk/landlord-electrical-guide.html"}
+ ]
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {"@type": "Question", "name": "Do all UK landlords legally need an EICR?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The Electrical Safety Standards in the Private Rented Sector (England) Regulations 2020 require every private landlord with tenants in occupation to hold a valid EICR, renewed at least every 5 years and at the start of each new tenancy. Wales has equivalent rules from 2022 under the Renting Homes Act, and Scotland has required tenanted-property checks since 2017."}},
+  {"@type": "Question", "name": "What is the penalty for landlord non-compliance?", "acceptedAnswer": {"@type": "Answer", "text": "Local authorities can issue fines of up to £30,000 per breach, serve enforcement notices, arrange remedial works themselves and recover costs from the landlord, and impose cessation orders. Non-compliance can also void the buildings insurance policy."}},
+  {"@type": "Question", "name": "How quickly must C1 and C2 EICR defects be fixed?", "acceptedAnswer": {"@type": "Answer", "text": "Within 28 days of the EICR being issued, or sooner if the inspector specifies a shorter period. C1 (danger present) defects should usually be made safe at the time of the inspection. C3 codes are improvement recommendations only and have no statutory deadline."}},
+  {"@type": "Question", "name": "What smoke alarm rules apply to private rentals?", "acceptedAnswer": {"@type": "Answer", "text": "In England, mains-powered interlinked smoke alarms have been required on every storey of a private rental since October 2015, with a CO alarm in any room with a carbon-burning appliance and (since 2022) a heat alarm in the kitchen. Scotland (2022) requires interlinked alarms in all homes. Wales requires them under the Renting Homes Act 2022. Specification is BS 5839-6 Grade D."}},
+  {"@type": "Question", "name": "Is PAT testing legally required for landlords?", "acceptedAnswer": {"@type": "Answer", "text": "PAT testing is not specifically mandated by statute for landlords, but the Housing Health and Safety Rating System (HHSRS) and the Landlord and Tenant Act require landlord-supplied appliances to be safe. PAT testing is the recognised way to evidence that, and most insurers expect annual records on portable appliances supplied with the tenancy."}},
+  {"@type": "Question", "name": "How long must I keep an EICR certificate after tenancy ends?", "acceptedAnswer": {"@type": "Answer", "text": "A copy must be supplied to existing tenants within 28 days of the test, to new tenants before they occupy, and to the local authority within 7 days of any written request. Keep the certificate for at least 28 days after a tenancy ends; six years is the recommended retention period for insurance and CCJ cover."}},
+  {"@type": "Question", "name": "Can my letting agent handle EICR compliance for me?", "acceptedAnswer": {"@type": "Answer", "text": "An agent can arrange the inspection, but the legal duty to hold a valid EICR sits with the landlord. Always obtain a PDF copy of the certificate from the agent and verify the inspector is registered with NAPIT or NICEIC and holds City &amp; Guilds 2391. An agent's verbal assurance without a certificate copy is not compliance."}},
+  {"@type": "Question", "name": "What is required for an EV charger on a rental property?", "acceptedAnswer": {"@type": "Answer", "text": "DNO notification is mandatory before installation, the circuit must be protected by a Type A RCBO under BS 7671 18th Edition Amendment 2, and the OZEV EV chargepoint grant for renters and flat-owners offers up to £350 plus VAT towards a residential install. The Workplace Charging Scheme provides £350 per socket for HMO and commercial landlords."}}
+ ]
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "Organization",
+ "name": "DS Electrical Installations (SW) Ltd",
+ "url": "https://www.dselectricalsw.co.uk/",
+ "logo": "https://www.dselectricalsw.co.uk/logo-full.png",
+ "telephone": "+447889334849",
+ "email": "info@dselectricalsw.co.uk",
+ "vatID": "GB429040905",
+ "address": {"@type":"PostalAddress","addressLocality":"Glastonbury","addressRegion":"Somerset","postalCode":"BA6","addressCountry":"GB"}
+}
+</script>
+<style>
+.hero{background:var(--dark);padding:clamp(7rem,9vw,9rem) clamp(1.5rem,5vw,4rem) clamp(4rem,6vw,5rem);text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(212,164,74,.08),transparent 60%);pointer-events:none}
+.hero-inner{max-width:900px;margin:0 auto;position:relative;z-index:1}
+.hero-tag{font-size:.65rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:2rem}
+.hero h1{font-size:clamp(2.5rem,6vw,5rem);font-weight:900;line-height:1;color:#fff;letter-spacing:-.03em;margin-bottom:1.5rem}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero-desc{font-size:1.15rem;color:rgba(240,232,218,.6);line-height:1.7;max-width:680px;margin:0 auto 2rem}
+
+.toc{background:var(--light);padding:clamp(2.5rem,5vw,3.5rem) clamp(1.5rem,5vw,4rem);border-bottom:1px solid var(--light3)}
+.toc-inner{max-width:1100px;margin:0 auto;background:#fff;border:1px solid var(--light3);border-radius:14px;padding:2rem clamp(1.5rem,4vw,2.5rem)}
+.toc-tag{font-size:.65rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--brass);margin-bottom:.75rem}
+.toc h2{font-size:1.35rem;font-weight:900;margin-bottom:1.25rem;letter-spacing:-.01em}
+.toc ol{list-style:none;counter-reset:tocc;display:grid;grid-template-columns:repeat(2,1fr);gap:.5rem 2rem;padding:0}
+.toc ol li{counter-increment:tocc;position:relative;padding-left:2.4rem;line-height:1.7}
+.toc ol li::before{content:counter(tocc,decimal-leading-zero);position:absolute;left:0;top:.05rem;font-family:'JetBrains Mono',monospace;font-size:.78rem;font-weight:700;color:var(--gold);letter-spacing:.05em}
+.toc ol li a{color:var(--text-dark);font-weight:600;font-size:.95rem;border-bottom:1px solid transparent}
+.toc ol li a:hover{color:var(--brass);border-bottom-color:rgba(184,148,79,.4)}
+.toc-print{margin-top:1.25rem;padding-top:1.25rem;border-top:1px dashed var(--light3);font-size:.82rem;color:var(--text-muted)}
+.toc-print kbd{font-family:'JetBrains Mono',monospace;font-size:.75rem;background:var(--light2);padding:.15rem .45rem;border-radius:4px;border:1px solid var(--light3);color:var(--text-dark)}
+@media(max-width:768px){.toc ol{grid-template-columns:1fr}}
+
+.gsec{padding:clamp(3rem,5vw,4.5rem) clamp(1.5rem,5vw,4rem);background:var(--light)}
+.gsec.alt{background:var(--light2)}
+.gsec-inner{max-width:920px;margin:0 auto}
+.gsec-tag{font-family:'JetBrains Mono',monospace;font-size:.78rem;font-weight:700;color:var(--gold);letter-spacing:.05em;margin-bottom:.5rem}
+.gsec h2{font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:900;line-height:1.1;letter-spacing:-.02em;margin-bottom:1rem;color:var(--text-dark);scroll-margin-top:90px}
+.gsec p{font-size:1.02rem;color:var(--text-muted);line-height:1.8;margin-bottom:1rem}
+.gsec p strong{color:var(--text-dark);font-weight:700}
+.gsec ul{list-style:none;margin:1rem 0 1.25rem;padding:0}
+.gsec ul li{font-size:.97rem;color:var(--text-muted);line-height:1.7;padding-left:1.6rem;position:relative;margin-bottom:.55rem}
+.gsec ul li::before{content:'';position:absolute;left:0;top:.6rem;width:8px;height:8px;background:var(--gold);border-radius:2px}
+.gsec ul li strong{color:var(--text-dark);font-weight:700}
+.gsec a.inline{color:var(--brass);font-weight:700;border-bottom:1px solid rgba(184,148,79,.4);padding-bottom:1px}
+.gsec a.inline:hover{color:var(--gold);border-bottom-color:var(--gold)}
+
+.callout{background:#fff;border:1px solid var(--light3);border-left:4px solid var(--gold);border-radius:8px;padding:1.25rem 1.4rem;margin:1.25rem 0;font-size:.94rem;color:var(--text-muted);line-height:1.7}
+.callout strong{color:var(--text-dark)}
+
+.disclaimer{background:#fff8e8;border:2px solid var(--gold);border-radius:10px;padding:1.4rem 1.6rem;margin:2rem 0;font-size:.94rem;color:#5b4a1f;line-height:1.7}
+.disclaimer h3{font-size:.7rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:#8b6f1a;margin-bottom:.6rem}
+.disclaimer strong{color:#3d3010}
+
+.code-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.85rem;margin:1.25rem 0 1.5rem}
+.code-card{background:#fff;border:1px solid var(--light3);border-radius:10px;padding:1.1rem 1.25rem}
+.code-card .code{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:1rem;color:var(--gold);letter-spacing:.04em;display:inline-block;background:rgba(212,164,74,.12);padding:.2rem .55rem;border-radius:5px;margin-bottom:.5rem}
+.code-card h4{font-size:.95rem;font-weight:800;margin-bottom:.35rem;color:var(--text-dark)}
+.code-card p{font-size:.85rem;color:var(--text-muted);line-height:1.6;margin:0}
+@media(max-width:680px){.code-grid{grid-template-columns:1fr}}
+
+.price-table{width:100%;border-collapse:collapse;margin:1rem 0 1.25rem;background:#fff;border:1px solid var(--light3);border-radius:10px;overflow:hidden;font-size:.92rem}
+.price-table th,.price-table td{padding:.75rem 1rem;text-align:left;border-bottom:1px solid var(--light3)}
+.price-table th{background:var(--light2);font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--text-muted)}
+.price-table td{color:var(--text-dark)}
+.price-table td.num{font-family:'JetBrains Mono',monospace;color:var(--brass);font-weight:700;text-align:right;white-space:nowrap}
+.price-table tr:last-child td{border-bottom:none}
+
+.helps-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin:1.25rem 0 1.5rem}
+.helps-card{background:#fff;border:1px solid var(--light3);border-radius:10px;padding:1.25rem 1.4rem}
+.helps-card h4{font-size:1rem;font-weight:800;margin-bottom:.5rem;color:var(--text-dark);display:flex;align-items:center;gap:.5rem}
+.helps-card h4::before{content:'';width:10px;height:10px;background:var(--gold);border-radius:2px;display:inline-block}
+.helps-card p{font-size:.9rem;color:var(--text-muted);line-height:1.65;margin:0}
+@media(max-width:680px){.helps-grid{grid-template-columns:1fr}}
+</style>
+<script src="/analytics.js" defer></script>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+ <a href="/" class="nav-logo"><img src="logo-full.png" alt="DS Electrical" decoding="async"></a>
+ <ul class="nav-links" id="navLinks">
+  <li><a href="/commercial-electrical.html">Commercial</a></li>
+  <li><a href="/domestic.html">Domestic</a></li>
+  <li><a href="/rewires.html">Rewires</a></li>
+  <li><a href="/eicr.html">EICR</a></li>
+  <li><a href="/ev-chargers.html">EV Chargers</a></li>
+  <li><a href="/cctv.html">CCTV</a></li>
+  <li><a href="/network-infrastructure.html">Network Infrastructure</a></li>
+  <li><a href="/24-hour-callouts.html">24hr Callouts</a></li>
+  <li><a href="/gallery.html">Gallery</a></li>
+  <li><a href="/blog.html">Blog</a></li>
+  <li><a href="/contact.html">Contact</a></li>
+  <li><a href="tel:07889334849" class="nav-cta">07889 334849</a></li>
+ </ul>
+ <button class="nav-menu" onclick="document.getElementById('navLinks').classList.toggle('open')">&#9776;</button>
+</nav>
+
+<nav class="breadcrumb" aria-label="Breadcrumb"><div class="breadcrumb-inner"><a href="/">Home</a><span class="sep">/</span><a href="/electrical-safety-checklist.html">Resources</a><span class="sep">/</span><span class="current" aria-current="page">Landlord Electrical Guide</span></div></nav>
+
+<!-- HERO -->
+<section class="hero">
+ <div class="hero-inner">
+  <div class="hero-tag">Landlord Compliance Hub &middot; UK 2026</div>
+  <h1>Landlord electrical compliance &mdash;<br><em>UK 2026.</em></h1>
+  <p class="hero-desc">Everything you legally need: EICR, smoke alarms, PAT testing, EV-ready properties. Written by a NAPIT-approved 2391-qualified contractor for landlords who&rsquo;d rather get it right than get fined.</p>
+ </div>
+</section>
+
+<!-- TRUST STRIP (6 BADGES) -->
+<section class="tstrip" aria-label="Accreditations">
+ <div class="tstrip-inner">
+  <div class="tstrip-item"><img loading="lazy" src="assets/accreditations/napit-official.png" alt="NAPIT approved contractor"><span>NAPIT 66245</span></div>
+  <div class="tstrip-item"><img loading="lazy" src="assets/accreditations/chas-official.png" alt="CHAS accredited"><span>CHAS 158368</span></div>
+  <div class="tstrip-item"><img loading="lazy" src="assets/accreditations/city-guilds-logo.png" alt="City and Guilds"><span>C&amp;G 2391</span></div>
+  <div class="tstrip-item"><img loading="lazy" src="assets/accreditations/trustmark.svg" alt="TrustMark government endorsed"><span>TrustMark</span></div>
+  <div class="tstrip-item"><img loading="lazy" src="assets/accreditations/part-p.svg" alt="Part P registered"><span>Part P</span></div>
+  <div class="tstrip-item"><img loading="lazy" src="assets/accreditations/bs7671.svg" alt="BS 7671 18th Edition"><span>BS 7671</span></div>
+ </div>
+</section>
+
+<!-- TOC -->
+<section class="toc">
+ <div class="toc-inner">
+  <div class="toc-tag">In this guide</div>
+  <h2>Jump to a section</h2>
+  <ol>
+   <li><a href="#why">Why this guide &mdash; UK rental laws since 2020</a></li>
+   <li><a href="#eicr">EICR &mdash; the core requirement</a></li>
+   <li><a href="#smoke">Smoke alarms (BS 5839-6 Grade D)</a></li>
+   <li><a href="#pat">PAT testing of portable appliances</a></li>
+   <li><a href="#ev">EV charging for HMOs and flats</a></li>
+   <li><a href="#records">Records keeping</a></li>
+   <li><a href="#newbuild">New build, refurb &amp; change-of-use</a></li>
+   <li><a href="#traps">Common landlord traps</a></li>
+   <li><a href="#help">How DS Electrical helps</a></li>
+  </ol>
+  <p class="toc-print"><strong>Tip:</strong> press <kbd>Cmd</kbd>+<kbd>P</kbd> (Mac) or <kbd>Ctrl</kbd>+<kbd>P</kbd> (Windows) to print or save this guide as a PDF for your compliance file.</p>
+ </div>
+</section>
+
+<!-- 1. WHY -->
+<section class="gsec" id="why">
+ <div class="gsec-inner">
+  <div class="gsec-tag">Section 01</div>
+  <h2>Why this guide &mdash; UK rental laws since 2020</h2>
+  <p>Three sets of rules now sit between a landlord and a tenanted property. They tightened sharply between 2020 and 2022, and most non-compliance happens because nothing visibly changed in the wiring &mdash; only the paperwork around it did.</p>
+  <ul>
+   <li><strong>England &mdash; Electrical Safety Standards in the Private Rented Sector (England) Regulations 2020.</strong> In force from 1 June 2020 for new tenancies and 1 April 2021 for all existing tenancies. Applies to every private landlord with tenants in occupation.</li>
+   <li><strong>Wales &mdash; Renting Homes (Wales) Act 2016, fitness regulations effective 1 December 2022.</strong> Brought EICR and interlinked-alarm requirements broadly into line with England.</li>
+   <li><strong>Scotland &mdash; Repairing Standard (Scottish Government 2017, updated 2022).</strong> Required EICRs every 5 years on tenanted properties from March 2017; interlinked alarms required in all Scottish homes from February 2022.</li>
+  </ul>
+  <p><strong>Penalties for non-compliance.</strong> Local authorities can issue civil penalties of <strong>up to &pound;30,000 per breach</strong>, serve <strong>cessation orders</strong> banning a property from being let, and arrange remedial works themselves with costs recovered from the landlord. Buildings and contents insurance is routinely <strong>voided</strong> where a valid EICR cannot be produced after a fire or claim.</p>
+  <div class="callout"><strong>Who&rsquo;s affected?</strong> Every private landlord with a tenant in occupation &mdash; furnished or unfurnished, single dwellings, HMOs, blocks, holiday lets where there is a tenancy agreement. Owner-occupiers are out of scope. Social housing has its own equivalent inspection regime.</div>
+ </div>
+</section>
+
+<!-- 2. EICR -->
+<section class="gsec alt" id="eicr">
+ <div class="gsec-inner">
+  <div class="gsec-tag">Section 02</div>
+  <h2>EICR &mdash; the core requirement</h2>
+  <p>The Electrical Installation Condition Report (EICR) is the document the local authority and your insurer will ask for first. Everything else in this guide flows from it.</p>
+  <ul>
+   <li><strong>Required at the start of every new tenancy</strong> and renewed at least every <strong>5 years</strong>.</li>
+   <li>Must be carried out by a <strong>qualified, competent person</strong> &mdash; in practice, City &amp; Guilds <strong>2391 (Inspection &amp; Testing)</strong> plus current registration with NAPIT or NICEIC.</li>
+   <li>Test schedule and codes follow <strong>BS 7671 18th Edition + Amendment 2:2022</strong>.</li>
+  </ul>
+  <p style="margin-top:1.25rem"><strong>Defect codes &mdash; what each one means and how fast it must be fixed:</strong></p>
+  <div class="code-grid">
+   <div class="code-card"><span class="code">C1</span><h4>Danger present</h4><p>Risk of injury exists. Make safe at inspection or isolate. Remediate within 28 days.</p></div>
+   <div class="code-card"><span class="code">C2</span><h4>Potentially dangerous</h4><p>Could become dangerous. Remediate within 28 days. Renders the report Unsatisfactory.</p></div>
+   <div class="code-card"><span class="code">C3</span><h4>Improvement recommended</h4><p>No statutory deadline. Does not affect the Satisfactory outcome. Plan into next maintenance window.</p></div>
+   <div class="code-card"><span class="code">FI</span><h4>Further investigation</h4><p>A potential defect that cannot be fully assessed without opening up. Investigate within 28 days.</p></div>
+  </div>
+  <p><strong>Indicative cost &mdash; per circuit, plus VAT @ 20%:</strong></p>
+  <table class="price-table" aria-label="Indicative EICR pricing">
+   <thead><tr><th>Property type</th><th>Typical circuits</th><th>Indicative range</th></tr></thead>
+   <tbody>
+    <tr><td>1-bed flat (single-phase)</td><td>6 &ndash; 9</td><td class="num">from &pound;180 &ndash; &pound;280</td></tr>
+    <tr><td>3-bed semi (single-phase)</td><td>9 &ndash; 14</td><td class="num">from &pound;280 &ndash; &pound;440</td></tr>
+    <tr><td>5-bed period property</td><td>14 &ndash; 22</td><td class="num">from &pound;440 &ndash; &pound;650</td></tr>
+    <tr><td>Three-phase commercial</td><td>per circuit</td><td class="num">from &pound;40 / circuit</td></tr>
+   </tbody>
+  </table>
+  <p style="font-size:.88rem">Per-circuit rates: <strong>from &pound;30 single-phase, from &pound;40 three-phase</strong>, all plus VAT @ 20%. Full breakdown on the <a href="/eicr.html" class="inline">EICR service page</a> and our <a href="/blog-landlord-eicr-2026.html" class="inline">2026 landlord EICR explainer</a>.</p>
+ </div>
+</section>
+
+<!-- 3. SMOKE ALARMS -->
+<section class="gsec" id="smoke">
+ <div class="gsec-inner">
+  <div class="gsec-tag">Section 03</div>
+  <h2>Smoke alarms &mdash; BS 5839-6 Grade D</h2>
+  <p>Battery-only alarms have not been compliant for English private rentals since October 2015. The standard for new and replacement installs is <strong>BS 5839-6 Grade D &mdash; mains-powered with a tamper-resistant backup, interlinked across the dwelling</strong>.</p>
+  <ul>
+   <li><strong>One alarm on every storey</strong> used as living accommodation.</li>
+   <li><strong>Heat alarm in the kitchen</strong> (smoke alarms nuisance-trip on cooking).</li>
+   <li><strong>CO alarm</strong> in any room with a fixed combustion appliance (gas boiler, gas cooker, solid-fuel stove, oil burner).</li>
+   <li>All alarms <strong>interlinked</strong> &mdash; one trips, all sound.</li>
+  </ul>
+  <p><strong>Country-by-country rules:</strong> England has required mains-interlinked alarms in private rentals since October 2015 (Smoke and Carbon Monoxide Alarm Regulations). Scotland extended the same rule to <strong>all homes</strong> in February 2022. Wales requires it under the Renting Homes Act 2022 from December 2022.</p>
+  <p><strong>Responsibility:</strong> the landlord installs and replaces; the tenant carries out the routine button-test. Test every alarm at the start of every new tenancy and log it &mdash; unwitnessed alarms are one of the easiest fail points in an inspection.</p>
+ </div>
+</section>
+
+<!-- 4. PAT -->
+<section class="gsec alt" id="pat">
+ <div class="gsec-inner">
+  <div class="gsec-tag">Section 04</div>
+  <h2>PAT testing of portable appliances</h2>
+  <p>PAT testing isn&rsquo;t named in the Electrical Safety Standards Regulations &mdash; but the <strong>Housing Health and Safety Rating System (HHSRS)</strong> and the <strong>Landlord and Tenant Act 1985</strong> both require landlord-supplied appliances to be safe. Annual portable-appliance testing is the recognised, defensible way to evidence that. Most insurers expect it.</p>
+  <ul>
+   <li>Cover every <strong>landlord-supplied</strong> portable appliance &mdash; fridges, freezers, kettles, microwaves, lamps, washing machines, hoovers.</li>
+   <li>Tested <strong>annually</strong>, kept-on-property records.</li>
+   <li>Tenant-owned appliances are <strong>not</strong> the landlord&rsquo;s responsibility.</li>
+  </ul>
+  <p><strong>Indicative cost:</strong> from <strong>&pound;4 &ndash; &pound;8 per appliance</strong> + VAT @ 20%. A typical furnished 2-bed flat usually falls in the &pound;40 &ndash; &pound;80 range. We bring a calibrated PAT tester, label every appliance with a pass-date sticker, and issue a PDF schedule on the day. <a href="/pat-testing.html" class="inline">PAT testing service page &rarr;</a></p>
+ </div>
+</section>
+
+<!-- 5. EV -->
+<section class="gsec" id="ev">
+ <div class="gsec-inner">
+  <div class="gsec-tag">Section 05</div>
+  <h2>EV charging &mdash; HMOs and flats</h2>
+  <p>The grant landscape changed in April 2022. The original homeowner EVHS scheme closed; what remains is targeted at <strong>renters, flat-owners, HMO landlords and commercial property</strong>.</p>
+  <ul>
+   <li><strong>OZEV EV chargepoint grant for renters &amp; flat-owners</strong> &mdash; up to <strong>&pound;350 + VAT</strong> per chargepoint. Open to landlords installing on dwellings let to tenants, and to flat-owners in blocks. Replaced the homeowner EVHS in April 2022.</li>
+   <li><strong>Workplace Charging Scheme (WCS)</strong> &mdash; <strong>&pound;350 per socket, up to 40 sockets</strong> per applicant. Open to commercial landlords, HMO operators, and businesses with off-street parking.</li>
+   <li><strong>DNO notification</strong> mandatory before any new EV charger circuit (Engineering Recommendation G100 / G98).</li>
+   <li><strong>Type A RCBO</strong> required under BS 7671 18th Edition Amendment 2 &mdash; we never specify Type B for residential EV.</li>
+  </ul>
+  <p>Both schemes are administered by OZEV and renewed annually. The grant is paid to the installer and netted off the customer invoice &mdash; you don&rsquo;t claim it back yourself. Full pricing on our <a href="/ev-chargers.html" class="inline">EV chargers page</a> and the <a href="/blog-ev-charger-cost-guide-2026.html" class="inline">2026 EV charger cost guide</a>.</p>
+ </div>
+</section>
+
+<!-- 6. RECORDS -->
+<section class="gsec alt" id="records">
+ <div class="gsec-inner">
+  <div class="gsec-tag">Section 06</div>
+  <h2>Records keeping</h2>
+  <p>Compliance is what you can <strong>prove</strong> on the day a local authority asks. The Regulations specify exact deadlines for each piece of paperwork.</p>
+  <ul>
+   <li><strong>EICR certificate &mdash;</strong> kept for at least 28 days after a tenancy ends. We recommend <strong>6 years</strong> for insurance and CCJ cover.</li>
+   <li><strong>Tenant copy</strong> within <strong>28 days</strong> of the inspection. New tenants must receive a copy <strong>before they occupy</strong>.</li>
+   <li><strong>Local authority on request</strong> &mdash; you must supply within <strong>7 days</strong> of a written request.</li>
+   <li><strong>Smoke alarm test log</strong> &mdash; date-stamped record at every new tenancy.</li>
+   <li><strong>PAT certificates</strong> &mdash; annual schedule of every tested appliance with serial numbers.</li>
+   <li><strong>Building Regulations Compliance Certificate</strong> for any notifiable Part P work &mdash; lodged by NAPIT, posted within 30 days.</li>
+  </ul>
+  <p>Every certificate we issue is delivered as a searchable PDF the day of the test, with a paper copy posted by NAPIT within 30 days for your hard file.</p>
+ </div>
+</section>
+
+<!-- 7. NEW BUILD -->
+<section class="gsec" id="newbuild">
+ <div class="gsec-inner">
+  <div class="gsec-tag">Section 07</div>
+  <h2>New build, refurb &amp; change-of-use</h2>
+  <p>Anything that adds, replaces, or significantly alters fixed wiring is <strong>notifiable under Part P</strong> of the Building Regulations in dwellings.</p>
+  <ul>
+   <li><strong>Always notifiable:</strong> new circuits, fuse-board (consumer unit) replacements, work in special locations &mdash; <strong>kitchens, bathrooms, shower rooms, outdoor wiring</strong>.</li>
+   <li><strong>Two notification routes:</strong> Building Control (manual, fee-paying, slow), or a <strong>Competent Person Scheme</strong> installer (NAPIT, NICEIC, ELECSA) who self-certifies. The Compliance Certificate is lodged by the scheme operator within 30 days.</li>
+   <li><strong>Change-of-use</strong> &mdash; converting a single dwelling to flats, or commercial to residential &mdash; triggers a full design review under BS 7671 plus Building Control sign-off.</li>
+  </ul>
+  <p>More on why scheme membership matters: <a href="/why-napit.html" class="inline">Why NAPIT</a> &middot; <a href="/qualifications-explained.html" class="inline">Qualifications explained</a>.</p>
+ </div>
+</section>
+
+<!-- 8. TRAPS -->
+<section class="gsec alt" id="traps">
+ <div class="gsec-inner">
+  <div class="gsec-tag">Section 08</div>
+  <h2>Common landlord traps</h2>
+  <p>The most-frequent compliance failures we see on first inspection of a portfolio property:</p>
+  <ul>
+   <li><strong>Letting an EICR expire</strong> beyond 5 years &mdash; insurance is voided the moment the renewal date passes, even if no claim has been made yet.</li>
+   <li><strong>Letting agent claims they &ldquo;handled it&rdquo;</strong> with no PDF certificate copy &mdash; the legal duty stays with the landlord. Always demand the certificate, verify the inspector&rsquo;s NAPIT or NICEIC registration number, and check 2391 is on the report.</li>
+   <li><strong>Buying a property with a stale EICR</strong> &mdash; the previous landlord&rsquo;s expiry now resets to your problem on completion day. Treat any pre-purchase EICR older than 18 months as &ldquo;assume expired&rdquo;.</li>
+   <li><strong>Not testing the smoke alarms at the start of every new tenancy</strong> &mdash; this is one of the easiest enforcement wins for a council inspector.</li>
+   <li><strong>Old plastic-bodied consumer unit</strong> still in service &mdash; metal-clad enclosures have been mandatory on new domestic boards under BS 7671 Amendment 3 since January 2016. A plastic board is almost always a C2 on the EICR.</li>
+   <li><strong>RCD-only board with no RCBOs</strong> &mdash; one fault trips the whole house. A modern dual-RCD or full-RCBO board with SPD is now the BS 7671 Amendment 2 default.</li>
+   <li><strong>EV charger fitted before tenancy</strong> with a Type AC or Type B RCBO &mdash; only Type A is compliant for residential single-phase charging.</li>
+  </ul>
+ </div>
+</section>
+
+<!-- DISCLAIMER -->
+<aside class="gsec" style="padding-top:0;background:var(--light)">
+ <div class="gsec-inner">
+  <div class="disclaimer">
+   <h3>All prices indicative</h3>
+   <p>Every figure on this page is a <strong>&ldquo;from&rdquo; price</strong>, based on a typical job in the South West with reasonable access. The final quote depends on circuit count, access, age of installation, location of the consumer unit, and any remedial work uncovered during the test. <strong>We don&rsquo;t list-price as if a fixed amount applies to every job.</strong> Send your address and a few photos &mdash; we come back with a firm written quote the same day, no obligation.</p>
+   <p style="margin:.6rem 0 0"><strong>VAT registered.</strong> All prices are plus VAT @ 20%. VAT is itemised on every quote and invoice.</p>
+  </div>
+ </div>
+</aside>
+
+<!-- 9. HOW DS HELPS -->
+<section class="gsec alt" id="help">
+ <div class="gsec-inner">
+  <div class="gsec-tag">Section 09</div>
+  <h2>How DS Electrical helps</h2>
+  <div class="helps-grid">
+   <div class="helps-card"><h4>Same-day quotes, free survey</h4><p>Send the address and a couple of photos &mdash; firm quote back the same working day. No charge to come and look at a portfolio property first.</p></div>
+   <div class="helps-card"><h4>Fixed per-circuit pricing</h4><p>From &pound;30/circuit single-phase, &pound;40 three-phase + VAT. No day-rate uncertainty &mdash; you know the cap before we open the consumer unit.</p></div>
+   <div class="helps-card"><h4>NAPIT-stamped certificate</h4><p>PDF on the day, paper copy posted by NAPIT within 30 days for your hard compliance file. Building Regulations Compliance Certificate where Part P applies.</p></div>
+   <div class="helps-card"><h4>Multi-property bulk discount</h4><p>10+ tenancies in a portfolio &mdash; per-property discount applied across the schedule. Common for letting agents and small private landlords with several BTLs.</p></div>
+  </div>
+  <p>Coverage: Wells, Shepton Mallet, Bath (BANES), Frome, Midsomer Norton, Street and surrounding affluent villages. Somerset and BANES only &mdash; we don&rsquo;t travel further than a 40-minute drive from Glastonbury.</p>
+ </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="contact">
+ <div class="section-tag" style="color:var(--gold)">Book or quote</div>
+ <h2 class="section-heading">Get a landlord<br>compliance quote.</h2>
+ <p class="section-desc">Send the property address and we&rsquo;ll come back the same day with a firm written quote &mdash; EICR, alarms, PAT, EV-ready. No obligation.</p>
+ <span class="cta-phone-label">Direct</span>
+ <a href="tel:07889334849" class="cta-phone">Dan Stevens, Director: 07889 334849</a>
+ <a href="tel:07983106928" class="cta-phone-2">Dan Street, Director: 07983 106928</a>
+ <div class="cta-btns">
+  <a href="/quote/" class="btn btn-gold">Get a Quote</a>
+  <a href="https://wa.me/447889334849" class="btn btn-white">WhatsApp</a>
+  <a href="/electrical-safety-checklist.html" class="btn btn-white">Safety checklist</a>
+ </div>
+</section>
+
+<!-- RELATED -->
+<section class="related-svc" aria-label="Related pages">
+ <div class="related-svc-inner">
+  <div class="section-tag" style="font-size:.65rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;margin-bottom:1rem">The full landlord toolkit</div>
+  <h2>Read more&hellip;</h2>
+  <div class="related-grid">
+   <a href="/eicr.html" class="related-card">
+    <h3>EICR Testing</h3>
+    <p>Per-circuit pricing, NAPIT-stamped, PDF the same day.</p>
+    <span class="arrow">Explore &rarr;</span>
+   </a>
+   <a href="/landlord-electrical-compliance.html" class="related-card">
+    <h3>Landlord Compliance Service</h3>
+    <p>The service page &mdash; book the inspection.</p>
+    <span class="arrow">Explore &rarr;</span>
+   </a>
+   <a href="/blog-landlord-eicr-2026.html" class="related-card">
+    <h3>Landlord EICR 2026</h3>
+    <p>Plain-English explainer of the 2020 Regs as they stand.</p>
+    <span class="arrow">Explore &rarr;</span>
+   </a>
+   <a href="/electrical-safety-checklist.html" class="related-card">
+    <h3>Safety Checklist</h3>
+    <p>Single-page checklist you can print and tick off.</p>
+    <span class="arrow">Explore &rarr;</span>
+   </a>
+  </div>
+ </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+ <div class="footer-grid">
+  <div>
+   <h3>DS Electrical Installations (SW) Ltd</h3>
+   <p>Glastonbury, Somerset</p>
+   <p><a href="tel:07889334849">07889 334849 (Dan Stevens)</a></p>
+   <p><a href="tel:07983106928">07983 106928 (Dan Street)</a></p>
+   <p><a href="mailto:info@dselectricalsw.co.uk">info@dselectricalsw.co.uk</a></p>
+  </div>
+  <div>
+   <h3>Services</h3>
+   <p><a href="/eicr.html">Rewires &amp; EICR</a></p>
+   <p><a href="/ev-chargers.html">EV Chargers</a></p>
+   <p><a href="/cctv.html">CCTV &amp; Security</a></p>
+   <p><a href="/commercial-electrical.html">Commercial</a></p>
+   <p><a href="/fuse-board.html">Fuse Board</a></p>
+   <p><a href="/fire-alarms.html">Fire Alarms</a></p>
+   <p><a href="/emergency-lighting.html">Emergency Lighting</a></p>
+  </div>
+  <div>
+   <h3>Areas</h3>
+   <p>Wells</p><p>Shepton Mallet</p><p>Bath</p><p>Frome</p><p>Midsomer Norton</p><p>Street</p>
+  </div>
+  <div>
+   <h3>Trust</h3>
+   <p><a href="/accreditations.html">NAPIT Approved</a></p>
+   <p><a href="/accreditations.html">CHAS Accredited</a></p>
+   <p><a href="/accreditations.html">TrustMark Endorsed</a></p>
+   <p><a href="/accreditations.html">Part P Registered</a></p>
+   <p><a href="/landlord-electrical-guide.html">Landlord guide</a></p>
+   <p style="margin-top:.5rem">5.0 Google Rating</p>
+  </div>
+ </div>
+ <div class="footer-bottom">
+  <span>&copy; 2026 DS Electrical Installations (SW) Ltd &middot; Reg. in England No. 13972348 &middot; VAT Reg. No. GB 429 0409 05 &middot; ICO 00013889257 &middot; NAPIT 66245 &middot; CHAS 158368</span>
+  <span><a href="/privacy.html">Privacy</a> &middot; <a href="/terms.html">Terms</a></span>
+ </div>
+</footer>
+
+<a href="https://wa.me/447889334849" class="wa" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.611.611l4.458-1.495A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.344 0-4.508-.8-6.227-2.141l-.435-.344-3.208 1.076 1.076-3.208-.344-.435A9.956 9.956 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg></a>
+
+<div class="mcb" aria-label="Quick contact">
+ <div class="mcb-grid">
+  <a href="tel:07889334849" class="mcb-call" aria-label="Call 07889 334849">
+   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.1-.04-.21-.05-.31-.05-.26 0-.51.1-.71.29l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.58l2.2-2.21c.28-.27.36-.66.25-1.01C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/></svg>
+   <span>Call Dan</span><small>07889 334849</small>
+  </a>
+  <a href="https://wa.me/447889334849" class="mcb-wa" aria-label="WhatsApp">
+   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.611.611l4.458-1.495A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+   <span>WhatsApp</span>
+  </a>
+  <a href="mailto:info@dselectricalsw.co.uk" class="mcb-mail" aria-label="Email">
+   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+   <span>Email</span>
+  </a>
+ </div>
+</div>
+
+<a href="tel:07889334849" class="dq-btn" aria-label="Call Dan for a quote">
+ <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.1-.04-.21-.05-.31-.05-.26 0-.51.1-.71.29l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.58l2.2-2.21c.28-.27.36-.66.25-1.01C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/></svg>
+ Call Dan &mdash; 07889 334849
+</a>
+
+<script src="/track.js" defer></script>
+<script src="/chat-widget.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0f172a">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<style id="shared-inline">
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+ --dark:#0a0908;--dark2:#131110;--dark3:#1c1915;
+ --light:#f8f5f0;--light2:#eee9e0;--light3:#e2dbd0;
+ --brass:#b8944f;--gold:#d4a44a;
+ --text-dark:#1a1714;--text-muted:#6b6560;
+ --text-light:#f0e8da;--text-light-muted:#8c7d6a;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',sans-serif;background:var(--light);color:var(--text-dark);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none;transition:.2s}
+img{display:block;max-width:100%}
+
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1.5rem,5vw,4rem);background:rgba(10,9,8,.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.04)}
+.nav-logo img{height:70px;width:auto}
+.nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+.nav-links a{font-size:.78rem;font-weight:600;color:rgba(240,232,218,.6);letter-spacing:.08em;text-transform:uppercase}
+.nav-links a:hover{color:#fff}
+.nav-links a.active{color:var(--gold)}
+.nav-cta{background:var(--gold);color:var(--dark);padding:.5rem 1.3rem;border-radius:6px;font-weight:700;font-size:.78rem}
+.nav-cta:hover{background:var(--brass)}
+.nav-menu{display:none;background:none;border:none;color:#fff;font-size:1.5rem;cursor:pointer}
+
+.section-tag{font-size:.65rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--brass);margin-bottom:1rem}
+.section-heading{font-size:clamp(2.2rem,4.5vw,3.5rem);font-weight:900;line-height:1.05;letter-spacing:-.02em;margin-bottom:.75rem}
+.section-desc{color:var(--text-muted);font-size:1.05rem;line-height:1.7;max-width:600px;margin-bottom:2rem}
+.btn{padding:.8rem 2rem;border-radius:6px;font-weight:700;font-size:.85rem;letter-spacing:.02em;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:.5rem;transition:.25s}
+.btn-gold{background:var(--gold);color:var(--dark)}
+.btn-gold:hover{background:var(--brass);transform:translateY(-2px);box-shadow:0 8px 30px rgba(212,164,74,.3)}
+.btn-white{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.12)}
+.btn-white:hover{background:rgba(255,255,255,.14)}
+
+.breadcrumb{background:var(--light);padding:1rem clamp(1.5rem,5vw,4rem);font-size:.78rem;border-bottom:1px solid var(--light3)}
+.breadcrumb-inner{max-width:1200px;margin:0 auto;display:flex;gap:.5rem;align-items:center;color:var(--text-muted);font-weight:500}
+.breadcrumb-inner a{color:var(--text-muted);text-decoration:none;transition:.2s}
+.breadcrumb-inner a:hover{color:var(--brass)}
+.breadcrumb-inner .sep{color:var(--light3)}
+.breadcrumb-inner .current{color:var(--text-dark);font-weight:700}
+
+.cta{background:var(--dark);padding:clamp(5rem,10vw,8rem) clamp(1.5rem,5vw,4rem);text-align:center}
+.cta .section-heading{color:#fff}
+.cta .section-desc{color:rgba(240,232,218,.5);margin:0 auto 1.5rem;text-align:center}
+.cta-phone-label{font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(240,232,218,.4);display:block;margin-bottom:.6rem}
+.cta-phone{font-family:'JetBrains Mono',monospace;font-size:clamp(1.4rem,3vw,2.2rem);font-weight:700;color:rgba(240,232,218,.5);display:block;margin-bottom:.2rem}
+.cta-phone:hover{color:var(--gold)}
+.cta-phone-2{font-family:'JetBrains Mono',monospace;font-size:clamp(1.4rem,3vw,2.2rem);color:rgba(240,232,218,.35);display:block;margin-bottom:2rem}
+.cta-phone-2:hover{color:var(--gold)}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+
+.footer{background:var(--dark);padding:3rem clamp(1.5rem,5vw,4rem) 1.5rem;border-top:1px solid rgba(255,255,255,.04)}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+.footer h3, .footer h4{font-size:.68rem;text-transform:uppercase;letter-spacing:.2em;color:var(--gold);margin-bottom:1rem;font-weight:700}
+.footer p,.footer a{font-size:.8rem;color:rgba(240,232,218,.4);line-height:2}
+.footer a:hover{color:var(--gold)}
+.footer-bottom{padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.03);display:flex;justify-content:space-between;font-size:.65rem;color:rgba(255,255,255,.2)}
+
+.wa{position:fixed;bottom:1.5rem;left:1.5rem;width:56px;height:56px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:99;box-shadow:0 4px 24px rgba(37,211,102,.3);transition:.2s}
+.wa:hover{transform:scale(1.1)}
+.wa svg{width:28px;height:28px;fill:#fff}
+
+.mcb{display:none;position:fixed;bottom:0;left:0;right:0;z-index:98;background:#0a0908;border-top:1px solid rgba(212,164,74,.3);padding:.6rem .6rem calc(.6rem + env(safe-area-inset-bottom));box-shadow:0 -6px 24px rgba(0,0,0,.4)}
+.mcb-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:.5rem}
+.mcb a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.15rem;padding:.6rem .4rem;border-radius:8px;font-family:'Outfit',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.04em;text-decoration:none;transition:.2s}
+.mcb a svg{width:18px;height:18px}
+.mcb .mcb-call{background:#d4a44a;color:#0a0908}
+.mcb .mcb-call:hover{background:#b8944f}
+.mcb .mcb-wa{background:#25d366;color:#fff}
+.mcb .mcb-mail{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.14)}
+.mcb small{font-size:.62rem;font-weight:500;opacity:.75;letter-spacing:.02em;text-transform:none}
+
+.dq-btn{position:fixed;right:1.25rem;bottom:1.25rem;z-index:99;display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 1.35rem;background:#d4a44a;color:#0a0908;border-radius:100px;font-family:'Outfit',sans-serif;font-weight:800;font-size:.8rem;letter-spacing:.04em;text-decoration:none;box-shadow:0 8px 32px rgba(212,164,74,.4);transition:.25s}
+.dq-btn:hover{background:#b8944f;transform:translateY(-2px);box-shadow:0 12px 40px rgba(212,164,74,.5)}
+.dq-btn svg{width:16px;height:16px}
+
+.related-svc{background:var(--dark);padding:clamp(4rem,7vw,5rem) clamp(1.5rem,5vw,4rem);color:#fff}
+.related-svc-inner{max-width:1200px;margin:0 auto}
+.related-svc .section-tag{color:#d4a44a}
+.related-svc h2{font-size:clamp(1.8rem,3.2vw,2.6rem);font-weight:900;line-height:1.1;color:#fff;margin-bottom:2.5rem;letter-spacing:-.02em}
+.related-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.related-card{display:block;padding:1.5rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:12px;text-decoration:none;transition:.25s}
+.related-card:hover{background:rgba(212,164,74,.08);border-color:rgba(212,164,74,.3);transform:translateY(-3px)}
+.related-card h3{font-size:.95rem;font-weight:800;color:#fff;margin-bottom:.4rem}
+.related-card p{font-size:.78rem;color:rgba(240,232,218,.5);line-height:1.5}
+.related-card .arrow{display:inline-block;margin-top:.8rem;color:#d4a44a;font-size:.8rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
+
+@media(max-width:1024px){.related-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:900px){.related-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:768px){
+ .nav-links{display:none;position:fixed;top:72px;left:0;right:0;background:rgba(10,9,8,.98);backdrop-filter:blur(20px);flex-direction:column;padding:2rem;gap:1.5rem;border-bottom:1px solid rgba(255,255,255,.06)}
+ .nav-links.open{display:flex}
+ .nav-menu{display:block}
+ .mcb{display:block}
+ body{padding-bottom:72px}
+ .wa{bottom:6rem !important}
+ .dq-btn{display:none}
+ .footer-grid{grid-template-columns:1fr 1fr}
+ .related-grid{grid-template-columns:1fr}
+}
+@media(max-width:480px){.footer-grid{grid-template-columns:1fr}}
+</style>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<title>Sustainability | Net Zero &amp; ESG | DS Electrical SW Somerset</title>
+<meta name="description" content="DS Electrical sustainability commitments: local Somerset coverage, recycling, WEEE-compliant disposal, LED retrofits and EV charging. Honest disclosures, no greenwash. Call 07889 334849.">
+<link rel="canonical" href="https://www.dselectricalsw.co.uk/sustainability.html">
+<link rel="alternate" hreflang="en-GB" href="https://www.dselectricalsw.co.uk/sustainability.html">
+<link rel="alternate" hreflang="x-default" href="https://www.dselectricalsw.co.uk/sustainability.html">
+<meta property="og:title" content="Sustainability &mdash; Net Zero &amp; ESG | DS Electrical SW">
+<meta property="og:description" content="How DS Electrical is reducing environmental impact and giving back to Somerset. Honest disclosures, real timelines, no greenwashing.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.dselectricalsw.co.uk/sustainability.html">
+<meta property="og:image" content="https://www.dselectricalsw.co.uk/photos/accreditations-og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="DS Electrical sustainability and ESG commitments">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sustainability &mdash; Net Zero &amp; ESG | DS Electrical SW">
+<meta name="twitter:description" content="How DS Electrical is reducing environmental impact and giving back to Somerset. Honest disclosures, no greenwashing.">
+<meta name="twitter:image" content="https://www.dselectricalsw.co.uk/photos/accreditations-og.jpg">
+<meta property="og:locale" content="en_GB">
+<meta name="robots" content="index, follow">
+<link rel="manifest" href="/manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap"></noscript>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "WebPage",
+ "@id": "https://www.dselectricalsw.co.uk/sustainability.html#webpage",
+ "url": "https://www.dselectricalsw.co.uk/sustainability.html",
+ "name": "Sustainability | Net Zero & ESG | DS Electrical SW Somerset",
+ "description": "DS Electrical sustainability and ESG commitments: local Somerset coverage, recycling and WEEE disposal, LED retrofits, EV charging install. Honest disclosures, no greenwashing.",
+ "inLanguage": "en-GB",
+ "isPartOf": {"@type": "WebSite", "url": "https://www.dselectricalsw.co.uk/", "name": "DS Electrical Installations (SW) Ltd"},
+ "about": {"@type": "Thing", "name": "Sustainability and ESG"},
+ "publisher": {"@type": "Organization", "name": "DS Electrical Installations (SW) Ltd"}
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement": [
+  {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.dselectricalsw.co.uk/"},
+  {"@type": "ListItem", "position": 2, "name": "About", "item": "https://www.dselectricalsw.co.uk/about.html"},
+  {"@type": "ListItem", "position": 3, "name": "Sustainability", "item": "https://www.dselectricalsw.co.uk/sustainability.html"}
+ ]
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "Organization",
+ "@id": "https://www.dselectricalsw.co.uk/#organization",
+ "name": "DS Electrical Installations (SW) Ltd",
+ "url": "https://www.dselectricalsw.co.uk/",
+ "logo": "https://www.dselectricalsw.co.uk/logo-full.png",
+ "telephone": "+447889334849",
+ "email": "info@dselectricalsw.co.uk",
+ "vatID": "GB429040905",
+ "address": {"@type":"PostalAddress","addressLocality":"Glastonbury","addressRegion":"Somerset","postalCode":"BA6","addressCountry":"GB"}
+}
+</script>
+<style>
+.hero{background:var(--dark);padding:clamp(7rem,9vw,9rem) clamp(1.5rem,5vw,4rem) clamp(4rem,6vw,5rem);text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(212,164,74,.08),transparent 60%);pointer-events:none}
+.hero-inner{max-width:900px;margin:0 auto;position:relative;z-index:1}
+.hero-tag{font-size:.65rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:2rem}
+.hero h1{font-size:clamp(2.5rem,6vw,5rem);font-weight:900;line-height:1;color:#fff;letter-spacing:-.03em;margin-bottom:1.5rem}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero-desc{font-size:1.15rem;color:rgba(240,232,218,.6);line-height:1.7;max-width:680px;margin:0 auto 2rem}
+
+.tstrip{background:var(--dark);padding:2.5rem clamp(1.5rem,5vw,4rem);border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06)}
+.tstrip-inner{max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:2.5rem}
+.tstrip-item{display:flex;flex-direction:column;align-items:center;gap:.4rem;text-align:center;min-width:110px}
+.tstrip-item img{height:46px;width:auto;filter:grayscale(.2) contrast(1.1)}
+.tstrip-item span{font-size:.68rem;color:rgba(240,232,218,.6);text-transform:uppercase;letter-spacing:.1em;font-weight:600}
+
+.intro{padding:clamp(4rem,7vw,5rem) clamp(1.5rem,5vw,4rem);background:var(--light)}
+.intro-inner{max-width:780px;margin:0 auto;text-align:center}
+.intro p{font-size:1.05rem;color:var(--text-muted);line-height:1.8;margin-bottom:1rem}
+.intro p strong{color:var(--text-dark)}
+
+.sus-section{padding:clamp(3rem,5vw,4rem) clamp(1.5rem,5vw,4rem);background:var(--light)}
+.sus-section.alt{background:var(--light2)}
+.sus-section.dark{background:var(--dark);color:#fff}
+.sus-inner{max-width:1100px;margin:0 auto}
+.sus-tag{font-size:.65rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--brass);margin-bottom:.6rem}
+.sus-section.dark .sus-tag{color:var(--gold)}
+.sus-h2{font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:900;line-height:1.05;letter-spacing:-.02em;margin-bottom:1.2rem;color:var(--text-dark)}
+.sus-section.dark .sus-h2{color:#fff}
+.sus-lede{font-size:1.05rem;color:var(--text-muted);line-height:1.75;max-width:780px;margin-bottom:2rem}
+.sus-section.dark .sus-lede{color:rgba(240,232,218,.65)}
+
+.sus-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.sus-card{background:#fff;border:1px solid var(--light3);border-radius:12px;padding:1.6rem}
+.sus-section.alt .sus-card{background:var(--light)}
+.sus-card h3{font-size:1.05rem;font-weight:800;color:var(--text-dark);margin-bottom:.6rem;letter-spacing:-.01em}
+.sus-card p{font-size:.92rem;color:var(--text-muted);line-height:1.65}
+.sus-card p strong{color:var(--text-dark)}
+.sus-card .badge{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.25rem .55rem;border-radius:4px;margin-bottom:.7rem}
+.sus-card .badge.now{background:rgba(34,139,90,.12);color:#2a7d52}
+.sus-card .badge.plan{background:rgba(212,164,74,.15);color:var(--brass)}
+.sus-card .badge.no{background:rgba(180,40,40,.1);color:#a8322f}
+
+.sus-section.dark .sus-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06)}
+.sus-section.dark .sus-card h3{color:#fff}
+.sus-section.dark .sus-card p{color:rgba(240,232,218,.65)}
+.sus-section.dark .sus-card p strong{color:#fff}
+
+.sus-list{list-style:none;margin:0;padding:0}
+.sus-list li{font-size:1rem;color:var(--text-muted);line-height:1.7;padding-left:1.6rem;position:relative;margin-bottom:.85rem}
+.sus-list li::before{content:'';position:absolute;left:0;top:.55rem;width:8px;height:8px;background:var(--gold);border-radius:2px}
+.sus-list li strong{color:var(--text-dark);font-weight:700}
+.sus-section.dark .sus-list li{color:rgba(240,232,218,.7)}
+.sus-section.dark .sus-list li strong{color:#fff}
+
+.honest-block{background:rgba(212,164,74,.08);border-left:4px solid var(--gold);padding:1.5rem 1.75rem;border-radius:0 8px 8px 0;margin-top:1.5rem}
+.honest-block p{font-size:.98rem;color:var(--text-dark);line-height:1.7;margin-bottom:.6rem}
+.honest-block p:last-child{margin-bottom:0}
+.honest-block strong{color:var(--brass)}
+
+@media(max-width:900px){.sus-cards{grid-template-columns:1fr}}
+</style>
+<script src="/analytics.js" defer></script>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+ <a href="/" class="nav-logo"><img src="logo-full.png" alt="DS Electrical Installations (SW) Ltd" decoding="async"></a>
+ <ul class="nav-links" id="navLinks">
+  <li><a href="/commercial-electrical.html">Commercial</a></li>
+  <li><a href="/domestic.html">Domestic</a></li>
+  <li><a href="/rewires.html">Rewires</a></li>
+  <li><a href="/eicr.html">EICR</a></li>
+  <li><a href="/ev-chargers.html">EV Chargers</a></li>
+  <li><a href="/cctv.html">CCTV</a></li>
+  <li><a href="/network-infrastructure.html">Network Infrastructure</a></li>
+  <li><a href="/24-hour-callouts.html">24hr Callouts</a></li>
+  <li><a href="/gallery.html">Gallery</a></li>
+  <li><a href="/blog.html">Blog</a></li>
+  <li><a href="/contact.html">Contact</a></li>
+  <li><a href="tel:07889334849" class="nav-cta">07889 334849</a></li>
+ </ul>
+ <button class="nav-menu" onclick="document.getElementById('navLinks').classList.toggle('open')">&#9776;</button>
+</nav>
+
+<nav class="breadcrumb" aria-label="Breadcrumb"><div class="breadcrumb-inner"><a href="/">Home</a><span class="sep">/</span><a href="/about.html">About</a><span class="sep">/</span><span class="current" aria-current="page">Sustainability</span></div></nav>
+
+<!-- HERO -->
+<section class="hero">
+ <div class="hero-inner">
+  <div class="hero-tag">ESG &middot; Net Zero &middot; Community</div>
+  <h1>Our sustainability<br><em>commitments.</em></h1>
+  <p class="hero-desc">How DS Electrical is reducing environmental impact and giving back to Somerset &mdash; with honest disclosures, real timelines, and no greenwashing.</p>
+ </div>
+</section>
+
+<!-- TRUST STRIP — 6 BADGES -->
+<section class="tstrip" aria-label="Accreditations">
+ <div class="tstrip-inner">
+  <a href="/accreditations.html#napit" class="tstrip-item"><img loading="lazy" src="assets/accreditations/napit-official.png" alt="NAPIT 66245"><span>NAPIT 66245</span></a>
+  <a href="/accreditations.html#chas" class="tstrip-item"><img loading="lazy" src="assets/accreditations/chas-official.png" alt="CHAS 158368"><span>CHAS 158368</span></a>
+  <a href="/accreditations.html#city-guilds-2391" class="tstrip-item"><img loading="lazy" src="assets/accreditations/city-guilds-logo.png" alt="City and Guilds 2391"><span>City &amp; Guilds 2391</span></a>
+  <a href="/accreditations.html#trustmark" class="tstrip-item"><img loading="lazy" src="assets/accreditations/trustmark.svg" alt="TrustMark"><span>TrustMark</span></a>
+  <a href="/accreditations.html#part-p" class="tstrip-item"><img loading="lazy" src="assets/accreditations/part-p.svg" alt="Part P"><span>Part P</span></a>
+  <a href="/accreditations.html#bs7671" class="tstrip-item"><img loading="lazy" src="assets/accreditations/bs7671.svg" alt="BS 7671 18th Edition"><span>BS 7671</span></a>
+ </div>
+</section>
+
+<!-- INTRO -->
+<section class="intro">
+ <div class="intro-inner">
+  <div class="section-tag" style="text-align:center">Why this page exists</div>
+  <p>More procurement teams &mdash; councils, housing associations, large commercial clients &mdash; are asking for an ESG declaration before placing work. This page is our honest answer: what we already do, what&rsquo;s in progress, and what we deliberately don&rsquo;t claim.</p>
+  <p><strong>Every statement here is true today.</strong> When something changes, this page changes with it.</p>
+ </div>
+</section>
+
+<!-- SECTION 1 — NET ZERO -->
+<section class="sus-section" id="net-zero">
+ <div class="sus-inner">
+  <div class="sus-tag">01 / Net Zero pathway</div>
+  <h2 class="sus-h2">Reducing operational carbon</h2>
+  <p class="sus-lede">A single-engineer business has limits on what it can decarbonise overnight. Here&rsquo;s where we are, and where we&rsquo;re heading.</p>
+  <div class="sus-cards">
+   <div class="sus-card">
+    <span class="badge now">Now</span>
+    <h3>Glastonbury-based, 40-minute radius</h3>
+    <p>We work a strict <strong>40-minute drive radius</strong> from Glastonbury &mdash; Wells, Shepton Mallet, Bath, Frome, Midsomer Norton, Street and surrounding villages. Local jobs cut travel emissions and mean less time in the van for the same revenue.</p>
+   </div>
+   <div class="sus-card">
+    <span class="badge plan">Transition planned</span>
+    <h3>Vehicle: diesel today, EV by 2027</h3>
+    <p>Honest disclosure: our current works van is <strong>diesel</strong>. We&rsquo;re tracking the electric panel-van market (Vauxhall Vivaro-e, Ford E-Transit Custom, VW ID. Buzz Cargo) and plan to transition by 2027 when range, payload and second-hand availability all line up. We don&rsquo;t pretend to be EV-fleet today.</p>
+   </div>
+   <div class="sus-card">
+    <span class="badge plan">In progress</span>
+    <h3>Tools and battery charging</h3>
+    <p>Cordless tool batteries currently charge from the mains at the workshop. <strong>We don&rsquo;t have our own solar PV yet</strong> &mdash; a future home install is on the roadmap. We don&rsquo;t claim solar charging we haven&rsquo;t got.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- SECTION 2 — MATERIALS & WASTE -->
+<section class="sus-section alt" id="waste">
+ <div class="sus-inner">
+  <div class="sus-tag">02 / Materials &amp; waste</div>
+  <h2 class="sus-h2">Where the waste actually goes</h2>
+  <p class="sus-lede">Every job produces packaging, offcuts and stripped-out kit. None of it ends up fly-tipped &mdash; here&rsquo;s the route for each waste stream.</p>
+  <ul class="sus-list">
+   <li><strong>Cardboard &amp; packaging</strong> &mdash; collected on site and taken back to the recycling centre at end of week. Manufacturer boxes are bulky; we don&rsquo;t bin them.</li>
+   <li><strong>Cable offcuts &mdash; copper recycled.</strong> Twin-and-earth, SWA tails and singles offcuts are stripped and dropped at a local Somerset scrap merchant. Copper is a high-value recyclable; landfilling it is daft.</li>
+   <li><strong>Old consumer units, MCBs, RCDs, isolators</strong> &mdash; taken to <strong>Mendip Skip Hire</strong> as WEEE-categorised electrical waste so it&rsquo;s processed under the Waste Electrical and Electronic Equipment Regulations.</li>
+   <li><strong>Old fluorescent tubes and CFLs</strong> &mdash; these contain mercury and cannot go in general waste. Disposed at <strong>Mendip Hazardous Waste</strong> (or equivalent licensed facility) where they&rsquo;re processed under hazardous-waste rules.</li>
+   <li><strong>Asbestos</strong> &mdash; if we encounter suspected asbestos-containing material (older bakelite fittings, asbestos-bound textiles around old wiring, AIB ceilings) work stops immediately. The area is isolated, the customer is told, and an <strong>HSE-licensed asbestos contractor</strong> handles removal. We don&rsquo;t disturb it ourselves.</li>
+   <li><strong>Lithium-ion batteries</strong> (cordless tool packs at end of life) &mdash; returned to the manufacturer take-back scheme or dropped at a household recycling centre lithium battery point, never binned.</li>
+  </ul>
+ </div>
+</section>
+
+<!-- SECTION 3 — ENERGY EFFICIENCY -->
+<section class="sus-section" id="energy">
+ <div class="sus-inner">
+  <div class="sus-tag">03 / Energy efficiency built in</div>
+  <h2 class="sus-h2">What we recommend on every job</h2>
+  <p class="sus-lede">The biggest carbon impact a sparky has isn&rsquo;t the van &mdash; it&rsquo;s what we leave behind in the building. Every report and every quote includes efficiency advice where it&rsquo;s relevant.</p>
+  <div class="sus-cards">
+   <div class="sus-card">
+    <span class="badge now">Standard practice</span>
+    <h3>LED retrofit on every EICR</h3>
+    <p>Where halogen, fluorescent or older filament lamps are still in use, we flag them on the report with a typical <strong>60&ndash;80% lighting energy reduction</strong> from a full LED retrofit. We&rsquo;ll quote the swap if the customer wants it.</p>
+   </div>
+   <div class="sus-card">
+    <span class="badge now">We install</span>
+    <h3>Smart heating &mdash; Hive &amp; Nest</h3>
+    <p>We fit and commission <strong>Hive</strong> and <strong>Nest</strong> smart thermostats. Programmable, learning schedules and zone control typically cut wasted heat in older properties. We don&rsquo;t install heating brands outside that scope.</p>
+   </div>
+   <div class="sus-card">
+    <span class="badge now">We install</span>
+    <h3>EV charging &mdash; Type A RCBO</h3>
+    <p>Domestic EV chargers (7&nbsp;kW) installed to BS 7671 Section 722, always with a <strong>Type A RCBO</strong> for DC fault protection. Supports the household&rsquo;s decarbonisation if they&rsquo;ve gone EV.</p>
+   </div>
+   <div class="sus-card" style="grid-column:1 / -1">
+    <span class="badge no">We don&rsquo;t do this</span>
+    <h3>Solar PV &amp; battery storage &mdash; specialist referral</h3>
+    <p>We <strong>do not install</strong> solar PV, battery storage, or hybrid inverters. It&rsquo;s a specialist trade with its own MCS scheme requirements, and we won&rsquo;t pretend otherwise. If you ask, we&rsquo;ll point you to a Somerset specialist installer rather than take work we&rsquo;re not certified for.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- SECTION 4 — COMMUNITY -->
+<section class="sus-section alt" id="community">
+ <div class="sus-inner">
+  <div class="sus-tag">04 / Community &amp; local economy</div>
+  <h2 class="sus-h2">Money that stays in Somerset</h2>
+  <p class="sus-lede">Procurement spend has a multiplier effect &mdash; pound-for-pound, money paid to a regional supplier is more likely to stay in the local economy than money paid to a national chain.</p>
+  <ul class="sus-list">
+   <li><strong>Regional wholesaler preference</strong> &mdash; cable, accessories and consumer-unit components bought from local Somerset/South West wholesale branches where price and quality are similar to a national chain. The branch staff know us by name; we know them.</li>
+   <li><strong>Charity callouts</strong> &mdash; we offer one or two <strong>free EICRs per year for registered Somerset charities</strong> (capacity-dependent). Get in touch if you&rsquo;re a small local charity needing a five-yearly inspection.</li>
+   <li><strong>Apprentice mentorship &mdash; not currently.</strong> DS Electrical is a single-engineer business and we&rsquo;re not actively hiring or taking on apprentices in 2026. When that changes we&rsquo;ll update this page; we won&rsquo;t pretend to run a training pipeline we don&rsquo;t.</li>
+  </ul>
+ </div>
+</section>
+
+<!-- SECTION 5 — STANDARDS -->
+<section class="sus-section" id="standards">
+ <div class="sus-inner">
+  <div class="sus-tag">05 / Standards we work to</div>
+  <h2 class="sus-h2">The rulebooks behind the work</h2>
+  <p class="sus-lede">Sustainability without safety is theatre. Here are the published standards every DS Electrical job is signed off against.</p>
+  <ul class="sus-list">
+   <li><strong>BS 7671:2018 + Amendment 2:2022</strong> &mdash; the current IET Wiring Regulations (18th Edition Amd 2). Every certificate references the current clause numbering.</li>
+   <li><strong>Type A RCBO &mdash; mandatory on EV chargers.</strong> BS 7671 Section 722 requires DC fault protection on EV charging points; we always specify Type A. Never Type B for residential 7&nbsp;kW installs.</li>
+   <li><strong>Part P notification via NAPIT 66245.</strong> Notifiable domestic work in kitchens, bathrooms, outdoors and on new circuits is registered with Building Control through our Competent Person Scheme and the homeowner gets a Building Regulations Compliance Certificate within 30 days.</li>
+   <li><strong>CHAS 158368</strong> &mdash; SSIP-recognised health &amp; safety pre-qualification, audited annually. Required by most housing-association, local-authority and commercial procurement frameworks.</li>
+   <li><strong>WEEE Regulations 2013</strong> &mdash; followed for all stripped-out electrical waste; we use licensed processing facilities.</li>
+  </ul>
+ </div>
+</section>
+
+<!-- SECTION 6 — HONEST DISCLOSURES -->
+<section class="sus-section dark" id="honest">
+ <div class="sus-inner">
+  <div class="sus-tag">06 / Honest disclosures</div>
+  <h2 class="sus-h2">What we&rsquo;re not</h2>
+  <p class="sus-lede">A lot of trade websites have a green leaf in a footer and a sentence about &ldquo;working sustainably&rdquo;. Here&rsquo;s the unglossy version.</p>
+  <div class="sus-cards">
+   <div class="sus-card">
+    <h3>We&rsquo;re not perfect</h3>
+    <p>Diesel works van. No solar on the workshop. Single-engineer business. We&rsquo;re a local sparky, not a corporate ESG department.</p>
+   </div>
+   <div class="sus-card">
+    <h3>We don&rsquo;t greenwash</h3>
+    <p>If a claim isn&rsquo;t true today &mdash; EV van, solar charging, apprentice scheme &mdash; it doesn&rsquo;t go on this page. The changes we&rsquo;re committing to have <strong>real timelines</strong> attached.</p>
+   </div>
+   <div class="sus-card">
+    <h3>Customer benefit</h3>
+    <p>You get an honest sparky, with honest claims, honest costs, and honest paperwork. That&rsquo;s the version of sustainability that holds up under procurement scrutiny.</p>
+   </div>
+  </div>
+  <div class="honest-block" style="margin-top:2rem;background:rgba(212,164,74,.05);border-left-color:var(--gold)">
+   <p style="color:rgba(240,232,218,.85)"><strong style="color:var(--gold)">Procurement teams:</strong> if you need this page formatted as a PDF ESG declaration for a tender pre-qualification, email <a href="mailto:info@dselectricalsw.co.uk" style="color:var(--gold);text-decoration:underline">info@dselectricalsw.co.uk</a> and we&rsquo;ll send a current copy on company letterhead.</p>
+  </div>
+ </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="contact">
+ <div class="section-tag" style="color:var(--gold)">Get a quote</div>
+ <h2 class="section-heading">Honest sparky.<br>Honest paperwork.</h2>
+ <p class="section-desc">Local Somerset coverage, six independent accreditations, and a sustainability page that tells you what we don&rsquo;t do as well as what we do.</p>
+ <span class="cta-phone-label">Direct</span>
+ <a href="tel:07889334849" class="cta-phone">Dan Stevens, Director: 07889 334849</a>
+ <a href="tel:07983106928" class="cta-phone-2">Dan Street, Director: 07983 106928</a>
+ <div class="cta-btns">
+  <a href="/quote/" class="btn btn-gold">Get a Quote</a>
+  <a href="https://wa.me/447889334849" class="btn btn-white">WhatsApp</a>
+ </div>
+</section>
+
+<!-- RELATED -->
+<section class="related-svc" aria-label="Related pages">
+ <div class="related-svc-inner">
+  <div class="section-tag" style="font-size:.65rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;margin-bottom:1rem">Related</div>
+  <h2>Read more about us&hellip;</h2>
+  <div class="related-grid">
+   <a href="/accreditations.html" class="related-card">
+    <h3>Accreditations</h3>
+    <p>Six verifiable credentials, real numbers</p>
+    <span class="arrow">Explore &rarr;</span>
+   </a>
+   <a href="/about.html" class="related-card">
+    <h3>About DS Electrical</h3>
+    <p>Who we are and how we work</p>
+    <span class="arrow">Explore &rarr;</span>
+   </a>
+   <a href="/ev-chargers.html" class="related-card">
+    <h3>EV Chargers</h3>
+    <p>Type A RCBO, BS 7671 Section 722</p>
+    <span class="arrow">Explore &rarr;</span>
+   </a>
+   <a href="/contact.html" class="related-card">
+    <h3>Contact</h3>
+    <p>Phone, email, WhatsApp</p>
+    <span class="arrow">Explore &rarr;</span>
+   </a>
+  </div>
+ </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+ <div class="footer-grid">
+  <div>
+   <h3>DS Electrical Installations (SW) Ltd</h3>
+   <p>Glastonbury, Somerset</p>
+   <p><a href="tel:07889334849">07889 334849 (Dan Stevens)</a></p>
+   <p><a href="tel:07983106928">07983 106928 (Dan Street)</a></p>
+   <p><a href="mailto:info@dselectricalsw.co.uk">info@dselectricalsw.co.uk</a></p>
+  </div>
+  <div>
+   <h3>Services</h3>
+   <p><a href="/eicr.html">Rewires &amp; EICR</a></p>
+   <p><a href="/ev-chargers.html">EV Chargers</a></p>
+   <p><a href="/cctv.html">CCTV &amp; Security</a></p>
+   <p><a href="/commercial-electrical.html">Commercial</a></p>
+   <p><a href="/fuse-board.html">Fuse Board</a></p>
+   <p><a href="/fire-alarms.html">Fire Alarms</a></p>
+   <p><a href="/emergency-lighting.html">Emergency Lighting</a></p>
+  </div>
+  <div>
+   <h3>Areas</h3>
+   <p>Wells</p><p>Shepton Mallet</p><p>Bath</p><p>Frome</p><p>Midsomer Norton</p><p>Street</p>
+  </div>
+  <div>
+   <h3>Trust</h3>
+   <p><a href="/accreditations.html">Accreditations</a></p>
+   <p><a href="/sustainability.html">Sustainability</a></p>
+   <p><a href="/why-napit.html">Why NAPIT matters</a></p>
+   <p><a href="/qualifications-explained.html">Qualifications explained</a></p>
+   <p style="margin-top:.5rem">5.0 Google Rating</p>
+  </div>
+ </div>
+ <div class="footer-bottom">
+  <span>&copy; 2026 DS Electrical Installations (SW) Ltd &middot; Reg. in England No. 13972348 &middot; VAT Reg. No. GB 429 0409 05 &middot; ICO 00013889257 &middot; NAPIT 66245 &middot; CHAS 158368</span>
+  <span><a href="/privacy.html">Privacy</a> &middot; <a href="/terms.html">Terms</a></span>
+ </div>
+</footer>
+
+<a href="https://wa.me/447889334849" class="wa" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.611.611l4.458-1.495A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.344 0-4.508-.8-6.227-2.141l-.435-.344-3.208 1.076 1.076-3.208-.344-.435A9.956 9.956 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg></a>
+
+<div class="mcb" aria-label="Quick contact">
+ <div class="mcb-grid">
+  <a href="tel:07889334849" class="mcb-call" aria-label="Call 07889 334849">
+   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.1-.04-.21-.05-.31-.05-.26 0-.51.1-.71.29l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.58l2.2-2.21c.28-.27.36-.66.25-1.01C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/></svg>
+   <span>Call Dan</span><small>07889 334849</small>
+  </a>
+  <a href="https://wa.me/447889334849" class="mcb-wa" aria-label="WhatsApp">
+   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.611.611l4.458-1.495A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+   <span>WhatsApp</span>
+  </a>
+  <a href="mailto:info@dselectricalsw.co.uk" class="mcb-mail" aria-label="Email">
+   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+   <span>Email</span>
+  </a>
+ </div>
+</div>
+
+<a href="/quote/" class="dq-btn" aria-label="Get a quote">
+ <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.1-.04-.21-.05-.31-.05-.26 0-.51.1-.71.29l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.58l2.2-2.21c.28-.27.36-.66.25-1.01C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/></svg>
+ Get a Quote
+</a>
+
+<script src="/track.js" defer></script>
+<script src="/chat-widget.js" defer></script>
+</body>
+</html>

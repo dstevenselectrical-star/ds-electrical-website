@@ -1,0 +1,271 @@
+{
+  "id": "agentos",
+  "name": "AgentOS — AI Business Operating System",
+  "topbarTitle": "AgentOS · Operating System",
+  "version": "v1",
+  "date": "2026-05-03",
+  "tagline": "SaaS for AI agents · the commercial wrapper around ds-agent-ops engine",
+  "eyebrow": "Operating System · the SaaS wrapper",
+  "description": "Commercial SaaS dashboard where customers configure + monitor their own AI agents. Sub-blueprints embedded: 21-route map, plan-limit tier ladder, agent topology stack. ds-agent-ops is the engine; AgentOS is the product UI.",
+  "meta": [
+    ["Stack", "Next.js 16 + Supabase + Stripe"],
+    ["Path", "~/agentos"],
+    ["Port", "3003"],
+    ["Routes", "21 (14 pages + 7 API)"],
+    ["Auth", "Supabase RLS per-user"],
+    ["Theme", "Ultra 2050 dark"]
+  ],
+  "stats": [
+    {"label": "Frames",     "num": "8",     "sub": "Departments",   "gold": true},
+    {"label": "Routes",     "num": "21",    "sub": "14 + 7 API"},
+    {"label": "DB tables",  "num": "12",    "sub": "Supabase"},
+    {"label": "Plans",      "num": "3",     "sub": "Stripe tiers"},
+    {"label": "Phase",      "num": "1→6",   "sub": "Sign to scale"},
+    {"label": "Sub-bprs",   "num": "3",     "sub": "Mini-canvases"}
+  ],
+  "phases": ["Sign up", "Confirm", "Create agent", "Run", "Monitor", "Scale"],
+  "accents": [
+    {"top": 530,  "label": "Phase 1 · Acquisition + Activation"},
+    {"top": 2380, "label": "Phase 2 · Engine + Billing + Infra"}
+  ],
+  "frames": [
+    {
+      "title": "Marketing + Auth", "phase": 1, "top": 570, "left": 60, "width": 780, "height": 1750,
+      "lanes": [
+        {"header": "Public pages", "icon": "i-globe", "color": "b", "count": "Marketing",
+         "cards": [
+           {"title": "/ Landing",          "body": "Hero + features + pricing + testimonials."},
+           {"title": "/login",             "body": "Supabase email/password."},
+           {"title": "/signup",            "body": "Email confirmation flow."}
+         ], "miniAfter": "route-stack"},
+        {"header": "Auth flow", "icon": "i-shield", "color": "b", "count": "Supabase",
+         "cards": [
+           {"title": "SSR cookies",        "body": "Server-side rendered with auth context."},
+           {"title": "Middleware",         "body": "Route-level protection."},
+           {"title": "Email confirm",      "body": "Required before dashboard access."},
+           {"title": "Password reset",     "body": "Magic-link via Supabase."}
+         ]},
+        {"header": "Demo mode", "icon": "i-stack", "color": "b", "count": "No-Supabase",
+         "cards": [
+           {"title": "Mock data",          "body": "When Supabase env vars not set."},
+           {"title": "Same UI",            "body": "Demo behaves identically · for screenshots."},
+           {"title": "Easy clone",         "body": "Fork + run · no backend needed for review."}
+         ]}
+      ],
+      "minis": [
+        {"id": "route-stack", "type": "stack", "icon": "i-stack", "title": "21 routes · 14 pages + 7 API", "rows": [
+          {"label": "Landing · Login · Signup",            "layer": "public"},
+          {"label": "Dashboard · Agents · Map · Projects", "layer": "app"},
+          {"label": "Tasks · Billing · Settings",          "layer": "app"},
+          {"label": "/api/agents · projects · tasks",      "layer": "API"},
+          {"label": "/api/stripe/checkout · webhook",      "layer": "billing"}
+        ]}
+      ]
+    },
+    {
+      "title": "Dashboard · Customer-facing", "phase": 1, "top": 570, "left": 890, "width": 780, "height": 1750,
+      "lanes": [
+        {"header": "Top-level views", "icon": "i-stack", "count": "11 pages",
+         "cards": [
+           {"title": "/dashboard",         "body": "Stats · pipeline · projects · activity feed."},
+           {"title": "/agents",            "body": "Agent list + search + create modal."},
+           {"title": "/agents/[id]",       "body": "Agent detail + Run Now button."},
+           {"title": "/agents/map",        "body": "React Flow interactive topology."},
+           {"title": "/projects",          "body": "Project grid + create modal."},
+           {"title": "/tasks",             "body": "Task list with priority/status filters."},
+           {"title": "/billing",           "body": "Stripe plan comparison + upgrade."},
+           {"title": "/settings",          "body": "Profile · notifications · API keys · security."}
+         ]},
+        {"header": "Modals", "icon": "i-doc", "count": "Create flows",
+         "cards": [
+           {"title": "CreateAgentModal",   "body": "Form · plan-limit-aware."},
+           {"title": "CreateProjectModal", "body": "With colour picker."},
+           {"title": "Plan upgrade",       "body": "When limit hit · Stripe checkout."}
+         ]},
+        {"header": "Hooks", "icon": "i-link", "count": "use-data.ts",
+         "cards": [
+           {"title": "useAgents",          "body": "Supabase + mock fallback."},
+           {"title": "useProjects",        "body": "Same pattern."},
+           {"title": "useTasks",           "body": "Same pattern."},
+           {"title": "useDashboardStats",  "body": "Aggregated counters."}
+         ]}
+      ]
+    },
+    {
+      "title": "Engine · ds-agent-ops", "phase": 2, "top": 570, "left": 1720, "width": 780, "height": 1750,
+      "lanes": [
+        {"header": "Engine architecture", "icon": "i-bolt", "color": "g", "count": "24/7",
+         "cards": [
+           {"title": "ds-agent-ops",       "body": "Engine that runs agents · separate process."},
+           {"title": "launchd cron",       "body": "Triggers agent runs on schedule."},
+           {"title": "AgentOS = wrapper",  "body": "Customer-facing UI · NOT the engine."}
+         ]},
+        {"header": "Agent topology", "icon": "i-link", "color": "g", "count": "React Flow",
+         "cards": [
+           {"title": "@xyflow/react v12",  "body": "Interactive node-edge canvas."},
+           {"title": "Node = agent",       "body": "Customer's configured agents."},
+           {"title": "Edge = trigger",     "body": "Agent A output → Agent B input."},
+           {"title": "Live status",        "body": "Running · idle · errored · scheduled."}
+         ]},
+        {"header": "Run lifecycle", "icon": "i-clock", "color": "g", "count": "Triggered",
+         "cards": [
+           {"title": "Trigger",            "body": "Manual /run button OR cron."},
+           {"title": "Execute",            "body": "Engine pulls config · runs agent."},
+           {"title": "Persist run",        "body": "Status + output → Supabase."},
+           {"title": "Limit check",        "body": "Daily-run cap per plan."}
+         ]},
+        {"header": "Plan limits", "icon": "i-shield", "color": "g", "count": "Enforced",
+         "cards": [
+           {"title": "Agents cap",         "body": "Free: 3 · Pro: 25 · Biz: ∞"},
+           {"title": "Projects cap",       "body": "Free: 1 · Pro: 10 · Biz: ∞"},
+           {"title": "Runs/day cap",       "body": "Free: 10 · Pro: 200 · Biz: ∞"}
+         ]}
+      ]
+    },
+    {
+      "title": "Billing · Stripe", "phase": 2, "top": 570, "left": 2550, "width": 780, "height": 1750,
+      "lanes": [
+        {"header": "Plans", "icon": "i-pound", "color": "r", "count": "3 tiers",
+         "cards": [
+           {"title": "Free",               "kpi": "£0",     "body": "3 agents · 1 project · 10 runs/d."},
+           {"title": "Pro",                "kpi": "£29/mo", "body": "25 agents · 10 projects · 200 runs/d."},
+           {"title": "Business",           "kpi": "£99/mo", "body": "Unlimited · priority support · API."}
+         ], "miniAfter": "billing-flow"},
+        {"header": "Stripe integration", "icon": "i-pound", "color": "r", "count": "Hosted",
+         "cards": [
+           {"title": "/api/stripe/checkout","body": "POST · creates session · returns URL."},
+           {"title": "/api/stripe/webhook", "body": "Handles subscription events."},
+           {"title": "Customer portal",     "body": "Stripe-hosted billing mgmt."}
+         ]},
+        {"header": "Subscription events", "icon": "i-link", "color": "r", "count": "Webhook",
+         "cards": [
+           {"title": "checkout.completed",  "body": "Provision plan · update Supabase."},
+           {"title": "subscription.updated","body": "Plan change · pro-rate."},
+           {"title": "subscription.cancelled","body": "Downgrade to free at period end."},
+           {"title": "invoice.failed",      "body": "Email + dunning sequence."}
+         ]},
+        {"header": "Plan enforcement", "icon": "i-shield", "color": "r", "count": "Per-action",
+         "cards": [
+           {"title": "plan-limits.ts",      "body": "Single source of truth · agents/projects/runs."},
+           {"title": "API guard",           "body": "Every create/run checks limit first."},
+           {"title": "Upgrade modal",       "body": "When hit · in-line offer + checkout link."}
+         ]}
+      ],
+      "minis": [
+        {"id": "billing-flow", "type": "funnel", "icon": "i-funnel", "title": "Free → paid funnel · indicative", "stages": [
+          {"label": "Sign up",      "pct": "100"},
+          {"label": "Email confirm","pct": "~75"},
+          {"label": "First agent",  "pct": "~55"},
+          {"label": "First run",    "pct": "~40"},
+          {"label": "Hit free cap", "pct": "~12"},
+          {"label": "Upgrade Pro",  "pct": "~6"},
+          {"label": "Upgrade Biz",  "pct": "~1"}
+        ]}
+      ]
+    },
+    {
+      "title": "Database · Supabase", "phase": 2, "top": 2420, "left": 60, "width": 780, "height": 1320,
+      "lanes": [
+        {"header": "Tables (12)", "icon": "i-stack", "count": "PostgreSQL", "cols": 3,
+         "cards": [
+           {"title": "users"},      {"title": "profiles"},   {"title": "plans"},
+           {"title": "subscriptions"},{"title": "agents"},   {"title": "projects"},
+           {"title": "tasks"},      {"title": "agent_runs"}, {"title": "api_keys"},
+           {"title": "notifications"},{"title": "activity_log"},{"title": "billing_events"}
+         ]},
+        {"header": "RLS policies", "icon": "i-shield", "count": "Per-user",
+         "cards": [
+           {"title": "Owner-only read",     "body": "Users only see their own rows."},
+           {"title": "Owner-only write",    "body": "Same · enforced at DB."},
+           {"title": "Service role bypass", "body": "Only used by serverless API routes."}
+         ]},
+        {"header": "Auth integration", "icon": "i-shield", "count": "Supabase Auth",
+         "cards": [
+           {"title": "Email/password",     "body": "Standard flow · email confirm required."},
+           {"title": "OAuth (planned)",    "body": "GitHub · Google · Microsoft."},
+           {"title": "Magic link",         "body": "Password-reset only."}
+         ]}
+      ]
+    },
+    {
+      "title": "Tech Stack · Frontend", "phase": 2, "top": 2420, "left": 890, "width": 780, "height": 1320,
+      "lanes": [
+        {"header": "Framework", "icon": "i-stack", "color": "b", "count": "Next.js 16",
+         "cards": [
+           {"title": "App Router",         "body": "Server components · streaming."},
+           {"title": "Turbopack",          "body": "Faster dev rebuilds."},
+           {"title": "TypeScript",         "body": "Type-safe across UI + API."}
+         ]},
+        {"header": "UI", "icon": "i-palette", "color": "b", "count": "Tailwind 4",
+         "cards": [
+           {"title": "Tailwind 4",         "body": "Utility CSS · no separate sheet."},
+           {"title": "class-variance-auth","body": "Variants per component."},
+           {"title": "lucide-react",       "body": "Icon library."}
+         ]},
+        {"header": "Theme", "icon": "i-palette", "color": "b", "count": "Ultra 2050",
+         "cards": [
+           {"title": "Void #050a0f",       "body": "Page background."},
+           {"title": "Cyan #00d4ff",       "body": "Primary accent."},
+           {"title": "Accent #ff6b2b",     "body": "CTA orange."}
+         ]},
+        {"header": "Topology canvas", "icon": "i-link", "color": "b", "count": "Map",
+         "cards": [
+           {"title": "@xyflow/react v12",  "body": "Interactive node graph."},
+           {"title": "Custom nodes",       "body": "Per-agent-type icon + status pill."},
+           {"title": "Live updates",       "body": "Polled every 5s when tab active."}
+         ]}
+      ]
+    },
+    {
+      "title": "API surface", "phase": 2, "top": 2420, "left": 1720, "width": 780, "height": 1320,
+      "lanes": [
+        {"header": "Agents", "icon": "i-link", "count": "/api/agents",
+         "cards": [
+           {"title": "GET /agents",        "body": "List per-user agents."},
+           {"title": "POST /agents",       "body": "Create · plan limit enforced."},
+           {"title": "GET /agents/[id]",   "body": "Detail · runs · config."},
+           {"title": "PATCH /agents/[id]", "body": "Update config."},
+           {"title": "DELETE /agents/[id]","body": "Cascade runs · keep activity log."},
+           {"title": "POST /agents/[id]/run","body": "Trigger · daily limit enforced."}
+         ]},
+        {"header": "Projects + Tasks", "icon": "i-link", "count": "/api/projects · tasks",
+         "cards": [
+           {"title": "GET /projects",      "body": "List per-user."},
+           {"title": "POST /projects",     "body": "Create · plan limit."},
+           {"title": "PATCH /projects/[id]","body": "Rename · recolour."},
+           {"title": "DELETE /projects/[id]","body": "Cascade agents."},
+           {"title": "GET /tasks",         "body": "List · filter by status."},
+           {"title": "POST /tasks",        "body": "Create."},
+           {"title": "PATCH /tasks/[id]",  "body": "Mark complete · reassign."}
+         ]}
+      ]
+    },
+    {
+      "title": "Roadmap + Open issues", "phase": 2, "top": 2420, "left": 2550, "width": 780, "height": 1320,
+      "lanes": [
+        {"header": "Shipped", "icon": "i-check", "color": "g", "count": "v1",
+         "cards": [
+           {"title": "21 routes",          "body": "All pages + APIs implemented."},
+           {"title": "Demo mode",          "body": "Works without Supabase."},
+           {"title": "Stripe checkout",    "body": "Plan upgrade flow live."},
+           {"title": "Plan limits",        "body": "Enforced at API + UI."},
+           {"title": "Agent topology",     "body": "React Flow interactive map."}
+         ]},
+        {"header": "v2 features", "icon": "i-bolt", "color": "b", "count": "Planned",
+         "cards": [
+           {"title": "OAuth providers",    "body": "GitHub / Google / Microsoft."},
+           {"title": "Webhook receivers",  "body": "External events trigger agents."},
+           {"title": "Slack notifications","body": "Run results to Slack channel."},
+           {"title": "Agent marketplace",  "body": "Pre-built agent templates."},
+           {"title": "Team accounts",      "body": "Multi-user per org · roles."}
+         ]}
+      ]
+    }
+  ],
+  "edges": [
+    {"d": "M 840 700 L 865 700 L 865 700 L 890 700", "arrow": "default"},
+    {"d": "M 1670 1100 L 1695 1100 L 1695 700 L 1720 700", "cls": "gold", "arrow": "gold"},
+    {"d": "M 2500 1500 L 2525 1500 L 2525 700 L 2550 700", "arrow": "default"},
+    {"d": "M 60 2600 L 40 2600 L 40 1100 L 1720 1100", "cls": "dim"}
+  ]
+}

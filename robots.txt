@@ -25,3 +25,5 @@ User-agent: Applebot-Extended
 Disallow: /
 
 Sitemap: https://www.dselectricalsw.co.uk/sitemap.xml
+Sitemap: https://www.dselectricalsw.co.uk/sitemap-images.xml
+Sitemap: https://www.dselectricalsw.co.uk/sitemap-index.xml

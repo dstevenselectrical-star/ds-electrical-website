@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#000">
+<meta name="description" content="DS Electrical Operating System — every department, every system, every rule on one canvas.">
+<title>DS Electrical — Operating System v2</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{height:100%;background:#000;color:#e8e8e8;font-family:-apple-system,BlinkMacSystemFont,'Inter','SF Pro Text','Segoe UI',sans-serif;overflow:hidden;font-size:13px}
+
+  /* Topbar */
+  .topbar{position:fixed;top:0;left:0;right:0;height:54px;background:rgba(8,8,8,.96);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:space-between;padding:0 18px;z-index:100;font-size:12px;color:#bbb}
+  .tb-l{display:flex;align-items:center;gap:14px}
+  .tb-l b{font-weight:700;color:#fff;font-size:13px;letter-spacing:.04em;text-transform:uppercase}
+  .tb-l .div{width:1px;height:18px;background:rgba(255,255,255,.12)}
+  .tb-l .v{font-family:ui-monospace,monospace;color:#7a7a7a;font-size:10.5px;letter-spacing:.06em}
+  .tb-r{display:flex;align-items:center;gap:8px}
+  .tb-btn{padding:6px 12px;border-radius:6px;background:rgba(255,255,255,.05);color:#ccc;border:1px solid rgba(255,255,255,.08);cursor:pointer;font-size:11.5px;font-weight:600;text-decoration:none}
+  .tb-btn:hover{background:rgba(255,255,255,.1);color:#fff}
+  .tb-btn.gold{background:#facc15;color:#000;border-color:#facc15}
+
+  /* Viewport */
+  .viewport{position:fixed;top:54px;left:0;right:0;bottom:0;overflow:auto;background:#0a0a0a;cursor:grab}
+  .viewport:active{cursor:grabbing}
+  .viewport::-webkit-scrollbar{width:10px;height:10px}
+  .viewport::-webkit-scrollbar-track{background:#0a0a0a}
+  .viewport::-webkit-scrollbar-thumb{background:rgba(255,255,255,.10);border-radius:6px}
+  .viewport::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,.18)}
+
+  /* Canvas */
+  .canvas{position:relative;width:5200px;height:3600px;background:
+    radial-gradient(circle at 1px 1px, rgba(255,255,255,.045) 1px, transparent 0);
+    background-size: 24px 24px;
+  }
+
+  /* Edges layer */
+  svg.edges{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1}
+  svg.edges path{fill:none;stroke:rgba(180,180,180,.15);stroke-width:1.2}
+  svg.edges path.gold{stroke:rgba(250,204,21,.55);stroke-width:1.3}
+  svg.edges path.dim{stroke:rgba(180,180,180,.10)}
+  svg.edges marker path{fill:rgba(180,180,180,.45);stroke:none}
+
+  /* HERO */
+  .hero{position:absolute;top:50px;left:60px;width:5080px;display:grid;grid-template-columns:1.4fr 1fr;gap:60px;z-index:5}
+  .hero-l .eyebrow{font-family:ui-monospace,monospace;font-size:11px;font-weight:700;letter-spacing:.36em;color:#facc15;text-transform:uppercase;margin-bottom:16px}
+  .hero-l h1{font-size:62px;font-weight:800;line-height:1.02;letter-spacing:-.022em;color:#fff;margin-bottom:14px}
+  .hero-l h1 .sub{display:block;color:#facc15;font-size:.5em;font-weight:600;letter-spacing:0;margin-top:8px;font-family:ui-monospace,monospace;text-transform:uppercase;letter-spacing:.32em}
+  .hero-l .desc{font-size:15px;color:#aaa;max-width:680px;line-height:1.6;margin-bottom:18px}
+  .hero-l .meta{display:flex;gap:24px;font-family:ui-monospace,monospace;font-size:10.5px;color:#666;letter-spacing:.16em;text-transform:uppercase;flex-wrap:wrap}
+  .hero-l .meta b{color:#fff;font-weight:700;margin-left:6px}
+
+  .hero-r{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:auto auto;gap:14px;align-content:start}
+  .stat{padding:18px 20px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.07);border-radius:8px}
+  .stat .lbl{font-family:ui-monospace,monospace;font-size:9.5px;font-weight:700;letter-spacing:.22em;color:#777;text-transform:uppercase;margin-bottom:8px}
+  .stat .num{font-family:ui-monospace,monospace;font-size:28px;font-weight:700;color:#fff;line-height:1;letter-spacing:-.01em}
+  .stat .num.gold{color:#facc15}
+  .stat .sub{font-size:11px;color:#777;margin-top:4px;letter-spacing:.04em}
+
+  /* Phase strip */
+  .phases{position:absolute;top:430px;left:60px;width:5080px;display:flex;align-items:center;gap:12px;padding:14px 26px;background:rgba(250,204,21,.04);border:1px solid rgba(250,204,21,.18);border-radius:8px;z-index:5}
+  .phases .ph{font-family:ui-monospace,monospace;font-size:11px;font-weight:700;letter-spacing:.18em;color:#facc15;text-transform:uppercase;margin-right:18px}
+  .phases .phase{display:flex;align-items:center;gap:10px;font-size:12px;color:#ccc;font-family:ui-monospace,monospace;letter-spacing:.08em;text-transform:uppercase}
+  .phases .phase .num{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:rgba(250,204,21,.12);color:#facc15;font-weight:700;font-size:11px}
+  .phases .arr{color:#444;font-size:13px}
+
+  /* Frame for each column */
+  .frame{position:absolute;border:1px solid rgba(255,255,255,.10);border-radius:10px;background:rgba(255,255,255,.012);padding:16px 14px 18px;z-index:2}
+  .frame .frame-head{font-family:ui-monospace,monospace;font-size:10px;font-weight:700;letter-spacing:.32em;color:#fff;text-transform:uppercase;text-align:center;padding:8px 14px;border:1px solid rgba(250,204,21,.55);border-radius:5px;background:rgba(250,204,21,.06);position:absolute;top:-15px;left:50%;transform:translateX(-50%);white-space:nowrap}
+  .frame .frame-foot{font-family:ui-monospace,monospace;font-size:9.5px;color:#555;text-align:center;letter-spacing:.16em;text-transform:uppercase;margin-top:8px}
+
+  /* Swim lane inside frame */
+  .lane{margin-bottom:14px}
+  .lane:last-child{margin-bottom:0}
+  .lane-h{font-family:ui-monospace,monospace;font-size:9.5px;font-weight:700;letter-spacing:.22em;color:#888;text-transform:uppercase;margin-bottom:7px;padding-bottom:5px;border-bottom:1px dashed rgba(255,255,255,.08);display:flex;justify-content:space-between;align-items:baseline}
+  .lane-h .ct{color:#444;font-weight:500}
+  .lane-cards{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+  .lane-cards.one{grid-template-columns:1fr}
+  .lane-cards.three{grid-template-columns:1fr 1fr 1fr}
+
+  /* Card — small dense */
+  .c{background:#141414;border:1px solid rgba(255,255,255,.10);border-radius:5px;padding:7px 9px;font-size:11px;line-height:1.36;color:#d0d0d0;transition:border-color .12s ease, transform .12s ease;cursor:default;position:relative;overflow:hidden}
+  .c:hover{border-color:rgba(250,204,21,.55);transform:translateY(-1px);z-index:10}
+  .c .ch{font-size:11.5px;font-weight:700;color:#fff;letter-spacing:-.005em;line-height:1.25;margin-bottom:2px}
+  .c .cb{font-size:10.5px;color:#888;line-height:1.42}
+  .c .pill{display:inline-block;font-family:ui-monospace,monospace;font-size:8.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:1px 5px;border-radius:2px;margin-top:4px;margin-right:3px}
+  .c .pill.gold{background:rgba(250,204,21,.14);color:#facc15}
+  .c .pill.green{background:rgba(125,145,86,.16);color:#a8c47e}
+  .c .pill.red{background:rgba(192,84,66,.16);color:#e08070}
+  .c .pill.blue{background:rgba(120,180,220,.14);color:#9cc4e6}
+  .c .pill.brown{background:rgba(180,140,90,.14);color:#c49a6c}
+  .c.tall{padding:9px 10px}
+  .c.tall .cb{font-size:10.5px}
+
+  /* Sub-blueprint mini-diagrams */
+  .miniblock{position:absolute;background:#0d0d0d;border:1px dashed rgba(250,204,21,.28);border-radius:8px;padding:14px 14px 12px;z-index:3}
+  .miniblock .mh{font-family:ui-monospace,monospace;font-size:10px;font-weight:700;letter-spacing:.22em;color:#facc15;text-transform:uppercase;text-align:center;margin-bottom:12px}
+  /* Funnel */
+  .funnel-stage{height:24px;display:flex;align-items:center;justify-content:center;font-family:ui-monospace,monospace;font-size:9.5px;font-weight:700;letter-spacing:.06em;color:#000;background:rgba(250,204,21,.95);clip-path:polygon(0 0, 100% 0, 92% 100%, 8% 100%);margin-bottom:2px}
+  .funnel-stage.s2{background:rgba(250,204,21,.78);clip-path:polygon(4% 0, 96% 0, 88% 100%, 12% 100%)}
+  .funnel-stage.s3{background:rgba(250,204,21,.62);clip-path:polygon(8% 0, 92% 0, 84% 100%, 16% 100%)}
+  .funnel-stage.s4{background:rgba(250,204,21,.48);clip-path:polygon(12% 0, 88% 0, 80% 100%, 20% 100%)}
+  .funnel-stage.s5{background:rgba(250,204,21,.34);clip-path:polygon(16% 0, 84% 0, 76% 100%, 24% 100%);color:#000}
+  .funnel-stage.s6{background:rgba(250,204,21,.22);clip-path:polygon(20% 0, 80% 0, 72% 100%, 28% 100%);color:#000}
+  .funnel-stage.s7{background:rgba(250,204,21,.14);clip-path:polygon(24% 0, 76% 0, 68% 100%, 32% 100%);color:#000}
+  /* Retention loop */
+  .loop{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+  .loop-node{padding:6px 7px;background:#1a1a1a;border:1px solid rgba(255,255,255,.10);border-radius:4px;text-align:center;font-family:ui-monospace,monospace;font-size:9.5px;color:#ccc;letter-spacing:.06em;text-transform:uppercase;font-weight:600}
+
+  /* Yellow accent divider — vertical between hero and frames */
+  .accent{position:absolute;left:60px;right:60px;top:530px;height:1px;background:linear-gradient(90deg,transparent 0%,#facc15 6%,#facc15 94%,transparent 100%);z-index:2;opacity:.55}
+  .accent-label{position:absolute;left:90px;top:516px;z-index:6;font-family:ui-monospace,monospace;font-size:10px;font-weight:700;letter-spacing:.32em;color:#facc15;text-transform:uppercase;background:#0a0a0a;padding:0 12px}
+
+  /* Bottom phase 2 accent */
+  .accent2{position:absolute;left:60px;right:60px;top:2200px;height:1px;background:linear-gradient(90deg,transparent 0%,#facc15 6%,#facc15 94%,transparent 100%);z-index:2;opacity:.45}
+  .accent2-label{position:absolute;left:90px;top:2186px;z-index:6;font-family:ui-monospace,monospace;font-size:10px;font-weight:700;letter-spacing:.32em;color:#facc15;text-transform:uppercase;background:#0a0a0a;padding:0 12px}
+
+  .hint{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);font-family:ui-monospace,monospace;font-size:10px;color:#555;letter-spacing:.16em;text-transform:uppercase;z-index:50;background:rgba(0,0,0,.78);padding:6px 12px;border-radius:4px;border:1px solid rgba(255,255,255,.06);pointer-events:none}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="tb-l">
+    <b>DS Electrical · Operating System</b>
+    <span class="div"></span>
+    <span class="v">v2 · 2026-05-03</span>
+    <span class="div"></span>
+    <span class="v">8 frames · 24 lanes · 150+ nodes</span>
+  </div>
+  <div class="tb-r">
+    <a href="/blueprints/" class="tb-btn">All blueprints</a>
+    <a href="/" class="tb-btn">DS Electrical</a>
+    <a href="tel:07889334849" class="tb-btn gold">07889 334849</a>
+  </div>
+</div>
+
+<div class="viewport" id="viewport">
+  <div class="canvas">
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-l">
+        <div class="eyebrow">Operating System · v2 · the whole business</div>
+        <h1>DS Electrical Installation SW Ltd<span class="sub">High level functionality · Phase 1 → Phase 7</span></h1>
+        <div class="desc">Every department, every channel, every system, every rule on one canvas. Sales funnel + retention loop + brand pillars are sub-blueprints embedded in their parent frames. Yellow rules split major phases. Drag to pan.</div>
+        <div class="meta">
+          <span>Directors<b>2</b></span>
+          <span>Coverage<b>Mid Somerset</b></span>
+          <span>VAT<b>Registered</b></span>
+          <span>Accreds<b>NAPIT · CHAS · TrustMark</b></span>
+          <span>Reviews<b>5.0 Google</b></span>
+          <span>Insurance<b>£2M PL</b></span>
+        </div>
+      </div>
+      <div class="hero-r">
+        <div class="stat"><div class="lbl">Frames</div><div class="num gold">8</div><div class="sub">Departments</div></div>
+        <div class="stat"><div class="lbl">Swim lanes</div><div class="num">24</div><div class="sub">Sub-systems</div></div>
+        <div class="stat"><div class="lbl">Nodes</div><div class="num">150+</div><div class="sub">Mapped systems</div></div>
+        <div class="stat"><div class="lbl">Phase</div><div class="num">1 → 7</div><div class="sub">Lead to review</div></div>
+        <div class="stat"><div class="lbl">Coverage</div><div class="num">11</div><div class="sub">Towns + villages</div></div>
+        <div class="stat"><div class="lbl">Services</div><div class="num">7</div><div class="sub">Categories</div></div>
+      </div>
+    </div>
+
+    <!-- PHASE STRIP -->
+    <div class="phases">
+      <div class="ph">Phase</div>
+      <div class="phase"><span class="num">1</span><span>Lead</span></div><span class="arr">→</span>
+      <div class="phase"><span class="num">2</span><span>Quote</span></div><span class="arr">→</span>
+      <div class="phase"><span class="num">3</span><span>Book</span></div><span class="arr">→</span>
+      <div class="phase"><span class="num">4</span><span>Survey</span></div><span class="arr">→</span>
+      <div class="phase"><span class="num">5</span><span>Job</span></div><span class="arr">→</span>
+      <div class="phase"><span class="num">6</span><span>Cert</span></div><span class="arr">→</span>
+      <div class="phase"><span class="num">7</span><span>Invoice</span></div><span class="arr">→</span>
+      <div class="phase"><span class="num">8</span><span>Review</span></div>
+    </div>
+
+    <!-- TOP YELLOW ACCENT -->
+    <div class="accent"></div>
+    <div class="accent-label">Phase 1 · Acquisition + Conversion</div>
+
+    <!-- FRAMES — TOP ROW (4 frames) -->
+
+    <!-- 1. MARKETING FRAME -->
+    <div class="frame" style="top:570px;left:60px;width:760px;height:1580px">
+      <div class="frame-head">Marketing Blueprint</div>
+
+      <div class="lane">
+        <div class="lane-h"><span>Channels</span><span class="ct">7 sources</span></div>
+        <div class="lane-cards">
+          <div class="c"><div class="ch">Google Pack</div><div class="cb">Local 3-pack on "electrician + town". 11 area pages.</div></div>
+          <div class="c"><div class="ch">Organic SEO</div><div class="cb">25+ service pages, 15+ blog posts, schema markup.</div></div>
+          <div class="c"><div class="ch">Checkatrade</div><div class="cb">Verified profile, 5★ reviews, lead notifications.</div></div>
+          <div class="c"><div class="ch">WhatsApp share</div><div class="cb">wa.me direct from website. Mobile-first.</div></div>
+          <div class="c"><div class="ch">Word of mouth</div><div class="cb">Existing customer referrals. ~40% of leads.</div></div>
+          <div class="c"><div class="ch">Sister sites</div><div class="cb">wellssparky247, bathsparky247, frome, shepton.</div></div>
+        </div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-h"><span>Service pages</span><span class="ct">25+</span></div>
+        <div class="lane-cards three">
+          <div class="c"><div class="ch">EICR</div></div>
+          <div class="c"><div class="ch">EV charger</div></div>
+          <div class="c"><div class="ch">CCTV</div></div>
+          <div class="c"><div class="ch">Rewire</div></div>
+          <div class="c"><div class="ch">Heritage</div></div>
+          <div class="c"><div class="ch">Commercial</div></div>
+          <div class="c"><div class="ch">Fire alarms</div></div>
+          <div class="c"><div class="ch">Em. lighting</div></div>
+          <div class="c"><div class="ch">Data/fibre</div></div>
+        </div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-h"><span>Blog · educational</span><span class="ct">SEO</span></div>
+        <div class="lane-cards">
+          <div class="c"><div class="ch">EICR explained</div><div class="cb">Landlord obligations, costs, what's tested.</div></div>
+          <div class="c"><div class="ch">CCTV cost guide</div><div class="cb">2026 pricing, Hikvision systems explained.</div></div>
+          <div class="c"><div class="ch">3-phase upgrade</div><div class="cb">Commercial threshold + DNO process.</div></div>
+          <div class="c"><div class="ch">BS5839 fire alarms</div><div class="cb">Landlord requirement + grades.</div></div>
+          <div class="c"><div class="ch">Best home EV charger</div><div class="cb">Hypervolt vs Zappi vs Ohme buyer's guide.</div></div>
+          <div class="c"><div class="ch">House rewire cost</div><div class="cb">Per-bedroom rough figures + access.</div></div>
+        </div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-h"><span>Area pages</span><span class="ct">11 towns</span></div>
+        <div class="lane-cards three">
+          <div class="c"><div class="ch">Wells</div></div>
+          <div class="c"><div class="ch">Shepton M.</div></div>
+          <div class="c"><div class="ch">Bath</div></div>
+          <div class="c"><div class="ch">Frome</div></div>
+          <div class="c"><div class="ch">Glastonbury</div></div>
+          <div class="c"><div class="ch">Street</div></div>
+          <div class="c"><div class="ch">Bruton</div></div>
+          <div class="c"><div class="ch">Castle Cary</div></div>
+          <div class="c"><div class="ch">Radstock</div></div>
+        </div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-h"><span>Lead capture</span><span class="ct">3 channels</span></div>
+        <div class="lane-cards">
+          <div class="c"><div class="ch">Contact form</div><div class="cb">→ info@ → Gmail. Same-day reply SLA.</div></div>
+          <div class="c"><div class="ch">Direct phone</div><div class="cb">07889 334849 + 07983 106928.</div></div>
+          <div class="c"><div class="ch">/quote/ PWA</div><div class="cb">Self-serve quote. Random QUO-NNN. PDF.</div></div>
+          <div class="c"><div class="ch">WhatsApp</div><div class="cb">Photo + chat + voice notes from prospect.</div></div>
+        </div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-h"><span>Trust signals</span><span class="ct">Conversion</span></div>
+        <div class="lane-cards">
+          <div class="c"><div class="ch">5.0 Google rating</div><div class="cb">11+ reviews. Embedded on every key page.</div></div>
+          <div class="c"><div class="ch">Real photo gallery</div><div class="cb">100+ real client jobs. <span class="pill red">No stock</span></div></div>
+          <div class="c"><div class="ch">NAPIT badge</div><div class="cb">Master accred. Above-fold on every page.</div></div>
+          <div class="c"><div class="ch">CHAS / TrustMark</div><div class="cb">For commercial credibility.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. SALES FRAME -->
+    <div class="frame" style="top:570px;left:870px;width:760px;height:1580px">
+      <div class="frame-head">Sales Blueprint</div>
+
+      <div class="lane">
+        <div class="lane-h"><span>Pipeline</span><span class="ct">7 stages</span></div>
+        <div class="lane-cards">
+          <div class="c"><div class="ch">Lead</div><div class="cb">Form / phone / WhatsApp / Checkatrade.</div></div>
+          <div class="c"><div class="ch">Qualified</div><div class="cb">Coverage check, scope-OK, budget-fit.</div></div>
+          <div class="c"><div class="ch">Quoted</div><div class="cb">Written quote &lt; 48h, valid 30 days.</div></div>
+          <div class="c"><div class="ch">Booked</div><div class="cb">50% BACS deposit received.</div></div>
+          <div class="c"><div class="ch">In progress</div><div class="cb">Job started, photos logged in PWA.</div></div>
+          <div class="c"><div class="ch">Done</div><div class="cb">NAPIT cert + Part P notification done.</div></div>
+        </div>
+      </div>
+
+      <!-- Sales funnel mini-blueprint -->
+      <div class="miniblock" style="position:relative;top:0;left:0;margin:0 auto 14px;width:auto">
+        <div class="mh">Pipeline funnel</div>
+        <div class="funnel-stage">100% Leads</div>
+        <div class="funnel-stage s2">Qualified</div>
+        <div class="funnel-stage s3">Quoted</div>
+        <div class="funnel-stage s4">Booked</div>
+        <div class="funnel-stage s5">Job done</div>
+        <div class="funnel-stage s6">Invoiced</div>
+        <div class="funnel-stage s7">Review</div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-h"><span>Fixed-price products</span><span class="ct">£</span></div>
+        <div class="lane-cards">
+          <div class="c"><div class="ch">EICR 1ph</div><div class="cb">£30/circuit · 6–10 typical 3-bed.</div></div>
+          <div class="c"><div class="ch">EICR 3ph</div><div class="cb">£40/circuit · commercial.</div></div>
+          <div class="c"><div class="ch">Fuse board check</div><div class="cb">£99 fixed · credited on upgrade.</div></div>
+          <div class="c"><div class="ch">EV charger</div><div class="cb">£495 fixed · Type A RCBO · OZEV.</div></div>
+          <div class="c"><div class="ch">Rewire</div><div class="cb">From £3,500 · per-circuit pricing.</div></div>
+          <div class="c"><div class="ch">Heritage</div><div class="cb">From £15K · concealed wiring.</div></div>
+        </div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-h"><span>Quote process</span><span class="ct">≤ 48h</span></div>
+        <div class="lane-cards">
+          <div class="c"><div class="ch">Free site survey</div><div class="cb">Director attends, scope confirmed.</div></div>
+          <div class="c"><div class="ch">Random QUO-NNN</div><div class="cb">QUO-100 to QUO-999, never sequential.</div></div>
+          <div class="c"><div class="ch">Written quote PDF</div><div class="cb">Net + VAT 20% + total · 30-day valid.</div></div>
+          <div class="c"><div class="ch">No "while we're here"</div><div class="cb">Price you agree = price you pay.</div></div>
+        </div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-h"><span>Terms</span><span class="ct">BACS only</span></div>
+        <div class="lane-cards">
+          <div class="c"><div class="ch">50% deposit</div><div class="cb">On booking · funds materials.</div></div>
+          <div class="c"><div class="ch">50% completion</div><div class="cb">On test + cert handover.</div></div>
+          <div class="c"><div class="ch"><span class="pill red">Stripe banned</span></div><div class="cb">Customer invoices = BACS only.</div></div>
+          <div class="c"><div class="ch">No 30-day terms</div><div class="cb">Cash flow protection. No exceptions.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. OPERATIONS FRAME -->
+    <div class="frame" style="top:570px;left:1680px;width:760px;height:1580px">
+      <div class="frame-head">Operations Blueprint</div>
+
+      <div class="lane">
+        <div class="lane-h"><span>Service categories</span><span class="ct">7</span></div>
+        <div class="lane-cards three">
+          <div class="c"><div class="ch">Domestic</div></div>
+          <div class="c"><div class="ch">Heritage</div></div>
+          <div class="c"><div class="ch">Commercial</div></div>
+          <div class="c"><div class="ch">EV chargers</div></div>
+          <div class="c"><div class="ch">CCTV / sec.</div></div>
+          <div class="c"><div class="ch">Lighting</div></div>
+          <div class="c"><div class="ch">Data / fibre</div></div>
+          <div class="c"><div class="ch">Fire alarms</div></div>
+          <div class="c"><div class="ch">Callouts</div></div>
+        </div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-h"><span>Test gear</span><span class="ct">Calibrated</span></div>
+        <div class="lane-cards">
+          <div class="c"><div class="ch">Megger MFT 1741</div><div class="cb">Insulation, RCD, loop, R1+R2. Annual cal.</div></div>
+          <div class="c"><div class="ch">Clamp + LCR</div><div class="cb">Live testing, in-circuit measurements.</div></div>
+          <div class="c"><div class="ch">Thermal imager</div><div class="cb">Fault-find + commercial surveys.</div></div>
+          <div class="c"><div class="ch">PAT tester</div><div class="cb">For commercial maintenance contracts.</div></div>
+        </div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-h"><span>In-job tools</span><span class="ct">PWAs</span></div>
+        <div class="lane-cards">
+          <div class="c"><div class="ch">/sparky/ Pad</div><div class="cb">Job tracker on the bank. Offline.</div></div>
+          <div class="c"><div class="ch">say-claude</div><div class="cb">Voice → action. Phone bridge live.</div></div>
+          <div class="c"><div class="ch">/quote/</div><div class="cb">In-field quote builder + PDF.</div></div>
+          <div class="c"><div class="ch">DS site</div><div class="cb">Always-current contact + service.</div></div>
+        </div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-h"><span>Standards on site</span><span class="ct">Clean finish</span></div>
+        <div class="lane-cards">
+          <div class="c"><div class="ch">Cordless extraction</div><div class="cb">Every drill. No dust on furniture.</div></div>
+          <div class="c"><div class="ch">Dust sheets</div><div class="cb">Every surface, every job.</div></div>
+          <div class="c"><div class="ch">Chases filled</div><div class="cb">Ready for plasterer same day.</div></div>
+          <div class="c"><div class="ch">End-of-day clean</div><div class="cb">Site left better than found.</div></div>
+        </div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-h"><span>Coverage area</span><span class="ct">40-min max</span></div>
+        <div class="lane-cards">
+          <div class="c"><div class="ch">Mid Somerset core</div><div class="cb">Wells, Shepton, Glastonbury, Frome, Street.</div></div>
+          <div class="c"><div class="ch">BANES + Bath</div><div class="cb">Premium residential + commercial.</div></div>
+          <div class="c"><div class="ch"><span class="pill gold">Somerset only</span></div><div class="cb">No exceptions. No exceptions.</div></div>
+          <div class="c"><div class="ch">2h emergency SLA</div><div class="cb">Inside coverage. Contract = guaranteed line.</div></div>
+        </div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-h"><span>Fleet</span><span class="ct">Planned: Tesla MY</span></div>
+        <div class="lane-cards">
+          <div class="c"><div class="ch">Service van (current)</div><div class="cb">Branded, tools-stocked, signwritten.</div></div>
+          <div class="c"><div class="ch">Tesla Model Y co-car</div><div class="cb">Decision pack done. Broker shortlist.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. CUSTOMER SUCCESS FRAME -->
+    <div class="frame" style="top:570px;left:2490px;width:760px;height:1580px">
+      <div class="frame-head">Customer Success</div>
+
+      <div class="lane">
+        <div class="lane-h"><span>Direct contact</span><span class="ct">No call centre</span></div>
+        <div class="lane-cards">
+          <div class="c"><div class="ch">Dan Stevens</div><div class="cb">07889 334849 · Director · NAPIT lead.</div></div>
+          <div class="c"><div class="ch">Dan Street</div><div class="cb">07983 106928 · Co-director · commercial.</div></div>
+          <div class="c"><div class="ch">WhatsApp</div><div class="cb">wa.me/447889334849 · photo + chat.</div></div>
+          <div class="c"><div class="ch">Email</div><div class="cb">info@dselectricalsw.co.uk → Gmail.</div></div>
+        </div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-h"><span>Promises (kept)</span><span class="ct">SLAs</span></div>
+        <div class="lane-cards">
+          <div class="c"><div class="ch">Same-day reply</div><div class="cb">Every enquiry. No exceptions.</div></div>
+          <div class="c"><div class="ch">2-hour emergency</div><div class="cb">Inside coverage. 24/7 for contracts.</div></div>
+          <div class="c"><div class="ch">All work guaranteed</div><div class="cb">Plus £2M public liability.</div></div>
+          <div class="c"><div class="ch">Quote in 48h</div><div class="cb">Written, fixed, valid 30 days.</div></div>
+        </div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-h"><span>Documentation</span><span class="ct">Per-job</span></div>
+        <div class="lane-cards">
+          <div class="c"><div class="ch">NAPIT cert</div><div class="cb">EIC or Minor Works · BS 7671.</div></div>
+          <div class="c"><div class="ch">Part P</div><div class="cb">Notified to building control.</div></div>
+          <div class="c"><div class="ch">EICR report</div><div class="cb">Per-circuit results + observations.</div></div>
+          <div class="c"><div class="ch">Photos of work</div><div class="cb">Before, during, after — for client + insurer.</div></div>
+        </div>
+      </div>
+
+      <!-- Retention loop mini-blueprint -->
+      <div class="miniblock" style="position:relative;top:0;left:0;margin:0 auto 14px;width:auto">
+        <div class="mh">Retention loop</div>
+        <div class="loop">
+          <div class="loop-node">Job done</div>
+          <div class="loop-node">Cert sent</div>
+          <div class="loop-node">Review ask</div>
+          <div class="loop-node">Repeat queue</div>
+          <div class="loop-node">Contract</div>
+          <div class="loop-node">Referral</div>
+        </div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-h"><span>Aftercare</span><span class="ct">Light touch</span></div>
+        <div class="lane-cards">
+          <div class="c"><div class="ch">Review request</div><div class="cb">Google + Checkatrade link sent on close.</div></div>
+          <div class="c"><div class="ch">No chasing</div><div class="cb"><span class="pill red">Hard rule</span> · No reminder emails.</div></div>
+          <div class="c"><div class="ch">Repeat priority</div><div class="cb">Existing client = priority queue.</div></div>
+          <div class="c"><div class="ch">Contract clients</div><div class="cb">24h emergency line + planned maint.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOTTOM YELLOW ACCENT -->
+    <div class="accent2"></div>
+    <div class="accent2-label">Phase 2 · Delivery + Finance + Compliance</div>
+
+    <!-- BOTTOM ROW (4 frames) -->
+
+    <!-- 5. FINANCE FRAME -->
+    <div class="frame" style="top:2240px;left:60px;width:760px;height:1280px">
+      <div class="frame-head">Finance Blueprint</div>
+
+      <div class="lane">
+        <div class="lane-h"><span>Numbering</span><span class="ct">Sequences</span></div>
+        <div class="lane-cards">
+          <div class="c"><div class="ch">SI-NNN invoices</div><div class="cb">Last Sage = SI-532. Next = SI-533. Never restart.</div></div>
+          <div class="c"><div class="ch">QUO-NNN quotes</div><div class="cb">Random 100–999. Never sequential.</div></div>
+          <div class="c"><div class="ch">Job ref / property</div><div class="cb">For B2B reports + CPM/Curo distribution.</div></div>
+        </div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-h"><span>Channels</span><span class="ct">Cash flow</span></div>
+        <div class="lane-cards">
+          <div class="c"><div class="ch">BACS only</div><div class="cb"><span class="pill red">No Stripe</span> on customer invoices.</div></div>
+          <div class="c"><div class="ch">Bank refs page</div><div class="cb">Permanent on website + on every invoice.</div></div>
+          <div class="c"><div class="ch">50/50 deposit terms</div><div class="cb">Funds materials. Final on completion.</div></div>
+          <div class="c"><div class="ch">Same-day clearance</div><div class="cb">Before NAPIT cert handed over.</div></div>
+        </div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-h"><span>VAT + tax</span><span class="ct">Registered</span></div>
+        <div class="lane-cards">
+          <div class="c"><div class="ch">VAT 20%</div><div class="cb">On every quote, every invoice, every report.</div></div>
+          <div class="c"><div class="ch">Quarterly returns</div><div class="cb">MTD-compliant via accounting stack.</div></div>
+          <div class="c"><div class="ch">Corporation tax</div><div class="cb">Year-end via accountant.</div></div>
+        </div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-h"><span>Stack</span><span class="ct">Migration</span></div>
+        <div class="lane-cards">
+          <div class="c"><div class="ch">Sage (current)</div><div class="cb">£50/mo · being migrated.</div></div>
+          <div class="c"><div class="ch">QuickBooks (planned)</div><div class="cb">Free tier sufficient. API for integrations.</div></div>
+          <div class="c"><div class="ch">Dext receipts</div><div class="cb">Photo → categorise → push to QB.</div></div>
+        </div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-h"><span>Cover</span><span class="ct">Required</span></div>
+        <div class="lane-cards">
+          <div class="c"><div class="ch">£2M PL insurance</div><div class="cb">NAPIT minimum. Annual renewal.</div></div>
+          <div class="c"><div class="ch">Tools + van cover</div><div class="cb">Theft + accidental damage.</div></div>
+          <div class="c"><div class="ch">Pro indemnity</div><div class="cb">For design + commercial work.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. COMPLIANCE FRAME -->
+    <div class="frame" style="top:2240px;left:870px;width:760px;height:1280px">
+      <div class="frame-head">Compliance Blueprint</div>
+
+      <div class="lane">
+        <div class="lane-h"><span>Master accred</span><span class="ct">Required</span></div>
+        <div class="lane-cards">
+          <div class="c"><div class="ch">NAPIT</div><div class="cb">Master scheme · Part P notification on every domestic job.</div></div>
+          <div class="c"><div class="ch">CHAS</div><div class="cb">Commercial framework prerequisite.</div></div>
+          <div class="c"><div class="ch">TrustMark</div><div class="cb">Government quality scheme · IBW available.</div></div>
+        </div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-h"><span>Standards</span><span class="ct">Worked-to</span></div>
+        <div class="lane-cards">
+          <div class="c"><div class="ch">BS 7671:2018+A2</div><div class="cb">18th edition + amendment 2 · current.</div></div>
+          <div class="c"><div class="ch">BS 5839</div><div class="cb">Fire alarm install + maintenance grade.</div></div>
+          <div class="c"><div class="ch">BS 5266</div><div class="cb">Emergency lighting BS · 3h discharge test.</div></div>
+        </div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-h"><span>Hard rules</span><span class="ct">No exceptions</span></div>
+        <div class="lane-cards">
+          <div class="c"><div class="ch">EV = Type A RCBO</div><div class="cb"><span class="pill gold">Always</span> · Never Type B. Every install.</div></div>
+          <div class="c"><div class="ch">EICR per-circuit £</div><div class="cb">£30 (1ph) · £40 (3ph) · No flat fees.</div></div>
+          <div class="c"><div class="ch">Heritage = walk-round</div><div class="cb">Survey-first quote, never blind.</div></div>
+        </div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-h"><span>People checks</span><span class="ct">Procurement</span></div>
+        <div class="lane-cards">
+          <div class="c"><div class="ch">Enhanced DBS</div><div class="cb">In progress · uCheck/Personnel Checks portal.</div></div>
+          <div class="c"><div class="ch">Safeguarding</div><div class="cb">LGA learning pool · for HA work.</div></div>
+          <div class="c"><div class="ch">2391 prep</div><div class="cb">Inspection + testing CPD · vault tracked.</div></div>
+        </div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-h"><span>Per-job pack</span><span class="ct">Handover</span></div>
+        <div class="lane-cards">
+          <div class="c"><div class="ch">EIC / MWC</div><div class="cb">Installation cert · NAPIT issued.</div></div>
+          <div class="c"><div class="ch">Part P notify</div><div class="cb">Building control via NAPIT portal.</div></div>
+          <div class="c"><div class="ch">Building Control</div><div class="cb">EV + 3-phase + commercial = notified.</div></div>
+          <div class="c"><div class="ch">DNO notification</div><div class="cb">EV + load increases · pre-install.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. TECH STACK + BRAND FRAME -->
+    <div class="frame" style="top:2240px;left:1680px;width:760px;height:1280px">
+      <div class="frame-head">Tech Stack &amp; Brand</div>
+
+      <div class="lane">
+        <div class="lane-h"><span>Web infra</span><span class="ct">Self-hosted</span></div>
+        <div class="lane-cards">
+          <div class="c"><div class="ch">dselectricalsw.co.uk</div><div class="cb">Caddy:3004 + PM2 + cf-tunnel · edit = live.</div></div>
+          <div class="c"><div class="ch"><span class="pill red">No Netlify</span></div><div class="cb">Banned. Self-hosted only · across all sites.</div></div>
+          <div class="c"><div class="ch">Cloudflare tunnel</div><div class="cb">All public traffic · DDOS + SSL.</div></div>
+          <div class="c"><div class="ch">PM2 ecosystem</div><div class="cb">~30 services managed · auto-restart.</div></div>
+        </div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-h"><span>Tools shipped</span><span class="ct">PWAs</span></div>
+        <div class="lane-cards">
+          <div class="c"><div class="ch">/sparky/</div><div class="cb">Job tracker · offline · localStorage.</div></div>
+          <div class="c"><div class="ch">/quote/</div><div class="cb">Multi-trade quote builder · PDF.</div></div>
+          <div class="c"><div class="ch">/blueprints/</div><div class="cb">Tile-grid showcase of all tools.</div></div>
+          <div class="c"><div class="ch">/blueprint/</div><div class="cb">This canvas — operating system map.</div></div>
+        </div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-h"><span>Communication</span><span class="ct">Voice + email</span></div>
+        <div class="lane-cards">
+          <div class="c"><div class="ch">say-claude bridge</div><div class="cb">say.aimaxops.com · voice → Claude SDK.</div></div>
+          <div class="c"><div class="ch">Gmail OAuth</div><div class="cb">info@ → dstevenselectrical@gmail.com.</div></div>
+          <div class="c"><div class="ch">CF Email Routing</div><div class="cb">Custom domain → mailbox forwarding.</div></div>
+          <div class="c"><div class="ch">Hotmail OAuth</div><div class="cb">Backup channel · MSAL device-code auth.</div></div>
+        </div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-h"><span>Brand tokens</span><span class="ct">Web only</span></div>
+        <div class="lane-cards">
+          <div class="c"><div class="ch">#facc15 yellow</div><div class="cb">Primary accent · web only · <span class="pill red">no print</span></div></div>
+          <div class="c"><div class="ch">#0f172a / #1e293b</div><div class="cb">Dark backgrounds · DS premium.</div></div>
+          <div class="c"><div class="ch">Outfit + JetBrains</div><div class="cb">Body sans + mono for prices/labels.</div></div>
+          <div class="c"><div class="ch">Real-photo only</div><div class="cb"><span class="pill red">No AI slop</span> · 100+ real client images.</div></div>
+        </div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-h"><span>Voice</span><span class="ct">"Run by electricians"</span></div>
+        <div class="lane-cards">
+          <div class="c"><div class="ch">Plain. Tight.</div><div class="cb">Trade-floor blunt. No buzzword stack.</div></div>
+          <div class="c"><div class="ch">Specs not adjectives</div><div class="cb">"NAPIT" beats "professional".</div></div>
+          <div class="c"><div class="ch">One CTA per surface</div><div class="cb">Call OR quote — never both fighting.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. PARTNERS + TEAM FRAME -->
+    <div class="frame" style="top:2240px;left:2490px;width:760px;height:1280px">
+      <div class="frame-head">Partners + Team</div>
+
+      <div class="lane">
+        <div class="lane-h"><span>Trade wholesale</span><span class="ct">Materials</span></div>
+        <div class="lane-cards">
+          <div class="c"><div class="ch">Edmundsons</div><div class="cb">Local trade counter · account terms.</div></div>
+          <div class="c"><div class="ch">CEF</div><div class="cb">Backup account · EICR consumables.</div></div>
+          <div class="c"><div class="ch">City Electrical</div><div class="cb">Specialist commercial / industrial.</div></div>
+        </div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-h"><span>EV approved</span><span class="ct">Charger brands</span></div>
+        <div class="lane-cards">
+          <div class="c"><div class="ch">Hypervolt</div><div class="cb">Hypervolt 3 stocked · approved installer.</div></div>
+          <div class="c"><div class="ch">Zappi / Myenergi</div><div class="cb">Solar-diversion · for PV homes.</div></div>
+          <div class="c"><div class="ch">Ohme · Andersen</div><div class="cb">Premium / smart options.</div></div>
+        </div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-h"><span>Security</span><span class="ct">CCTV + alarms</span></div>
+        <div class="lane-cards">
+          <div class="c"><div class="ch">Hikvision</div><div class="cb">4K AcuSense + ColorVu · Hik-Connect.</div></div>
+          <div class="c"><div class="ch">AX PRO</div><div class="cb">Wireless intruder · cellular backup.</div></div>
+        </div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-h"><span>Lead sources</span><span class="ct">B2B</span></div>
+        <div class="lane-cards">
+          <div class="c"><div class="ch">Letting agents</div><div class="cb">19+ Somerset · Cooper &amp; Tanner standout.</div></div>
+          <div class="c"><div class="ch">Curo · Aster</div><div class="cb">Procurement packs built.</div></div>
+          <div class="c"><div class="ch">Somerset Council</div><div class="cb">Pack ready · awaiting DBS sign-off.</div></div>
+        </div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-h"><span>Team</span><span class="ct">2 directors</span></div>
+        <div class="lane-cards">
+          <div class="c"><div class="ch">Dan Stevens (Director)</div><div class="cb">15+ years on tools · NAPIT lead.</div></div>
+          <div class="c"><div class="ch">Dan Street (Director)</div><div class="cb">Co-director · commercial side.</div></div>
+          <div class="c"><div class="ch">Apprentice slot</div><div class="cb">Open when commercial volume justifies.</div></div>
+          <div class="c"><div class="ch">Base: Glastonbury</div><div class="cb">BA6 · 40-min radius defines coverage.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- EDGES — denser orthogonal routing -->
+    <!-- ============================================ -->
+    <svg class="edges" viewBox="0 0 5200 3600" preserveAspectRatio="none">
+      <defs>
+        <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+          <path d="M 0 0 L 10 5 L 0 10 z" />
+        </marker>
+        <marker id="arr-gold" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(250,204,21,.6)" />
+        </marker>
+      </defs>
+
+      <!-- Marketing → Sales (lead capture → pipeline) -->
+      <path d="M 820 1200 L 845 1200 L 845 700 L 870 700" marker-end="url(#arr)" />
+      <path d="M 820 1380 L 845 1380 L 845 700 L 870 700" marker-end="url(#arr)" />
+
+      <!-- Sales → Operations (booked → in-job tools) -->
+      <path class="gold" d="M 1630 1100 L 1655 1100 L 1655 1280 L 1680 1280" marker-end="url(#arr-gold)" />
+
+      <!-- Operations → Customer Success (job done → docs) -->
+      <path d="M 2440 1700 L 2465 1700 L 2465 1100 L 2490 1100" marker-end="url(#arr)" />
+
+      <!-- Customer Success → Marketing (review → trust signals) -->
+      <path d="M 2490 1860 L 2470 1860 L 2470 3300 L 60 3300 L 60 1850 L 60 1850" />
+      <path d="M 3250 1860 C 3300 1860, 3300 3450, 60 3450 L 60 1850" class="dim" />
+
+      <!-- Sales pricing → Compliance hard rules -->
+      <path class="gold" d="M 1630 1500 L 1655 1500 L 1655 2700 L 870 2700" marker-end="url(#arr-gold)" />
+
+      <!-- Compliance Type A → Sales EV product -->
+      <path class="gold" d="M 870 2700 C 1300 2700, 1300 1500, 1630 1500" />
+
+      <!-- Finance terms → Sales terms (BACS rule) -->
+      <path d="M 60 2400 L 40 2400 L 40 1700 L 870 1700" class="dim" />
+
+      <!-- Tech stack → Operations (PWAs in field) -->
+      <path d="M 1680 2400 L 1655 2400 L 1655 1500 L 2440 1500" marker-end="url(#arr)" />
+
+      <!-- Compliance master accred → Brand trust -->
+      <path d="M 870 2350 L 845 2350 L 845 3000 L 1680 3000" class="dim" />
+
+      <!-- Partners EV → Sales EV product -->
+      <path d="M 2490 2450 L 2465 2450 L 2465 1500 L 1630 1500" />
+
+      <!-- Partners agents → Marketing channels -->
+      <path d="M 2490 2900 L 2465 2900 L 2465 720 L 820 720" />
+    </svg>
+
+  </div>
+</div>
+
+<div class="hint">Drag canvas to pan · 8 frames · 24 lanes · 150+ nodes · 2 sub-blueprints</div>
+
+<script>
+  const v = document.getElementById('viewport');
+  let dragging = false, startX = 0, startY = 0, scrollX = 0, scrollY = 0;
+  v.addEventListener('mousedown', e => {
+    if (e.target.closest('.c, .tb-btn, a, .stat')) return;
+    dragging = true; startX = e.clientX; startY = e.clientY;
+    scrollX = v.scrollLeft; scrollY = v.scrollTop;
+  });
+  v.addEventListener('mousemove', e => {
+    if (!dragging) return;
+    v.scrollLeft = scrollX - (e.clientX - startX);
+    v.scrollTop  = scrollY - (e.clientY - startY);
+  });
+  ['mouseup','mouseleave'].forEach(ev => v.addEventListener(ev, () => { dragging = false; }));
+</script>
+</body>
+</html>

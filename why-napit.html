@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0f172a">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<style id="shared-inline">
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+ --dark:#0a0908;--dark2:#131110;--dark3:#1c1915;
+ --light:#f8f5f0;--light2:#eee9e0;--light3:#e2dbd0;
+ --brass:#b8944f;--gold:#d4a44a;
+ --text-dark:#1a1714;--text-muted:#6b6560;
+ --text-light:#f0e8da;--text-light-muted:#8c7d6a;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',sans-serif;background:var(--light);color:var(--text-dark);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none;transition:.2s}
+img{display:block;max-width:100%}
+
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1.5rem,5vw,4rem);background:rgba(10,9,8,.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.04)}
+.nav-logo img{height:70px;width:auto}
+.nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+.nav-links a{font-size:.78rem;font-weight:600;color:rgba(240,232,218,.6);letter-spacing:.08em;text-transform:uppercase}
+.nav-links a:hover{color:#fff}
+.nav-links a.active{color:var(--gold)}
+.nav-cta{background:var(--gold);color:var(--dark);padding:.5rem 1.3rem;border-radius:6px;font-weight:700;font-size:.78rem}
+.nav-cta:hover{background:var(--brass)}
+.nav-menu{display:none;background:none;border:none;color:#fff;font-size:1.5rem;cursor:pointer}
+
+.section-tag{font-size:.65rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--brass);margin-bottom:1rem}
+.section-heading{font-size:clamp(2.2rem,4.5vw,3.5rem);font-weight:900;line-height:1.05;letter-spacing:-.02em;margin-bottom:.75rem}
+.section-desc{color:var(--text-muted);font-size:1.05rem;line-height:1.7;max-width:600px;margin-bottom:2rem}
+.btn{padding:.8rem 2rem;border-radius:6px;font-weight:700;font-size:.85rem;letter-spacing:.02em;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:.5rem;transition:.25s}
+.btn-gold{background:var(--gold);color:var(--dark)}
+.btn-gold:hover{background:var(--brass);transform:translateY(-2px);box-shadow:0 8px 30px rgba(212,164,74,.3)}
+.btn-white{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.12)}
+.btn-white:hover{background:rgba(255,255,255,.14)}
+
+.breadcrumb{background:var(--light);padding:1rem clamp(1.5rem,5vw,4rem);font-size:.78rem;border-bottom:1px solid var(--light3)}
+.breadcrumb-inner{max-width:1200px;margin:0 auto;display:flex;gap:.5rem;align-items:center;color:var(--text-muted);font-weight:500}
+.breadcrumb-inner a{color:var(--text-muted);text-decoration:none;transition:.2s}
+.breadcrumb-inner a:hover{color:var(--brass)}
+.breadcrumb-inner .sep{color:var(--light3)}
+.breadcrumb-inner .current{color:var(--text-dark);font-weight:700}
+
+.tstrip{background:var(--light2);padding:2.5rem clamp(1.5rem,5vw,4rem);border-top:1px solid var(--light3);border-bottom:1px solid var(--light3)}
+.tstrip-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:center}
+.tstat-num{font-size:1.9rem;font-weight:900;color:var(--text-dark);font-family:'JetBrains Mono',monospace;line-height:1}
+.tstat-lbl{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.18em;color:var(--text-muted);margin-top:.5rem}
+
+.cta{background:var(--dark);padding:clamp(5rem,10vw,8rem) clamp(1.5rem,5vw,4rem);text-align:center}
+.cta .section-heading{color:#fff}
+.cta .section-desc{color:rgba(240,232,218,.5);margin:0 auto 1.5rem;text-align:center}
+.cta-phone-label{font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(240,232,218,.4);display:block;margin-bottom:.6rem}
+.cta-phone{font-family:'JetBrains Mono',monospace;font-size:clamp(1.4rem,3vw,2.2rem);font-weight:700;color:rgba(240,232,218,.5);display:block;margin-bottom:.2rem}
+.cta-phone:hover{color:var(--gold)}
+.cta-phone-2{font-family:'JetBrains Mono',monospace;font-size:clamp(1.4rem,3vw,2.2rem);color:rgba(240,232,218,.35);display:block;margin-bottom:2rem}
+.cta-phone-2:hover{color:var(--gold)}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+
+.footer{background:var(--dark);padding:3rem clamp(1.5rem,5vw,4rem) 1.5rem;border-top:1px solid rgba(255,255,255,.04)}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+.footer h3, .footer h4{font-size:.68rem;text-transform:uppercase;letter-spacing:.2em;color:var(--gold);margin-bottom:1rem;font-weight:700}
+.footer p,.footer a{font-size:.8rem;color:rgba(240,232,218,.4);line-height:2}
+.footer a:hover{color:var(--gold)}
+.footer-bottom{padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.03);display:flex;justify-content:space-between;font-size:.65rem;color:rgba(255,255,255,.2)}
+
+.wa{position:fixed;bottom:1.5rem;left:1.5rem;width:56px;height:56px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:99;box-shadow:0 4px 24px rgba(37,211,102,.3);transition:.2s}
+.wa:hover{transform:scale(1.1)}
+.wa svg{width:28px;height:28px;fill:#fff}
+
+.mcb{display:none;position:fixed;bottom:0;left:0;right:0;z-index:98;background:#0a0908;border-top:1px solid rgba(212,164,74,.3);padding:.6rem .6rem calc(.6rem + env(safe-area-inset-bottom));box-shadow:0 -6px 24px rgba(0,0,0,.4)}
+.mcb-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:.5rem}
+.mcb a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.15rem;padding:.6rem .4rem;border-radius:8px;font-family:'Outfit',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.04em;text-decoration:none;transition:.2s}
+.mcb a svg{width:18px;height:18px}
+.mcb .mcb-call{background:#d4a44a;color:#0a0908}
+.mcb .mcb-call:hover{background:#b8944f}
+.mcb .mcb-wa{background:#25d366;color:#fff}
+.mcb .mcb-mail{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.14)}
+.mcb small{font-size:.62rem;font-weight:500;opacity:.75;letter-spacing:.02em;text-transform:none}
+
+.dq-btn{position:fixed;right:1.25rem;bottom:1.25rem;z-index:99;display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 1.35rem;background:#d4a44a;color:#0a0908;border-radius:100px;font-family:'Outfit',sans-serif;font-weight:800;font-size:.8rem;letter-spacing:.04em;text-decoration:none;box-shadow:0 8px 32px rgba(212,164,74,.4);transition:.25s}
+.dq-btn:hover{background:#b8944f;transform:translateY(-2px);box-shadow:0 12px 40px rgba(212,164,74,.5)}
+.dq-btn svg{width:16px;height:16px}
+
+.related-svc{background:var(--dark);padding:clamp(4rem,7vw,5rem) clamp(1.5rem,5vw,4rem);color:#fff}
+.related-svc-inner{max-width:1200px;margin:0 auto}
+.related-svc .section-tag{color:#d4a44a}
+.related-svc h2{font-size:clamp(1.8rem,3.2vw,2.6rem);font-weight:900;line-height:1.1;color:#fff;margin-bottom:2.5rem;letter-spacing:-.02em}
+.related-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.related-card{display:block;padding:1.5rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:12px;text-decoration:none;transition:.25s}
+.related-card:hover{background:rgba(212,164,74,.08);border-color:rgba(212,164,74,.3);transform:translateY(-3px)}
+.related-card h3{font-size:.95rem;font-weight:800;color:#fff;margin-bottom:.4rem}
+.related-card p{font-size:.78rem;color:rgba(240,232,218,.5);line-height:1.5}
+.related-card .arrow{display:inline-block;margin-top:.8rem;color:#d4a44a;font-size:.8rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
+
+@media(max-width:1024px){.related-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:900px){.related-grid{grid-template-columns:repeat(2,1fr)}.tstrip-inner{grid-template-columns:repeat(2,1fr);gap:1.5rem}}
+@media(max-width:768px){
+ .nav-links{display:none;position:fixed;top:72px;left:0;right:0;background:rgba(10,9,8,.98);backdrop-filter:blur(20px);flex-direction:column;padding:2rem;gap:1.5rem;border-bottom:1px solid rgba(255,255,255,.06)}
+ .nav-links.open{display:flex}
+ .nav-menu{display:block}
+ .mcb{display:block}
+ body{padding-bottom:72px}
+ .wa{bottom:6rem !important}
+ .dq-btn{display:none}
+ .footer-grid{grid-template-columns:1fr 1fr}
+ .related-grid{grid-template-columns:1fr}
+}
+@media(max-width:480px){.footer-grid{grid-template-columns:1fr}}
+</style>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Why NAPIT 66245 Matters | Part P Explained | DS Electrical SW</title>
+<meta name="description" content="What NAPIT 66245 means when you hire an electrician: Part P self-certification, 6-year insurance-backed warranty, government Competent Person scheme. Verifiable at napit.org.uk. Call 07889 334849.">
+<link rel="canonical" href="https://www.dselectricalsw.co.uk/why-napit.html">
+<link rel="alternate" hreflang="en-GB" href="https://www.dselectricalsw.co.uk/why-napit.html">
+<link rel="alternate" hreflang="x-default" href="https://www.dselectricalsw.co.uk/why-napit.html">
+<meta property="og:title" content="Why NAPIT 66245 Protects You - Part P Explained">
+<meta property="og:description" content="What government-registered Competent Person status actually means when you hire an electrician. Part P self-certification, 6-year insurance-backed warranty, verifiable register entry.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://www.dselectricalsw.co.uk/why-napit.html">
+<meta property="og:image" content="https://www.dselectricalsw.co.uk/photos/accreditations-og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="DS Electrical NAPIT 66245 - Part P Competent Person scheme member">
+<meta name="twitter:title" content="Why NAPIT 66245 Protects You - Part P Explained">
+<meta name="twitter:description" content="What Competent Person status means when you hire an electrician. Part P self-certification, 6-year insurance-backed warranty.">
+<meta name="twitter:image" content="https://www.dselectricalsw.co.uk/photos/accreditations-og.jpg">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="robots" content="index, follow">
+<link rel="manifest" href="/manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://fonts.googleapis.com">
+<link rel="dns-prefetch" href="https://fonts.gstatic.com">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap"></noscript>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement": [
+  {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.dselectricalsw.co.uk/"},
+  {"@type": "ListItem", "position": 2, "name": "Accreditations", "item": "https://www.dselectricalsw.co.uk/accreditations.html"},
+  {"@type": "ListItem", "position": 3, "name": "Why NAPIT", "item": "https://www.dselectricalsw.co.uk/why-napit.html"}
+ ]
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "WebPage",
+ "@id": "https://www.dselectricalsw.co.uk/why-napit.html#webpage",
+ "url": "https://www.dselectricalsw.co.uk/why-napit.html",
+ "name": "Why NAPIT 66245 Matters - Part P Explained",
+ "description": "Customer guide to NAPIT membership, Part P Building Regulations, and the 6-year insurance-backed warranty you receive from a Competent Person scheme installer.",
+ "inLanguage": "en-GB",
+ "isPartOf": {"@type": "WebSite", "url": "https://www.dselectricalsw.co.uk/", "name": "DS Electrical Installations (SW) Ltd"},
+ "primaryImageOfPage": {"@type": "ImageObject", "url": "https://www.dselectricalsw.co.uk/photos/accreditations-og.jpg"},
+ "about": {"@type": "Thing", "name": "NAPIT Competent Person Scheme - Part P Building Regulations"}
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "Organization",
+ "@id": "https://www.dselectricalsw.co.uk/why-napit.html#org",
+ "name": "DS Electrical Installations (SW) Ltd",
+ "url": "https://www.dselectricalsw.co.uk/",
+ "logo": "https://www.dselectricalsw.co.uk/logo-full.png",
+ "telephone": "+447889334849",
+ "email": "info@dselectricalsw.co.uk",
+ "vatID": "GB429040905",
+ "address": {"@type":"PostalAddress","addressLocality":"Glastonbury","addressRegion":"Somerset","postalCode":"BA6","addressCountry":"GB"},
+ "memberOf": [
+  {"@type": "Organization", "name": "NAPIT", "url": "https://napit.org.uk", "identifier": "66245"},
+  {"@type": "Organization", "name": "TrustMark", "url": "https://trustmark.org.uk"},
+  {"@type": "Organization", "name": "CHAS", "url": "https://chas.co.uk", "identifier": "158368"}
+ ],
+ "hasCredential": [
+  {"@type": "EducationalOccupationalCredential", "name": "NAPIT Approved Contractor 66245", "credentialCategory": "Competent Person Scheme", "recognizedBy": {"@type": "Organization", "name": "NAPIT", "url": "https://napit.org.uk"}},
+  {"@type": "EducationalOccupationalCredential", "name": "Part P Registered (via NAPIT 66245)", "credentialCategory": "Building Regulations Part P", "recognizedBy": {"@type": "Organization", "name": "NAPIT", "url": "https://napit.org.uk"}},
+  {"@type": "EducationalOccupationalCredential", "name": "TrustMark Government Endorsed", "credentialCategory": "Government Endorsed Quality Scheme", "recognizedBy": {"@type": "Organization", "name": "TrustMark", "url": "https://trustmark.org.uk"}},
+  {"@type": "EducationalOccupationalCredential", "name": "CHAS Accredited 158368", "credentialCategory": "Health and Safety Assessment", "recognizedBy": {"@type": "Organization", "name": "CHAS", "url": "https://chas.co.uk"}},
+  {"@type": "EducationalOccupationalCredential", "name": "City and Guilds 2391 Inspection and Testing", "credentialCategory": "Vocational Qualification", "recognizedBy": {"@type": "Organization", "name": "City and Guilds", "url": "https://cityandguilds.com"}},
+  {"@type": "EducationalOccupationalCredential", "name": "BS 7671 18th Edition Compliant", "credentialCategory": "IET Wiring Regulations", "recognizedBy": {"@type": "Organization", "name": "Institution of Engineering and Technology", "url": "https://electrical.theiet.org"}}
+ ]
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {"@type": "Question", "name": "Is NAPIT the same as NICEIC?", "acceptedAnswer": {"@type": "Answer", "text": "Both are UK government-authorised Competent Person Schemes for electricians, alongside ECA, ELECSA, and STROMA. They sit at the same level under Part P of the Building Regulations - a NAPIT-registered contractor and a NICEIC-registered contractor have equivalent legal authority to self-certify domestic electrical work. The schemes differ in branding, audit detail, and member fees, but a Building Control office or solicitor will accept paperwork from either equally."}},
+  {"@type": "Question", "name": "Do I need Part P for changing a light fitting?", "acceptedAnswer": {"@type": "Answer", "text": "No - swapping a like-for-like light fitting on an existing circuit is non-notifiable maintenance and does not require Part P notification. Part P notification is required when you add a new circuit, replace a consumer unit or fuse board, or carry out fixed wiring work in a special location such as a bathroom (Zone 0/1/2), kitchen accessory zone in some interpretations, or outdoors. If you are unsure, ask the electrician before they start - any honest contractor will tell you whether the job is notifiable."}},
+  {"@type": "Question", "name": "What if my electrician isn't NAPIT or NICEIC?", "acceptedAnswer": {"@type": "Answer", "text": "They cannot self-certify Part P work. To stay legal, the homeowner must apply directly to the local authority Building Control before work starts and pay an inspection fee (typically £200-£400) plus wait for inspection appointments - which slows the job. The work must still be tested and certified to BS 7671 by someone competent. The cheaper option is almost always to use a Competent Person scheme member who handles notification at no extra charge."}},
+  {"@type": "Question", "name": "Can my landlord ignore Part P?", "acceptedAnswer": {"@type": "Answer", "text": "No. Part P applies to all dwellings in England and Wales regardless of tenure - rented, owner-occupied, leasehold, or HMO. A landlord arranging electrical work in a let property has the same Building Regulations obligations as a homeowner, plus separate landlord duties under the Electrical Safety Standards in the Private Rented Sector (England) Regulations 2020 which require a five-year EICR. Using a Competent Person scheme member covers both at once."}}
+ ]
+}
+</script>
+<style>
+.hero{background:var(--dark);padding:clamp(7rem,9vw,9rem) clamp(1.5rem,5vw,4rem) clamp(4rem,6vw,5rem);text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(212,164,74,.08),transparent 60%);pointer-events:none}
+.hero-inner{max-width:900px;margin:0 auto;position:relative;z-index:1}
+.hero-tag{font-size:.65rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:2rem}
+.hero h1{font-size:clamp(2.5rem,6vw,5rem);font-weight:900;line-height:1;color:#fff;letter-spacing:-.03em;margin-bottom:1.5rem}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero-desc{font-size:1.15rem;color:rgba(240,232,218,.6);line-height:1.7;max-width:680px;margin:0 auto 2rem}
+
+.intro{padding:clamp(4rem,7vw,5rem) clamp(1.5rem,5vw,4rem);background:var(--light)}
+.intro-inner{max-width:780px;margin:0 auto;text-align:center}
+.intro p{font-size:1.05rem;color:var(--text-muted);line-height:1.8;margin-bottom:1rem}
+.intro p strong{color:var(--text-dark)}
+
+.acc-section{padding:clamp(2rem,4vw,3rem) clamp(1.5rem,5vw,4rem);background:var(--light)}
+.acc-section.alt{background:var(--light2)}
+.acc-inner{max-width:900px;margin:0 auto}
+.acc-content .acc-tag{font-size:.65rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--brass);margin-bottom:.5rem}
+.acc-content h2{font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:900;line-height:1.05;letter-spacing:-.02em;margin-bottom:1rem;color:var(--text-dark)}
+.acc-content p{font-size:1rem;color:var(--text-muted);line-height:1.8;margin-bottom:1rem}
+.acc-content p strong{color:var(--text-dark);font-weight:700}
+.acc-content ul{list-style:none;margin:1rem 0 1.5rem;padding:0}
+.acc-content ul li{font-size:.95rem;color:var(--text-muted);line-height:1.7;padding-left:1.6rem;position:relative;margin-bottom:.5rem}
+.acc-content ul li::before{content:'';position:absolute;left:0;top:.6rem;width:8px;height:8px;background:var(--gold);border-radius:2px}
+.acc-content ol{margin:1rem 0 1.5rem 1.6rem;padding:0;color:var(--text-muted)}
+.acc-content ol li{font-size:.95rem;line-height:1.8;margin-bottom:.5rem}
+.acc-verify{display:inline-flex;align-items:center;gap:.5rem;padding:.7rem 1.3rem;background:var(--dark);color:#fff;border-radius:6px;font-weight:700;font-size:.8rem;letter-spacing:.05em;text-transform:uppercase;transition:.25s;margin-top:.5rem}
+.acc-verify:hover{background:var(--brass);transform:translateY(-2px)}
+.acc-verify svg{width:14px;height:14px;fill:currentColor}
+
+.summary-strip{background:var(--dark);padding:3rem clamp(1.5rem,5vw,4rem);border-top:1px solid rgba(255,255,255,.06)}
+.summary-strip-inner{max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:2.5rem}
+.summary-item{display:flex;flex-direction:column;align-items:center;gap:.4rem;text-align:center;min-width:120px}
+.summary-item img{height:48px;width:auto;filter:grayscale(.2) contrast(1.1)}
+.summary-item span{font-size:.7rem;color:rgba(240,232,218,.6);text-transform:uppercase;letter-spacing:.1em;font-weight:600}
+
+.faq-section{padding:clamp(4rem,7vw,5rem) clamp(1.5rem,5vw,4rem);background:var(--light)}
+.faq-inner{max-width:900px;margin:0 auto}
+.faq-inner h2{font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:900;letter-spacing:-.02em;margin-bottom:2rem;text-align:center}
+.faq-item{background:#fff;border:1px solid var(--light3);border-radius:12px;padding:1.5rem 1.75rem;margin-bottom:1rem}
+.faq-item h3{font-size:1.05rem;font-weight:800;color:var(--text-dark);margin-bottom:.6rem}
+.faq-item p{font-size:.95rem;color:var(--text-muted);line-height:1.75}
+
+.callout{background:rgba(212,164,74,.08);border-left:4px solid var(--gold);padding:1.25rem 1.5rem;border-radius:6px;margin:1.5rem 0}
+.callout p{font-size:.95rem;margin:0;color:var(--text-dark)}
+.callout p strong{color:var(--text-dark)}
+</style>
+<script src="/analytics.js" defer></script>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+ <a href="/" class="nav-logo"><img src="logo-full.png" alt="DS Electrical Installations (SW) Ltd" loading="lazy" decoding="async"></a>
+ <ul class="nav-links" id="navLinks">
+  <li><a href="/commercial-electrical.html">Commercial</a></li>
+  <li><a href="/domestic.html">Domestic</a></li>
+  <li><a href="/rewires.html">Rewires</a></li>
+  <li><a href="/eicr.html">EICR</a></li>
+  <li><a href="/ev-chargers.html">EV Chargers</a></li>
+  <li><a href="/cctv.html">CCTV</a></li>
+  <li><a href="/network-infrastructure.html">Network Infrastructure</a></li>
+  <li><a href="/24-hour-callouts.html">24hr Callouts</a></li>
+  <li><a href="/gallery.html">Gallery</a></li>
+  <li><a href="/blog.html">Blog</a></li>
+  <li><a href="/contact.html">Contact</a></li>
+  <li><a href="tel:07889334849" class="nav-cta">07889 334849</a></li>
+ </ul>
+ <button class="nav-menu" onclick="document.getElementById('navLinks').classList.toggle('open')">&#9776;</button>
+</nav>
+
+<nav class="breadcrumb" aria-label="Breadcrumb"><div class="breadcrumb-inner"><a href="/">Home</a><span class="sep">/</span><a href="/accreditations.html">Accreditations</a><span class="sep">/</span><span class="current" aria-current="page">Why NAPIT</span></div></nav>
+
+<!-- HERO -->
+<section class="hero">
+ <div class="hero-inner">
+  <div class="hero-tag">Customer Protection Explained</div>
+  <h1>Why NAPIT 66245<br><em>Protects You.</em></h1>
+  <p class="hero-desc">What government-registered Competent Person status actually means when you hire an electrician.</p>
+ </div>
+</section>
+
+<!-- TRUST STRIP (6 badges) -->
+<section class="summary-strip" aria-label="Six accreditations">
+ <div class="summary-strip-inner">
+  <a href="/accreditations.html#napit" class="summary-item"><img loading="lazy" src="assets/accreditations/napit-official.png" alt="NAPIT 66245 registered competent electrician scheme badge"><span>NAPIT 66245</span></a>
+  <a href="/accreditations.html#chas" class="summary-item"><img loading="lazy" src="assets/accreditations/chas-official.png" alt="CHAS accredited contractor health and safety badge for DS Electrical"><span>CHAS 158368</span></a>
+  <a href="/accreditations.html#city-guilds-2391" class="summary-item"><img loading="lazy" src="assets/accreditations/city-guilds-logo.png" alt="City and Guilds qualified electrician 2382 2391 2365 logo"><span>City &amp; Guilds 2391</span></a>
+  <a href="/accreditations.html#trustmark" class="summary-item"><img loading="lazy" src="assets/accreditations/trustmark.svg" alt="TrustMark government-endorsed quality scheme logo for DS Electrical"><span>TrustMark</span></a>
+  <a href="/accreditations.html#part-p" class="summary-item"><img loading="lazy" src="assets/accreditations/part-p.svg" alt="Part P Building Regulations registered electrician logo"><span>Part P</span></a>
+  <a href="/accreditations.html#bs7671" class="summary-item"><img loading="lazy" src="assets/accreditations/bs7671.svg" alt="BS 7671 18th Edition Wiring Regulations compliant electrician badge"><span>BS 7671</span></a>
+ </div>
+</section>
+
+<!-- INTRO -->
+<section class="intro">
+ <div class="intro-inner">
+  <div class="section-tag" style="text-align:center">Why this matters</div>
+  <p>Anyone can call themselves an electrician. Far fewer can produce a current government-recognised registration number, and even fewer can self-certify your work to Building Control. <strong>This page explains what NAPIT membership 66245 actually delivers when you hire us</strong> &mdash; the certificates, the warranty, the legal cover, and the route you have if anything ever goes wrong.</p>
+ </div>
+</section>
+
+<!-- 1. What NAPIT is -->
+<section class="acc-section" id="what-napit-is">
+ <div class="acc-inner">
+  <div class="acc-content">
+   <div class="acc-tag">01 / What NAPIT is</div>
+   <h2>The National Association of Professional Inspectors and Testers</h2>
+   <p>NAPIT is one of the UK&rsquo;s government-authorised <strong>Competent Person Schemes</strong> for the electrical trade, sitting alongside <strong>NICEIC, ECA, ELECSA and STROMA</strong>. The schemes were introduced under Part P of the Building Regulations to give homeowners a way to identify electricians who have been independently checked &mdash; and to give the installers themselves a legal route to certify their own work.</p>
+   <p>To join NAPIT and stay on the register, every member is <strong>independently audited every year</strong> against a defined technical standard. The audit covers test equipment calibration, certification quality, BS 7671 knowledge, insurance cover, and an on-site assessment of recent work. If a member fails, they come off the scheme. The number on our certificates &mdash; <strong>66245</strong> &mdash; is only valid for the next 12 months between audits, then it gets re-earned.</p>
+   <p>That&rsquo;s the difference between a logo on a van and a real registration: the logo can stay there forever, the number gets re-checked annually.</p>
+  </div>
+ </div>
+</section>
+
+<!-- 2. What 66245 means -->
+<section class="acc-section alt" id="number-66245">
+ <div class="acc-inner">
+  <div class="acc-content">
+   <div class="acc-tag">02 / What 66245 means</div>
+   <h2>Our verifiable membership number</h2>
+   <p><strong>66245</strong> is DS Electrical Installations (SW) Ltd&rsquo;s NAPIT registration number. It identifies our company on the public register at <strong>napit.org.uk</strong> and on every Electrical Installation Certificate, EICR, Minor Works Certificate, and Building Regulations Compliance Certificate we issue.</p>
+   <p>Our scope under 66245 covers <strong>domestic and commercial electrical installation, inspection and testing, and certification</strong> &mdash; rewires, consumer-unit replacements, EV charger circuits, EICRs, fault-finding, and all notifiable Part P work in dwellings.</p>
+   <div class="callout"><p><strong>Verify before booking.</strong> Search &lsquo;DS Electrical&rsquo; or &lsquo;66245&rsquo; at napit.org.uk and you&rsquo;ll find our company profile, the registered address, and the scope of work we&rsquo;re authorised for. If a number doesn&rsquo;t check out, that&rsquo;s a red flag &mdash; not just for us, for any contractor.</p></div>
+   <a href="https://napit.org.uk/find-an-installer/" class="acc-verify" target="_blank" rel="noopener">Verify 66245 on NAPIT register <svg viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7z"/></svg></a>
+  </div>
+ </div>
+</section>
+
+<!-- 3. Part P explained -->
+<section class="acc-section" id="part-p-explained">
+ <div class="acc-inner">
+  <div class="acc-content">
+   <div class="acc-tag">03 / Part P, in plain English</div>
+   <h2>What Part P is, and how notification works</h2>
+   <p>Part P of the Building Regulations is the <strong>legal framework for domestic electrical safety</strong> in England and Wales. It came into force in <strong>January 2005</strong> and applies to all fixed wiring inside dwellings &mdash; not portable appliances, not extension leads, but anything wired into the building.</p>
+   <p>Certain categories of work are <strong>notifiable</strong>, meaning they must be registered with the local authority Building Control before being signed off:</p>
+   <ul>
+    <li>New circuits (e.g. dedicated supply for an oven, EV charger or outbuilding)</li>
+    <li>Consumer-unit (fuse-board) replacements</li>
+    <li>Electrical work in special locations &mdash; bathrooms, shower rooms, swimming pools</li>
+    <li>Outdoor wiring &mdash; garden lighting, hot tubs, sheds, garden offices</li>
+    <li>Whole or partial rewires</li>
+   </ul>
+   <p>You have two routes to get notifiable work signed off legally:</p>
+   <ol>
+    <li><strong>Building Control inspection</strong> &mdash; you (or your installer) apply to the council before work starts. Typical fees are <strong>&pound;200&ndash;&pound;400</strong>, and you wait for the inspector&rsquo;s availability before and after the work. Slow, more expensive, but the only route open to non-registered installers.</li>
+    <li><strong>Competent Person Scheme self-certification</strong> &mdash; a NAPIT (or NICEIC/ECA/ELECSA/STROMA) member certifies the work themselves and notifies on your behalf at <strong>no extra cost to you</strong>. NAPIT 66245 is route 2.</li>
+   </ol>
+   <p>Both routes are equally legal. Route 2 is faster, cheaper, and the standard for any reputable electrician working in dwellings.</p>
+  </div>
+ </div>
+</section>
+
+<!-- 4. What you get -->
+<section class="acc-section alt" id="what-you-get">
+ <div class="acc-inner">
+  <div class="acc-content">
+   <div class="acc-tag">04 / What you actually receive</div>
+   <h2>Six things you get from a NAPIT install</h2>
+   <p>When we finish a notifiable job under our 66245 registration, you receive the following &mdash; in writing, with your name and address on every document:</p>
+   <ul>
+    <li><strong>Electrical Installation Certificate (EIC)</strong> &mdash; signed by the qualified electrician who designed, installed, and tested the work, with full circuit details, test values, and BS 7671 schedule of inspections.</li>
+    <li><strong>Notification to Building Control via NAPIT</strong> &mdash; we lodge the job electronically with NAPIT, who notify your local authority on your behalf. You don&rsquo;t do anything.</li>
+    <li><strong>Building Regulations Compliance Certificate</strong> &mdash; posted by NAPIT directly to the property address, normally within 30 days of the job. Keep it with the deeds &mdash; conveyancing solicitors will ask for it.</li>
+    <li><strong>Six-year workmanship warranty</strong> &mdash; backed by the NAPIT scheme, covering the work we did against defects.</li>
+    <li><strong>Insurance Backed Guarantee</strong> &mdash; if our company ever ceased to trade during the warranty period, NAPIT&rsquo;s underwriters honour the warranty and arrange remedial work. The customer is never left with an uncertified installation and no recourse.</li>
+    <li><strong>Searchable record</strong> &mdash; the registration is logged at napit.org.uk, traceable for the lifetime of the install.</li>
+   </ul>
+   <p>That stack of paper isn&rsquo;t just admin &mdash; it&rsquo;s what protects the value of your home, satisfies your insurer, and clears conveyancing on the day you sell.</p>
+  </div>
+ </div>
+</section>
+
+<!-- 5. How to verify -->
+<section class="acc-section" id="how-to-verify">
+ <div class="acc-inner">
+  <div class="acc-content">
+   <div class="acc-tag">05 / How to verify us</div>
+   <h2>Check before you book &mdash; takes 30 seconds</h2>
+   <p>Genuine accreditations are designed to be checked. Here&rsquo;s the procedure:</p>
+   <ol>
+    <li>Go to <strong>napit.org.uk/find-a-tradesman</strong></li>
+    <li>Search for &lsquo;<strong>DS Electrical</strong>&rsquo;, our membership number &lsquo;<strong>66245</strong>&rsquo;, or our postcode &lsquo;<strong>BA6</strong>&rsquo;</li>
+    <li>You&rsquo;ll see our registered company name, address, and the scope of work we&rsquo;re authorised for</li>
+   </ol>
+   <p>The same approach works for any contractor &mdash; <strong>NICEIC</strong> have a checker at niceic.com, <strong>TrustMark</strong> at trustmark.org.uk, <strong>CHAS</strong> at chas.co.uk. If a tradesman lists a scheme name and the search returns nothing, ask why before paying a deposit.</p>
+   <a href="https://napit.org.uk/find-an-installer/" class="acc-verify" target="_blank" rel="noopener">Search the NAPIT register <svg viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7z"/></svg></a>
+  </div>
+ </div>
+</section>
+
+<!-- 6. If it goes wrong -->
+<section class="acc-section alt" id="if-it-goes-wrong">
+ <div class="acc-inner">
+  <div class="acc-content">
+   <div class="acc-tag">06 / If anything ever goes wrong</div>
+   <h2>The complaints route, in order</h2>
+   <p>Most jobs go cleanly. If one ever doesn&rsquo;t, the NAPIT scheme gives you a clear, published procedure &mdash; and we&rsquo;d rather you used it than stew in silence:</p>
+   <ol>
+    <li><strong>Contact us first.</strong> Phone 07889 334849 or email info@dselectricalsw.co.uk and tell us what isn&rsquo;t right. The vast majority of issues get sorted at this step &mdash; we&rsquo;ll come back out and put it right.</li>
+    <li><strong>If we can&rsquo;t resolve it, escalate to NAPIT.</strong> NAPIT&rsquo;s Consumer Complaints procedure is free for the customer to use. They review the dispute, may inspect the work, and can require a member to remediate, refund, or replace.</li>
+    <li><strong>Insurance-backed remediation.</strong> If our company ceased trading or could not pay for remedial work, NAPIT&rsquo;s Insurance Backed Guarantee underwrites the warranty for six years &mdash; another contractor finishes the fix and the customer is not out of pocket.</li>
+    <li><strong>TrustMark dispute resolution.</strong> Because we&rsquo;re also TrustMark-registered, you have an additional independent route via the TrustMark Customer Charter &mdash; for non-electrical disputes (e.g. service standards, contract issues).</li>
+   </ol>
+   <p>Most cowboy outfits can&rsquo;t accept this level of accountability &mdash; which is why most of them aren&rsquo;t registered with anyone.</p>
+   <a href="/complaints.html" class="acc-verify">Our full complaints policy <svg viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7z"/></svg></a>
+  </div>
+ </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section" aria-label="Frequently asked questions">
+ <div class="faq-inner">
+  <div class="section-tag" style="text-align:center">Common questions</div>
+  <h2>NAPIT &amp; Part P FAQ</h2>
+  <div class="faq-item">
+   <h3>Is NAPIT the same as NICEIC?</h3>
+   <p>Both are UK government-authorised Competent Person Schemes for electricians, alongside ECA, ELECSA, and STROMA. They sit at the same level under Part P of the Building Regulations &mdash; a NAPIT-registered contractor and a NICEIC-registered contractor have equivalent legal authority to self-certify domestic electrical work. The schemes differ in branding, audit detail, and member fees, but a Building Control office or solicitor will accept paperwork from either equally.</p>
+  </div>
+  <div class="faq-item">
+   <h3>Do I need Part P for changing a light fitting?</h3>
+   <p>No &mdash; swapping a like-for-like light fitting on an existing circuit is non-notifiable maintenance and does not require Part P notification. Part P notification is required when you add a new circuit, replace a consumer unit or fuse board, or carry out fixed wiring work in a special location such as a bathroom (Zone 0/1/2) or outdoors. If you&rsquo;re unsure, ask the electrician before they start &mdash; any honest contractor will tell you whether the job is notifiable.</p>
+  </div>
+  <div class="faq-item">
+   <h3>What if my electrician isn&rsquo;t NAPIT or NICEIC?</h3>
+   <p>They cannot self-certify Part P work. To stay legal, the homeowner must apply directly to the local authority Building Control before work starts and pay an inspection fee (typically &pound;200&ndash;&pound;400) plus wait for inspection appointments &mdash; which slows the job. The work must still be tested and certified to BS 7671 by someone competent. The cheaper option is almost always to use a Competent Person scheme member who handles notification at no extra charge.</p>
+  </div>
+  <div class="faq-item">
+   <h3>Can my landlord ignore Part P?</h3>
+   <p>No. Part P applies to all dwellings in England and Wales regardless of tenure &mdash; rented, owner-occupied, leasehold, or HMO. A landlord arranging electrical work in a let property has the same Building Regulations obligations as a homeowner, plus separate landlord duties under the Electrical Safety Standards in the Private Rented Sector (England) Regulations 2020 which require a five-year EICR. Using a Competent Person scheme member covers both at once.</p>
+  </div>
+ </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="contact">
+ <div class="section-tag" style="color:var(--gold)">Verify Then Book</div>
+ <h2 class="section-heading">NAPIT 66245.<br>Verifiable. Insured.</h2>
+ <p class="section-desc">Check us at napit.org.uk, then phone Dan and book the job.</p>
+ <span class="cta-phone-label">Direct</span>
+ <a href="tel:07889334849" class="cta-phone">Dan Stevens, Director: 07889 334849</a>
+ <a href="tel:07983106928" class="cta-phone-2">Dan Street, Director: 07983 106928</a>
+ <div class="cta-btns">
+  <a href="/quote/" class="btn btn-gold">Request a Quote</a>
+  <a href="https://wa.me/447889334849" class="btn btn-white">WhatsApp</a>
+ </div>
+</section>
+
+<!-- RELATED -->
+<section class="related-svc" aria-label="Related pages">
+ <div class="related-svc-inner">
+  <div class="section-tag" style="font-size:.65rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;margin-bottom:1rem">Related</div>
+  <h2>Read more about how we work&hellip;</h2>
+  <div class="related-grid">
+   <a href="/accreditations.html" class="related-card">
+    <h3>All Accreditations</h3>
+    <p>Six credentials, every membership number</p>
+    <span class="arrow">Explore &rarr;</span>
+   </a>
+   <a href="/complaints.html" class="related-card">
+    <h3>Complaints Policy</h3>
+    <p>Our full procedure if anything goes wrong</p>
+    <span class="arrow">Explore &rarr;</span>
+   </a>
+   <a href="/eicr.html" class="related-card">
+    <h3>EICR Inspections</h3>
+    <p>2391 qualified, every report</p>
+    <span class="arrow">Explore &rarr;</span>
+   </a>
+   <a href="/contact.html" class="related-card">
+    <h3>Contact</h3>
+    <p>Phone, email, WhatsApp</p>
+    <span class="arrow">Explore &rarr;</span>
+   </a>
+  </div>
+ </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+ <div class="footer-grid">
+  <div>
+   <h3>DS Electrical Installations (SW) Ltd</h3>
+   <p>Glastonbury, Somerset</p>
+   <p><a href="tel:07889334849">07889 334849 (Dan Stevens)</a></p>
+   <p><a href="tel:07983106928">07983 106928 (Dan Street)</a></p>
+   <p><a href="mailto:info@dselectricalsw.co.uk">info@dselectricalsw.co.uk</a></p>
+  </div>
+  <div>
+   <h3>Services</h3>
+   <p><a href="/eicr.html">Rewires &amp; EICR</a></p>
+   <p><a href="/ev-chargers.html">EV Chargers</a></p>
+   <p><a href="/cctv.html">CCTV &amp; Security</a></p>
+   <p><a href="/commercial-electrical.html">Commercial</a></p>
+   <p><a href="/fuse-board.html">Fuse Board</a></p>
+   <p><a href="/fire-alarms.html">Fire Alarms</a></p>
+   <p><a href="/emergency-lighting.html">Emergency Lighting</a></p>
+  </div>
+  <div>
+   <h3>Areas</h3>
+   <p>Wells</p><p>Shepton Mallet</p><p>Bath</p><p>Frome</p><p>Midsomer Norton</p><p>Street</p>
+  </div>
+  <div>
+   <h3>Trust</h3>
+   <p><a href="/accreditations.html">NAPIT Approved</a></p>
+   <p><a href="/why-napit.html">Why NAPIT matters &rarr;</a></p>
+   <p><a href="/accreditations.html">CHAS Accredited</a></p>
+   <p><a href="/accreditations.html">TrustMark Endorsed</a></p>
+   <p><a href="/accreditations.html">Part P Registered</a></p>
+   <p style="margin-top:.5rem">5.0 Google Rating</p>
+  </div>
+ </div>
+ <div class="footer-bottom">
+  <span>&copy; 2026 DS Electrical Installations (SW) Ltd &middot; Reg. in England No. 13972348 &middot; VAT Reg. No. GB 429 0409 05 &middot; ICO 00013889257 &middot; NAPIT 66245 &middot; CHAS 158368</span>
+  <span><a href="/privacy.html">Privacy</a> &middot; <a href="/terms.html">Terms</a></span>
+ </div>
+</footer>
+
+<a href="https://wa.me/447889334849" class="wa" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.611.611l4.458-1.495A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.344 0-4.508-.8-6.227-2.141l-.435-.344-3.208 1.076 1.076-3.208-.344-.435A9.956 9.956 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg></a>
+
+<div class="mcb" aria-label="Quick contact">
+ <div class="mcb-grid">
+  <a href="tel:07889334849" class="mcb-call" aria-label="Call 07889 334849">
+   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.1-.04-.21-.05-.31-.05-.26 0-.51.1-.71.29l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.58l2.2-2.21c.28-.27.36-.66.25-1.01C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/></svg>
+   <span>Call Dan</span><small>07889 334849</small>
+  </a>
+  <a href="https://wa.me/447889334849" class="mcb-wa" aria-label="WhatsApp">
+   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.611.611l4.458-1.495A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+   <span>WhatsApp</span>
+  </a>
+  <a href="mailto:info@dselectricalsw.co.uk" class="mcb-mail" aria-label="Email">
+   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+   <span>Email</span>
+  </a>
+ </div>
+</div>
+
+<a href="tel:07889334849" class="dq-btn" aria-label="Call Dan for a quote">
+ <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.1-.04-.21-.05-.31-.05-.26 0-.51.1-.71.29l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.58l2.2-2.21c.28-.27.36-.66.25-1.01C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/></svg>
+ Call Dan &mdash; 07889 334849
+</a>
+
+<script src="/track.js" defer></script>
+<script src="/chat-widget.js" defer></script>
+</body>
+</html>

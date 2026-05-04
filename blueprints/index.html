@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0a0908">
+<meta name="description" content="DS Blueprints — single-purpose tools for sparkies, anglers, tradespeople. Free, open in your browser, work offline.">
+<meta property="og:title" content="DS Blueprints — single-purpose tools that work">
+<meta property="og:image" content="https://www.dselectricalsw.co.uk/og-image.jpg">
+<meta property="og:description" content="Sparky's Pad, reel iQ, Quote Builder. Single-purpose tools. Free. Open in your browser.">
+<meta property="og:type" content="website">
+<title>Blueprints — DS Electrical</title>
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --dark:#0a0908; --dark2:#131110; --dark3:#1c1915;
+    --gold:#d4a44a; --brass:#b8944f;
+    --text:#f0e8da; --text-2:#b3a988; --text-3:#7e7858;
+    --line:rgba(214,196,143,.10); --line-2:rgba(214,196,143,.25);
+    --moss:#7d9156;
+  }
+  html,body{background:var(--dark);color:var(--text);font-family:'Outfit',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;-webkit-font-smoothing:antialiased;font-size:16px;line-height:1.5}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:920px;margin:0 auto;padding:80px 24px 120px}
+
+  .hero{text-align:center;padding-bottom:64px;border-bottom:1px solid var(--line)}
+  .hero .label{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:24px}
+  .hero h1{font-size:clamp(40px,7vw,64px);font-weight:900;line-height:1.02;letter-spacing:-.02em;margin-bottom:18px}
+  .hero p{font-size:clamp(15px,2.2vw,18px);color:var(--text-3);max-width:480px;margin:0 auto;line-height:1.5}
+
+  .grid{margin-top:56px;display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  @media(max-width:640px){.grid{grid-template-columns:1fr}}
+
+  .tile{display:flex;flex-direction:column;background:var(--dark2);border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:transform .18s ease, border-color .18s ease, background .18s ease}
+  .tile:hover{transform:translateY(-3px);border-color:var(--line-2);background:var(--dark3)}
+  .tile .thumb{height:170px;background:var(--dark3);position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+  .tile .thumb-inner{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.7rem;letter-spacing:.18em;color:var(--text-3);text-transform:uppercase}
+  .tile .thumb-mark{font-size:clamp(28px,5vw,44px);font-weight:900;letter-spacing:-.03em;color:var(--text-2);font-family:'Outfit',sans-serif}
+  .tile .thumb-mark .accent{color:var(--gold)}
+  .tile .thumb-mark.serif{font-family:'Playfair Display','Outfit',serif;font-weight:600}
+  .tile .thumb-mark.elite{font-family:'Special Elite','Outfit',monospace;font-weight:400;letter-spacing:.02em}
+
+  .tile .body{padding:1.4rem 1.4rem 1.6rem;flex:1;display:flex;flex-direction:column}
+  .tile .tag{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.62rem;font-weight:700;letter-spacing:.22em;color:var(--gold);text-transform:uppercase;margin-bottom:.7rem}
+  .tile h2{font-size:1.4rem;font-weight:800;letter-spacing:-.01em;margin-bottom:.5rem;line-height:1.1}
+  .tile .desc{font-size:.92rem;color:var(--text-3);line-height:1.55;margin-bottom:1.2rem}
+  .tile .open{margin-top:auto;display:inline-flex;align-items:center;gap:.4rem;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.72rem;font-weight:700;letter-spacing:.18em;color:var(--gold);text-transform:uppercase}
+  .tile .open::after{content:'\2192';transition:transform .18s ease}
+  .tile:hover .open::after{transform:translateX(3px)}
+
+  .footer{margin-top:80px;padding-top:32px;border-top:1px solid var(--line);text-align:center;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.68rem;color:var(--text-3);letter-spacing:.12em;text-transform:uppercase}
+  .footer a{color:var(--text-3);border-bottom:1px dotted var(--text-3);padding-bottom:1px}
+  .footer a:hover{color:var(--text)}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <section class="hero">
+    <div class="label">Blueprints &middot; v2</div>
+    <h1>Single-purpose tools + business operating systems.</h1>
+    <p>Free. Open in your browser. Tools below the fold; business blueprints (every department on one canvas) further down.</p>
+  </section>
+
+  <div style="margin-top:48px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;font-weight:700;letter-spacing:.32em;color:var(--gold);text-transform:uppercase;text-align:center">Tools &middot; what you can use</div>
+
+  <div class="grid">
+
+    <a class="tile" href="/sparky/">
+      <div class="thumb"><div class="thumb-inner"><div class="thumb-mark">SPARKY<span class="accent">.</span></div></div></div>
+      <div class="body">
+        <div class="tag">For sparkies</div>
+        <h2>Sparky's Pad</h2>
+        <p class="desc">Job tracker + auto-quote helper. EICRs per circuit, EV £495 fixed, fuse board £99. Works offline on the bank.</p>
+        <span class="open">Open it</span>
+      </div>
+    </a>
+
+    <a class="tile" href="https://fish.aimaxops.com/landing">
+      <div class="thumb"><div class="thumb-inner"><div class="thumb-mark serif">REEL <span class="accent">iQ</span></div></div></div>
+      <div class="body">
+        <div class="tag">For anglers</div>
+        <h2>reel iQ</h2>
+        <p class="desc">Field intelligence for anglers. Snap a fish, EXIF reads time + GPS + weather. Learns your hot windows. Tells you when to go.</p>
+        <span class="open">Open it</span>
+      </div>
+    </a>
+
+    <a class="tile" href="/quote/">
+      <div class="thumb"><div class="thumb-inner"><div class="thumb-mark"><span class="accent">£</span> QUOTE</div></div></div>
+      <div class="body">
+        <div class="tag">For tradespeople</div>
+        <h2>Quote Builder</h2>
+        <p class="desc">Customer + line items + auto VAT 20%. Print to A4 PDF in one tap. Auto-saves to your browser so you can come back to it.</p>
+        <span class="open">Open it</span>
+      </div>
+    </a>
+
+    <a class="tile" href="https://aimaxops.com/brand">
+      <div class="thumb"><div class="thumb-inner"><div class="thumb-mark serif">AI MAX<span class="accent">·</span>OPS</div></div></div>
+      <div class="body">
+        <div class="tag">For designers</div>
+        <h2>AI MaxOps Brand Blueprint</h2>
+        <p class="desc">Industrial Heritage. Soot, leather, aged brass. The single page anyone needs to use the AimaxOps brand right.</p>
+        <span class="open">Open it</span>
+      </div>
+    </a>
+
+  </div>
+
+  <div style="margin-top:80px;text-align:center">
+    <div style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;font-weight:700;letter-spacing:.32em;color:var(--gold);text-transform:uppercase;margin-bottom:14px">Business Blueprints &middot; the operating systems</div>
+    <p style="font-size:14px;color:var(--text-3);max-width:520px;margin:0 auto;line-height:1.55">Every department of a business on one massive canvas. Marketing · Sales · Ops · Customer · Finance · Compliance · Tech · Brand. Drag to pan, zoom, minimap. Built FigJam-style.</p>
+  </div>
+
+  <div class="grid" style="margin-top:32px">
+
+    <a class="tile" href="/blueprint/template.html?biz=ds-electrical">
+      <div class="thumb"><div class="thumb-inner"><div class="thumb-mark"><span class="accent">⚡</span> DS</div></div></div>
+      <div class="body">
+        <div class="tag">Trade · regulated</div>
+        <h2>DS Electrical</h2>
+        <p class="desc">8 frames · 42 lanes · 174 nodes · 4 sub-blueprints. NAPIT-led trade business · Mid Somerset · sparkies + EV + heritage.</p>
+        <span class="open">Open the canvas</span>
+      </div>
+    </a>
+
+    <a class="tile" href="/blueprint/template.html?biz=aimaxops">
+      <div class="thumb"><div class="thumb-inner"><div class="thumb-mark serif">AI MAX<span class="accent">·</span>OPS</div></div></div>
+      <div class="body">
+        <div class="tag">POD · streetwear</div>
+        <h2>AimaxOps Tactical</h2>
+        <p class="desc">8 frames · 40 lanes · 153 nodes · 4 sub-blueprints. Industrial Heritage tactical streetwear · Stripe · Printful/Printify/Prodigi.</p>
+        <span class="open">Open the canvas</span>
+      </div>
+    </a>
+
+    <a class="tile" href="/blueprint/template.html?biz=reel-iq">
+      <div class="thumb"><div class="thumb-inner"><div class="thumb-mark serif">REEL <span class="accent">iQ</span></div></div></div>
+      <div class="body">
+        <div class="tag">PWA · anglers</div>
+        <h2>reel iQ — Blueprint</h2>
+        <p class="desc">7 frames · 35 lanes · 130 nodes. Catch logging + AI species ID + bite predictor. Python aiohttp + SQLite + offline-first PWA.</p>
+        <span class="open">Open the canvas</span>
+      </div>
+    </a>
+
+    <a class="tile" href="/blueprint/template.html?biz=forge">
+      <div class="thumb"><div class="thumb-inner"><div class="thumb-mark"><span class="accent">⚒</span> FORGE</div></div></div>
+      <div class="body">
+        <div class="tag">SaaS · trades</div>
+        <h2>Forge — Trade Toolkit</h2>
+        <p class="desc">8 frames · 26 lanes · 95 nodes. PWA for trade businesses · 4 phases · Phase 1 shipped (10 team-dev tools) · cheaper than CertSuite.</p>
+        <span class="open">Open the canvas</span>
+      </div>
+    </a>
+
+    <a class="tile" href="/blueprint/template.html?biz=agentos">
+      <div class="thumb"><div class="thumb-inner"><div class="thumb-mark"><span class="accent">◇</span> AGENT<span class="accent">·</span>OS</div></div></div>
+      <div class="body">
+        <div class="tag">SaaS · AI ops</div>
+        <h2>AgentOS</h2>
+        <p class="desc">8 frames · 25 lanes · 105 nodes. Commercial wrapper around ds-agent-ops engine · Next.js 16 + Supabase + Stripe · 21 routes.</p>
+        <span class="open">Open the canvas</span>
+      </div>
+    </a>
+
+    <a class="tile" href="/blueprint/template.html?biz=listpilot">
+      <div class="thumb"><div class="thumb-inner"><div class="thumb-mark"><span class="accent">»</span> LIST<span class="accent">·</span>PILOT</div></div></div>
+      <div class="body">
+        <div class="tag">SaaS · resellers</div>
+        <h2>ListPilot</h2>
+        <p class="desc">6 frames · 21 lanes · 82 nodes. AI listing automation · eBay OAuth + Inventory API · profit tracker · React + FastAPI + Postgres.</p>
+        <span class="open">Open the canvas</span>
+      </div>
+    </a>
+
+    <a class="tile" href="/blueprint/template.html?biz=capitalforge">
+      <div class="thumb"><div class="thumb-inner"><div class="thumb-mark"><span class="accent">£</span> CAPITAL<span class="accent">·</span>FORGE</div></div></div>
+      <div class="body">
+        <div class="tag">SaaS · property finance</div>
+        <h2>CapitalForge</h2>
+        <p class="desc">6 frames · 21 lanes · 76 nodes. 10 autonomous agents 24/7 · 49 endpoints · 26 lenders + 25 investors + 33 prospects.</p>
+        <span class="open">Open the canvas</span>
+      </div>
+    </a>
+
+    <a class="tile" href="/blueprint/template.html?biz=fieldops">
+      <div class="thumb"><div class="thumb-inner"><div class="thumb-mark"><span class="accent">◆</span> FIELD<span class="accent">·</span>OPS</div></div></div>
+      <div class="body">
+        <div class="tag">SaaS · trade ops</div>
+        <h2>FieldOps</h2>
+        <p class="desc">6 frames · 20 lanes · 71 nodes. Field engineer mgmt · job lifecycle · GPS check-in · 16 pages · React 19.</p>
+        <span class="open">Open the canvas</span>
+      </div>
+    </a>
+
+    <a class="tile" href="/blueprint/template.html?biz=workdrone">
+      <div class="thumb"><div class="thumb-inner"><div class="thumb-mark"><span class="accent">⊹</span> WORK<span class="accent">·</span>DRONE</div></div></div>
+      <div class="body">
+        <div class="tag">SaaS · AI agents</div>
+        <h2>WorkDrone</h2>
+        <p class="desc">6 frames · 19 lanes · 74 nodes. AI agent marketplace · $53B market · 8 agents · 8 languages · Free/Pro/Biz tiers.</p>
+        <span class="open">Open the canvas</span>
+      </div>
+    </a>
+
+    <a class="tile" href="/blueprint/template.html?biz=techdrone">
+      <div class="thumb"><div class="thumb-inner"><div class="thumb-mark"><span class="accent">▲</span> TECH<span class="accent">·</span>DRONE</div></div></div>
+      <div class="body">
+        <div class="tag">Reviews · affiliate</div>
+        <h2>TechDrone</h2>
+        <p class="desc">5 frames · 15 lanes · 52 nodes. AI tech reviews + Amazon affiliate + AI Toolkit £19 + services £149-£699. 3 revenue streams.</p>
+        <span class="open">Open the canvas</span>
+      </div>
+    </a>
+
+    <a class="tile" href="/blueprint/template.html?biz=buildmyapp">
+      <div class="thumb"><div class="thumb-inner"><div class="thumb-mark"><span class="accent">◐</span> BUILD<span class="accent">·</span>MY<span class="accent">·</span>APP</div></div></div>
+      <div class="body">
+        <div class="tag">SaaS · website builder</div>
+        <h2>BuildMyApp</h2>
+        <p class="desc">5 frames · 15 lanes · 52 nodes. AI website builder · 6 templates · GitHub Pages auto-deploy · £9.99 launch + £4.99/mo Pro.</p>
+        <span class="open">Open the canvas</span>
+      </div>
+    </a>
+
+    <a class="tile" href="/blueprint/template.html?biz=betvault">
+      <div class="thumb"><div class="thumb-inner"><div class="thumb-mark"><span class="accent">♠</span> BET<span class="accent">·</span>VAULT</div></div></div>
+      <div class="body">
+        <div class="tag">SaaS · virtual casino</div>
+        <h2>BetVault</h2>
+        <p class="desc">5 frames · 16 lanes · 52 nodes. Subscription virtual casino · 6 games · NO real money / NO UKGC · path to license via sub revenue.</p>
+        <span class="open">Open the canvas</span>
+      </div>
+    </a>
+
+    <a class="tile" href="/blueprint/template.html?biz=ukpowerpros">
+      <div class="thumb"><div class="thumb-inner"><div class="thumb-mark"><span class="accent">⚡</span> UK POWER<span class="accent">·</span>PROS</div></div></div>
+      <div class="body">
+        <div class="tag">Digital products · trade</div>
+        <h2>UK Power Pros</h2>
+        <p class="desc">5 frames · 15 lanes · 49 nodes. 8 SKUs · EICR + RAMS + EV + BS 7671 cards + business kit + Forge/FieldOps subs · £19-£49 + £29/mo.</p>
+        <span class="open">Open the canvas</span>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="footer">
+    DS Blueprints &middot; <b style="color:var(--gold)">13 business canvases live · 1,165 nodes</b> &middot; 35+ to come &middot; <a href="/">DS Electrical</a>
+  </div>
+
+</div>
+</body>
+</html>

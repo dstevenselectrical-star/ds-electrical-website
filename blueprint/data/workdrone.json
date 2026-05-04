@@ -1,0 +1,175 @@
+{
+  "id": "workdrone",
+  "name": "WorkDrone — AI Agent Marketplace",
+  "topbarTitle": "WorkDrone · Operating System",
+  "version": "v1", "date": "2026-05-03",
+  "tagline": "AI drones that work 24/7 · you sleep · they don't · $53B AI agents market",
+  "eyebrow": "Operating System · the whole product",
+  "description": "AI agent marketplace SaaS targeting the $53B AI agents market (45% CAGR by 2030). 8 agents, 3-tier pricing, 8 languages. Live at aimaxops.com/workdrone/.",
+  "meta": [["Stack", "React 19 + Vite 7 + Tailwind 4 + react-i18next"], ["Path", "~/workdrone"], ["Live", "aimaxops.com/workdrone/"], ["Backend", "FastAPI port 8091"], ["Languages", "8"], ["Market", "$53B by 2030"]],
+  "stats": [
+    {"label": "Frames", "num": "6", "sub": "Departments", "gold": true},
+    {"label": "AI agents", "num": "8", "sub": "Marketplace"},
+    {"label": "Languages", "num": "8", "sub": "i18n"},
+    {"label": "Pricing tiers", "num": "3", "sub": "Free/Pro/Biz"},
+    {"label": "Phase", "num": "1→6", "sub": "Sign to scale"},
+    {"label": "Sub-bprs", "num": "2", "sub": "Mini-canvases"}
+  ],
+  "phases": ["Browse", "Deploy", "Configure", "Run", "Monetise", "Scale"],
+  "accents": [{"top": 530, "label": "Phase 1 · Marketplace + agents"}, {"top": 2380, "label": "Phase 2 · Backend + i18n + deploy"}],
+  "frames": [
+    {"title": "Marketplace", "phase": 1, "top": 570, "left": 60, "width": 780, "height": 1750,
+     "lanes": [
+      {"header": "8 AI agents", "icon": "i-bolt", "color": "g", "count": "Catalog", "cols": 2,
+       "cards": [
+         {"title": "Content writer"}, {"title": "Lead finder"},
+         {"title": "Email responder"}, {"title": "Social poster"},
+         {"title": "Quote builder"}, {"title": "Calendar mgr"},
+         {"title": "Research bot"}, {"title": "Translator"}
+       ], "miniAfter": "agent-stack"},
+      {"header": "Agent details", "icon": "i-doc", "color": "g", "count": "Per-agent",
+       "cards": [
+         {"title": "Capability description", "body": "What it does · what it costs."},
+         {"title": "Sample output", "body": "Live preview · interactive."},
+         {"title": "Pricing per run", "body": "Tokens × model rate."},
+         {"title": "Rating + reviews", "body": "Per-user · star rating."}
+       ]},
+      {"header": "Configuration", "icon": "i-stack", "color": "g", "count": "Per-deploy",
+       "cards": [
+         {"title": "Trigger setup", "body": "Manual · cron · webhook."},
+         {"title": "Input schema", "body": "What the agent needs to run."},
+         {"title": "Output destination", "body": "Email · webhook · database."},
+         {"title": "Run limits", "body": "Per-day / per-month caps."}
+       ]},
+      {"header": "Monitoring", "icon": "i-funnel", "color": "g", "count": "Live",
+       "cards": [
+         {"title": "Run history", "body": "Per-agent · success/fail · output."},
+         {"title": "Cost dashboard", "body": "Token spend · per-agent · monthly."},
+         {"title": "Alerts", "body": "Failure · over-budget · slow runs."}
+       ]}
+     ],
+     "minis": [{"id": "agent-stack", "type": "stack", "icon": "i-bolt", "title": "8-agent catalog", "rows": [
+       {"label": "Content · Lead · Email · Social", "layer": "comms"},
+       {"label": "Quote · Calendar · Research · Translate", "layer": "ops"},
+       {"label": "Each: pricing · samples · reviews", "layer": "meta"}
+     ]}]},
+    {"title": "Pricing + market", "phase": 1, "top": 570, "left": 890, "width": 780, "height": 1750,
+     "lanes": [
+      {"header": "3 tiers", "icon": "i-pound", "color": "r", "count": "SaaS",
+       "cards": [
+         {"title": "Free", "kpi": "£0", "body": "1 agent · 50 runs/mo · community support."},
+         {"title": "Pro", "kpi": "£19/mo", "body": "5 agents · 1K runs/mo · email support."},
+         {"title": "Business", "kpi": "£99/mo", "body": "Unlimited agents · 10K runs · priority."}
+       ], "miniAfter": "market-funnel"},
+      {"header": "Market size", "icon": "i-target", "color": "r", "count": "Massive",
+       "cards": [
+         {"title": "AI agents 2030", "kpi": "$53B", "body": "45% CAGR · early-mover advantage."},
+         {"title": "Creator economy 2030", "kpi": "$528B", "body": "Adjacent · creators need automation."},
+         {"title": "UK SMB target", "body": "5.5M businesses · 80% need automation."}
+       ]},
+      {"header": "Conversion levers", "icon": "i-target", "color": "r", "count": "Tested",
+       "cards": [
+         {"title": "Free-tier sample", "body": "1 agent free · proves value."},
+         {"title": "Run-cap upgrade", "body": "Hit 50 runs/mo → upgrade prompt."},
+         {"title": "Multi-agent unlock", "body": "Want agent #2 → upgrade."},
+         {"title": "Cost calculator", "body": "Show what £19/mo unlocks."}
+       ]},
+      {"header": "Differentiation", "icon": "i-shield", "color": "g", "count": "Why win",
+       "cards": [
+         {"title": "8 languages", "body": "i18next · global from day 1."},
+         {"title": "No-code config", "body": "vs Zapier-style flows."},
+         {"title": "AI-first", "body": "Not just automation · actual agents."}
+       ]}
+     ],
+     "minis": [{"id": "market-funnel", "type": "funnel", "icon": "i-funnel", "title": "Free → paid funnel · indicative", "stages": [
+       {"label": "Sign up", "pct": "100"}, {"label": "First agent", "pct": "~62"},
+       {"label": "First run", "pct": "~48"}, {"label": "10 runs", "pct": "~28"},
+       {"label": "Hit free cap", "pct": "~14"}, {"label": "Pro upgrade", "pct": "~6"}
+     ]}]},
+    {"title": "Customer Success", "phase": 1, "top": 570, "left": 1720, "width": 780, "height": 1750,
+     "lanes": [
+      {"header": "Onboarding", "icon": "i-target", "color": "r", "count": "First-run",
+       "cards": [
+         {"title": "Pick agent", "body": "Curated 'try this first' suggestions."},
+         {"title": "Configure trigger", "body": "Manual run for first time."},
+         {"title": "See output", "body": "Real result · sets expectation."},
+         {"title": "Save as template", "body": "Re-use config for next run."}
+       ]},
+      {"header": "Support", "icon": "i-phone", "color": "r", "count": "Multi-channel",
+       "cards": [
+         {"title": "In-app chat", "body": "Brevo widget."},
+         {"title": "Email support", "body": "Pro+ priority queue."},
+         {"title": "Help docs", "body": "Per-agent walkthroughs."},
+         {"title": "Video tutorials", "body": "5-min how-to per agent."}
+       ]},
+      {"header": "Community", "icon": "i-people", "color": "r", "count": "Network effect",
+       "cards": [
+         {"title": "Agent reviews", "body": "Star rating · written feedback."},
+         {"title": "Use case library", "body": "User-submitted · curated."},
+         {"title": "Discord (planned)", "body": "Community support · feature requests."}
+       ]}
+     ]},
+    {"title": "Backend · FastAPI", "phase": 2, "top": 2420, "left": 60, "width": 780, "height": 1320,
+     "lanes": [
+      {"header": "Stack", "icon": "i-stack", "color": "b", "count": "Python",
+       "cards": [
+         {"title": "FastAPI", "body": "Async · uvicorn · port 8091."},
+         {"title": "PM2 workdrone-api", "body": "Auto-restart · supervised."},
+         {"title": "Python 3.9", "body": "NO union types (use Optional[dict])."}
+       ]},
+      {"header": "Routes", "icon": "i-link", "color": "b", "count": "Public + auth",
+       "cards": [
+         {"title": "/wdapi/agents", "body": "Marketplace catalog."},
+         {"title": "/wdapi/runs", "body": "Trigger + history."},
+         {"title": "/wdapi/billing", "body": "Plan limit checks."},
+         {"title": "/wdapi/auth", "body": "Sign-up · login · session."}
+       ]},
+      {"header": "AI execution", "icon": "i-bolt", "color": "b", "count": "Per-agent",
+       "cards": [
+         {"title": "Claude API", "body": "Per-agent prompt template."},
+         {"title": "Token accounting", "body": "Per-run cost tracked."},
+         {"title": "Cache results", "body": "Identical input → same output."}
+       ]}
+     ]},
+    {"title": "Frontend · i18n", "phase": 2, "top": 2420, "left": 890, "width": 780, "height": 1320,
+     "lanes": [
+      {"header": "Stack", "icon": "i-stack", "color": "b", "count": "React 19",
+       "cards": [
+         {"title": "Vite base /workdrone/", "body": "CRITICAL · do NOT remove."},
+         {"title": "Router basename", "body": "MUST be set for sub-route."},
+         {"title": "useAuth.jsx", "body": "MUST be .jsx (contains JSX)."},
+         {"title": "react-i18next", "body": "8-language support."}
+       ]},
+      {"header": "8 languages", "icon": "i-globe", "color": "b", "count": "Global", "cols": 4,
+       "cards": [
+         {"title": "EN"}, {"title": "ES"}, {"title": "FR"}, {"title": "DE"},
+         {"title": "IT"}, {"title": "NL"}, {"title": "PL"}, {"title": "PT"}
+       ]},
+      {"header": "UI", "icon": "i-palette", "color": "b", "count": "Theme",
+       "cards": [
+         {"title": "Tailwind 4", "body": "Utility CSS."},
+         {"title": "Drone-tech aesthetic", "body": "Dark · cyan · orange accents."},
+         {"title": "Mobile-first", "body": "Responsive · works on tablets."}
+       ]}
+     ]},
+    {"title": "Deploy + roadmap", "phase": 2, "top": 2420, "left": 1720, "width": 780, "height": 1320,
+     "lanes": [
+      {"header": "Deploy via Caddy", "icon": "i-stack", "count": "AimaxOps sub-route",
+       "cards": [
+         {"title": "vite build", "body": "Output to dist/"},
+         {"title": "Copy to aimaxops/workdrone/", "body": "Caddy serves from there."},
+         {"title": "Caddy /wdapi/* → :8091", "body": "Route MUST be before /api/* in Caddyfile."}
+       ]},
+      {"header": "Why Caddy not Netlify", "icon": "i-shield", "color": "r", "count": "No vendor lock",
+       "cards": [
+         {"title": "Netlify credits exhausted", "body": "Forced migration to self-hosted."},
+         {"title": "Per memory: Netlify banned", "body": "All DS sites self-hosted."},
+         {"title": "Cloudflare tunnel", "body": "Public via aimaxops.com."}
+       ]}
+     ]}
+  ],
+  "edges": [
+    {"d": "M 840 1100 L 865 1100 L 865 1100 L 890 1100", "arrow": "default"},
+    {"d": "M 1670 1100 L 1695 1100 L 1695 1100 L 1720 1100", "arrow": "default"}
+  ]
+}

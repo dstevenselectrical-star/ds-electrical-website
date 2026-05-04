@@ -1,0 +1,181 @@
+{
+  "id": "fieldops",
+  "name": "FieldOps — Field Engineer Management",
+  "topbarTitle": "FieldOps · Operating System",
+  "version": "v1", "date": "2026-05-03",
+  "tagline": "Job lifecycle · engineer GPS · materials · quotes · invoices · all on one platform",
+  "eyebrow": "Operating System · the whole product",
+  "description": "Field engineer management SaaS for trade businesses. 16 pages cover full lifecycle from quote to paid. Engineer status tracking, GPS check-in, materials, calendar, invoices.",
+  "meta": [["Stack", "React 19 + Vite 7 + Tailwind 4"], ["Path", "~/fieldops"], ["Port", "5203"], ["Live", "ds-fieldops.netlify.app"], ["Bundle", "356KB · 0 errors"], ["Theme", "Ultra 2050"]],
+  "stats": [
+    {"label": "Frames", "num": "6", "sub": "Departments", "gold": true},
+    {"label": "Pages", "num": "16", "sub": "Routes"},
+    {"label": "Job stages", "num": "7", "sub": "Lifecycle"},
+    {"label": "Engineer states", "num": "5", "sub": "Avail/On/Break/Travel/Off"},
+    {"label": "Phase", "num": "1→7", "sub": "Quote to paid"},
+    {"label": "Sub-bprs", "num": "2", "sub": "Mini-canvases"}
+  ],
+  "phases": ["Quote", "Schedule", "Travel", "On site", "Complete", "Invoice", "Paid"],
+  "accents": [{"top": 530, "label": "Phase 1 · Job + engineer ops"}, {"top": 2380, "label": "Phase 2 · Stack + deploy"}],
+  "frames": [
+    {"title": "Job lifecycle", "phase": 1, "top": 570, "left": 60, "width": 780, "height": 1750,
+     "lanes": [
+      {"header": "7 stages", "icon": "i-funnel", "color": "b", "count": "draft → paid",
+       "cards": [
+         {"title": "Draft", "body": "Newly created · not yet quoted."},
+         {"title": "Quoted", "body": "Sent · awaiting client decision."},
+         {"title": "Scheduled", "body": "Accepted · engineer + date assigned."},
+         {"title": "In progress", "body": "Engineer checked in via GPS."},
+         {"title": "Complete", "body": "Tested · cert generated."},
+         {"title": "Invoiced", "body": "Sent to client · awaiting payment."},
+         {"title": "Paid", "body": "Cleared funds · job closed."}
+       ], "miniAfter": "job-funnel"},
+      {"header": "Job pages", "icon": "i-doc", "color": "b", "count": "3 routes",
+       "cards": [
+         {"title": "Jobs (list)", "body": "All jobs · filter by stage · search."},
+         {"title": "JobDetail", "body": "Per-job · materials · photos · time log."},
+         {"title": "NewJob", "body": "Create · client + scope + estimate."}
+       ]},
+      {"header": "Materials per job", "icon": "i-bag", "color": "b", "count": "Lines",
+       "cards": [
+         {"title": "Add line items", "body": "Pick from stock or custom."},
+         {"title": "Auto-priced", "body": "From materials catalog."},
+         {"title": "Stock decrement", "body": "Removed from van stock on use."},
+         {"title": "Photos attached", "body": "Per-job · used in handover."}
+       ]},
+      {"header": "Time tracking", "icon": "i-clock", "color": "b", "count": "Per-engineer",
+       "cards": [
+         {"title": "Check-in / out", "body": "GPS-stamped · auto job-link."},
+         {"title": "Travel time", "body": "Auto-detected from previous location."},
+         {"title": "On-site time", "body": "Billable hours · multi-engineer."},
+         {"title": "Break tracking", "body": "Compliant breaks per H&S."}
+       ]}
+     ],
+     "minis": [{"id": "job-funnel", "type": "funnel", "icon": "i-funnel", "title": "Job pipeline conversion", "stages": [
+       {"label": "Quoted", "pct": "100"}, {"label": "Accepted", "pct": "~58"},
+       {"label": "Scheduled", "pct": "~58"}, {"label": "In progress", "pct": "~55"},
+       {"label": "Complete", "pct": "~54"}, {"label": "Invoiced", "pct": "~54"}, {"label": "Paid", "pct": "~52"}
+     ]}]},
+    {"title": "Engineers", "phase": 1, "top": 570, "left": 890, "width": 780, "height": 1750,
+     "lanes": [
+      {"header": "5 status states", "icon": "i-people", "color": "g", "count": "Live",
+       "cards": [
+         {"title": "Available", "body": "Free to assign · in coverage area."},
+         {"title": "On job", "body": "Checked in · GPS at site."},
+         {"title": "Break", "body": "Compliant break · paused."},
+         {"title": "Travelling", "body": "GPS shows movement to next job."},
+         {"title": "Off duty", "body": "End of shift · not assignable."}
+       ]},
+      {"header": "Per-engineer profile", "icon": "i-people", "color": "g", "count": "Trade-aware",
+       "cards": [
+         {"title": "Qualification badges", "body": "NAPIT · 2391 · MCS · etc."},
+         {"title": "Specialism", "body": "Domestic · commercial · heritage · EV."},
+         {"title": "Vehicle assigned", "body": "Reg · capacity · MOT/insurance dates."},
+         {"title": "Phone + emergency", "body": "Quick-call · site contacts."}
+       ]},
+      {"header": "GPS + map", "icon": "i-pin", "color": "g", "count": "Live",
+       "cards": [
+         {"title": "MapView page", "body": "Engineer pins · job pins · live."},
+         {"title": "Google Maps", "body": "Needs API key · ready to wire."},
+         {"title": "Route planning", "body": "Optimal job order · day plan."}
+       ]},
+      {"header": "Calendar", "icon": "i-clock", "color": "g", "count": "Schedule",
+       "cards": [
+         {"title": "Month + week views", "body": "Per-engineer column."},
+         {"title": "Drag-drop reassign", "body": "Move jobs between engineers."},
+         {"title": "Google Cal sync", "body": "Ready to wire · OAuth."}
+       ]}
+     ]},
+    {"title": "Money flow", "phase": 1, "top": 570, "left": 1720, "width": 780, "height": 1750,
+     "lanes": [
+      {"header": "Quotes", "icon": "i-pound", "color": "r", "count": "Auto",
+       "cards": [
+         {"title": "From job materials", "body": "Sum of lines + labour rate."},
+         {"title": "Draft → sent → accepted", "body": "State machine · audit trail."},
+         {"title": "Decline → reason", "body": "Captured for reporting."},
+         {"title": "PDF + email send", "body": "Brand-tokenised template."}
+       ]},
+      {"header": "Invoices", "icon": "i-pound", "color": "r", "count": "From job",
+       "cards": [
+         {"title": "Auto-generated", "body": "From accepted quote + variations."},
+         {"title": "VAT 20% line", "body": "Per UK VAT rules."},
+         {"title": "Payment terms", "body": "30-day default · custom per client."},
+         {"title": "Late reminders", "body": "Auto · 7d / 14d / 30d post-due."}
+       ]},
+      {"header": "Pricing", "icon": "i-pound", "color": "r", "count": "Per-trade",
+       "cards": [
+         {"title": "Labour rates", "body": "Per-engineer · per-trade type."},
+         {"title": "Material markup", "body": "Default % · per-job override."},
+         {"title": "Service templates", "body": "EICR · EV charger · rewire fixed."}
+       ]}
+     ]},
+    {"title": "Compliance", "phase": 2, "top": 2420, "left": 60, "width": 780, "height": 1320,
+     "lanes": [
+      {"header": "EICR module", "icon": "i-doc", "color": "g", "count": "Per-circuit",
+       "cards": [
+         {"title": "Circuit-by-circuit log", "body": "Test results · observations."},
+         {"title": "Pass/fail per circuit", "body": "Auto-rolls up to overall."},
+         {"title": "PDF generation", "body": "BS 7671 compliant format."}
+       ]},
+      {"header": "Site reports", "icon": "i-doc", "color": "g", "count": "Per-job",
+       "cards": [
+         {"title": "Photo evidence", "body": "Before · during · after · GPS-stamped."},
+         {"title": "Scope variations", "body": "Documented + signed by client."},
+         {"title": "Handover pack", "body": "Auto-bundle · email to client."}
+       ]},
+      {"header": "Settings", "icon": "i-stack", "count": "Per-firm",
+       "cards": [
+         {"title": "Brand setup", "body": "Logo · colours · email signature."},
+         {"title": "Service pricing", "body": "Default rates · override per-client."},
+         {"title": "User roles", "body": "Admin · engineer · office."}
+       ]}
+     ]},
+    {"title": "Tech Stack", "phase": 2, "top": 2420, "left": 890, "width": 780, "height": 1320,
+     "lanes": [
+      {"header": "Stack", "icon": "i-stack", "color": "b", "count": "React 19",
+       "cards": [
+         {"title": "React 19 + Vite 7", "body": "Same pattern as DS Electrical app."},
+         {"title": "Tailwind 4", "body": "Utility CSS · Ultra 2050."},
+         {"title": "Bundle 356KB", "body": "0 build errors · production build."}
+       ]},
+      {"header": "Storage", "icon": "i-stack", "color": "b", "count": "localStorage",
+       "cards": [
+         {"title": "fieldOpsStore.js", "body": "localStorage-backed · event-driven."},
+         {"title": "Per-tenant prefix", "body": "Multi-firm support ready."},
+         {"title": "Supabase-ready", "body": "Auth gate already in place."}
+       ]},
+      {"header": "Navigation", "icon": "i-stack", "color": "b", "count": "Responsive",
+       "cards": [
+         {"title": "Desktop sidebar", "body": "220px · 16 page links · grouped."},
+         {"title": "Mobile bottom nav", "body": "Top 4 tabs + More drawer."},
+         {"title": "AuthGate", "body": "Email/pass · localStorage flag."}
+       ]}
+     ]},
+    {"title": "Deploy + roadmap", "phase": 2, "top": 2420, "left": 1720, "width": 780, "height": 1320,
+     "lanes": [
+      {"header": "Live", "icon": "i-globe", "color": "g", "count": "Netlify",
+       "cards": [
+         {"title": "ds-fieldops.netlify.app", "body": "Live URL · production build."},
+         {"title": "Site ID", "kpi": "1ad3636e", "body": "Netlify project ID."},
+         {"title": "Deploy cmd", "body": "vite build · netlify deploy --prod."}
+       ]},
+      {"header": "Future · self-hosted", "icon": "i-bolt", "color": "b", "count": "Migration",
+       "cards": [
+         {"title": "Move off Netlify", "body": "Per memory · self-hosted only going fwd."},
+         {"title": "Caddy + PM2", "body": "Same pattern as DS Electrical."},
+         {"title": "Cloudflare tunnel", "body": "Custom domain via tunnel."}
+       ]},
+      {"header": "v2 features", "icon": "i-bolt", "count": "Planned",
+       "cards": [
+         {"title": "Supabase backend", "body": "Replace localStorage · multi-device sync."},
+         {"title": "Stripe billing", "body": "Per-firm subscription."},
+         {"title": "Real Google Maps", "body": "Wire API key · live route opt."}
+       ]}
+     ]}
+  ],
+  "edges": [
+    {"d": "M 840 1100 L 865 1100 L 865 1100 L 890 1100", "arrow": "default"},
+    {"d": "M 1670 1100 L 1695 1100 L 1695 1100 L 1720 1100", "arrow": "default"},
+    {"d": "M 60 2600 L 40 2600 L 40 1100 L 60 1100", "cls": "dim"}
+  ]
+}

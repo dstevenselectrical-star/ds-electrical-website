@@ -1,0 +1,145 @@
+{
+  "id": "techdrone",
+  "name": "TechDrone — AI Tech Review",
+  "topbarTitle": "TechDrone · Operating System",
+  "version": "v1", "date": "2026-05-03",
+  "tagline": "The AI gadgets that are actually worth buying · reviews + affiliate + services",
+  "eyebrow": "Operating System · the whole site",
+  "description": "AI tech review platform with three revenue streams: Amazon affiliate links, AI Toolkit digital product (£19), and services (£149-£699). Live at aimaxops.com/techdrone/.",
+  "meta": [["Stack", "React 19 + Vite 7 + Tailwind 4"], ["Path", "~/techdrone"], ["Live", "aimaxops.com/techdrone/"], ["Deploy", "Caddy sub-route"], ["Revenue streams", "3"], ["Theme", "Drone-tech dark"]],
+  "stats": [
+    {"label": "Frames", "num": "5", "sub": "Departments", "gold": true},
+    {"label": "Pages", "num": "4", "sub": "Live"},
+    {"label": "Reviews", "num": "5", "sub": "Products"},
+    {"label": "Services", "num": "3", "sub": "£149-£699"},
+    {"label": "Revenue streams", "num": "3", "sub": "Affiliate/Product/Service"},
+    {"label": "Sub-bprs", "num": "1", "sub": "Mini-canvas"}
+  ],
+  "phases": ["Discover", "Read", "Affiliate click", "Buy product", "Service enquiry"],
+  "accents": [{"top": 530, "label": "Phase 1 · Content + revenue"}, {"top": 2380, "label": "Phase 2 · Stack + roadmap"}],
+  "frames": [
+    {"title": "Content · reviews", "phase": 1, "top": 570, "left": 60, "width": 780, "height": 1750,
+     "lanes": [
+      {"header": "Live reviews (5)", "icon": "i-doc", "color": "b", "count": "AI gadgets",
+       "cards": [
+         {"title": "Plaud NotePin", "kpi": "£169", "body": "Editor's Choice · AI voice recorder pendant."},
+         {"title": "RingConn Gen 2 Air", "kpi": "£249", "body": "Top Rated · smart ring · health metrics."},
+         {"title": "Amazon Echo Show 21", "kpi": "£399", "body": "Best Value · 21-inch smart display."},
+         {"title": "Review #4", "body": "Slot · AI camera or wearable · TBD."},
+         {"title": "Review #5", "body": "Slot · home automation gadget · TBD."}
+       ]},
+      {"header": "Review structure", "icon": "i-doc", "color": "b", "count": "Per-page",
+       "cards": [
+         {"title": "Hero photo + verdict", "body": "Star rating · price · buy link."},
+         {"title": "Pros + cons", "body": "Scannable bullets."},
+         {"title": "Real-world test", "body": "What worked · what didn't."},
+         {"title": "Affiliate buy box", "body": "Amazon UK · price-tracked."}
+       ]},
+      {"header": "Content engine", "icon": "i-bolt", "color": "b", "count": "Production",
+       "cards": [
+         {"title": "Discovery", "body": "Trending AI gadgets · pre-order alerts."},
+         {"title": "Hands-on test", "body": "Real product · 2-week test period."},
+         {"title": "Photo + video", "body": "iPhone + ring light · authentic."},
+         {"title": "Publish + share", "body": "Site + TikTok + IG."}
+       ]}
+     ]},
+    {"title": "Revenue streams", "phase": 1, "top": 570, "left": 890, "width": 780, "height": 1750,
+     "lanes": [
+      {"header": "1. Amazon affiliate", "icon": "i-pound", "color": "g", "count": "Per-click + sale",
+       "cards": [
+         {"title": "Amazon UK Associates", "body": "Per-product affiliate link."},
+         {"title": "Status", "titlePill": "pending", "titlePillColor": "red", "body": "Dan hasn't signed up yet."},
+         {"title": "Commission rate", "body": "1-10% per category."},
+         {"title": "30-day cookie", "body": "Click → buy within 30d = commission."}
+       ], "miniAfter": "rev-mix"},
+      {"header": "2. AI Toolkit £19", "icon": "i-pound", "color": "g", "count": "Digital product",
+       "cards": [
+         {"title": "AI Toolkit 2026", "kpi": "£19", "body": "WORKING · Stripe live · auto-delivered."},
+         {"title": "Stripe checkout", "body": "Hosted · Apple Pay enabled."},
+         {"title": "Auto-delivery", "body": "Email link to download zip."},
+         {"title": "100% margin", "body": "Digital product · no fulfilment cost."}
+       ]},
+      {"header": "3. Services", "icon": "i-pound", "color": "g", "count": "£149-£699",
+       "cards": [
+         {"title": "AI Photography", "kpi": "£149", "body": "Product photos via AI · 24h delivery."},
+         {"title": "Lead Gen pack", "kpi": "£149", "body": "Custom lead list + outreach script."},
+         {"title": "Website Build", "kpi": "£699", "body": "Single-page React/Tailwind site."}
+       ]}
+     ],
+     "minis": [{"id": "rev-mix", "type": "pareto", "icon": "i-funnel", "title": "Revenue mix · target",
+       "rows": [
+         {"label": "AI Toolkit", "width": "70%", "value": "~50%"},
+         {"label": "Services", "width": "55%", "value": "~30%"},
+         {"label": "Amazon aff.", "width": "30%", "value": "~15%"},
+         {"label": "Other", "width": "10%", "value": "~5%"}
+       ]}]},
+    {"title": "Pages + UX", "phase": 1, "top": 570, "left": 1720, "width": 780, "height": 1750,
+     "lanes": [
+      {"header": "4 routes", "icon": "i-globe", "color": "b", "count": "Live",
+       "cards": [
+         {"title": "/techdrone/", "body": "Home · 5 reviews · newsletter signup."},
+         {"title": "/techdrone/services", "body": "3 services with buy buttons."},
+         {"title": "/techdrone/toolkit", "body": "AI Toolkit £19 · Stripe."},
+         {"title": "/techdrone/review/:slug", "body": "Per-product review pages."}
+       ]},
+      {"header": "Newsletter", "icon": "i-mic", "color": "b", "count": "Lead capture",
+       "cards": [
+         {"title": "Email signup", "body": "Footer + popup at scroll."},
+         {"title": "Welcome series", "body": "5-email · top 5 AI gadget picks."},
+         {"title": "Weekly digest", "body": "New review summary · affiliate links."}
+       ]},
+      {"header": "SEO", "icon": "i-target", "color": "b", "count": "Long-tail",
+       "cards": [
+         {"title": "Per-product pages", "body": "Targets [product] review search."},
+         {"title": "Category landing", "body": "Best AI [category] 2026."},
+         {"title": "Schema markup", "body": "Review schema · star ratings in SERP."}
+       ]}
+     ]},
+    {"title": "Stack + Deploy", "phase": 2, "top": 2420, "left": 60, "width": 780, "height": 1320,
+     "lanes": [
+      {"header": "Stack", "icon": "i-stack", "color": "b", "count": "React 19",
+       "cards": [
+         {"title": "React 19 + Vite 7", "body": "Static site · pre-rendered."},
+         {"title": "Tailwind 4", "body": "Drone-tech dark theme."},
+         {"title": "Vite base /techdrone/", "body": "CRITICAL · sub-route."}
+       ]},
+      {"header": "Deploy", "icon": "i-stack", "color": "b", "count": "Caddy sub-route",
+       "cards": [
+         {"title": "vite build", "body": "Output to dist/."},
+         {"title": "Copy to aimaxops/techdrone/", "body": "Caddy serves."},
+         {"title": "Cloudflare tunnel", "body": "Public via aimaxops.com."}
+       ]},
+      {"header": "Stripe", "icon": "i-pound", "color": "g", "count": "Live",
+       "cards": [
+         {"title": "AI Toolkit checkout", "body": "Hosted Stripe · webhook delivery."},
+         {"title": "Service inquiries", "body": "Currently email/WhatsApp · auto-pay later."}
+       ]}
+     ]},
+    {"title": "Roadmap", "phase": 2, "top": 2420, "left": 890, "width": 780, "height": 1320,
+     "lanes": [
+      {"header": "Shipped", "icon": "i-check", "color": "g", "count": "v1",
+       "cards": [
+         {"title": "5 reviews live", "body": "All with photos + buy buttons."},
+         {"title": "AI Toolkit Stripe", "body": "Working end-to-end."},
+         {"title": "Services pages", "body": "3 services · email contact."}
+       ]},
+      {"header": "Next", "icon": "i-bolt", "color": "b", "count": "Quick wins",
+       "cards": [
+         {"title": "Sign up Amazon Associates", "body": "Unlocks affiliate revenue."},
+         {"title": "10 more reviews", "body": "Drives long-tail SEO."},
+         {"title": "TikTok content engine", "body": "Per-review reel · drives traffic."},
+         {"title": "Email autoresponder", "body": "Brevo · 5-email welcome."}
+       ]},
+      {"header": "v2 features", "icon": "i-bolt", "count": "Bigger bets",
+       "cards": [
+         {"title": "Comparison tool", "body": "Side-by-side [A] vs [B]."},
+         {"title": "User reviews", "body": "Reader rating + comments."},
+         {"title": "Price alerts", "body": "Email when product drops in price."}
+       ]}
+     ]}
+  ],
+  "edges": [
+    {"d": "M 840 1100 L 865 1100 L 865 1100 L 890 1100", "arrow": "default"},
+    {"d": "M 1670 1100 L 1695 1100 L 1695 1100 L 1720 1100", "arrow": "default"}
+  ]
+}

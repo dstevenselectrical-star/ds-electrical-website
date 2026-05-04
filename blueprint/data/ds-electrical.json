@@ -1,0 +1,1747 @@
+{
+  "id": "ds-electrical",
+  "name": "DS Electrical Installation SW Ltd",
+  "topbarTitle": "DS Electrical \u00b7 Operating System",
+  "version": "v3-data",
+  "date": "2026-05-03",
+  "tagline": "High level functionality \u00b7 Phase 1 \u2192 Phase 8",
+  "eyebrow": "Operating System \u00b7 the whole business",
+  "description": "Every department, every channel, every system, every rule on one canvas. Sub-blueprints embedded inside parent frames: pipeline funnel, retention loop, lead-source pareto, tech architecture stack. Yellow rules split major phases. Drag to pan. Bottom-right zoom. Bottom-left minimap.",
+  "meta": [
+    [
+      "Directors",
+      "2"
+    ],
+    [
+      "Coverage",
+      "Mid Somerset"
+    ],
+    [
+      "VAT",
+      "Registered"
+    ],
+    [
+      "Accreds",
+      "NAPIT \u00b7 CHAS \u00b7 TrustMark"
+    ],
+    [
+      "Reviews",
+      "5.0 Google"
+    ],
+    [
+      "Insurance",
+      "\u00a32M PL"
+    ]
+  ],
+  "stats": [
+    {
+      "label": "Frames",
+      "num": "8",
+      "sub": "Departments",
+      "gold": true
+    },
+    {
+      "label": "Swim lanes",
+      "num": "47",
+      "sub": "Sub-systems"
+    },
+    {
+      "label": "Nodes",
+      "num": "200+",
+      "sub": "Mapped systems"
+    },
+    {
+      "label": "Sub-bprs",
+      "num": "4",
+      "sub": "Mini-canvases"
+    },
+    {
+      "label": "Phase",
+      "num": "1\u21928",
+      "sub": "Lead to review"
+    },
+    {
+      "label": "Coverage",
+      "num": "11",
+      "sub": "Towns + villages"
+    }
+  ],
+  "phases": [
+    "Lead",
+    "Quote",
+    "Book",
+    "Survey",
+    "Job",
+    "Cert",
+    "Invoice",
+    "Review"
+  ],
+  "accents": [
+    {
+      "top": 530,
+      "label": "Phase 1 \u00b7 Acquisition + Conversion"
+    },
+    {
+      "top": 2380,
+      "label": "Phase 2 \u00b7 Delivery + Finance + Compliance + Brand"
+    }
+  ],
+  "frames": [
+    {
+      "title": "Marketing Blueprint",
+      "phase": 1,
+      "top": 570,
+      "left": 60,
+      "width": 780,
+      "height": 1750,
+      "lanes": [
+        {
+          "header": "Channels",
+          "icon": "i-megaphone",
+          "color": "b",
+          "count": "7 sources",
+          "cards": [
+            {
+              "title": "Google Pack",
+              "kpi": "3-pack",
+              "body": "Local pack on \"electrician + town\". 11 area pages.",
+              "link": "https://www.google.com/search?q=DS+Electrical+Wells"
+            },
+            {
+              "title": "Organic SEO",
+              "body": "25+ service pages, 15+ blog posts, schema markup.",
+              "link": "/blog-best-home-ev-charger-2026.html"
+            },
+            {
+              "title": "Checkatrade",
+              "kpi": "5\u2605",
+              "body": "Verified profile \u00b7 5\u2605 reviews \u00b7 lead notifications.",
+              "link": "https://www.checkatrade.com/trades/dselectricalsw"
+            },
+            {
+              "title": "WhatsApp share",
+              "body": "wa.me direct from website \u00b7 mobile-first share.",
+              "link": "https://wa.me/447889334849"
+            },
+            {
+              "title": "Word of mouth",
+              "kpi": "~40%",
+              "body": "Existing customer referrals \u00b7 largest single source.",
+              "link": "/testimonials.html"
+            },
+            {
+              "title": "Sister sites",
+              "body": "wellssparky247 \u00b7 bathsparky247 \u00b7 frome \u00b7 shepton.",
+              "link": "https://wellssparky247.co.uk"
+            }
+          ],
+          "miniAfter": "lead-mix"
+        },
+        {
+          "header": "Service pages",
+          "icon": "i-doc",
+          "color": "b",
+          "count": "25+",
+          "cols": 3,
+          "cards": [
+            {
+              "title": "EICR",
+              "link": "/eicr.html"
+            },
+            {
+              "title": "EV charger",
+              "link": "/ev-chargers.html"
+            },
+            {
+              "title": "CCTV",
+              "link": "/cctv.html"
+            },
+            {
+              "title": "Rewire",
+              "link": "/eicr.html"
+            },
+            {
+              "title": "Heritage",
+              "link": "/heritage-installations.html"
+            },
+            {
+              "title": "Commercial",
+              "link": "/commercial-electrical.html"
+            },
+            {
+              "title": "Fire alarms",
+              "link": "/fire-alarms.html"
+            },
+            {
+              "title": "Em. lighting",
+              "link": "/lighting.html"
+            },
+            {
+              "title": "Data/fibre",
+              "link": "/data-networking.html"
+            }
+          ]
+        },
+        {
+          "header": "Blog \u00b7 educational",
+          "icon": "i-doc",
+          "color": "b",
+          "count": "SEO",
+          "cards": [
+            {
+              "title": "EICR explained",
+              "body": "Landlord obligations, costs, what's tested."
+            },
+            {
+              "title": "CCTV cost guide",
+              "body": "2026 pricing, Hikvision systems explained."
+            },
+            {
+              "title": "3-phase upgrade",
+              "body": "Commercial threshold + DNO process."
+            },
+            {
+              "title": "BS5839 fire alarms",
+              "body": "Landlord requirement + grades."
+            },
+            {
+              "title": "Best home EV charger",
+              "body": "Hypervolt vs Zappi vs Ohme buyer's guide."
+            },
+            {
+              "title": "House rewire cost",
+              "body": "Per-bedroom rough figures + access factors."
+            }
+          ]
+        },
+        {
+          "header": "Area pages",
+          "icon": "i-pin",
+          "color": "b",
+          "count": "11 towns",
+          "cols": 3,
+          "cards": [
+            {
+              "title": "Wells",
+              "link": "/areas/wells.html"
+            },
+            {
+              "title": "Shepton M.",
+              "link": "/areas/shepton-mallet.html"
+            },
+            {
+              "title": "Bath",
+              "link": "/areas/bath.html"
+            },
+            {
+              "title": "Frome",
+              "link": "/areas/frome.html"
+            },
+            {
+              "title": "Glastonbury",
+              "link": "/areas/glastonbury.html"
+            },
+            {
+              "title": "Street",
+              "link": "/areas/street.html"
+            },
+            {
+              "title": "Bruton",
+              "link": "/areas/bruton.html"
+            },
+            {
+              "title": "Castle Cary",
+              "link": "/areas/castle-cary.html"
+            },
+            {
+              "title": "Radstock",
+              "link": "/areas/radstock.html"
+            }
+          ]
+        },
+        {
+          "header": "Lead capture",
+          "icon": "i-target",
+          "color": "b",
+          "count": "3 channels",
+          "cards": [
+            {
+              "title": "Contact form",
+              "body": "\u2192 info@ \u2192 Gmail \u00b7 same-day reply SLA.",
+              "link": "/#contact"
+            },
+            {
+              "title": "Direct phone",
+              "kpi": "07889 334849",
+              "body": "Two director lines \u00b7 no call centre.",
+              "link": "tel:07889334849"
+            },
+            {
+              "title": "/quote/ PWA",
+              "body": "Self-serve quote \u00b7 random QUO-NNN \u00b7 PDF.",
+              "link": "/quote/"
+            },
+            {
+              "title": "WhatsApp",
+              "body": "Photo + chat + voice notes from prospect.",
+              "link": "https://wa.me/447889334849"
+            }
+          ]
+        },
+        {
+          "header": "Trust signals",
+          "icon": "i-shield",
+          "color": "b",
+          "count": "Conversion",
+          "cards": [
+            {
+              "title": "5.0 Google rating",
+              "kpi": "11+",
+              "body": "Embedded on every key landing page."
+            },
+            {
+              "title": "Real photo gallery",
+              "kpi": "100+",
+              "body": "All real client jobs."
+            },
+            {
+              "title": "NAPIT badge",
+              "body": "Master accred \u00b7 above-fold every page."
+            },
+            {
+              "title": "CHAS / TrustMark",
+              "body": "For commercial credibility."
+            }
+          ]
+        }
+      ],
+      "minis": [
+        {
+          "id": "lead-mix",
+          "type": "pareto",
+          "icon": "i-funnel",
+          "title": "Lead source mix \u00b7 indicative",
+          "rows": [
+            {
+              "label": "Word of mouth",
+              "width": "96%",
+              "value": "~40%"
+            },
+            {
+              "label": "Google Pack",
+              "width": "64%",
+              "value": "~25%"
+            },
+            {
+              "label": "Checkatrade",
+              "width": "48%",
+              "value": "~15%"
+            },
+            {
+              "label": "Organic SEO",
+              "width": "32%",
+              "value": "~10%"
+            },
+            {
+              "label": "Sister sites",
+              "width": "18%",
+              "value": "~7%"
+            },
+            {
+              "label": "Other",
+              "width": "8%",
+              "value": "~3%"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Sales Blueprint",
+      "phase": 1,
+      "top": 570,
+      "left": 890,
+      "width": 780,
+      "height": 1750,
+      "lanes": [
+        {
+          "header": "Pipeline",
+          "icon": "i-funnel",
+          "count": "8 stages",
+          "cards": [
+            {
+              "title": "Lead",
+              "body": "Form / phone / WhatsApp / Checkatrade.",
+              "link": "/#contact"
+            },
+            {
+              "title": "Qualified",
+              "body": "Coverage check \u00b7 scope-OK \u00b7 budget-fit.",
+              "link": "/quote/"
+            },
+            {
+              "title": "Quoted",
+              "kpi": "\u226448h",
+              "body": "Written quote \u00b7 valid 30 days.",
+              "link": "/quote/"
+            },
+            {
+              "title": "Booked",
+              "body": "50% BACS deposit received.",
+              "link": "tel:07889334849"
+            },
+            {
+              "title": "In progress",
+              "body": "Job started \u00b7 photos in PWA.",
+              "link": "/sparky/"
+            },
+            {
+              "title": "Done",
+              "body": "NAPIT cert + Part P notification done.",
+              "link": "/sparky/"
+            },
+            {
+              "title": "EICR follow-up automation",
+              "kpi": "Auto",
+              "body": "30-day pre-expiry email to client with quote link to rebook remedials + recert."
+            }
+          ],
+          "miniAfter": "funnel"
+        },
+        {
+          "header": "Fixed-price products",
+          "icon": "i-pound",
+          "count": "\u00a3",
+          "cards": [
+            {
+              "title": "EICR 1ph",
+              "kpi": "\u00a330/circ",
+              "body": "6\u201310 typical 3-bed.",
+              "link": "/quote/?type=eicr-1ph"
+            },
+            {
+              "title": "EICR 3ph",
+              "kpi": "\u00a340/circ",
+              "body": "Commercial mostly.",
+              "link": "/quote/?type=eicr-3ph"
+            },
+            {
+              "title": "Fuse board check",
+              "kpi": "\u00a399",
+              "body": "Credited on upgrade.",
+              "link": "/quote/?type=fuseboard"
+            },
+            {
+              "title": "EV charger",
+              "kpi": "\u00a3495",
+              "body": "Type A RCBO \u00b7 OZEV handled.",
+              "link": "/ev-chargers.html"
+            },
+            {
+              "title": "Rewire",
+              "kpi": "\u00a33,500+",
+              "body": "Per-circuit pricing.",
+              "link": "/eicr.html"
+            },
+            {
+              "title": "Heritage",
+              "kpi": "\u00a315K+",
+              "body": "Concealed wiring \u00b7 listed builds.",
+              "link": "/heritage-installations.html"
+            }
+          ]
+        },
+        {
+          "header": "Quote process",
+          "icon": "i-clock",
+          "count": "\u2264 48h",
+          "cards": [
+            {
+              "title": "Free site survey",
+              "body": "Director attends \u00b7 scope confirmed.",
+              "link": "/#contact"
+            },
+            {
+              "title": "Random QUO-NNN",
+              "body": "100\u2013999 \u00b7 never sequential.",
+              "link": "/quote/"
+            },
+            {
+              "title": "Written quote PDF",
+              "body": "Net + VAT 20% + total \u00b7 30-day valid.",
+              "link": "/quote/"
+            },
+            {
+              "title": "No \"while we're here\"",
+              "body": "Price you agree = price you pay.",
+              "link": "/about.html"
+            }
+          ]
+        },
+        {
+          "header": "Terms",
+          "icon": "i-pound",
+          "count": "BACS only",
+          "cards": [
+            {
+              "title": "50% deposit",
+              "body": "On booking \u00b7 funds materials.",
+              "link": "/quote/"
+            },
+            {
+              "title": "50% completion",
+              "body": "On test + cert handover.",
+              "link": "/quote/"
+            },
+            {
+              "title": "Stripe banned",
+              "titlePill": "no",
+              "titlePillColor": "red",
+              "body": "Customer invoices = BACS only.",
+              "link": "https://www.dselectricalsw.co.uk/bank-details"
+            },
+            {
+              "title": "No 30-day terms",
+              "body": "Cash flow protection.",
+              "link": "/quote/"
+            }
+          ]
+        },
+        {
+          "header": "Conversion levers",
+          "icon": "i-target",
+          "count": "Tested",
+          "cards": [
+            {
+              "title": "Same-day reply",
+              "body": "Single biggest lever for closing.",
+              "link": "/#contact"
+            },
+            {
+              "title": "Anchored prices",
+              "body": "\"From \u00a3495\" reduces sticker shock.",
+              "link": "/quote/"
+            },
+            {
+              "title": "5\u2605 social proof",
+              "body": "Quote sent with review snippets.",
+              "link": "/testimonials.html"
+            },
+            {
+              "title": "Director on site",
+              "body": "Trust transfer \u00b7 30+ year experience.",
+              "link": "/about.html"
+            }
+          ]
+        }
+      ],
+      "minis": [
+        {
+          "id": "funnel",
+          "type": "funnel",
+          "icon": "i-funnel",
+          "title": "Pipeline conversion funnel",
+          "stages": [
+            {
+              "label": "Leads",
+              "pct": "100"
+            },
+            {
+              "label": "Qualified",
+              "pct": "~70"
+            },
+            {
+              "label": "Quoted",
+              "pct": "~55"
+            },
+            {
+              "label": "Booked",
+              "pct": "~38"
+            },
+            {
+              "label": "Job done",
+              "pct": "~36"
+            },
+            {
+              "label": "Invoiced",
+              "pct": "~36"
+            },
+            {
+              "label": "Review",
+              "pct": "~22"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Operations Blueprint",
+      "phase": 1,
+      "top": 570,
+      "left": 1720,
+      "width": 780,
+      "height": 2390,
+      "lanes": [
+        {
+          "header": "Service categories",
+          "icon": "i-bolt",
+          "color": "g",
+          "count": "7",
+          "cols": 3,
+          "cards": [
+            {
+              "title": "Domestic",
+              "link": "/"
+            },
+            {
+              "title": "Heritage",
+              "link": "/heritage-installations.html"
+            },
+            {
+              "title": "Commercial",
+              "link": "/commercial-electrical.html"
+            },
+            {
+              "title": "EV chargers"
+            },
+            {
+              "title": "CCTV/sec.",
+              "link": "/cctv.html"
+            },
+            {
+              "title": "Lighting",
+              "link": "/lighting.html"
+            },
+            {
+              "title": "Data/fibre",
+              "link": "/data-networking.html"
+            },
+            {
+              "title": "Fire alarms",
+              "link": "/fire-alarms.html"
+            },
+            {
+              "title": "Callouts",
+              "link": "/24-hour-callouts.html"
+            }
+          ]
+        },
+        {
+          "header": "Test gear",
+          "icon": "i-tools",
+          "color": "g",
+          "count": "Calibrated",
+          "cards": [
+            {
+              "title": "Megger MFT 1741",
+              "body": "Insulation, RCD, loop, R1+R2 \u00b7 annual cal.",
+              "link": "https://uk.megger.com/products/electrical-testers/multifunction-testers/mft1741"
+            },
+            {
+              "title": "Clamp + LCR",
+              "body": "Live testing \u00b7 in-circuit measurements.",
+              "link": "https://uk.megger.com"
+            },
+            {
+              "title": "Thermal imager",
+              "body": "Fault-find + commercial surveys.",
+              "link": "https://www.flir.com"
+            },
+            {
+              "title": "PAT tester",
+              "body": "Commercial maintenance contracts.",
+              "link": "https://uk.megger.com"
+            },
+            {
+              "title": "MFT calibration log",
+              "kpi": "60-day",
+              "body": "Track Megger MFT calibration dates with 60-day renewal alerts \u00b7 avoids invalid certs + failed audits."
+            }
+          ]
+        },
+        {
+          "header": "In-job tools",
+          "icon": "i-stack",
+          "color": "g",
+          "count": "PWAs",
+          "cards": [
+            {
+              "title": "/sparky/ Pad",
+              "body": "Job tracker on the bank \u00b7 offline.",
+              "link": "/sparky/"
+            },
+            {
+              "title": "say-claude",
+              "body": "Voice \u2192 action \u00b7 phone bridge live.",
+              "link": "https://say.aimaxops.com"
+            },
+            {
+              "title": "/quote/",
+              "body": "In-field quote builder + PDF.",
+              "link": "/quote/"
+            },
+            {
+              "title": "DS site",
+              "body": "Always-current contact + service.",
+              "link": "/"
+            }
+          ]
+        },
+        {
+          "header": "Standards on site",
+          "icon": "i-check",
+          "color": "g",
+          "count": "Clean finish",
+          "cards": [
+            {
+              "title": "Cordless extraction",
+              "body": "Every drill \u00b7 no dust on furniture."
+            },
+            {
+              "title": "Dust sheets",
+              "body": "Every surface \u00b7 every job."
+            },
+            {
+              "title": "Chases filled",
+              "body": "Ready for plasterer same day."
+            },
+            {
+              "title": "End-of-day clean",
+              "body": "Site left better than found."
+            }
+          ]
+        },
+        {
+          "header": "Coverage area",
+          "icon": "i-pin",
+          "color": "g",
+          "count": "40-min max",
+          "cards": [
+            {
+              "title": "Mid Somerset core",
+              "body": "Wells \u00b7 Shepton \u00b7 Glastonbury \u00b7 Frome \u00b7 Street.",
+              "link": "/areas/wells.html"
+            },
+            {
+              "title": "BANES + Bath",
+              "body": "Premium residential + commercial.",
+              "link": "/areas/bath.html"
+            },
+            {
+              "title": "Somerset only",
+              "titlePill": "hard",
+              "titlePillColor": "gold",
+              "body": "No exceptions.",
+              "link": "/areas/"
+            },
+            {
+              "title": "2h emergency SLA",
+              "body": "Inside coverage \u00b7 contract = guaranteed.",
+              "link": "/24-hour-callouts.html"
+            }
+          ]
+        },
+        {
+          "header": "Fleet",
+          "icon": "i-truck",
+          "color": "g",
+          "count": "Planned: Tesla MY",
+          "cards": [
+            {
+              "title": "Service van (current)",
+              "body": "Branded \u00b7 tools-stocked \u00b7 signwritten.",
+              "link": "/about.html"
+            },
+            {
+              "title": "Tesla Model Y co-car",
+              "body": "Decision pack done \u00b7 broker shortlist.",
+              "link": "https://www.tesla.com/en_gb/modely"
+            }
+          ]
+        },
+        {
+          "header": "Job artefacts",
+          "icon": "i-doc",
+          "color": "g",
+          "count": "Per job",
+          "cards": [
+            {
+              "title": "Pre-job risk",
+              "body": "Site-specific RAMS for commercial.",
+              "link": "/commercial-electrical.html"
+            },
+            {
+              "title": "During photos",
+              "body": "EXIF-stamped via reel iQ-style capture.",
+              "link": "/sparky/"
+            },
+            {
+              "title": "Test sheet",
+              "body": "Per-circuit results into NAPIT cert.",
+              "link": "/eicr.html"
+            },
+            {
+              "title": "Handover pack",
+              "body": "Cert + photos + invoice + warranty.",
+              "link": "/eicr.html"
+            }
+          ]
+        },
+        {
+          "header": "Vehicle log",
+          "icon": "i-truck",
+          "color": "g",
+          "count": "Per-van",
+          "cards": [
+            {
+              "title": "MOT due",
+              "kpi": "annual",
+              "body": "DVLA reminder + booking \u00b7 Halfords/local.",
+              "link": "https://www.gov.uk/check-mot-history"
+            },
+            {
+              "title": "Insurance renewal",
+              "kpi": "annual",
+              "body": "Commercial van + tools + PL.",
+              "link": "/about.html"
+            },
+            {
+              "title": "Service interval",
+              "kpi": "10K mi",
+              "body": "Manufacturer schedule \u00b7 log + receipts.",
+              "link": "/about.html"
+            },
+            {
+              "title": "Tyre pressure",
+              "kpi": "monthly",
+              "body": "Loaded vs unloaded \u00b7 check before long drives.",
+              "link": "/about.html"
+            },
+            {
+              "title": "Diesel + AdBlue",
+              "body": "Track \u00a3/litre \u00b7 expense receipts.",
+              "link": "/about.html"
+            },
+            {
+              "title": "Cleaning + livery",
+              "body": "Branded van always presentable on customer drives.",
+              "link": "/about.html"
+            },
+            {
+              "title": "Van stock min/max audit",
+              "kpi": "Top 50",
+              "body": "Min/max levels per van for top 50 SKUs \u00b7 weekly check \u00b7 prevents job delays from missing parts."
+            }
+          ]
+        },
+        {
+          "header": "Time tracking",
+          "icon": "i-clock",
+          "color": "g",
+          "count": "Per-job",
+          "cards": [
+            {
+              "title": "Travel start",
+              "body": "Auto-start when leaving base.",
+              "link": "/sparky/"
+            },
+            {
+              "title": "On site",
+              "body": "GPS-stamped check-in.",
+              "link": "/sparky/"
+            },
+            {
+              "title": "Lunch break",
+              "body": "Compliant break \u00b7 paused.",
+              "link": "/sparky/"
+            },
+            {
+              "title": "Job end",
+              "body": "Check-out + photo handover.",
+              "link": "/sparky/"
+            },
+            {
+              "title": "Day total",
+              "body": "Billable + non-billable \u00b7 per-engineer.",
+              "link": "/sparky/"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Customer Success",
+      "phase": 1,
+      "top": 570,
+      "left": 2550,
+      "width": 780,
+      "height": 2070,
+      "lanes": [
+        {
+          "header": "Direct contact",
+          "icon": "i-phone",
+          "color": "r",
+          "count": "No call centre",
+          "cards": [
+            {
+              "title": "Dan Stevens",
+              "kpi": "07889 334849",
+              "body": "Director \u00b7 NAPIT lead.",
+              "link": "tel:07889334849"
+            },
+            {
+              "title": "Dan Street",
+              "kpi": "07983 106928",
+              "body": "Co-director \u00b7 commercial.",
+              "link": "tel:07983106928"
+            },
+            {
+              "title": "WhatsApp",
+              "body": "wa.me/447889334849 \u00b7 photo + chat.",
+              "link": "https://wa.me/447889334849"
+            },
+            {
+              "title": "Email",
+              "body": "info@dselectricalsw.co.uk \u2192 Gmail.",
+              "link": "mailto:info@dselectricalsw.co.uk"
+            }
+          ]
+        },
+        {
+          "header": "Promises (kept)",
+          "icon": "i-clock",
+          "color": "r",
+          "count": "SLAs",
+          "cards": [
+            {
+              "title": "Same-day reply",
+              "body": "Every enquiry \u00b7 no exceptions.",
+              "link": "/#contact"
+            },
+            {
+              "title": "2-hour emergency",
+              "body": "Inside coverage \u00b7 24/7 for contracts.",
+              "link": "/24-hour-callouts.html"
+            },
+            {
+              "title": "All work guaranteed",
+              "body": "Plus \u00a32M public liability.",
+              "link": "/about.html"
+            },
+            {
+              "title": "Quote in 48h",
+              "body": "Written \u00b7 fixed \u00b7 30-day valid.",
+              "link": "/quote/"
+            }
+          ]
+        },
+        {
+          "header": "Documentation",
+          "icon": "i-doc",
+          "color": "r",
+          "count": "Per-job",
+          "cards": [
+            {
+              "title": "NAPIT cert",
+              "body": "EIC or Minor Works \u00b7 BS 7671.",
+              "link": "https://www.napit.org.uk"
+            },
+            {
+              "title": "Part P",
+              "body": "Notified to building control.",
+              "link": "https://www.napit.org.uk/Resources/Part-P"
+            },
+            {
+              "title": "EICR report",
+              "body": "Per-circuit results + observations.",
+              "link": "/eicr.html"
+            },
+            {
+              "title": "Photos of work",
+              "body": "Before \u00b7 during \u00b7 after \u00b7 for client + insurer.",
+              "link": "/sparky/"
+            }
+          ],
+          "miniAfter": "retention"
+        },
+        {
+          "header": "Aftercare",
+          "icon": "i-target",
+          "color": "r",
+          "count": "Light touch",
+          "cards": [
+            {
+              "title": "Review request",
+              "body": "Google + Checkatrade link sent on close.",
+              "link": "https://g.co/kgs/DS-Electrical-Installations-SW"
+            },
+            {
+              "title": "No chasing",
+              "titlePill": "hard",
+              "titlePillColor": "red",
+              "body": "No reminder emails.",
+              "link": "/testimonials.html"
+            },
+            {
+              "title": "Repeat priority",
+              "body": "Existing client = priority queue.",
+              "link": "/about.html"
+            },
+            {
+              "title": "Contract clients",
+              "body": "24h emergency line + planned maint.",
+              "link": "/commercial-contracts.html"
+            },
+            {
+              "title": "Google reviews after sign-off",
+              "kpi": "5/mo",
+              "body": "SMS review link 2h after job completion \u00b7 target 5 new reviews/month for local SEO."
+            }
+          ]
+        },
+        {
+          "header": "Client segments",
+          "icon": "i-people",
+          "color": "r",
+          "count": "Mix",
+          "cards": [
+            {
+              "title": "Homeowners",
+              "body": "Largest segment \u00b7 rewires + EV + CCTV.",
+              "link": "/"
+            },
+            {
+              "title": "Landlords",
+              "body": "EICRs \u00b7 5-year cycle \u00b7 letting agent referrals.",
+              "link": "/eicr.html"
+            },
+            {
+              "title": "Commercial",
+              "body": "Maintenance contracts \u00b7 CHAS-required.",
+              "link": "/commercial-electrical.html"
+            },
+            {
+              "title": "Heritage / architects",
+              "body": "High-margin \u00b7 listed builds \u00b7 spec work.",
+              "link": "/heritage-installations.html"
+            }
+          ]
+        },
+        {
+          "header": "Customer DB",
+          "icon": "i-people",
+          "color": "r",
+          "count": "Per-customer",
+          "cards": [
+            {
+              "title": "Contact details",
+              "body": "Name + phone + email + address \u00b7 per-property.",
+              "link": "/#contact"
+            },
+            {
+              "title": "Job history",
+              "body": "Every job + cert + invoice \u00b7 timeline.",
+              "link": "/sparky/"
+            },
+            {
+              "title": "EICR cycle",
+              "kpi": "5yr",
+              "body": "Auto-reminder before EICR expires.",
+              "link": "/quote/?type=eicr-1ph"
+            },
+            {
+              "title": "Notes",
+              "body": "Access codes \u00b7 pets \u00b7 preferences.",
+              "link": "/sparky/"
+            },
+            {
+              "title": "GDPR",
+              "body": "Held only for active client + 6yr after final job.",
+              "link": "https://ico.org.uk"
+            }
+          ]
+        }
+      ],
+      "minis": [
+        {
+          "id": "retention",
+          "type": "stack",
+          "icon": "i-link",
+          "title": "Retention loop",
+          "rows": [
+            {
+              "label": "Job done"
+            },
+            {
+              "label": "Cert sent"
+            },
+            {
+              "label": "Review ask"
+            },
+            {
+              "label": "Repeat queue"
+            },
+            {
+              "label": "Contract"
+            },
+            {
+              "label": "Referral"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Finance Blueprint",
+      "phase": 2,
+      "top": 2420,
+      "left": 60,
+      "width": 780,
+      "height": 1960,
+      "lanes": [
+        {
+          "header": "Numbering",
+          "icon": "i-doc",
+          "count": "Sequences",
+          "cards": [
+            {
+              "title": "SI-NNN invoices",
+              "kpi": "SI-533 next",
+              "body": "Last Sage = SI-532 \u00b7 never restart.",
+              "link": "/invoices/"
+            },
+            {
+              "title": "QUO-NNN quotes",
+              "body": "Random 100\u2013999 \u00b7 never sequential.",
+              "link": "/quote/"
+            },
+            {
+              "title": "Job ref / property",
+              "body": "B2B reports + CPM/Curo distribution.",
+              "link": "/quote/"
+            }
+          ]
+        },
+        {
+          "header": "Channels",
+          "icon": "i-pound",
+          "count": "Cash flow",
+          "cards": [
+            {
+              "title": "BACS only",
+              "titlePill": "no Stripe",
+              "titlePillColor": "red",
+              "body": "Customer invoices.",
+              "link": "https://www.dselectricalsw.co.uk/bank-details"
+            },
+            {
+              "title": "Bank refs page",
+              "body": "Permanent on website + every invoice.",
+              "link": "https://www.dselectricalsw.co.uk/bank-details"
+            },
+            {
+              "title": "50/50 deposit terms",
+              "body": "Funds materials \u00b7 final on completion.",
+              "link": "/quote/"
+            },
+            {
+              "title": "Same-day clearance",
+              "body": "Before NAPIT cert handed over.",
+              "link": "https://www.dselectricalsw.co.uk/bank-details"
+            }
+          ]
+        },
+        {
+          "header": "VAT + tax",
+          "icon": "i-pound",
+          "count": "Registered",
+          "cards": [
+            {
+              "title": "VAT 20%",
+              "body": "On every quote \u00b7 invoice \u00b7 report.",
+              "link": "https://www.gov.uk/vat-rates"
+            },
+            {
+              "title": "Quarterly returns",
+              "body": "MTD-compliant via accounting stack.",
+              "link": "https://www.gov.uk/vat-returns"
+            },
+            {
+              "title": "Corporation tax",
+              "body": "Year-end via accountant.",
+              "link": "https://www.gov.uk/corporation-tax"
+            }
+          ]
+        },
+        {
+          "header": "Stack",
+          "icon": "i-stack",
+          "count": "Migration",
+          "cards": [
+            {
+              "title": "Sage (current)",
+              "kpi": "\u00a350/mo",
+              "body": "Being migrated.",
+              "link": "https://www.sage.com"
+            },
+            {
+              "title": "QuickBooks (planned)",
+              "body": "Free tier sufficient \u00b7 API for integrations.",
+              "link": "https://quickbooks.intuit.com/uk"
+            },
+            {
+              "title": "Dext receipts",
+              "body": "Photo \u2192 categorise \u2192 push to QB.",
+              "link": "https://dext.com"
+            }
+          ]
+        },
+        {
+          "header": "Cover",
+          "icon": "i-shield",
+          "count": "Required",
+          "cards": [
+            {
+              "title": "\u00a32M PL insurance",
+              "body": "NAPIT minimum \u00b7 annual renewal.",
+              "link": "/about.html"
+            },
+            {
+              "title": "Tools + van cover",
+              "body": "Theft + accidental damage.",
+              "link": "/about.html"
+            },
+            {
+              "title": "Pro indemnity",
+              "body": "Design + commercial work.",
+              "link": "/about.html"
+            }
+          ]
+        },
+        {
+          "header": "Invoice cycle detail",
+          "icon": "i-pound",
+          "count": "Per-invoice",
+          "cards": [
+            {
+              "title": "Issue",
+              "body": "Auto-numbered SI-NNN \u00b7 branded PDF.",
+              "link": "/quote/"
+            },
+            {
+              "title": "Send",
+              "body": "Email + WhatsApp \u00b7 receipt confirmation.",
+              "link": "mailto:info@dselectricalsw.co.uk"
+            },
+            {
+              "title": "Pre-due reminder",
+              "body": "Auto 7d before due \u00b7 gentle nudge.",
+              "link": "/quote/"
+            },
+            {
+              "title": "Cleared funds",
+              "body": "BACS confirmation \u00b7 cert released.",
+              "link": "https://www.dselectricalsw.co.uk/bank-details"
+            },
+            {
+              "title": "Reconciled",
+              "body": "Matched in QuickBooks \u00b7 VAT logged.",
+              "link": "https://quickbooks.intuit.com/uk"
+            }
+          ]
+        },
+        {
+          "header": "Material costs",
+          "icon": "i-bag",
+          "count": "Per-job",
+          "cards": [
+            {
+              "title": "Cable + accessories",
+              "body": "Per-circuit cost from wholesaler price list.",
+              "link": "https://www.edmundson-electrical.co.uk"
+            },
+            {
+              "title": "Consumer units",
+              "body": "MK + Wylex \u00b7 Type A RCBOs stocked.",
+              "link": "/quote/?type=fuseboard"
+            },
+            {
+              "title": "EV chargers (stocked)",
+              "body": "Hypervolt 3 + Zappi \u00b7 van stock.",
+              "link": "https://hypervolt.co.uk"
+            },
+            {
+              "title": "Materials & sundries line",
+              "body": "B2B reports = single \u00a320 line per memory rule.",
+              "link": "/commercial-electrical.html"
+            },
+            {
+              "title": "Markup policy",
+              "kpi": "+15%",
+              "body": "Standard markup \u00b7 transparent on quote.",
+              "link": "/quote/"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Compliance Blueprint",
+      "phase": 2,
+      "top": 2420,
+      "left": 890,
+      "width": 780,
+      "height": 1320,
+      "lanes": [
+        {
+          "header": "Master accred",
+          "icon": "i-shield",
+          "color": "g",
+          "count": "Required",
+          "cards": [
+            {
+              "title": "NAPIT",
+              "body": "Master scheme \u00b7 Part P notification on every domestic job.",
+              "link": "https://www.napit.org.uk"
+            },
+            {
+              "title": "CHAS",
+              "body": "Commercial framework prerequisite.",
+              "link": "https://www.chas.co.uk"
+            },
+            {
+              "title": "TrustMark",
+              "body": "Government quality scheme \u00b7 IBW available.",
+              "link": "https://www.trustmark.org.uk"
+            }
+          ]
+        },
+        {
+          "header": "Standards",
+          "icon": "i-doc",
+          "color": "g",
+          "count": "Worked-to",
+          "cards": [
+            {
+              "title": "BS 7671:2018+A2",
+              "body": "18th edition + amendment 2.",
+              "link": "https://electrical.theiet.org/wiring-regulations"
+            },
+            {
+              "title": "BS 5839",
+              "body": "Fire alarm install + maintenance grade.",
+              "link": "https://shop.bsigroup.com/products/bs-5839"
+            },
+            {
+              "title": "BS 5266",
+              "body": "Emergency lighting \u00b7 3h discharge test.",
+              "link": "https://shop.bsigroup.com/products/bs-5266"
+            }
+          ]
+        },
+        {
+          "header": "Hard rules",
+          "icon": "i-bolt",
+          "color": "r",
+          "count": "No exceptions",
+          "cards": [
+            {
+              "title": "EV = Type A RCBO",
+              "titlePill": "always",
+              "titlePillColor": "gold",
+              "body": "Never Type B.",
+              "link": "/ev-chargers.html"
+            },
+            {
+              "title": "EICR per-circuit",
+              "body": "\u00a330 (1ph) \u00b7 \u00a340 (3ph) \u00b7 no flat fees.",
+              "link": "/quote/?type=eicr-1ph"
+            },
+            {
+              "title": "Heritage = walk-round",
+              "body": "Survey-first \u00b7 never blind.",
+              "link": "/heritage-installations.html"
+            }
+          ]
+        },
+        {
+          "header": "People checks",
+          "icon": "i-people",
+          "count": "Procurement",
+          "cards": [
+            {
+              "title": "Enhanced DBS",
+              "body": "In progress \u00b7 uCheck portal.",
+              "link": "https://www.gov.uk/dbs-check-applicant-criminal-record"
+            },
+            {
+              "title": "Safeguarding",
+              "body": "LGA learning pool \u00b7 for HA work.",
+              "link": "https://www.local.gov.uk/our-support/our-improvement-offer/learning-pool"
+            },
+            {
+              "title": "2391 prep",
+              "kpi": "160 MCQs",
+              "body": "Inspection + testing CPD.",
+              "link": "https://www.cityandguilds.com"
+            }
+          ]
+        },
+        {
+          "header": "Per-job pack",
+          "icon": "i-doc",
+          "count": "Handover",
+          "cards": [
+            {
+              "title": "EIC / MWC",
+              "body": "Installation cert \u00b7 NAPIT issued.",
+              "link": "https://www.napit.org.uk"
+            },
+            {
+              "title": "Part P notify",
+              "body": "Building control via NAPIT portal.",
+              "link": "https://www.napit.org.uk"
+            },
+            {
+              "title": "Building Control",
+              "body": "EV + 3-phase + commercial = notified.",
+              "link": "https://www.gov.uk/building-regulations-approval"
+            },
+            {
+              "title": "DNO notification",
+              "body": "EV + load increases \u00b7 pre-install.",
+              "link": "https://www.energynetworks.org"
+            },
+            {
+              "title": "Part P notification tracker",
+              "kpi": "NICEIC",
+              "body": "Log every notifiable job with NICEIC/building-control ref + cert issue date \u00b7 stays compliant."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Tech Stack & Brand",
+      "phase": 2,
+      "top": 2420,
+      "left": 1720,
+      "width": 780,
+      "height": 1320,
+      "lanes": [
+        {
+          "header": "Web infra",
+          "icon": "i-stack",
+          "color": "b",
+          "count": "Self-hosted",
+          "cards": [
+            {
+              "title": "dselectricalsw.co.uk",
+              "body": "Caddy:3004 + PM2 + cf-tunnel \u00b7 edit = live.",
+              "link": "/"
+            },
+            {
+              "title": "No Netlify",
+              "titlePill": "banned",
+              "titlePillColor": "red",
+              "body": "Self-hosted only.",
+              "link": "/blueprints/"
+            }
+          ],
+          "miniAfter": "stack"
+        },
+        {
+          "header": "Tools shipped",
+          "icon": "i-stack",
+          "color": "b",
+          "count": "PWAs",
+          "cards": [
+            {
+              "title": "/sparky/",
+              "body": "Job tracker \u00b7 offline \u00b7 localStorage.",
+              "link": "/sparky/"
+            },
+            {
+              "title": "/quote/",
+              "body": "Multi-trade quote builder \u00b7 PDF.",
+              "link": "/quote/"
+            },
+            {
+              "title": "/blueprints/",
+              "body": "Tile-grid showcase of all tools.",
+              "link": "/blueprints/"
+            },
+            {
+              "title": "/blueprint/",
+              "kpi": "v3",
+              "body": "This canvas \u2014 operating system.",
+              "link": "/blueprint/template.html?biz=ds-electrical"
+            }
+          ]
+        },
+        {
+          "header": "Communication",
+          "icon": "i-mic",
+          "color": "b",
+          "count": "Voice + email",
+          "cards": [
+            {
+              "title": "say-claude bridge",
+              "body": "say.aimaxops.com \u00b7 voice \u2192 Claude SDK.",
+              "link": "https://say.aimaxops.com"
+            },
+            {
+              "title": "Gmail OAuth",
+              "body": "info@ \u2192 Gmail mailbox.",
+              "link": "mailto:info@dselectricalsw.co.uk"
+            },
+            {
+              "title": "CF Email Routing",
+              "body": "Custom domain \u2192 mailbox forwarding.",
+              "link": "https://www.cloudflare.com/products/email-routing"
+            },
+            {
+              "title": "Hotmail OAuth",
+              "body": "Backup channel \u00b7 MSAL device-code.",
+              "link": "mailto:dstevenselectrical@gmail.com"
+            }
+          ]
+        },
+        {
+          "header": "Brand tokens",
+          "icon": "i-palette",
+          "count": "Web only",
+          "cards": [
+            {
+              "title": "#facc15 yellow",
+              "body": "Primary accent \u00b7 web only \u00b7 not on print.",
+              "link": "https://aimaxops.com/brand"
+            },
+            {
+              "title": "#0f172a / #1e293b",
+              "body": "Dark backgrounds \u00b7 DS premium.",
+              "link": "https://aimaxops.com/brand"
+            },
+            {
+              "title": "Outfit + JetBrains",
+              "body": "Body sans + mono for prices/labels.",
+              "link": "https://fonts.google.com/specimen/Outfit"
+            },
+            {
+              "title": "Real-photo only",
+              "body": "No AI slop \u00b7 100+ real client images.",
+              "link": "/gallery.html"
+            }
+          ]
+        }
+      ],
+      "minis": [
+        {
+          "id": "stack",
+          "type": "stack",
+          "icon": "i-stack",
+          "title": "Architecture stack",
+          "rows": [
+            {
+              "label": "PWA \u00b7 /sparky/ \u00b7 /quote/ \u00b7 /blueprints/",
+              "layer": "UI"
+            },
+            {
+              "label": "Vanilla JS \u00b7 localStorage \u00b7 service worker",
+              "layer": "App"
+            },
+            {
+              "label": "Caddy:3004 \u00b7 static site server",
+              "layer": "Web"
+            },
+            {
+              "label": "PM2 \u00b7 process supervisor \u00b7 30+ services",
+              "layer": "Proc"
+            },
+            {
+              "label": "Cloudflare tunnel \u00b7 TLS \u00b7 DDoS",
+              "layer": "Net"
+            },
+            {
+              "label": "Mac mini \u00b7 self-hosted \u00b7 always-on",
+              "layer": "Host"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Partners + Team",
+      "phase": 2,
+      "top": 2420,
+      "left": 2550,
+      "width": 780,
+      "height": 1320,
+      "lanes": [
+        {
+          "header": "Trade wholesale",
+          "icon": "i-bag",
+          "count": "Materials",
+          "cards": [
+            {
+              "title": "Edmundsons",
+              "body": "Local trade counter \u00b7 account terms.",
+              "link": "https://www.edmundson-electrical.co.uk"
+            },
+            {
+              "title": "CEF",
+              "body": "Backup account \u00b7 EICR consumables.",
+              "link": "https://www.cef.co.uk"
+            },
+            {
+              "title": "City Electrical",
+              "body": "Specialist commercial / industrial.",
+              "link": "https://www.cef.co.uk"
+            }
+          ]
+        },
+        {
+          "header": "EV approved",
+          "icon": "i-plug",
+          "color": "g",
+          "count": "Charger brands",
+          "cards": [
+            {
+              "title": "Hypervolt 3",
+              "body": "Stocked \u00b7 approved installer.",
+              "link": "https://hypervolt.co.uk"
+            },
+            {
+              "title": "Zappi / Myenergi",
+              "body": "Solar-diversion \u00b7 for PV homes.",
+              "link": "https://www.myenergi.com/zappi"
+            },
+            {
+              "title": "Ohme \u00b7 Andersen",
+              "body": "Premium / smart options.",
+              "link": "https://www.ohme-ev.com"
+            }
+          ]
+        },
+        {
+          "header": "Security",
+          "icon": "i-camera",
+          "count": "CCTV + alarms",
+          "cards": [
+            {
+              "title": "Hikvision",
+              "body": "4K AcuSense + ColorVu \u00b7 Hik-Connect.",
+              "link": "https://www.hikvision.com"
+            },
+            {
+              "title": "AX PRO",
+              "body": "Wireless intruder \u00b7 cellular backup.",
+              "link": "https://www.hikvision.com/uk/products/Alarm-products"
+            }
+          ]
+        },
+        {
+          "header": "Lead sources",
+          "icon": "i-target",
+          "color": "r",
+          "count": "B2B",
+          "cards": [
+            {
+              "title": "Letting agents",
+              "kpi": "19+",
+              "body": "Cooper & Tanner standout.",
+              "link": "/commercial-electrical.html"
+            },
+            {
+              "title": "Curo \u00b7 Aster",
+              "body": "Procurement packs built.",
+              "link": "/commercial-electrical.html"
+            },
+            {
+              "title": "Somerset Council",
+              "body": "Pack ready \u00b7 awaiting DBS sign-off.",
+              "link": "https://www.somerset.gov.uk"
+            }
+          ]
+        },
+        {
+          "header": "Team",
+          "icon": "i-people",
+          "count": "2 directors",
+          "cards": [
+            {
+              "title": "Dan Stevens",
+              "body": "Director \u00b7 15+ years \u00b7 NAPIT lead.",
+              "link": "tel:07889334849"
+            },
+            {
+              "title": "Dan Street",
+              "body": "Co-director \u00b7 commercial side.",
+              "link": "tel:07983106928"
+            },
+            {
+              "title": "Apprentice slot",
+              "body": "Open when commercial volume justifies.",
+              "link": "/about.html"
+            },
+            {
+              "title": "Base: Glastonbury",
+              "body": "BA6 \u00b7 40-min radius defines coverage.",
+              "link": "/areas/glastonbury.html"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "d": "M 840 1380 L 865 1380 L 865 700 L 890 700",
+      "arrow": "default"
+    },
+    {
+      "d": "M 840 1530 L 865 1530 L 865 700 L 890 700",
+      "arrow": "default"
+    },
+    {
+      "d": "M 1670 1100 L 1695 1100 L 1695 1280 L 1720 1280",
+      "cls": "gold",
+      "arrow": "gold"
+    },
+    {
+      "d": "M 2500 1700 L 2525 1700 L 2525 1100 L 2550 1100",
+      "arrow": "default"
+    },
+    {
+      "d": "M 2550 1700 C 2700 1700, 2700 3700, 60 3700 L 60 2050",
+      "cls": "dim"
+    },
+    {
+      "d": "M 1670 1500 L 1695 1500 L 1695 2870 L 890 2870",
+      "cls": "gold",
+      "arrow": "gold"
+    },
+    {
+      "d": "M 60 2600 L 40 2600 L 40 1900 L 890 1900",
+      "cls": "dim"
+    },
+    {
+      "d": "M 1720 2600 L 1695 2600 L 1695 1700 L 2500 1700",
+      "arrow": "default"
+    },
+    {
+      "d": "M 890 2520 L 865 2520 L 865 3200 L 1720 3200",
+      "cls": "dim"
+    },
+    {
+      "d": "M 2550 2700 L 2525 2700 L 2525 1500 L 1670 1500"
+    },
+    {
+      "d": "M 2550 3050 L 2525 3050 L 2525 720 L 840 720"
+    },
+    {
+      "d": "M 840 720 C 1500 720, 1500 1850, 2550 1850",
+      "cls": "dim"
+    }
+  ]
+}

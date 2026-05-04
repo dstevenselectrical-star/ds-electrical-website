@@ -38,8 +38,8 @@ jobs:
             3. **Performance red flags** — huge unoptimised images (prefer <picture> + WebP), render-blocking resources, missing font preconnects
             4. **Content correctness** — DS Electrical does NOT offer solar or battery storage; flag any reintroduction
             5. **Brand standards** — no AI slop/stock photos, real work photos only
-            6. **Forms** — confirm form submissions use FormSubmit action (formsubmit.co/info@dselectricalinstallations.co.uk) not a non-existent /api/ endpoint
-            7. **Contact details** — phone 07889 334849 and 07983 106928; email info@dselectricalinstallations.co.uk; no office number 01458 833844
+            6. **Forms** — confirm form submissions use FormSubmit action (formsubmit.co/info@dselectricalsw.co.uk) not a non-existent /api/ endpoint
+            7. **Contact details** — phone 07889 334849 and 07983 106928; email info@dselectricalsw.co.uk; no office number 01458 833844
             8. **Glastonbury rule** — site is based in Glastonbury but must not promote it as a target area; cover Wells/Bath/Shepton Mallet/Frome etc
 
             Be concise. Inline comments for specific issues, top-level for overall summary.
